@@ -371,8 +371,40 @@ def generate_html(entries: List[FeedEntry], output_path: Path):
     # Prepare template data
     template_data = {
         "title": "IWCB",
-        "upcoming_event": None,
-        "past_events": [None, None, None],
+        "upcoming_event": {
+            "id": 711,
+            "createdAtHuman": "5th September 1892",
+            "createdAt": "2025-09-20",
+            "title": "IndieWebClub #10",
+            "slug": "indie-web-club-10",
+            "underlineUrl": "https://underline.center/t/slug",
+        },
+        "past_events": [
+            {
+                "id": 711,
+                "createdAtHuman": "5th September 1892",
+                "createdAt": "2025-09-20",
+                "title": "IndieWebClub #10",
+                "slug": "indie-web-club-10",
+                "underlineUrl": "https://underline.center/t/slug",
+            },
+            {
+                "id": 711,
+                "createdAtHuman": "5th September 1892",
+                "createdAt": "2025-09-20",
+                "title": "IndieWebClub #10",
+                "slug": "indie-web-club-10",
+                "underlineUrl": "https://underline.center/t/slug",
+            },
+            {
+                "id": 711,
+                "createdAtHuman": "5th September 1892",
+                "createdAt": "2025-09-20",
+                "title": "IndieWebClub #10",
+                "slug": "indie-web-club-10",
+                "underlineUrl": "https://underline.center/t/slug",
+            },
+        ],
         "total_entries": len(recent_entries),
         "total_feeds": len(feed_groups),
         "entries": recent_entries,
