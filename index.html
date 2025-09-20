@@ -123,14 +123,18 @@
     {{/upcoming_event}}
     {{^upcoming_event}}
       <h2>No upcoming events</h2>
+      <ul>
+        <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
+        <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
+      </ul>
     {{/upcoming_event}}
     </section>
 
     <section id="recent-posts">
       <h2>Recent posts</h2>
       <ul>
-        <li><a href="{{site_url}}blogroll.atom">Subscribe as feed.</a></li>
-        <li><a href="{{site_url}}blogroll.opml">Subscribe as OPML file.</a></li>
+        <li><a href="{{site_url}}blogroll.atom">Subscribe as a feed.</a></li>
+        <li><a href="{{site_url}}blogroll.opml">Download as an OPML file.</a></li>
       </ul>
       {{#entries}}
       <article class="entry">
