@@ -558,7 +558,7 @@ def main():
         # Generate HTML output
         generate_html(entries, events, html_path)
 
-        logger.info("Feed aggregation completed successfully")
+        logger.info("Website generation completed successfully")
 
     except KeyboardInterrupt:
         logger.info("Process interrupted by user")
