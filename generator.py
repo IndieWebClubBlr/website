@@ -6,6 +6,8 @@ This script processes an OPML file containing RSS/Atom feed URLs, fetches the fe
 parses them, and generates an HTML page with the latest 3 entries from each feed
 published within the last year, sorted by publication date.
 
+It also pull events from Underline Center Discourse API and show them.
+
 Dependencies:
     - requests
     - feedparser
@@ -25,7 +27,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from copy import deepcopy
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 from urllib.parse import urlparse
 
 import feedparser
@@ -47,6 +49,7 @@ MAX_FEED_ENTRIES = 10
 MAX_SHOW_TAGS = 5
 MAX_WORKERS = 10  # concurrent feed fetches
 RECENT_DAYS = 365  # one year
+UA = "IndieWebClub BLR website generator"
 
 
 class FeedEntry:
@@ -137,7 +140,7 @@ def fetch_feed_content(url: str) -> Optional[str]:
             return None
 
         headers = {
-            "User-Agent": "OPML Feed Aggregator 1.0",
+            "User-Agent": UA,
             "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml",
         }
 
@@ -334,7 +337,125 @@ def fetch_all_feeds(feeds: List[Tuple[str, str]]) -> List[FeedEntry]:
     return all_entries
 
 
-def generate_html(entries: List[FeedEntry], output_path: Path):
+class Event:
+    """Represents an IndieWebClub BLR event"""
+
+    def __init__(
+        self,
+        id: int,
+        title: str,
+        slug: str,
+        created_at: datetime,
+        event_at: datetime,
+        details: str | None,
+        underline_url: str,
+        district_url: str,
+    ):
+        self.id = id
+        self.title = title
+        self.slug = slug
+        self.created_at = created_at
+        self.event_at = event_at
+        self.details = details
+        self.underline_url = underline_url
+        self.district_url = district_url
+
+    def event_at_human(self):
+        return self.event_at.strftime("%d %b %Y")
+
+    def event_at_machine(self):
+        return self.event_at.isoformat()
+
+
+def fetch_event_detail(
+    topic: Dict, base_url: str = "https://underline.center"
+) -> Event | None:
+    """Fetch details of IWCB event
+
+    Args:
+      base_url: URL of Underline Center Discourse. Default: https://underline.center/
+      topic: topic JSON returned from Discourse Search API
+
+    Returns:
+      IWCB Event, None if fetch failed
+    """
+    url = base_url + "/t/" + str(topic["id"]) + ".json"
+
+    try:
+        logger.debug(f"Fetching event details: {url}")
+        headers = {
+            "User-Agent": UA,
+            "Accept": "application/json",
+        }
+        response = requests.get(
+            url, headers=headers, timeout=REQUEST_TIMEOUT, stream=True
+        )
+        response.raise_for_status()
+
+        post = response.json()["post_stream"]["posts"][0]
+        event = post["event"]
+
+        return Event(
+            id=topic["id"],
+            title=topic["title"],
+            slug=topic["slug"],
+            created_at=date_parser.parse(topic["created_at"]),
+            event_at=date_parser.parse(event["starts_at"]),
+            details=post["cooked"],
+            underline_url=base_url + "/t/" + topic["slug"],
+            district_url=event["url"],
+        )
+    except requests.exceptions.Timeout:
+        logger.warning(f"Timeout fetching feed: {url}")
+    except requests.exceptions.HTTPError as e:
+        logger.warning(f"HTTP error fetching feed {url}: {e}")
+    except requests.exceptions.RequestException as e:
+        logger.warning(f"Request error fetching feed {url}: {e}")
+    except Exception as e:
+        logger.error(f"Unexpected error fetching feed {url}: {e}")
+
+    return None
+
+
+def fetch_events(base_url: str = "https://underline.center") -> list[Event]:
+    """Fetch IWCB events from Underline Center Discourse API
+
+    Args:
+      base_url: URL of Underline Center Discourse. Default: https://underline.center/
+
+    Returns:
+      IWCB Event as a list, empty if fetch failed
+    """
+    url = base_url + "/search?q=indieweb%20%23calendar%20order%3Alatest_topic&page=1"
+    try:
+        logger.debug(f"Fetching events: {url}")
+        headers = {
+            "User-Agent": UA,
+            "Accept": "application/json",
+        }
+        response = requests.get(
+            url, headers=headers, timeout=REQUEST_TIMEOUT, stream=True
+        )
+        response.raise_for_status()
+
+        return [
+            event
+            for topic in response.json()["topics"]
+            if (event := fetch_event_detail(topic, base_url)) is not None
+        ]
+    except requests.exceptions.Timeout:
+        logger.warning(f"Timeout fetching feed: {url}")
+    except requests.exceptions.HTTPError as e:
+        logger.warning(f"HTTP error fetching feed {url}: {e}")
+    except requests.exceptions.RequestException as e:
+        logger.warning(f"Request error fetching feed {url}: {e}")
+    except Exception as e:
+        logger.error(f"Unexpected error fetching feed {url}: {e}")
+
+    return []
+
+
+def generate_html(entries: List[FeedEntry], events: List[Event], output_path: Path):
     """
     Generate HTML file from feed entries using Mustache templating.
 
@@ -342,7 +463,7 @@ def generate_html(entries: List[FeedEntry], output_path: Path):
         entries: List of FeedEntry objects to include
         output_path: Path where HTML file should be written
     """
-    logger.info(f"Generating HTML with {len(entries)} entries")
+    logger.info(f"Generating HTML with {len(entries)} entries and {len(events)} events")
 
     # Group entries by OPML feed title
     feed_groups = defaultdict(list)
@@ -368,47 +489,19 @@ def generate_html(entries: List[FeedEntry], output_path: Path):
     # Sort all entries globally by publication date for overall stats
     recent_entries.sort(key=lambda x: x.published, reverse=True)
 
+    now = datetime.now(timezone.utc)
+    previous_events = [event for event in events if event.event_at <= now]
+    upcoming_events = [event for event in events if event.event_at > now]
+    upcoming_event = upcoming_events[-1] if len(upcoming_events) > 0 else None
+
     # Prepare template data
     template_data = {
-        "title": "IWCB",
-        "upcoming_event": {
-            "id": 711,
-            "createdAtHuman": "5th September 1892",
-            "createdAt": "2025-09-20",
-            "title": "IndieWebClub #10",
-            "slug": "indie-web-club-10",
-            "underlineUrl": "https://underline.center/t/slug",
-        },
-        "past_events": [
-            {
-                "id": 711,
-                "createdAtHuman": "5th September 1892",
-                "createdAt": "2025-09-20",
-                "title": "IndieWebClub #10",
-                "slug": "indie-web-club-10",
-                "underlineUrl": "https://underline.center/t/slug",
-            },
-            {
-                "id": 711,
-                "createdAtHuman": "5th September 1892",
-                "createdAt": "2025-09-20",
-                "title": "IndieWebClub #10",
-                "slug": "indie-web-club-10",
-                "underlineUrl": "https://underline.center/t/slug",
-            },
-            {
-                "id": 711,
-                "createdAtHuman": "5th September 1892",
-                "createdAt": "2025-09-20",
-                "title": "IndieWebClub #10",
-                "slug": "indie-web-club-10",
-                "underlineUrl": "https://underline.center/t/slug",
-            },
-        ],
+        "upcoming_event": upcoming_event,
+        "previous_events": previous_events,
         "total_entries": len(recent_entries),
         "total_feeds": len(feed_groups),
         "entries": recent_entries,
-        "generated_date": datetime.now(timezone.utc).strftime("%d %b %Y"),
+        "generated_date": now.strftime("%d %b %Y"),
     }
 
     # HTML template
@@ -459,8 +552,11 @@ def main():
         # Fetch and parse all feeds
         entries = fetch_all_feeds(feeds)
 
+        # Fetch all events
+        events = fetch_events()
+
         # Generate HTML output
-        generate_html(entries, html_path)
+        generate_html(entries, events, html_path)
 
         logger.info("Feed aggregation completed successfully")
 
