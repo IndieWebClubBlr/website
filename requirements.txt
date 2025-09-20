@@ -1,4 +1,5 @@
 requests>=2.31.0
 feedparser>=6.0.10
+feedgen>=1.0.0
 pystache>=0.6.0
 python-dateutil>=2.8.2

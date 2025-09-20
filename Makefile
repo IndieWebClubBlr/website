@@ -47,7 +47,7 @@ install:
 run: setup iwcb.opml
 	@echo "Running OPML Feed Aggregator with sample data..."
 	mkdir -p _site/
-	$(VENV_PYTHON) generator.py iwcb.opml _site/index.html
+	$(VENV_PYTHON) generator.py iwcb.opml _site/index.html _site/blogroll.atom
 	@echo "Generated output.html"
 
 # Clean up generated files and virtual environment

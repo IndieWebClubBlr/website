@@ -34,6 +34,7 @@ import feedparser
 import pystache
 import requests
 from dateutil import parser as date_parser
+from feedgen.feed import FeedGenerator
 
 # Configure logging
 logging.basicConfig(
@@ -50,6 +51,7 @@ MAX_SHOW_TAGS = 5
 MAX_WORKERS = 10  # concurrent feed fetches
 RECENT_DAYS = 365  # one year
 UA = "IndieWebClub BLR website generator"
+SITE_URL = "https://indiewebclubblr.github.io/website/"
 
 
 class FeedEntry:
@@ -61,12 +63,14 @@ class FeedEntry:
         link: str,
         published: datetime,
         feed_title: str,
+        feed_url: str,
         tags: list[str],
     ):
         self.title = title
         self.link = link
         self.published = published
         self.feed_title = feed_title
+        self.feed_url = feed_url
         self.tags = tags
 
     def published_human(self):
@@ -207,7 +211,7 @@ def parse_feed_date(date_string: str) -> Optional[datetime]:
         return None
 
 
-def parse_feed(feed_title: str, feed_content: str) -> List[FeedEntry]:
+def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> List[FeedEntry]:
     """
     Parse feed content and extract recent entries.
 
@@ -265,6 +269,7 @@ def parse_feed(feed_title: str, feed_content: str) -> List[FeedEntry]:
                     link=link.strip(),
                     published=published,
                     feed_title=feed_title,
+                    feed_url=feed_url,
                     tags=[tag for tag in tags if tag is not None],
                 )
             )
@@ -298,7 +303,7 @@ def process_single_feed(feed_info: Tuple[str, str]) -> List[FeedEntry]:
         return []
 
     # Parse feed content
-    return parse_feed(feed_title, content)
+    return parse_feed(feed_title, feed_url, content)
 
 
 def fetch_all_feeds(feeds: List[Tuple[str, str]]) -> List[FeedEntry]:
@@ -522,6 +527,42 @@ def generate_html(entries: List[FeedEntry], events: List[Event], output_path: Pa
         raise
 
 
+def generate_blogroll_feed(entries: list[FeedEntry], output_path: Path):
+    """
+    Creates an Atom feed from a list of FeedEntry objects using the feedgen library.
+
+    Args:
+        entries: A list of FeedEntry objects to include in the feed.
+        output_path: Path where Atom file should be written
+
+    """
+
+    FEED_URL = SITE_URL + output_path.name
+    fg = FeedGenerator()
+
+    fg.id(FEED_URL)
+    fg.title("IndieWebClub Bangalore Blogroll")
+    fg.author(name="IndieWebClub Bangalore")
+    fg.link(href=FEED_URL, rel="self")
+    fg.link(href=SITE_URL, rel="alternate")
+    fg.subtitle("Recent posts by IndieWebClub Bangalore folks.")
+
+    for entry in entries:
+        fe = fg.add_entry(order="append")
+
+        fe.id(entry.link)
+        fe.title(entry.title)
+        fe.link(href=entry.link, rel="alternate")
+        fe.published(entry.published)
+        fe.updated(entry.published)
+        fe.author(name=entry.feed_title, uri=entry.feed_url)
+
+        for tag in entry.tags:
+            fe.category(term=tag)
+
+    fg.atom_file(output_path, pretty=True)
+
+
 def main():
     """Main function to orchestrate the feed aggregation process."""
     parser = argparse.ArgumentParser(
@@ -529,6 +570,7 @@ def main():
     )
     parser.add_argument("opml_file", help="Input OPML file path")
     parser.add_argument("html_file", help="Output HTML file path")
+    parser.add_argument("blogroll_feed_file", help="Output Blogroll feed file path")
     parser.add_argument(
         "--verbose", "-v", action="store_true", help="Enable verbose logging"
     )
@@ -540,6 +582,7 @@ def main():
 
     opml_path = Path(args.opml_file)
     html_path = Path(args.html_file)
+    blogroll_feed_file = Path(args.blogroll_feed_file)
 
     try:
         # Parse OPML file
@@ -557,6 +600,8 @@ def main():
 
         # Generate HTML output
         generate_html(entries, events, html_path)
+
+        generate_blogroll_feed(entries, blogroll_feed_file)
 
         logger.info("Website generation completed successfully")
 
