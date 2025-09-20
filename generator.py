@@ -3,19 +3,13 @@
 IWCB website generator
 
 This script processes an OPML file containing RSS/Atom feed URLs, fetches the feeds,
-parses them, and generates an HTML page with the latest 3 entries from each feed
+parses them, and generates an HTML page with the latest N entries from each feed
 published within the last year, sorted by publication date.
 
-It also pull events from Underline Center Discourse API and show them.
-
-Dependencies:
-    - requests
-    - feedparser
-    - pystache (mustache templating)
-    - python-dateutil
+It also pull events from Underline Center Discourse API and shows them.
 
 Usage:
-    python generator.py input.opml output.html
+    python generator.py blogroll.opml _site
 """
 
 from collections import defaultdict
@@ -56,6 +50,9 @@ RECENT_DAYS = 365  # one year
 UA = "IndieWebClub BLR website generator"
 SITE_URL = "https://indiewebclubblr.github.io/website/"
 EVENTS_TZ = ZoneInfo("Asia/Kolkata")
+BLOGROLL_FEED_FILE = "blogroll.atom"
+EVENTS_FEED_FILE = "events.atom"
+EVENTS_CAL_FILE = "events.ics"
 
 
 class FeedEntry:
@@ -393,7 +390,7 @@ def fetch_event_detail(
     url = base_url + "/t/" + str(topic["id"]) + ".json"
 
     try:
-        logger.debug(f"Fetching event details: {url}")
+        logger.info(f"Fetching event details: {url}")
         headers = {
             "User-Agent": UA,
             "Accept": "application/json",
@@ -418,13 +415,13 @@ def fetch_event_detail(
             district_url=event["url"],
         )
     except requests.exceptions.Timeout:
-        logger.warning(f"Timeout fetching feed: {url}")
+        logger.warning(f"Timeout fetching event details: {url}")
     except requests.exceptions.HTTPError as e:
-        logger.warning(f"HTTP error fetching feed {url}: {e}")
+        logger.warning(f"HTTP error fetching event details {url}: {e}")
     except requests.exceptions.RequestException as e:
-        logger.warning(f"Request error fetching feed {url}: {e}")
+        logger.warning(f"Request error fetching event details {url}: {e}")
     except Exception as e:
-        logger.error(f"Unexpected error fetching feed {url}: {e}")
+        logger.error(f"Unexpected error fetching event details {url}: {e}")
 
     return None
 
@@ -440,7 +437,7 @@ def fetch_events(base_url: str = "https://underline.center") -> list[Event]:
     """
     url = base_url + "/search?q=indieweb%20%23calendar%20order%3Alatest_topic&page=1"
     try:
-        logger.debug(f"Fetching events: {url}")
+        logger.info("Fetching events")
         headers = {
             "User-Agent": UA,
             "Accept": "application/json",
@@ -450,19 +447,22 @@ def fetch_events(base_url: str = "https://underline.center") -> list[Event]:
         )
         response.raise_for_status()
 
-        return [
+        events = [
             event
             for topic in response.json()["topics"]
             if (event := fetch_event_detail(topic, base_url)) is not None
         ]
+
+        logger.info(f"Extracted {len(events)} recent events")
+        return events
     except requests.exceptions.Timeout:
-        logger.warning(f"Timeout fetching feed: {url}")
+        logger.warning(f"Timeout fetching events: {url}")
     except requests.exceptions.HTTPError as e:
-        logger.warning(f"HTTP error fetching feed {url}: {e}")
+        logger.warning(f"HTTP error fetching events {url}: {e}")
     except requests.exceptions.RequestException as e:
-        logger.warning(f"Request error fetching feed {url}: {e}")
+        logger.warning(f"Request error fetching events {url}: {e}")
     except Exception as e:
-        logger.error(f"Unexpected error fetching feed {url}: {e}")
+        logger.error(f"Unexpected error fetching events {url}: {e}")
 
     return []
 
@@ -513,7 +513,7 @@ def generate_html(entries: List[FeedEntry], events: List[Event], output_dir: Pat
         "total_entries": len(recent_entries),
         "total_feeds": len(feed_groups),
         "entries": recent_entries,
-        "generated_date": now.strftime("%d %b %Y"),
+        "generated_date": now.astimezone(EVENTS_TZ).strftime("%d %b %Y %I:%M %p IST"),
     }
 
     # HTML template
@@ -544,7 +544,8 @@ def generate_blogroll_feed(entries: list[FeedEntry], output_dir: Path):
         output_path: Path where Atom file should be written
 
     """
-    output_path = output_dir.joinpath("blogroll.atom")
+    logger.info(f"Generating blogroll feed with {len(entries)} entries")
+    output_path = output_dir.joinpath(BLOGROLL_FEED_FILE)
 
     FEED_URL = SITE_URL + output_path.name
     fg = FeedGenerator()
@@ -570,6 +571,7 @@ def generate_blogroll_feed(entries: list[FeedEntry], output_dir: Path):
             fe.category(term=tag)
 
     fg.atom_file(output_path, pretty=True)
+    logger.info(f"Blogroll feed written to: {output_path}")
 
 
 def generate_events_feed(events: list[Event], output_dir: Path):
@@ -581,7 +583,8 @@ def generate_events_feed(events: list[Event], output_dir: Path):
         output_path: Path where Atom file should be written
 
     """
-    output_path = output_dir.joinpath("events.atom")
+    logger.info(f"Generating events feed with {len(events)} events")
+    output_path = output_dir.joinpath(EVENTS_FEED_FILE)
 
     FEED_URL = SITE_URL + output_path.name
     fg = FeedGenerator()
@@ -604,6 +607,7 @@ def generate_events_feed(events: list[Event], output_dir: Path):
         fe.content(event.details)
 
     fg.atom_file(output_path, pretty=True)
+    logger.info(f"Events feed written to: {output_path}")
 
 
 def generate_events_calendar(events: list[Event], output_dir: Path):
@@ -615,6 +619,8 @@ def generate_events_calendar(events: list[Event], output_dir: Path):
         output_path: Path where Calendar file should be written
 
     """
+    logger.info(f"Generating events calendar with {len(events)} events")
+
     cal = Calendar()
     cal.calendar_name = "IndieWebClub Bangalore Events"
     cal.description = "Events by IndieWebClub Bangalore"
@@ -629,8 +635,11 @@ def generate_events_calendar(events: list[Event], output_dir: Path):
 
         cal.add_component(event)
 
-    with open(output_dir.joinpath("events.ics"), "wb") as f:
+    output_path = output_dir.joinpath(EVENTS_CAL_FILE)
+    with open(output_path, "wb") as f:
         f.write(cal.to_ical())
+
+    logger.info(f"Events calendar written to: {output_path}")
 
 
 def main():
@@ -663,10 +672,9 @@ def main():
 
         if not feeds:
             logger.warning("No feeds found in OPML file")
-            sys.exit(1)
 
         # Fetch and parse all feeds
-        entries = fetch_all_feeds(feeds)
+        entries = fetch_all_feeds(feeds) if len(feeds) > 0 else []
 
         # Fetch all events
         events = fetch_events()
