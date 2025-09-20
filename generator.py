@@ -66,6 +66,7 @@ class FeedEntry:
         published: datetime,
         feed_title: str,
         feed_url: str,
+        feed_home_url: str,
         tags: list[str],
     ):
         self.title = title
@@ -73,6 +74,7 @@ class FeedEntry:
         self.published = published
         self.feed_title = feed_title
         self.feed_url = feed_url
+        self.feed_home_url = feed_home_url
         self.tags = tags
 
     def published_human(self):
@@ -272,6 +274,7 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> List[FeedEn
                     published=published,
                     feed_title=feed_title,
                     feed_url=feed_url,
+                    feed_home_url=parsed_feed.feed.link,
                     tags=[tag for tag in tags if tag is not None],
                 )
             )

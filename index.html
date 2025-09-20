@@ -110,8 +110,8 @@
     {{#upcoming_event}}
       <h2>Upcoming event</h2>
       <ul>
-        <li><a href="{{site_url}}events.atom">Subscribe as feed.</a></li>
-        <li><a href="{{webcal_url}}events.ics">Subscribe as ICS file.</a></li>
+        <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
+        <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
       </ul>
       <div class="event" id="event-{{{id}}}">
         <h3><a href="{{underline_url}}" target="_blank">{{title}}</a></h3>
@@ -136,7 +136,7 @@
       <article class="entry">
         <h3><a href="{{link}}" target="_blank">{{title}}</a></h3>
         <ul>
-          <li class="feed-title">Blog: {{feed_title}}</li>
+          <li class="feed-title">Blog: <a href="{{feed_home_url}}">{{feed_title}}</a></li>
           <li class="pub-time">Published: <time datetime="{{published_machine}}">{{published_human}}</time></li>
         </ul>
       </article>
@@ -146,8 +146,8 @@
     <section id="previous-event">
       <h2>Previous Events</h2>
       <ul>
-        <li><a href="{{site_url}}events.atom">Subscribe as feed.</a></li>
-        <li><a href="{{webcal_url}}events.ics">Subscribe as ICS file.</a></li>
+        <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
+        <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
       </ul>
       {{#previous_events}}
       <div class="event" id="event-{{{id}}}">
