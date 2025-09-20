@@ -371,10 +371,12 @@ def generate_html(entries: List[FeedEntry], output_path: Path):
     # Prepare template data
     template_data = {
         "title": "IWCB",
-        "generated_date": datetime.now(timezone.utc).strftime("%d %b %Y"),
+        "upcoming_event": None,
+        "past_events": [None, None, None],
         "total_entries": len(recent_entries),
         "total_feeds": len(feed_groups),
         "entries": recent_entries,
+        "generated_date": datetime.now(timezone.utc).strftime("%d %b %Y"),
     }
 
     # HTML template
