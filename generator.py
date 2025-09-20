@@ -18,24 +18,26 @@ Usage:
     python generator.py input.opml output.html
 """
 
-import argparse
-import logging
-import sys
-import xml.etree.ElementTree as ET
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from copy import deepcopy
 from datetime import datetime, timedelta, timezone
+from dateutil import parser as date_parser
+from dateutil import zoneinfo
+from feedgen.feed import FeedGenerator
+from icalendar import Calendar, Event as CalEvent
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 from urllib.parse import urlparse
-
+from zoneinfo import ZoneInfo
+import argparse
 import feedparser
+import logging
 import pystache
 import requests
-from dateutil import parser as date_parser
-from feedgen.feed import FeedGenerator
 import shutil
+import sys
+import xml.etree.ElementTree as ET
 
 # Configure logging
 logging.basicConfig(
@@ -53,6 +55,7 @@ MAX_WORKERS = 10  # concurrent feed fetches
 RECENT_DAYS = 365  # one year
 UA = "IndieWebClub BLR website generator"
 SITE_URL = "https://indiewebclubblr.github.io/website/"
+EVENTS_TZ = ZoneInfo("Asia/Kolkata")
 
 
 class FeedEntry:
@@ -352,7 +355,8 @@ class Event:
         title: str,
         slug: str,
         created_at: datetime,
-        event_at: datetime,
+        start_at: datetime,
+        end_at: datetime,
         details: str | None,
         underline_url: str,
         district_url: str,
@@ -361,16 +365,17 @@ class Event:
         self.title = title
         self.slug = slug
         self.created_at = created_at
-        self.event_at = event_at
+        self.start_at = start_at
+        self.end_at = end_at
         self.details = details
         self.underline_url = underline_url
         self.district_url = district_url
 
-    def event_at_human(self):
-        return self.event_at.strftime("%d %b %Y")
+    def start_at_human(self):
+        return self.start_at.astimezone(EVENTS_TZ).strftime("%d %b %Y %I:%M %p IST")
 
-    def event_at_machine(self):
-        return self.event_at.isoformat()
+    def start_at_machine(self):
+        return self.start_at.isoformat()
 
 
 def fetch_event_detail(
@@ -406,7 +411,8 @@ def fetch_event_detail(
             title=topic["title"],
             slug=topic["slug"],
             created_at=date_parser.parse(topic["created_at"]),
-            event_at=date_parser.parse(event["starts_at"]),
+            start_at=date_parser.parse(event["starts_at"]),
+            end_at=date_parser.parse(event["ends_at"]),
             details=post["cooked"],
             underline_url=base_url + "/t/" + topic["slug"],
             district_url=event["url"],
@@ -496,8 +502,8 @@ def generate_html(entries: List[FeedEntry], events: List[Event], output_dir: Pat
     recent_entries.sort(key=lambda x: x.published, reverse=True)
 
     now = datetime.now(timezone.utc)
-    previous_events = [event for event in events if event.event_at <= now]
-    upcoming_events = [event for event in events if event.event_at > now]
+    previous_events = [event for event in events if event.start_at <= now]
+    upcoming_events = [event for event in events if event.start_at > now]
     upcoming_event = upcoming_events[-1] if len(upcoming_events) > 0 else None
 
     # Prepare template data
@@ -531,7 +537,7 @@ def generate_html(entries: List[FeedEntry], events: List[Event], output_dir: Pat
 
 def generate_blogroll_feed(entries: list[FeedEntry], output_dir: Path):
     """
-    Creates an Atom feed from a list of FeedEntry objects using the feedgen library.
+    Creates an Atom feed from a list of FeedEntry objects.
 
     Args:
         entries: A list of FeedEntry objects to include in the feed.
@@ -564,6 +570,67 @@ def generate_blogroll_feed(entries: list[FeedEntry], output_dir: Path):
             fe.category(term=tag)
 
     fg.atom_file(output_path, pretty=True)
+
+
+def generate_events_feed(events: list[Event], output_dir: Path):
+    """
+    Creates an Atom feed from a list of Event objects.
+
+    Args:
+        events: A list of Event objects to include in the calender.
+        output_path: Path where Atom file should be written
+
+    """
+    output_path = output_dir.joinpath("events.atom")
+
+    FEED_URL = SITE_URL + output_path.name
+    fg = FeedGenerator()
+
+    fg.id(FEED_URL)
+    fg.title("IndieWebClub Bangalore Events")
+    fg.author(name="IndieWebClub Bangalore")
+    fg.link(href=FEED_URL, rel="self")
+    fg.link(href=SITE_URL, rel="alternate")
+    fg.subtitle("Events by IndieWebClub Bangalore.")
+
+    for event in events:
+        fe = fg.add_entry(order="append")
+
+        fe.id(event.underline_url)
+        fe.title(event.title)
+        fe.link(href=event.underline_url, rel="alternate")
+        fe.published(event.created_at)
+        fe.updated(event.created_at)
+        fe.content(event.details)
+
+    fg.atom_file(output_path, pretty=True)
+
+
+def generate_events_calendar(events: list[Event], output_dir: Path):
+    """
+    Creates an Calendar from a list of Event objects.
+
+    Args:
+        events: A list of Event objects to include in the feed.
+        output_path: Path where Calendar file should be written
+
+    """
+    cal = Calendar()
+    cal.calendar_name = "IndieWebClub Bangalore Events"
+    cal.description = "Events by IndieWebClub Bangalore"
+
+    for event_data in events:
+        event = CalEvent()
+        event.add("summary", event_data.title)
+        event.add("url", event_data.underline_url)
+        event.start = event_data.start_at
+        event.end = event_data.end_at
+        event.uid = f"indiewebclubblr-event-{event_data.id}"
+
+        cal.add_component(event)
+
+    with open(output_dir.joinpath("events.ics"), "wb") as f:
+        f.write(cal.to_ical())
 
 
 def main():
@@ -606,6 +673,8 @@ def main():
 
         generate_html(entries, events, output_dir)
         generate_blogroll_feed(entries, output_dir)
+        generate_events_feed(events, output_dir)
+        generate_events_calendar(events, output_dir)
 
         logger.info("Website generation completed successfully")
 

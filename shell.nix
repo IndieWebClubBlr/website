@@ -7,6 +7,7 @@ let
       requests
       feedparser
       feedgen
+      icalendar
       pystache
       python-dateutil
     ];

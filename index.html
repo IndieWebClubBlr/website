@@ -94,10 +94,14 @@
     {{#upcoming_event}}
     <section id="upcoming-event">
       <h2>Upcoming event</h2>
+      <ul>
+        <li><a href="./events.atom">Subscribe as feed.</a></li>
+        <li><a href="./events.ics">Subscribe as ICS file.</a></li>
+      </ul>
       <div class="event" id="event-{{{id}}}">
         <h3><a href="{{underline_url}}" target="_blank">{{title}}</a></h3>
         <ul>
-          <li class="pub-time">At: <time datetime="{{event_at_machine}}">{{event_at_human}}</time></li>
+          <li class="pub-time">At: <time datetime="{{start_at_machine}}">{{start_at_human}}</time></li>
           <li class="buy-link"><a href="{{district_url}}">Buy tickets</a></li>
         </ul>
       </div>
@@ -124,11 +128,15 @@
 
     <section id="previous-event">
       <h2>Previous Events</h2>
+      <ul>
+        <li><a href="./events.atom">Subscribe as feed.</a></li>
+        <li><a href="./events.ics">Subscribe as ICS file.</a></li>
+      </ul>
       {{#previous_events}}
       <div class="event" id="event-{{{id}}}">
         <h3><a href="{{underline_url}}" target="_blank">{{title}}</a></h3>
         <ul>
-          <li class="pub-time">At: <time datetime="{{event_at_machine}}">{{event_at_human}}</time></li>
+          <li class="pub-time">At: <time datetime="{{start_at_machine}}">{{start_at_human}}</time></li>
         </ul>
       </div>
       {{/previous_events}}
