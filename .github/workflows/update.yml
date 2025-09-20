@@ -23,7 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: run
-        run: mkdir -p _site/ && python generator.py iwcb.opml _site/index.html _site/blogroll.atom
+        run: mkdir -p _site/ && python generator.py iwcb.opml _site
       - name: publish
         uses: crazy-max/ghaction-github-pages@v3
         with:

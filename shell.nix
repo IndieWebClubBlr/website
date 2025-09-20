@@ -12,7 +12,7 @@ let
     ];
   pythonEnv = pkgs.python3.withPackages pythonPackages;
   run = pkgs.writeShellScriptBin "run" ''
-    ${pythonEnv}/bin/python generator.py iwcb.opml _site/index.html _site/blogroll.atom
+    ${pythonEnv}/bin/python generator.py iwcb.opml _site
   '';
 in
 pkgs.mkShell {

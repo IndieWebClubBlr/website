@@ -460,7 +460,7 @@ def fetch_events(base_url: str = "https://underline.center") -> list[Event]:
     return []
 
 
-def generate_html(entries: List[FeedEntry], events: List[Event], output_path: Path):
+def generate_html(entries: List[FeedEntry], events: List[Event], output_dir: Path):
     """
     Generate HTML file from feed entries using Mustache templating.
 
@@ -519,6 +519,7 @@ def generate_html(entries: List[FeedEntry], events: List[Event], output_path: Pa
         html_content = renderer.render(html_template, template_data)
 
         # Write to file
+        output_path = output_dir.joinpath("index.html")
         output_path.write_text(html_content, encoding="utf-8")
         logger.info(f"HTML file written to: {output_path}")
 
@@ -527,7 +528,7 @@ def generate_html(entries: List[FeedEntry], events: List[Event], output_path: Pa
         raise
 
 
-def generate_blogroll_feed(entries: list[FeedEntry], output_path: Path):
+def generate_blogroll_feed(entries: list[FeedEntry], output_dir: Path):
     """
     Creates an Atom feed from a list of FeedEntry objects using the feedgen library.
 
@@ -536,6 +537,7 @@ def generate_blogroll_feed(entries: list[FeedEntry], output_path: Path):
         output_path: Path where Atom file should be written
 
     """
+    output_path = output_dir.joinpath("blogroll.atom")
 
     FEED_URL = SITE_URL + output_path.name
     fg = FeedGenerator()
@@ -569,8 +571,7 @@ def main():
         description="Generate HTML from OPML feeds with recent entries"
     )
     parser.add_argument("opml_file", help="Input OPML file path")
-    parser.add_argument("html_file", help="Output HTML file path")
-    parser.add_argument("blogroll_feed_file", help="Output Blogroll feed file path")
+    parser.add_argument("output_dir", help="The directory to output the built artifacts.")
     parser.add_argument(
         "--verbose", "-v", action="store_true", help="Enable verbose logging"
     )
@@ -581,8 +582,7 @@ def main():
         logging.getLogger().setLevel(logging.DEBUG)
 
     opml_path = Path(args.opml_file)
-    html_path = Path(args.html_file)
-    blogroll_feed_file = Path(args.blogroll_feed_file)
+    output_dir = Path(args.output_dir)
 
     try:
         # Parse OPML file
@@ -598,10 +598,8 @@ def main():
         # Fetch all events
         events = fetch_events()
 
-        # Generate HTML output
-        generate_html(entries, events, html_path)
-
-        generate_blogroll_feed(entries, blogroll_feed_file)
+        generate_html(entries, events, output_dir)
+        generate_blogroll_feed(entries, output_dir)
 
         logger.info("Website generation completed successfully")
 
