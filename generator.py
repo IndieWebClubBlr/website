@@ -35,6 +35,7 @@ import pystache
 import requests
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
+import shutil
 
 # Configure logging
 logging.basicConfig(
@@ -571,7 +572,9 @@ def main():
         description="Generate HTML from OPML feeds with recent entries"
     )
     parser.add_argument("opml_file", help="Input OPML file path")
-    parser.add_argument("output_dir", help="The directory to output the built artifacts.")
+    parser.add_argument(
+        "output_dir", help="The directory to output the built artifacts."
+    )
     parser.add_argument(
         "--verbose", "-v", action="store_true", help="Enable verbose logging"
     )
@@ -585,6 +588,9 @@ def main():
     output_dir = Path(args.output_dir)
 
     try:
+        # Copy OPML file
+        shutil.copyfile(opml_path, output_dir.joinpath(opml_path))
+
         # Parse OPML file
         feeds = parse_opml_file(opml_path)
 

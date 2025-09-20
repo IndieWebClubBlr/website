@@ -44,10 +44,10 @@ install:
 	$(VENV_PIP) install -r requirements.txt
 
 # Run the script with sample OPML
-run: setup iwcb.opml
+run: setup blogroll.opml
 	@echo "Running OPML Feed Aggregator with sample data..."
 	mkdir -p _site/
-	$(VENV_PYTHON) generator.py iwcb.opml _site
+	$(VENV_PYTHON) generator.py blogroll.opml _site
 	@echo "Generated website"
 
 # Clean up generated files and virtual environment
