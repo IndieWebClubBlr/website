@@ -49,6 +49,7 @@ MAX_WORKERS = 10  # concurrent feed fetches
 RECENT_DAYS = 365  # one year
 UA = "IndieWebClub BLR website generator"
 SITE_URL = "https://indiewebclubblr.github.io/website/"
+WEBCAL_URL = SITE_URL.replace("https", "webcal")
 EVENTS_TZ = ZoneInfo("Asia/Kolkata")
 BLOGROLL_FEED_FILE = "blogroll.atom"
 EVENTS_FEED_FILE = "events.atom"
@@ -508,6 +509,8 @@ def generate_html(entries: List[FeedEntry], events: List[Event], output_dir: Pat
 
     # Prepare template data
     template_data = {
+        "site_url": SITE_URL,
+        "webcal_url": WEBCAL_URL,
         "upcoming_event": upcoming_event,
         "previous_events": previous_events,
         "total_entries": len(recent_entries),

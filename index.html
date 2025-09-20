@@ -2,9 +2,24 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:url" content="{{{site_url}}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="IndieWebClub Bangalore">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="IndieWebClub Bangalore">
+  <meta name="description" content="IndieWebClub Bangalore website">
+  <meta property="og:description" content="IndieWebClub Bangalore website">
+  <meta name="language" content="EN">
+
   <title>IndieWebClub Bangalore</title>
+
+  <link rel="canonical" href="{{{site_url}}}">
+  <link rel="alternate" type="application/atom+xml" title="Blogroll" href="{{{site_url}}}blogroll.atom">
+  <link rel="alternate" type="application/atom+xml" title="Events" href="{{{site_url}}}events.atom">
 
   <style>
     *,
@@ -91,12 +106,12 @@
   </header>
 
   <main>
-    {{#upcoming_event}}
     <section id="upcoming-event">
+    {{#upcoming_event}}
       <h2>Upcoming event</h2>
       <ul>
-        <li><a href="./events.atom">Subscribe as feed.</a></li>
-        <li><a href="./events.ics">Subscribe as ICS file.</a></li>
+        <li><a href="{{site_url}}events.atom">Subscribe as feed.</a></li>
+        <li><a href="{{webcal_url}}events.ics">Subscribe as ICS file.</a></li>
       </ul>
       <div class="event" id="event-{{{id}}}">
         <h3><a href="{{underline_url}}" target="_blank">{{title}}</a></h3>
@@ -105,14 +120,17 @@
           <li class="buy-link"><a href="{{district_url}}">Buy tickets</a></li>
         </ul>
       </div>
-    </section>
     {{/upcoming_event}}
+    {{^upcoming_event}}
+      <h2>No upcoming events</h2>
+    {{/upcoming_event}}
+    </section>
 
     <section id="recent-posts">
       <h2>Recent posts</h2>
       <ul>
-        <li><a href="./blogroll.atom">Subscribe as feed.</a></li>
-        <li><a href="./blogroll.opml">Subscribe as OPML file.</a></li>
+        <li><a href="{{site_url}}blogroll.atom">Subscribe as feed.</a></li>
+        <li><a href="{{site_url}}blogroll.opml">Subscribe as OPML file.</a></li>
       </ul>
       {{#entries}}
       <article class="entry">
@@ -120,7 +138,6 @@
         <ul>
           <li class="feed-title">Blog: {{feed_title}}</li>
           <li class="pub-time">Published: <time datetime="{{published_machine}}">{{published_human}}</time></li>
-          </li>
         </ul>
       </article>
       {{/entries}}
@@ -129,8 +146,8 @@
     <section id="previous-event">
       <h2>Previous Events</h2>
       <ul>
-        <li><a href="./events.atom">Subscribe as feed.</a></li>
-        <li><a href="./events.ics">Subscribe as ICS file.</a></li>
+        <li><a href="{{site_url}}events.atom">Subscribe as feed.</a></li>
+        <li><a href="{{webcal_url}}events.ics">Subscribe as ICS file.</a></li>
       </ul>
       {{#previous_events}}
       <div class="event" id="event-{{{id}}}">
