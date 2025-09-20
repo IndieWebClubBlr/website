@@ -4,7 +4,6 @@
     <title>Indieweb Club BLR Blogroll</title>
   </head>
   <body>
-    <outline type="rss" text="IndieWebClub BLR Events" xmlUrl="https://abhinavsarkar.net/iwcb-blogroll/events.atom" />
     <outline type="rss" text="9porcupine" xmlUrl="https://9porcupine.mataroa.blog/rss/" />
     <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/archive/feed.atom" />
     <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://notes.abhinavsarkar.net/feed.atom" />
