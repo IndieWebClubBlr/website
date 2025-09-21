@@ -2,9 +2,12 @@
 
 Would be nice to have:
 
-- List of previous events
-- Upcoming events + ics file for it
-- Maybe a feed for the upcoming events? Could be manually updated to begin with.
-- Combined RSS feed.
-- Link to OPML file.
-- Link to WhatsApp community (as a QR code)
+- [x] List of previous events
+- [x] Upcoming events + ics file for it
+- [x] A feed for the upcoming events
+- [x] Blogroll posts.
+- [x] Combined Blogroll feed.
+- [x] Link to OPML file.
+- [ ] Link to WhatsApp community (as a QR code)
+- [ ] Custom domain
+- [ ] Readme
