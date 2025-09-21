@@ -237,14 +237,13 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> List[FeedEn
                 f"Feed parser warning for {feed_title}: {parsed_feed.bozo_exception}"
             )
 
-        # Calculate cutoff date (one year ago)
-        cutoff_date = datetime.now(timezone.utc) - timedelta(days=RECENT_DAYS)
+        # Calculate cutoff date
+        now = datetime.now(timezone.utc)
+        cutoff_date = now - timedelta(days=RECENT_DAYS)
 
         entries = []
 
-        for entry in parsed_feed.entries[
-            :MAX_FEED_ENTRIES
-        ]:  # Limit processing to first 50 entries
+        for entry in parsed_feed.entries:
             # Extract and normalize entry data
             title = getattr(entry, "title", "Untitled")
             link = getattr(entry, "link", "")
@@ -259,7 +258,7 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> List[FeedEn
                         break
 
             # Skip entries without valid dates or too old
-            if not published or published < cutoff_date:
+            if not published or published < cutoff_date or published > now:
                 continue
 
             tags = [
@@ -279,8 +278,9 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> List[FeedEn
                 )
             )
 
-        # Sort by publication date (newest first) and take top 3
+        # Sort by publication date (newest first) and take top N
         entries.sort(key=lambda x: x.published, reverse=True)
+        entries = entries[:MAX_FEED_ENTRIES]
 
         logger.debug(f"Extracted {len(entries)} recent entries from {feed_title}")
         return entries
