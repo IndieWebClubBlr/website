@@ -16,6 +16,7 @@
     <outline type="rss" text="Azan's playlists" xmlUrl="https://azan-n.com/playlists/rss.xml" />
     <outline type="rss" text="George Supreeth" xmlUrl="https://georgesupreeth.com/web/blog/index.xml" />
     <outline type="rss" text="Haripriya" xmlUrl="https://api.haripriya.org/blog-feed.xml" />
+    <outline type="rss" text="Itihas" xmlUrl="https://itihasic.substack.com/feed" />
     <outline type="rss" text="Jatan" xmlUrl="https://journal.jatan.space/rss/" />
     <outline type="rss" text="Karthik Balakrishnan" xmlUrl="https://karthikbalakrishnan.com/feed.xml" />
     <outline type="rss" text="Kartik Kwatra" xmlUrl="https://kartikkwatra.mataroa.blog/rss/" />
