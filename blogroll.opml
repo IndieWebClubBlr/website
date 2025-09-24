@@ -5,8 +5,7 @@
   </head>
   <body>
     <outline type="rss" text="9porcupine" xmlUrl="https://9porcupine.mataroa.blog/rss/" />
-    <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/archive/feed.atom" />
-    <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://notes.abhinavsarkar.net/feed.atom" />
+    <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/all.atom" />
     <outline type="rss" text="Abhinav Tushar" xmlUrl="https://lepisma.xyz/atom.xml" />
     <outline type="rss" text="Abhinav Tushar" xmlUrl="https://lepisma.xyz/journal/atom.xml" />
     <outline type="rss" text="Abhiram" xmlUrl="https://vaxitas.xyz/feed.atom" />
