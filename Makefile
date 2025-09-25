@@ -62,7 +62,11 @@ clean_venv:
 	@echo "Cleaning up virtual environment..."
 	rm -rf $(VENV_DIR)
 
-clean_all: clean clean_venv
+clean_cache:
+	@echo "Cleaning up cache..."
+	rm -rf .cache || true
+
+clean_all: clean clean_venv clean_cache
 
 serve:
 	python3 -m http.server -d ./_site/

@@ -26,6 +26,8 @@ from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 import argparse
 import feedparser
+import hashlib
+import json
 import logging
 import pystache
 import requests
@@ -54,6 +56,7 @@ EVENTS_TZ = ZoneInfo("Asia/Kolkata")
 BLOGROLL_FEED_FILE = "blogroll.atom"
 EVENTS_FEED_FILE = "events.atom"
 EVENTS_CAL_FILE = "events.ics"
+CACHE_DIR = Path(".cache")
 
 
 class FeedEntry:
@@ -128,16 +131,24 @@ def parse_opml_file(opml_path: Path) -> List[Tuple[str, str]]:
         raise
 
 
-def fetch_feed_content(url: str) -> Optional[str]:
+def fetch_feed_content(url: str, use_cache: bool) -> Optional[str]:
     """
     Fetch feed content from URL with proper error handling and limits.
 
     Args:
         url: Feed URL to fetch
+        use_cache: Whether to use cached content
 
     Returns:
         Feed content as string, or None if fetch failed
     """
+    cache_key = hashlib.sha256(url.encode()).hexdigest()
+    cache_file = CACHE_DIR / cache_key
+
+    if use_cache and cache_file.exists():
+        logger.debug(f"Using cached content for: {url}")
+        return cache_file.read_text(encoding="utf-8")
+
     try:
         logger.debug(f"Fetching feed: {url}")
 
@@ -171,7 +182,14 @@ def fetch_feed_content(url: str) -> Optional[str]:
                 logger.warning(f"Feed content exceeded size limit: {url}")
                 return None
 
-        return content.decode("utf-8", errors="ignore")
+        decoded_content = content.decode("utf-8", errors="ignore")
+
+        if use_cache:
+            # Save content to cache
+            cache_file.write_text(decoded_content, encoding="utf-8")
+            logger.debug(f"Cached content for: {url}")
+
+        return decoded_content
 
     except requests.exceptions.Timeout:
         logger.warning(f"Timeout fetching feed: {url}")
@@ -290,12 +308,13 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> List[FeedEn
         return []
 
 
-def process_single_feed(feed_info: Tuple[str, str]) -> List[FeedEntry]:
+def process_single_feed(feed_info: Tuple[str, str], use_cache: bool) -> List[FeedEntry]:
     """
     Process a single feed: fetch and parse it.
 
     Args:
         feed_info: Tuple of (feed_title, feed_url)
+        use_cache: Whether to use cached content
 
     Returns:
         List of FeedEntry objects
@@ -303,7 +322,7 @@ def process_single_feed(feed_info: Tuple[str, str]) -> List[FeedEntry]:
     feed_title, feed_url = feed_info
 
     # Fetch feed content
-    content = fetch_feed_content(feed_url)
+    content = fetch_feed_content(feed_url, use_cache)
     if not content:
         return []
 
@@ -311,12 +330,13 @@ def process_single_feed(feed_info: Tuple[str, str]) -> List[FeedEntry]:
     return parse_feed(feed_title, feed_url, content)
 
 
-def fetch_all_feeds(feeds: List[Tuple[str, str]]) -> List[FeedEntry]:
+def fetch_all_feeds(feeds: List[Tuple[str, str]], use_cache: bool) -> List[FeedEntry]:
     """
     Fetch and parse all feeds concurrently.
 
     Args:
         feeds: List of (feed_title, feed_url) tuples
+        use_cache: Whether to use cached content
 
     Returns:
         Combined list of all feed entries
@@ -328,7 +348,7 @@ def fetch_all_feeds(feeds: List[Tuple[str, str]]) -> List[FeedEntry]:
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         # Submit all feed processing tasks
         future_to_feed = {
-            executor.submit(process_single_feed, feed_info): feed_info
+            executor.submit(process_single_feed, feed_info, use_cache): feed_info
             for feed_info in feeds
         }
 
@@ -379,19 +399,40 @@ class Event:
         return self.start_at.isoformat()
 
 
-def fetch_event_detail(
-    topic: Dict, base_url: str = "https://underline.center"
-) -> Event | None:
+def make_event(base_url, topic, post, event) -> Event:
+    return Event(
+        id=topic["id"],
+        title=topic["title"],
+        slug=topic["slug"],
+        created_at=date_parser.parse(topic["created_at"]),
+        start_at=date_parser.parse(event["starts_at"]),
+        end_at=date_parser.parse(event["ends_at"]),
+        details=post["post_stream"]["posts"][0]["cooked"],
+        underline_url=base_url + "/t/" + topic["slug"],
+        district_url=event["url"],
+    )
+
+
+def fetch_event_detail(base_url: str, topic: Dict, use_cache: bool) -> Event | None:
     """Fetch details of IWCB event
 
     Args:
       base_url: URL of Underline Center Discourse. Default: https://underline.center/
       topic: topic JSON returned from Discourse Search API
+      use_cache: Whether to use cached content
 
     Returns:
       IWCB Event, None if fetch failed
     """
     url = base_url + "/t/" + str(topic["id"]) + ".json"
+    cache_key = hashlib.sha256(url.encode()).hexdigest()
+    cache_file = CACHE_DIR / cache_key
+
+    if use_cache and cache_file.exists():
+        logger.debug(f"Using cached content for: {url}")
+        post = json.loads(cache_file.read_text(encoding="utf-8"))
+        event = post["post_stream"]["posts"][0]["event"]
+        return make_event(base_url, topic, post, event)
 
     try:
         logger.info(f"Fetching event details: {url}")
@@ -404,20 +445,14 @@ def fetch_event_detail(
         )
         response.raise_for_status()
 
-        post = response.json()["post_stream"]["posts"][0]
-        event = post["event"]
+        post = response.json()
 
-        return Event(
-            id=topic["id"],
-            title=topic["title"],
-            slug=topic["slug"],
-            created_at=date_parser.parse(topic["created_at"]),
-            start_at=date_parser.parse(event["starts_at"]),
-            end_at=date_parser.parse(event["ends_at"]),
-            details=post["cooked"],
-            underline_url=base_url + "/t/" + topic["slug"],
-            district_url=event["url"],
-        )
+        if use_cache:
+            cache_file.write_text(json.dumps(post), encoding="utf-8")
+            logger.debug(f"Cached content for: {url}")
+
+        event = post["post_stream"]["posts"][0]["event"]
+        return make_event(base_url, topic, post, event)
     except requests.exceptions.Timeout:
         logger.warning(f"Timeout fetching event details: {url}")
     except requests.exceptions.HTTPError as e:
@@ -430,16 +465,35 @@ def fetch_event_detail(
     return None
 
 
-def fetch_events(base_url: str = "https://underline.center") -> list[Event]:
+def fetch_events(
+    base_url: str = "https://underline.center",
+    use_cache: bool = False,
+) -> list[Event]:
     """Fetch IWCB events from Underline Center Discourse API
 
     Args:
+      use_cache: Whether to use cached content
       base_url: URL of Underline Center Discourse. Default: https://underline.center/
 
     Returns:
       IWCB Event as a list, empty if fetch failed
     """
     url = base_url + "/search?q=indieweb%20%23calendar%20order%3Alatest_topic&page=1"
+
+    if use_cache:
+        cache_key = hashlib.sha256(url.encode()).hexdigest()
+        cache_file = CACHE_DIR / cache_key
+        if cache_file.exists():
+            logger.debug(f"Using cached content for: {url}")
+            response_json = json.loads(cache_file.read_text(encoding="utf-8"))
+            events = [
+                event
+                for topic in response_json["topics"]
+                if (event := fetch_event_detail(base_url, topic, use_cache)) is not None
+            ]
+            logger.info(f"Extracted {len(events)} recent events from cache")
+            return events
+
     try:
         logger.info("Fetching events")
         headers = {
@@ -451,10 +505,18 @@ def fetch_events(base_url: str = "https://underline.center") -> list[Event]:
         )
         response.raise_for_status()
 
+        response_json = response.json()
+
+        if use_cache:
+            cache_key = hashlib.sha256(url.encode()).hexdigest()
+            cache_file = CACHE_DIR / cache_key
+            cache_file.write_text(json.dumps(response_json), encoding="utf-8")
+            logger.debug(f"Cached content for: {url}")
+
         events = [
             event
-            for topic in response.json()["topics"]
-            if (event := fetch_event_detail(topic, base_url)) is not None
+            for topic in response_json["topics"]
+            if (event := fetch_event_detail(base_url, topic, use_cache)) is not None
         ]
 
         logger.info(f"Extracted {len(events)} recent events")
@@ -660,6 +722,9 @@ def main():
     parser.add_argument(
         "--verbose", "-v", action="store_true", help="Enable verbose logging"
     )
+    parser.add_argument(
+        "--cache", action="store_true", help="Enable caching of fetched feeds"
+    )
 
     args = parser.parse_args()
 
@@ -668,6 +733,10 @@ def main():
 
     opml_path = Path(args.opml_file)
     output_dir = Path(args.output_dir)
+
+    if args.cache:
+        logger.info("Caching enabled")
+        CACHE_DIR.mkdir(exist_ok=True)
 
     try:
         # Copy OPML file
@@ -680,10 +749,10 @@ def main():
             logger.warning("No feeds found in OPML file")
 
         # Fetch and parse all feeds
-        entries = fetch_all_feeds(feeds) if len(feeds) > 0 else []
+        entries = fetch_all_feeds(feeds, use_cache=args.cache) if len(feeds) > 0 else []
 
         # Fetch all events
-        events = fetch_events()
+        events = fetch_events(use_cache=args.cache)
 
         generate_html(entries, events, output_dir)
         generate_blogroll_feed(entries, output_dir)
