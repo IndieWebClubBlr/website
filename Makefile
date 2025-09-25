@@ -1,4 +1,4 @@
-# OPML Feed Aggregator Makefile
+# IndiewebClubBlr website generator
 # Provides convenient commands for development and usage
 
 .PHONY: help setup install clean run
@@ -11,13 +11,13 @@ VENV_PIP := $(VENV_DIR)/bin/pip
 
 # Default target
 help:
-	@echo "OPML Feed Aggregator"
+	@echo "IndiewebClubBlr website generator"
 	@echo "===================="
 	@echo ""
 	@echo "Available commands:"
 	@echo "  make setup     - Set up virtual environment and install dependencies"
 	@echo "  make install   - Install dependencies (assumes venv exists)"
-	@echo "  make run       - Run with sample OPML file"
+	@echo "  make build     - Build the website"
 	@echo "  make clean     - Remove virtual environment and generated files"
 	@echo "  make help      - Show this help message"
 
@@ -43,9 +43,9 @@ install:
 	$(VENV_PIP) install --upgrade pip
 	$(VENV_PIP) install -r requirements.txt
 
-# Run the script with sample OPML
-run: setup blogroll.opml
-	@echo "Running OPML Feed Aggregator with sample data..."
+# Build the website
+build: setup blogroll.opml
+	@echo "Building website..."
 	mkdir -p _site/
 	$(VENV_PYTHON) generator.py blogroll.opml _site
 	@echo "Generated website"
@@ -53,9 +53,9 @@ run: setup blogroll.opml
 # Clean up generated files and virtual environment
 clean:
 	@echo "Cleaning up..."
-	rm -rf _site
+	rm -rf _site || true
 	rm -f *.pyc
-	rm -rf __pycache__
+	rm -rf __pycache__ || true
 	@echo "Cleanup complete"
 
 clean_venv:
