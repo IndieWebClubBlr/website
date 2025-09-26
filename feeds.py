@@ -2,6 +2,7 @@ from __future__ import annotations
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 from dateutil import parser as date_parser
+from feedgen.feed import FeedGenerator
 from pathlib import Path
 from typing import List, Optional, Tuple
 from urllib.parse import urlparse
@@ -14,7 +15,7 @@ import xml.etree.ElementTree as ET
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+    level=logging.INFO, format=config.LOG_FORMAT
 )
 logger = logging.getLogger(__name__)
 
@@ -91,24 +92,60 @@ def parse_opml_file(opml_path: Path) -> List[Tuple[str, str]]:
         raise
 
 
-def fetch_feed_content(url: str, use_cache: bool) -> Optional[str]:
+def generate_feed(
+    feed_url: str,
+    feed_title: str,
+    author_name: Optional[str],
+    feed_home_url: str,
+    feed_subtitle: Optional[str],
+    entries: List[FeedEntry],
+    output_path: Path,
+):
+    """
+    Creates an Atom feed from a list of FeedEntry objects.
+
+    Args:
+        entries: A list of FeedEntry objects to include in the feed.
+        output_path: Path where Atom file should be written
+
+    """
+    fg = FeedGenerator()
+
+    fg.id(feed_url)
+    fg.title(feed_title)
+    if author_name is not None:
+        fg.author(name=author_name)
+    fg.link(href=feed_url, rel="self")
+    fg.link(href=feed_home_url, rel="alternate")
+    if feed_subtitle is not None:
+        fg.subtitle(feed_subtitle)
+
+    for entry in entries:
+        fe = fg.add_entry(order="append")
+
+        fe.id(entry.link)
+        fe.title(entry.title)
+        fe.link(href=entry.link, rel="alternate")
+        fe.published(entry.published)
+        fe.updated(entry.published)
+        fe.author(name=entry.feed_title, uri=entry.feed_url)
+
+        for tag in entry.tags:
+            fe.category(term=tag)
+
+    fg.atom_file(output_path, pretty=True)
+
+
+def fetch_feed_content(url: str) -> Optional[str]:
     """
     Fetch feed content from URL with proper error handling and limits.
 
     Args:
         url: Feed URL to fetch
-        use_cache: Whether to use cached content
 
     Returns:
         Feed content as string, or None if fetch failed
     """
-    cache_key = hashlib.sha256(url.encode()).hexdigest()
-    cache_file = config.CACHE_DIR / cache_key
-
-    if use_cache and cache_file.exists():
-        logger.debug(f"Using cached content for: {url}")
-        return cache_file.read_text(encoding="utf-8")
-
     try:
         logger.debug(f"Fetching feed: {url}")
 
@@ -142,15 +179,7 @@ def fetch_feed_content(url: str, use_cache: bool) -> Optional[str]:
                 logger.warning(f"Feed content exceeded size limit: {url}")
                 return None
 
-        decoded_content = content.decode("utf-8", errors="ignore")
-
-        if use_cache:
-            # Save content to cache
-            cache_file.write_text(decoded_content, encoding="utf-8")
-            logger.debug(f"Cached content for: {url}")
-
-        return decoded_content
-
+        return content.decode("utf-8", errors="ignore")
     except requests.exceptions.Timeout:
         logger.warning(f"Timeout fetching feed: {url}")
     except requests.exceptions.HTTPError as e:
@@ -281,13 +310,35 @@ def process_single_feed(feed_info: Tuple[str, str], use_cache: bool) -> List[Fee
     """
     feed_title, feed_url = feed_info
 
-    # Fetch feed content
-    content = fetch_feed_content(feed_url, use_cache)
-    if not content:
-        return []
+    cache_key = hashlib.sha256(feed_url.encode()).hexdigest()
+    cache_file = config.CACHE_DIR / cache_key
+
+    if use_cache and cache_file.exists():
+        logger.debug(f"Using cached content for: {feed_url}")
+        content = cache_file.read_text(encoding="utf-8")
+    else:
+        # Fetch feed content
+        content = fetch_feed_content(feed_url)
+        if not content:
+            return []
 
     # Parse feed content
-    return parse_feed(feed_title, feed_url, content)
+    entries = parse_feed(feed_title, feed_url, content)
+
+    if use_cache and len(entries) > 0:
+        # Save content to cache
+        generate_feed(
+            feed_url=feed_url,
+            feed_title=entries[0].feed_title,
+            author_name=entries[0].feed_title,
+            feed_home_url=entries[0].feed_home_url,
+            feed_subtitle=None,
+            entries=entries,
+            output_path=cache_file,
+        )
+        logger.debug(f"Cached content for: {feed_url}")
+
+    return entries
 
 
 def fetch_all_feeds(feeds: List[Tuple[str, str]], use_cache: bool) -> List[FeedEntry]:

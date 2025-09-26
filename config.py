@@ -18,3 +18,4 @@ EVENTS_FEED_FILE = "events.atom"
 EVENTS_CAL_FILE = "events.ics"
 CACHE_DIR = Path(".cache")
 ASSETS = ["style.css"]
+LOG_FORMAT="%(asctime)s - %(levelname)s - %(message)s"

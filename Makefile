@@ -54,7 +54,7 @@ install:
 build: setup blogroll.opml
 	@echo "Building website..."
 	mkdir -p _site/
-	$(VENV_PYTHON) generator.py blogroll.opml _site $(if $(CACHE),--cache)
+	$(VENV_PYTHON) generator.py blogroll.opml _site $(if $(VERBOSE),--verbose) $(if $(CACHE),--cache)
 	@echo "Generated website"
 
 # Copy the assets

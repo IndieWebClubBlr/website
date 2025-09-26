@@ -18,7 +18,7 @@ from copy import deepcopy
 from datetime import datetime, timezone
 from events import Event, fetch_events
 from feedgen.feed import FeedGenerator
-from feeds import FeedEntry, parse_opml_file, fetch_all_feeds
+from feeds import FeedEntry, parse_opml_file, fetch_all_feeds, generate_feed
 from icalendar import Calendar, Event as CalEvent
 from pathlib import Path
 from typing import List
@@ -31,7 +31,7 @@ import sys
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+    level=logging.INFO, format=config.LOG_FORMAT
 )
 logger = logging.getLogger(__name__)
 
@@ -117,36 +117,23 @@ def generate_blogroll_feed(entries: List[FeedEntry], output_dir: Path):
 
     Args:
         entries: A list of FeedEntry objects to include in the feed.
-        output_path: Path where Atom file should be written
+        output_dir: Directory where Atom file should be written
 
     """
     logger.info(f"Generating blogroll feed with {len(entries)} entries")
     output_path = output_dir.joinpath(config.BLOGROLL_FEED_FILE)
-
     feed_url = config.SITE_URL + output_path.name
-    fg = FeedGenerator()
 
-    fg.id(feed_url)
-    fg.title("IndieWebClub Bangalore Blogroll")
-    fg.author(name="IndieWebClub Bangalore")
-    fg.link(href=feed_url, rel="self")
-    fg.link(href=config.SITE_URL, rel="alternate")
-    fg.subtitle("Recent posts by IndieWebClub Bangalore folks.")
+    generate_feed(
+        feed_url=feed_url,
+        feed_title="IndieWebClub Bangalore Blogroll",
+        author_name="IndieWebClub Bangalore",
+        feed_home_url=config.SITE_URL,
+        feed_subtitle="Recent posts by IndieWebClub Bangalore folks.",
+        entries=entries,
+        output_path=output_path,
+    )
 
-    for entry in entries:
-        fe = fg.add_entry(order="append")
-
-        fe.id(entry.link)
-        fe.title(entry.title)
-        fe.link(href=entry.link, rel="alternate")
-        fe.published(entry.published)
-        fe.updated(entry.published)
-        fe.author(name=entry.feed_title, uri=entry.feed_url)
-
-        for tag in entry.tags:
-            fe.category(term=tag)
-
-    fg.atom_file(output_path, pretty=True)
     logger.info(f"Blogroll feed written to: {output_path}")
 
 
