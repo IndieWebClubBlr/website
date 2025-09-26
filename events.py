@@ -9,9 +9,7 @@ import logging
 import requests
 
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO, format=config.LOG_FORMAT
-)
+logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
 

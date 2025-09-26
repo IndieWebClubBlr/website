@@ -14,9 +14,7 @@ import requests
 import xml.etree.ElementTree as ET
 
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO, format=config.LOG_FORMAT
-)
+logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
 
@@ -351,6 +349,9 @@ def fetch_all_feeds(feeds: List[Tuple[str, str]], use_cache: bool) -> List[FeedE
     Returns:
         Combined list of all feed entries.
     """
+    if len(feeds) == 0:
+        return []
+
     logger.info(f"Processing {len(feeds)} feeds with {config.MAX_WORKERS} workers")
 
     all_entries = []

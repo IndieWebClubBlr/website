@@ -14,6 +14,7 @@ Usage:
 
 from __future__ import annotations
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from datetime import datetime, timezone
 from events import Event, fetch_events
@@ -30,9 +31,7 @@ import shutil
 import sys
 
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO, format=config.LOG_FORMAT
-)
+logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
 
@@ -211,17 +210,21 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
     # Copy OPML file
     shutil.copyfile(opml_path, output_dir.joinpath(opml_path))
 
-    # Parse OPML file
-    feeds = parse_opml_file(opml_path)
+    with ThreadPoolExecutor() as executor:
+        # Fetch all events
+        events_future = executor.submit(fetch_events, use_cache=use_cache)
 
-    if not feeds:
-        logger.warning("No feeds found in OPML file")
+        # Parse OPML file
+        feeds = parse_opml_file(opml_path)
 
-    # Fetch and parse all feeds
-    entries = fetch_all_feeds(feeds, use_cache=use_cache) if len(feeds) > 0 else []
+        if not feeds:
+            logger.warning("No feeds found in OPML file")
 
-    # Fetch all events
-    events = fetch_events(use_cache=use_cache)
+        # Fetch and parse all feeds
+        entries_future = executor.submit(fetch_all_feeds, feeds, use_cache=use_cache)
+
+        entries = entries_future.result()
+        events = events_future.result()
 
     generate_html(entries, events, output_dir)
     generate_blogroll_feed(entries, output_dir)
