@@ -20,6 +20,7 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     pythonEnv
     black
+    ruff
 
     run
   ];

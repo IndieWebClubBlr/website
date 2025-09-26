@@ -89,9 +89,12 @@ def generate_html(entries: List[FeedEntry], events: List[Event], output_dir: Pat
         ),
     }
 
-    # HTML template
-    with open("./index.html") as index_tpl:
-        html_template = index_tpl.read()
+    try:
+        with open("index.html") as index_tpl:
+            html_template = index_tpl.read()
+    except FileNotFoundError:
+        logger.error("Template file index.html not found.")
+        raise
 
     # Render template
     try:
@@ -265,6 +268,12 @@ def main():
 
     opml_path = Path(args.opml_file)
     output_dir = Path(args.output_dir)
+
+    if not opml_path.exists():
+        logger.error(f"OPML file does not exist: {opml_path}")
+        sys.exit(1)
+
+    output_dir.mkdir(exist_ok=True)
 
     if args.cache:
         logger.info("Caching enabled")
