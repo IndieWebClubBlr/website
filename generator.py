@@ -41,8 +41,8 @@ def generate_html(entries: List[FeedEntry], events: List[Event], output_dir: Pat
     Generate HTML file from feed entries using Mustache templating.
 
     Args:
-        entries: List of FeedEntry objects to include
-        output_path: Path where HTML file should be written
+        entries: List of FeedEntry objects to include.
+        output_path: Path where HTML file should be written.
     """
     logger.info(f"Generating HTML with {len(entries)} entries and {len(events)} events")
 
@@ -117,8 +117,7 @@ def generate_blogroll_feed(entries: List[FeedEntry], output_dir: Path):
 
     Args:
         entries: A list of FeedEntry objects to include in the feed.
-        output_dir: Directory where Atom file should be written
-
+        output_dir: Directory where Atom file should be written.
     """
     logger.info(f"Generating blogroll feed with {len(entries)} entries")
     output_path = output_dir.joinpath(config.BLOGROLL_FEED_FILE)
@@ -143,7 +142,7 @@ def generate_events_feed(events: List[Event], output_dir: Path):
 
     Args:
         events: A list of Event objects to include in the calender.
-        output_path: Path where Atom file should be written
+        output_path: Path where Atom file should be written.
 
     """
     logger.info(f"Generating events feed with {len(events)} events")
@@ -179,7 +178,7 @@ def generate_events_calendar(events: List[Event], output_dir: Path):
 
     Args:
         events: A list of Event objects to include in the feed.
-        output_path: Path where Calendar file should be written
+        output_path: Path where Calendar file should be written.
 
     """
     logger.info(f"Generating events calendar with {len(events)} events")

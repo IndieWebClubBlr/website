@@ -64,15 +64,15 @@ def make_event(base_url: str, topic: Dict, post: Dict, event: Dict) -> Event:
 
 
 def fetch_event_detail(base_url: str, topic: Dict, use_cache: bool) -> Optional[Event]:
-    """Fetch details of IWCB event
+    """Fetch details of IWCB event.
 
     Args:
-      base_url: URL of Underline Center Discourse. Default: https://underline.center/
-      topic: topic JSON returned from Discourse Search API
-      use_cache: Whether to use cached content
+      base_url: URL of Underline Center Discourse. Default: https://underline.center/.
+      topic: topic JSON returned from Discourse Search API.
+      use_cache: Whether to use cached content.
 
     Returns:
-      IWCB Event, None if fetch failed
+      IWCB Event, None if fetch failed.
     """
     url = f'{base_url}/t/{topic["id"]}.json'
     cache_key = hashlib.sha256(url.encode()).hexdigest()
@@ -119,14 +119,15 @@ def fetch_events(
     base_url: str = "https://underline.center",
     use_cache: bool = False,
 ) -> List[Event]:
-    """Fetch IWCB events from Underline Center Discourse API
+    """
+    Fetch IWCB events from Underline Center Discourse API.
 
     Args:
-      use_cache: Whether to use cached content
-      base_url: URL of Underline Center Discourse. Default: https://underline.center/
+      use_cache: Whether to use cached content.
+      base_url: URL of Underline Center Discourse. Default: https://underline.center/.
 
     Returns:
-      IWCB Event as a list, empty if fetch failed
+      IWCB Event as a list, empty if fetch failed.
     """
     url = f"{base_url}/search?q=indieweb%20%23calendar%20order%3Alatest_topic&page=1"
 

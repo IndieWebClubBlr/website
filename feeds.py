@@ -53,14 +53,14 @@ def parse_opml_file(opml_path: Path) -> List[Tuple[str, str]]:
     Parse OPML file and extract feed URLs with their titles.
 
     Args:
-        opml_path: Path to the OPML file
+        opml_path: Path to the OPML file.
 
     Returns:
-        List of tuples containing (feed_title, feed_url)
+        List of tuples containing (feed_title, feed_url).
 
     Raises:
-        FileNotFoundError: If OPML file doesn't exist
-        ET.ParseError: If OPML file is malformed
+        FileNotFoundError: If OPML file doesn't exist.
+        ET.ParseError: If OPML file is malformed.
     """
     logger.info(f"Parsing OPML file: {opml_path}")
 
@@ -106,8 +106,7 @@ def generate_feed(
 
     Args:
         entries: A list of FeedEntry objects to include in the feed.
-        output_path: Path where Atom file should be written
-
+        output_path: Path where Atom file should be written.
     """
     fg = FeedGenerator()
 
@@ -141,10 +140,10 @@ def fetch_feed_content(url: str) -> Optional[str]:
     Fetch feed content from URL with proper error handling and limits.
 
     Args:
-        url: Feed URL to fetch
+        url: Feed URL to fetch.
 
     Returns:
-        Feed content as string, or None if fetch failed
+        Feed content as string, or None if fetch failed.
     """
     try:
         logger.debug(f"Fetching feed: {url}")
@@ -197,10 +196,10 @@ def parse_feed_date(date_string: str) -> Optional[datetime]:
     Parse various date formats commonly found in feeds.
 
     Args:
-        date_string: Date string to parse
+        date_string: Date string to parse.
 
     Returns:
-        Parsed datetime object in UTC, or None if parsing failed
+        Parsed datetime object in UTC, or None if parsing failed.
     """
     if not date_string:
         return None
@@ -227,11 +226,11 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> List[FeedEn
     Parse feed content and extract recent entries.
 
     Args:
-        feed_title: Title of the feed
-        feed_content: Raw feed content
+        feed_title: Title of the feed.
+        feed_content: Raw feed content.
 
     Returns:
-        List of FeedEntry objects from the last year
+        List of FeedEntry objects.
     """
     try:
         logger.debug(f"Parsing feed: {feed_title}")
@@ -302,11 +301,11 @@ def process_single_feed(feed_info: Tuple[str, str], use_cache: bool) -> List[Fee
     Process a single feed: fetch and parse it.
 
     Args:
-        feed_info: Tuple of (feed_title, feed_url)
-        use_cache: Whether to use cached content
+        feed_info: Tuple of (feed_title, feed_url).
+        use_cache: Whether to use cached content.
 
     Returns:
-        List of FeedEntry objects
+        List of FeedEntry objects.
     """
     feed_title, feed_url = feed_info
 
@@ -346,11 +345,11 @@ def fetch_all_feeds(feeds: List[Tuple[str, str]], use_cache: bool) -> List[FeedE
     Fetch and parse all feeds concurrently.
 
     Args:
-        feeds: List of (feed_title, feed_url) tuples
-        use_cache: Whether to use cached content
+        feeds: List of (feed_title, feed_url) tuples.
+        use_cache: Whether to use cached content.
 
     Returns:
-        Combined list of all feed entries
+        Combined list of all feed entries.
     """
     logger.info(f"Processing {len(feeds)} feeds with {config.MAX_WORKERS} workers")
 
