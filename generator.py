@@ -57,6 +57,7 @@ BLOGROLL_FEED_FILE = "blogroll.atom"
 EVENTS_FEED_FILE = "events.atom"
 EVENTS_CAL_FILE = "events.ics"
 CACHE_DIR = Path(".cache")
+ASSETS = ["style.css"]
 
 
 class FeedEntry:
@@ -710,6 +711,33 @@ def generate_events_calendar(events: list[Event], output_dir: Path):
     logger.info(f"Events calendar written to: {output_path}")
 
 
+def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
+    for asset in ASSETS:
+        shutil.copyfile(asset, output_dir.joinpath(asset))
+
+    # Copy OPML file
+    shutil.copyfile(opml_path, output_dir.joinpath(opml_path))
+
+    # Parse OPML file
+    feeds = parse_opml_file(opml_path)
+
+    if not feeds:
+        logger.warning("No feeds found in OPML file")
+
+    # Fetch and parse all feeds
+    entries = fetch_all_feeds(feeds, use_cache=use_cache) if len(feeds) > 0 else []
+
+    # Fetch all events
+    events = fetch_events(use_cache=use_cache)
+
+    generate_html(entries, events, output_dir)
+    generate_blogroll_feed(entries, output_dir)
+    generate_events_feed(events, output_dir)
+    generate_events_calendar(events, output_dir)
+
+    logger.info("Website generation completed successfully")
+
+
 def main():
     """Main function to orchestrate the feed aggregation process."""
     parser = argparse.ArgumentParser(
@@ -739,28 +767,7 @@ def main():
         CACHE_DIR.mkdir(exist_ok=True)
 
     try:
-        # Copy OPML file
-        shutil.copyfile(opml_path, output_dir.joinpath(opml_path))
-
-        # Parse OPML file
-        feeds = parse_opml_file(opml_path)
-
-        if not feeds:
-            logger.warning("No feeds found in OPML file")
-
-        # Fetch and parse all feeds
-        entries = fetch_all_feeds(feeds, use_cache=args.cache) if len(feeds) > 0 else []
-
-        # Fetch all events
-        events = fetch_events(use_cache=args.cache)
-
-        generate_html(entries, events, output_dir)
-        generate_blogroll_feed(entries, output_dir)
-        generate_events_feed(events, output_dir)
-        generate_events_calendar(events, output_dir)
-
-        logger.info("Website generation completed successfully")
-
+        generate_website(opml_path, output_dir, args.cache)
     except KeyboardInterrupt:
         logger.info("Process interrupted by user")
         sys.exit(130)
