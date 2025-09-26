@@ -14,7 +14,7 @@ Usage:
 
 from __future__ import annotations
 from collections import defaultdict
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, wait
 from copy import deepcopy
 from datetime import datetime, timezone
 from events import Event, fetch_events
@@ -204,32 +204,47 @@ def generate_events_calendar(events: List[Event], output_dir: Path):
 
 
 def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
-    for asset in config.ASSETS:
-        shutil.copyfile(asset, output_dir.joinpath(asset))
-
-    # Copy OPML file
-    shutil.copyfile(opml_path, output_dir.joinpath(opml_path))
-
     with ThreadPoolExecutor() as executor:
+        futures = []
+
+        # Copy OPML file
+        futures.append(
+            executor.submit(shutil.copyfile, opml_path, output_dir.joinpath(opml_path))
+        )
+
+        # Copy assets
+        futures.extend(
+            (
+                executor.submit(shutil.copyfile, asset, output_dir.joinpath(asset))
+                for asset in config.ASSETS
+            )
+        )
+
+        def generate_events_files(events_future):
+            events = events_future.result()
+            futures.extend(
+                (
+                    executor.submit(generate_events_feed, events, output_dir),
+                    executor.submit(generate_events_calendar, events, output_dir),
+                )
+            )
+
         # Fetch all events
         events_future = executor.submit(fetch_events, use_cache=use_cache)
+        events_future.add_done_callback(generate_events_files)
 
         # Parse OPML file
         feeds = parse_opml_file(opml_path)
-
         if not feeds:
             logger.warning("No feeds found in OPML file")
 
         # Fetch and parse all feeds
-        entries_future = executor.submit(fetch_all_feeds, feeds, use_cache=use_cache)
+        entries = fetch_all_feeds(feeds, use_cache=use_cache)
+        futures.append(executor.submit(generate_blogroll_feed, entries, output_dir))
 
-        entries = entries_future.result()
         events = events_future.result()
-
-    generate_html(entries, events, output_dir)
-    generate_blogroll_feed(entries, output_dir)
-    generate_events_feed(events, output_dir)
-    generate_events_calendar(events, output_dir)
+        generate_html(entries, events, output_dir)
+        wait(futures)
 
     logger.info("Website generation completed successfully")
 

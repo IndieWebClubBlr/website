@@ -144,7 +144,7 @@ def fetch_feed_content(url: str) -> Optional[str]:
         Feed content as string, or None if fetch failed.
     """
     try:
-        logger.debug(f"Fetching feed: {url}")
+        logger.info(f"Fetching feed: {url}")
 
         # Validate URL
         parsed_url = urlparse(url)
@@ -335,6 +335,7 @@ def process_single_feed(feed_info: Tuple[str, str], use_cache: bool) -> List[Fee
         )
         logger.debug(f"Cached content for: {feed_url}")
 
+    logger.info(f"Processed {feed_title}: {len(entries)} entries")
     return entries
 
 
@@ -371,7 +372,6 @@ def fetch_all_feeds(feeds: List[Tuple[str, str]], use_cache: bool) -> List[FeedE
             try:
                 entries = future.result()
                 all_entries.extend(entries)
-                logger.info(f"Processed {feed_title}: {len(entries)} entries")
             except Exception as e:
                 logger.error(f"Failed to process {feed_title}: {e}")
 
