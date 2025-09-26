@@ -11,11 +11,33 @@ import feedparser
 import hashlib
 import logging
 import requests
+import threading
 import xml.etree.ElementTree as ET
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
+
+sessions = {}
+
+
+def get_session() -> requests.Session:
+    cur_thread_id = threading.get_ident()
+    if cur_thread_id not in sessions:
+        session = requests.Session()
+        session.headers.update(
+            {
+                "User-Agent": config.UA,
+                "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml",
+            }
+        )
+        sessions[cur_thread_id] = session
+    return sessions[cur_thread_id]
+
+
+def close_sessions():
+    for session in sessions.values():
+        session.close()
 
 
 class FeedEntry:
@@ -152,14 +174,8 @@ def fetch_feed_content(url: str) -> Optional[str]:
             logger.warning(f"Invalid URL format: {url}")
             return None
 
-        headers = {
-            "User-Agent": config.UA,
-            "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml",
-        }
-
-        response = requests.get(
-            url, headers=headers, timeout=config.REQUEST_TIMEOUT, stream=True
-        )
+        session = get_session()
+        response = session.get(url, timeout=config.REQUEST_TIMEOUT, stream=True)
         response.raise_for_status()
 
         # Check content length
@@ -375,4 +391,5 @@ def fetch_all_feeds(feeds: List[Tuple[str, str]], use_cache: bool) -> List[FeedE
             except Exception as e:
                 logger.error(f"Failed to process {feed_title}: {e}")
 
+    close_sessions()
     return all_entries

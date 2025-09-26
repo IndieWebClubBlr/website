@@ -61,7 +61,9 @@ def make_event(base_url: str, topic: Dict, post: Dict, event: Dict) -> Event:
     )
 
 
-def fetch_event_detail(base_url: str, topic: Dict, use_cache: bool) -> Optional[Event]:
+def fetch_event_detail(
+    session: requests.Session, base_url: str, topic: Dict, use_cache: bool
+) -> Optional[Event]:
     """Fetch details of IWCB event.
 
     Args:
@@ -84,13 +86,7 @@ def fetch_event_detail(base_url: str, topic: Dict, use_cache: bool) -> Optional[
 
     try:
         logger.info(f"Fetching event details: {url}")
-        headers = {
-            "User-Agent": config.UA,
-            "Accept": "application/json",
-        }
-        response = requests.get(
-            url, headers=headers, timeout=config.REQUEST_TIMEOUT, stream=True
-        )
+        response = session.get(url, timeout=config.REQUEST_TIMEOUT, stream=True)
         response.raise_for_status()
 
         post = response.json()
@@ -129,55 +125,57 @@ def fetch_events(
     """
     url = f"{base_url}/search?q=indieweb%20%23calendar%20order%3Alatest_topic&page=1"
 
-    if use_cache:
-        cache_key = hashlib.sha256(url.encode()).hexdigest()
-        cache_file = config.CACHE_DIR / cache_key
-        if cache_file.exists():
-            logger.debug(f"Using cached content for: {url}")
-            response_json = json.loads(cache_file.read_text(encoding="utf-8"))
-            events = [
-                event
-                for topic in response_json["topics"]
-                if (event := fetch_event_detail(base_url, topic, use_cache)) is not None
-            ]
-            logger.info(f"Extracted {len(events)} recent events from cache")
-            return events
-
-    try:
-        logger.info("Fetching events")
-        headers = {
-            "User-Agent": config.UA,
-            "Accept": "application/json",
-        }
-        response = requests.get(
-            url, headers=headers, timeout=config.REQUEST_TIMEOUT, stream=True
-        )
-        response.raise_for_status()
-
-        response_json = response.json()
+    with requests.Session() as session:
+        session.headers.update({"User-Agent": config.UA, "Accept": "application/json"})
 
         if use_cache:
             cache_key = hashlib.sha256(url.encode()).hexdigest()
             cache_file = config.CACHE_DIR / cache_key
-            cache_file.write_text(json.dumps(response_json), encoding="utf-8")
-            logger.debug(f"Cached content for: {url}")
+            if cache_file.exists():
+                logger.debug(f"Using cached content for: {url}")
+                response_json = json.loads(cache_file.read_text(encoding="utf-8"))
+                events = [
+                    event
+                    for topic in response_json["topics"]
+                    if (
+                        event := fetch_event_detail(session, base_url, topic, use_cache)
+                    )
+                    is not None
+                ]
+                logger.info(f"Extracted {len(events)} recent events from cache")
+                return events
 
-        events = [
-            event
-            for topic in response_json["topics"]
-            if (event := fetch_event_detail(base_url, topic, use_cache)) is not None
-        ]
+        try:
+            logger.info("Fetching events")
 
-        events.sort(key=lambda x: x.start_at, reverse=True)
-        logger.info(f"Extracted {len(events)} recent events")
-        return events
-    except requests.exceptions.Timeout:
-        logger.warning(f"Timeout fetching events: {url}")
-    except requests.exceptions.HTTPError as e:
-        logger.warning(f"HTTP error fetching events {url}: {e}")
-    except requests.exceptions.RequestException as e:
-        logger.warning(f"Request error fetching events {url}: {e}")
-    except Exception as e:
-        logger.error(f"Unexpected error fetching events {url}: {e}")
+            response = session.get(url, timeout=config.REQUEST_TIMEOUT, stream=True)
+            response.raise_for_status()
+
+            response_json = response.json()
+
+            if use_cache:
+                cache_key = hashlib.sha256(url.encode()).hexdigest()
+                cache_file = config.CACHE_DIR / cache_key
+                cache_file.write_text(json.dumps(response_json), encoding="utf-8")
+                logger.debug(f"Cached content for: {url}")
+
+            events = [
+                event
+                for topic in response_json["topics"]
+                if (event := fetch_event_detail(session, base_url, topic, use_cache))
+                is not None
+            ]
+
+            events.sort(key=lambda x: x.start_at, reverse=True)
+            logger.info(f"Extracted {len(events)} recent events")
+            return events
+        except requests.exceptions.Timeout:
+            logger.warning(f"Timeout fetching events: {url}")
+        except requests.exceptions.HTTPError as e:
+            logger.warning(f"HTTP error fetching events {url}: {e}")
+        except requests.exceptions.RequestException as e:
+            logger.warning(f"Request error fetching events {url}: {e}")
+        except Exception as e:
+            logger.error(f"Unexpected error fetching events {url}: {e}")
 
     return []
