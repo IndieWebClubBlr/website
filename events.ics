@@ -1,0 +1,67 @@
+BEGIN:VCALENDAR
+DESCRIPTION:Events by IndieWebClub Bangalore
+NAME:IndieWebClub Bangalore Events
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #10 with Ankur and Tanvi
+DTSTART:20250920T053000Z
+DTEND:20250920T083000Z
+UID:indiewebclubblr-event-541
+URL:https://underline.center/t/indiewebclub-10-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #9 with Ankur and Tanvi
+DTSTART:20250906T083000Z
+DTEND:20250906T113000Z
+UID:indiewebclubblr-event-520
+URL:https://underline.center/t/indiewebclub-9-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #8 with Ankur and Tanvi
+DTSTART:20250816T093000Z
+DTEND:20250816T123000Z
+UID:indiewebclubblr-event-503
+URL:https://underline.center/t/indiewebclub-8-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #7 with Ankur and Tanvi
+DTSTART:20250803T090000Z
+DTEND:20250803T123000Z
+UID:indiewebclubblr-event-476
+URL:https://underline.center/t/indiewebclub-7-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #6 with Ankur and Tanvi
+DTSTART:20250719T043000Z
+DTEND:20250719T073000Z
+UID:indiewebclubblr-event-452
+URL:https://underline.center/t/indiewebclub-6-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #5 with Ankur and Tanvi
+DTSTART:20250705T110000Z
+DTEND:20250705T140000Z
+UID:indiewebclubblr-event-420
+URL:https://underline.center/t/indiewebclub-5-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #4 with Ankur and Tanvi
+DTSTART:20250622T083000Z
+DTEND:20250622T113000Z
+UID:indiewebclubblr-event-371
+URL:https://underline.center/t/indiewebclub-4-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #3 with Ankur and Tanvi
+DTSTART:20250608T083000Z
+DTEND:20250608T113000Z
+UID:indiewebclubblr-event-366
+URL:https://underline.center/t/indiewebclub-3-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub with Ankur and Tanvi
+DTSTART:20250524T050000Z
+DTEND:20250524T080000Z
+UID:indiewebclubblr-event-343
+URL:https://underline.center/t/indiewebclub-with-ankur-and-tanvi
+END:VEVENT
+END:VCALENDAR
