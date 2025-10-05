@@ -79,7 +79,7 @@ def generate_html(entries: list[FeedEntry], events: list[Event], output_dir: Pat
         "site_url": config.SITE_URL,
         "webcal_url": config.WEBCAL_URL,
         "upcoming_event": upcoming_event,
-        "previous_events": previous_events,
+        "previous_events": previous_events[: config.MAX_SHOWN_EVENTS],
         "total_entries": len(recent_entries),
         "total_feeds": len(feed_groups),
         "entries": recent_entries,

@@ -92,4 +92,5 @@ serve:
 
 # Watch for changes and copy assets
 watch:
+	make build CACHE=true
 	git ls-files | entr -p -r ./watch.sh /_
