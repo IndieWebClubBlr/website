@@ -84,7 +84,7 @@ def generate_html(entries: list[FeedEntry], events: list[Event], output_dir: Pat
         "total_feeds": len(feed_groups),
         "entries": recent_entries,
         "generated_date": now.astimezone(config.EVENTS_TZ).strftime(
-            "%d %b %Y %I:%M %p IST"
+            "%d %b %Y, %I:%M %p IST"
         ),
     }
 
