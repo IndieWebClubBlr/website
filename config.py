@@ -17,5 +17,5 @@ BLOGROLL_FEED_FILE = "blogroll.atom"
 EVENTS_FEED_FILE = "events.atom"
 EVENTS_CAL_FILE = "events.ics"
 CACHE_DIR = Path(".cache")
-ASSETS = ["style.css"]
+ASSETS = ["style.css", "indiewebcamp-button.svg"]
 LOG_FORMAT = "%(asctime)s [%(levelname)s] (%(threadName)s) %(message)s"

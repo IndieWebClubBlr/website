@@ -62,6 +62,7 @@ assets:
 	@echo "Copying assets..."
 	mkdir -p _site/
 	cp *.css _site/
+	cp *.svg _site/
 	@echo "Copied assets"
 
 # Clean up generated files
