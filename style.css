@@ -82,7 +82,15 @@ a {
 }
 
 a:hover {
-  text-decoration-thickness: 1px;
+  text-decoration-style: dashed;
+}
+
+#intro ul {
+  padding-left: 1em;
+}
+
+#intro ul li {
+  list-style: disc;
 }
 
 ul {
