@@ -8,6 +8,6 @@ Would be nice to have:
 - [x] Blogroll posts.
 - [x] Combined Blogroll feed.
 - [x] Link to OPML file.
-- [ ] Link to WhatsApp community (as a QR code)
+- [x] Link to WhatsApp community (as a QR code)
+- [x] Readme
 - [ ] Custom domain
-- [ ] Readme

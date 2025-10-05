@@ -29,7 +29,7 @@ help:
 	@echo "  make help           - Show this help message"
 
 # Set up virtual environment and install dependencies
-setup: $(VENV_DIR)/bin/activate clean
+setup: $(VENV_DIR)/bin/activate
 	@echo "Setup complete! Virtual environment ready."
 	@echo "To activate: source $(VENV_DIR)/bin/activate"
 
@@ -88,7 +88,7 @@ clean_all: clean clean_venv clean_cache
 
 # Serve the website
 serve:
-	python3 -m http.server -d ./_site/
+	$(VENV_PYTHON) -m http.server -d ./_site/
 
 # Watch for changes and copy assets
 watch:
