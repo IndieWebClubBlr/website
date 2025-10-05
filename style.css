@@ -8,6 +8,16 @@ html {
   font-size: 112.5%;
 }
 
+@media screen and (max-width: 430px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+body {
+  line-height: 1.35;
+}
+
 body,
 h1,
 h3 {
@@ -15,7 +25,16 @@ h3 {
 }
 
 h2 {
-  margin-bottom: 1em;
+  margin-bottom: 0.4em;
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+h2, h3 {
+  text-wrap: balance;
 }
 
 body {
@@ -25,15 +44,28 @@ body {
   color: white;
 }
 
+@media screen and (prefers-color-scheme: dark) {
+  body {
+    background-color: #486fb5;
+  }
+}
+
 header,
 main,
 footer {
   max-width: 48rem;
+  min-width: 20rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
 }
 
 header,
 footer {
-  margin-left: 12rem;
+  text-align: center;
+}
+
+footer {
+  font-size: smaller;
 }
 
 main {
@@ -44,13 +76,26 @@ main {
 
 a {
   color: yellow;
-  text-decoration-style: wavy;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
+  text-decoration-style: solid;
+  text-decoration-thickness: 0.8px;
+  text-underline-offset: 0.2em;
 }
 
 a:hover {
   text-decoration-thickness: 1px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li:has(a)::after {
+  content: "👈";
+  vertical-align: middle;
+  display: inline;
+  font-size: 1lh;
+  padding-left: 0.3em;
 }
 
 header {
@@ -84,18 +129,81 @@ header {
   font-size: 4rem;
   line-height: 1;
   transform: rotate(-4deg);
-  margin-block-end: 3rem;
+  margin-top: 0.8lh;
+  margin-bottom: 0.6lh;
   animation: tiny-wobble 0.1s ease-in-out infinite alternate;
 }
 
-.entry {
-  background-color: #f0f0f010;
-  padding: 1rem;
-  margin-bottom: 1rem;
+@media (prefers-reduced-motion: reduce) {
+  .logo {
+    animation: none;
+    text-shadow:
+      4px 4px 0 yellowgreen,
+      6px 6px 0 red,
+      -4px -4px 0 darksalmon;
+  }
 }
 
-.meta {
+@media screen and (max-width: 430px) {
+  .logo {
+    font-size: 3rem;
+    margin-top: 0.7lh;
+    margin-bottom: 0.4lh;
+  }
+}
+
+.entry,
+.event {
+  background-color: #f0f0f010;
+  padding: 0.8em;
+  margin-bottom: 1em;
+  border-radius: 0.8em;
+}
+
+@media screen and (max-width: 430px) {
+  .entry,
+  .event {
+    padding: 0.7em;
+  }
+}
+
+ul.meta {
   list-style: none;
   padding-inline-start: 0;
-  font-size: 0.75rem;
+  font-size: 0.85em;
+  margin-block: 0;
+}
+
+ul.meta li.pub-time {
+  display: none;
+}
+
+ul.meta li::after {
+  content: "";
+}
+
+.event .pub-time {
+  font-size: 0.85em;
+}
+
+li.location::after {
+  content: "";
+}
+
+#upcoming-event h3 {
+  font-size: 1.5em;
+}
+
+#upcoming-event .event {
+  font-size: 1.5em;
+  border: 0.4em double aquamarine;
+  text-align: center;
+}
+
+#upcoming-event ul {
+  margin-bottom: 0;
+}
+
+#upcoming-event .buy-link {
+  font-weight: bold;
 }

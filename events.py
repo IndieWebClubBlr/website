@@ -41,7 +41,7 @@ class Event:
 
     def start_at_human(self) -> str:
         return self.start_at.astimezone(config.EVENTS_TZ).strftime(
-            "%d %b %Y %I:%M %p IST"
+            "%d %b %Y, %I:%M %p IST"
         )
 
     def start_at_machine(self) -> str:
