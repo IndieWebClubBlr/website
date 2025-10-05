@@ -4,7 +4,7 @@ from datetime import datetime, timedelta, timezone
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import final
 from urllib.parse import urlparse
 import config
 import feedparser
@@ -18,7 +18,7 @@ import xml.etree.ElementTree as ET
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
-sessions = {}
+sessions: dict[int, requests.Session] = {}
 
 
 def get_session() -> requests.Session:
@@ -40,6 +40,7 @@ def close_sessions():
         session.close()
 
 
+@final
 class FeedEntry:
     """Represents a single feed entry with normalized fields."""
 
@@ -51,7 +52,7 @@ class FeedEntry:
         feed_title: str,
         feed_url: str,
         feed_home_url: str,
-        tags: List[str],
+        tags: list[str],
     ):
         self.title = title
         self.link = link
@@ -68,7 +69,7 @@ class FeedEntry:
         return self.published.isoformat()
 
 
-def parse_opml_file(opml_path: Path) -> List[Tuple[str, str]]:
+def parse_opml_file(opml_path: Path) -> list[tuple[str, str]]:
     """
     Parse OPML file and extract feed URLs with their titles.
 
@@ -88,7 +89,7 @@ def parse_opml_file(opml_path: Path) -> List[Tuple[str, str]]:
         tree = ET.parse(opml_path)
         root = tree.getroot()
 
-        feeds = []
+        feeds: list[tuple[str, str]] = []
 
         # Look for outline elements with xmlUrl attribute
         for outline in root.iter("outline"):
@@ -115,10 +116,10 @@ def parse_opml_file(opml_path: Path) -> List[Tuple[str, str]]:
 def generate_feed(
     feed_url: str,
     feed_title: str,
-    author_name: Optional[str],
+    author_name: str | None,
     feed_home_url: str,
-    feed_subtitle: Optional[str],
-    entries: List[FeedEntry],
+    feed_subtitle: str | None,
+    entries: list[FeedEntry],
     output_path: Path,
 ):
     """
@@ -155,7 +156,7 @@ def generate_feed(
     fg.atom_file(output_path, pretty=True)
 
 
-def fetch_feed_content(url: str) -> Optional[str]:
+def fetch_feed_content(url: str) -> str | None:
     """
     Fetch feed content from URL with proper error handling and limits.
 
@@ -205,7 +206,7 @@ def fetch_feed_content(url: str) -> Optional[str]:
     return None
 
 
-def parse_feed_date(date_string: str) -> Optional[datetime]:
+def parse_feed_date(date_string: str) -> datetime | None:
     """
     Parse various date formats commonly found in feeds.
 
@@ -235,7 +236,7 @@ def parse_feed_date(date_string: str) -> Optional[datetime]:
         return None
 
 
-def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> List[FeedEntry]:
+def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> list[FeedEntry]:
     """
     Parse feed content and extract recent entries.
 
@@ -261,7 +262,7 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> List[FeedEn
         now = datetime.now(timezone.utc)
         cutoff_date = now - timedelta(days=config.RECENT_DAYS)
 
-        entries = []
+        entries: list[FeedEntry] = []
 
         for entry in parsed_feed.entries:
             # Extract and normalize entry data
@@ -310,7 +311,7 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> List[FeedEn
         return []
 
 
-def process_single_feed(feed_info: Tuple[str, str], use_cache: bool) -> List[FeedEntry]:
+def process_single_feed(feed_info: tuple[str, str], use_cache: bool) -> list[FeedEntry]:
     """
     Process a single feed: fetch and parse it.
 
@@ -355,7 +356,7 @@ def process_single_feed(feed_info: Tuple[str, str], use_cache: bool) -> List[Fee
     return entries
 
 
-def fetch_all_feeds(feeds: List[Tuple[str, str]], use_cache: bool) -> List[FeedEntry]:
+def fetch_all_feeds(feeds: list[tuple[str, str]], use_cache: bool) -> list[FeedEntry]:
     """
     Fetch and parse all feeds concurrently.
 
@@ -371,7 +372,7 @@ def fetch_all_feeds(feeds: List[Tuple[str, str]], use_cache: bool) -> List[FeedE
 
     logger.info(f"Processing {len(feeds)} feeds with {config.MAX_WORKERS} workers")
 
-    all_entries = []
+    all_entries: list[FeedEntry] = []
 
     with ThreadPoolExecutor(max_workers=config.MAX_WORKERS) as executor:
         # Submit all feed processing tasks

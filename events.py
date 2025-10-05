@@ -1,7 +1,7 @@
 from __future__ import annotations
 from datetime import datetime
 from dateutil import parser as date_parser
-from typing import Dict, List, Optional
+from typing import TypedDict, cast, final
 import config
 import hashlib
 import json
@@ -13,6 +13,7 @@ logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
 
+@final
 class Event:
     """Represents an IndieWebClub BLR event"""
 
@@ -24,7 +25,7 @@ class Event:
         created_at: datetime,
         start_at: datetime,
         end_at: datetime,
-        details: Optional[str],
+        details: str | None,
         underline_url: str,
         district_url: str,
     ):
@@ -47,7 +48,24 @@ class Event:
         return self.start_at.isoformat()
 
 
-def make_event(base_url: str, topic: Dict, post: Dict, event: Dict) -> Event:
+DiscourseTopic = TypedDict(
+    "DiscourseTopic", {"id": int, "created_at": str, "title": str, "slug": str}
+)
+DiscoureSearchResults = TypedDict(
+    "DiscoureSearchResults", {"topics": list[DiscourseTopic]}
+)
+DiscoursePostEvent = TypedDict(
+    "DiscoursePostEvent", {"url": str, "starts_at": str, "ends_at": str}
+)
+DiscoursePost = TypedDict("DiscoursePost", {"cooked": str, "event": DiscoursePostEvent})
+DiscoursePostStream = TypedDict("DiscoursePostStream", {"posts": list[DiscoursePost]})
+DiscourseTopicPosts = TypedDict(
+    "DiscourseTopicPosts", {"post_stream": DiscoursePostStream}
+)
+
+
+def make_event(base_url: str, topic: DiscourseTopic, post: DiscoursePost) -> Event:
+    event = post["event"]
     return Event(
         id=topic["id"],
         title=topic["title"],
@@ -55,18 +73,19 @@ def make_event(base_url: str, topic: Dict, post: Dict, event: Dict) -> Event:
         created_at=date_parser.parse(topic["created_at"]),
         start_at=date_parser.parse(event["starts_at"]),
         end_at=date_parser.parse(event["ends_at"]),
-        details=post["post_stream"]["posts"][0]["cooked"],
+        details=post["cooked"],
         underline_url=f'{base_url}/t/{topic["slug"]}',
         district_url=event["url"],
     )
 
 
 def fetch_event_detail(
-    session: requests.Session, base_url: str, topic: Dict, use_cache: bool
-) -> Optional[Event]:
+    session: requests.Session, base_url: str, topic: DiscourseTopic, use_cache: bool
+) -> Event | None:
     """Fetch details of IWCB event.
 
     Args:
+      session: requests.Session object.
       base_url: URL of Underline Center Discourse. Default: https://underline.center/.
       topic: topic JSON returned from Discourse Search API.
       use_cache: Whether to use cached content.
@@ -80,23 +99,23 @@ def fetch_event_detail(
 
     if use_cache and cache_file.exists():
         logger.debug(f"Using cached content for: {url}")
-        post = json.loads(cache_file.read_text(encoding="utf-8"))
-        event = post["post_stream"]["posts"][0]["event"]
-        return make_event(base_url, topic, post, event)
+        post = cast(
+            DiscoursePost, json.loads(cache_file.read_text(encoding="utf-8"))
+        )
+        return make_event(base_url, topic, post)
 
     try:
         logger.info(f"Fetching event details: {url}")
         response = session.get(url, timeout=config.REQUEST_TIMEOUT, stream=True)
         response.raise_for_status()
 
-        post = response.json()
-
+        topic_posts = cast(DiscourseTopicPosts, response.json())
+        post = topic_posts["post_stream"]["posts"][0]
         if use_cache:
-            cache_file.write_text(json.dumps(post), encoding="utf-8")
+            _ = cache_file.write_text(json.dumps(post), encoding="utf-8")
             logger.debug(f"Cached content for: {url}")
 
-        event = post["post_stream"]["posts"][0]["event"]
-        return make_event(base_url, topic, post, event)
+        return make_event(base_url, topic, post)
     except requests.exceptions.Timeout:
         logger.warning(f"Timeout fetching event details: {url}")
     except requests.exceptions.HTTPError as e:
@@ -112,7 +131,7 @@ def fetch_event_detail(
 def fetch_events(
     base_url: str = "https://underline.center",
     use_cache: bool = False,
-) -> List[Event]:
+) -> list[Event]:
     """
     Fetch IWCB events from Underline Center Discourse API.
 
@@ -133,7 +152,10 @@ def fetch_events(
             cache_file = config.CACHE_DIR / cache_key
             if cache_file.exists():
                 logger.debug(f"Using cached content for: {url}")
-                response_json = json.loads(cache_file.read_text(encoding="utf-8"))
+                response_json = cast(
+                    DiscoureSearchResults,
+                    json.loads(cache_file.read_text(encoding="utf-8")),
+                )
                 events = [
                     event
                     for topic in response_json["topics"]
@@ -151,12 +173,12 @@ def fetch_events(
             response = session.get(url, timeout=config.REQUEST_TIMEOUT, stream=True)
             response.raise_for_status()
 
-            response_json = response.json()
+            response_json = cast(DiscoureSearchResults, response.json())
 
             if use_cache:
                 cache_key = hashlib.sha256(url.encode()).hexdigest()
                 cache_file = config.CACHE_DIR / cache_key
-                cache_file.write_text(json.dumps(response_json), encoding="utf-8")
+                _ = cache_file.write_text(json.dumps(response_json), encoding="utf-8")
                 logger.debug(f"Cached content for: {url}")
 
             events = [

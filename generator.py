@@ -14,7 +14,7 @@ Usage:
 
 from __future__ import annotations
 from collections import defaultdict
-from concurrent.futures import ThreadPoolExecutor, wait
+from concurrent.futures import Future, ThreadPoolExecutor, wait
 from copy import deepcopy
 from datetime import datetime, timezone
 from events import Event, fetch_events
@@ -22,7 +22,7 @@ from feedgen.feed import FeedGenerator
 from feeds import FeedEntry, parse_opml_file, fetch_all_feeds, generate_feed
 from icalendar import Calendar, Event as CalEvent
 from pathlib import Path
-from typing import List
+from typing import Any
 import argparse
 import config
 import logging
@@ -35,7 +35,7 @@ logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
 
-def generate_html(entries: List[FeedEntry], events: List[Event], output_dir: Path):
+def generate_html(entries: list[FeedEntry], events: list[Event], output_dir: Path):
     """
     Generate HTML file from feed entries using Mustache templating.
 
@@ -46,14 +46,14 @@ def generate_html(entries: List[FeedEntry], events: List[Event], output_dir: Pat
     logger.info(f"Generating HTML with {len(entries)} entries and {len(events)} events")
 
     # Group entries by OPML feed title
-    feed_groups = defaultdict(list)
+    feed_groups: defaultdict[str, list[FeedEntry]] = defaultdict(list)
 
     for entry in entries:
         feed_groups[entry.feed_title].append(entry)
 
     # Sort entries within each group by publication date (newest first)
     # and take top 3 from each group
-    recent_entries = []
+    recent_entries: list[FeedEntry] = []
     for feed_title in feed_groups.keys():
         group_entries = feed_groups[feed_title]
         group_entries.sort(key=lambda x: x.published, reverse=True)
@@ -102,7 +102,7 @@ def generate_html(entries: List[FeedEntry], events: List[Event], output_dir: Pat
 
         # Write to file
         output_path = output_dir.joinpath("index.html")
-        output_path.write_text(html_content, encoding="utf-8")
+        _ = output_path.write_text(html_content, encoding="utf-8")
         logger.info(f"HTML file written to: {output_path}")
 
     except Exception as e:
@@ -110,7 +110,7 @@ def generate_html(entries: List[FeedEntry], events: List[Event], output_dir: Pat
         raise
 
 
-def generate_blogroll_feed(entries: List[FeedEntry], output_dir: Path):
+def generate_blogroll_feed(entries: list[FeedEntry], output_dir: Path):
     """
     Creates an Atom feed from a list of FeedEntry objects.
 
@@ -135,7 +135,7 @@ def generate_blogroll_feed(entries: List[FeedEntry], output_dir: Path):
     logger.info(f"Blogroll feed written to: {output_path}")
 
 
-def generate_events_feed(events: List[Event], output_dir: Path):
+def generate_events_feed(events: list[Event], output_dir: Path):
     """
     Creates an Atom feed from a list of Event objects.
 
@@ -171,7 +171,7 @@ def generate_events_feed(events: List[Event], output_dir: Path):
     logger.info(f"Events feed written to: {output_path}")
 
 
-def generate_events_calendar(events: List[Event], output_dir: Path):
+def generate_events_calendar(events: list[Event], output_dir: Path):
     """
     Creates an Calendar from a list of Event objects.
 
@@ -198,14 +198,14 @@ def generate_events_calendar(events: List[Event], output_dir: Path):
 
     output_path = output_dir.joinpath(config.EVENTS_CAL_FILE)
     with open(output_path, "wb") as f:
-        f.write(cal.to_ical())
+        _ = f.write(cal.to_ical())
 
     logger.info(f"Events calendar written to: {output_path}")
 
 
 def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
     with ThreadPoolExecutor() as executor:
-        futures = []
+        futures: list[Future[Any]] = []
 
         # Copy OPML file
         futures.append(
@@ -220,7 +220,7 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
             )
         )
 
-        def generate_events_files(events_future):
+        def generate_events_files(events_future: Future[list[Event]]):
             events = events_future.result()
             futures.extend(
                 (
@@ -244,7 +244,7 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
 
         events = events_future.result()
         generate_html(entries, events, output_dir)
-        wait(futures)
+        _ = wait(futures)
 
     logger.info("Website generation completed successfully")
 
@@ -254,14 +254,14 @@ def main():
     parser = argparse.ArgumentParser(
         description="Generate HTML from OPML feeds with recent entries"
     )
-    parser.add_argument("opml_file", help="Input OPML file path")
-    parser.add_argument(
+    _ = parser.add_argument("opml_file", help="Input OPML file path")
+    _ = parser.add_argument(
         "output_dir", help="The directory to output the built artifacts."
     )
-    parser.add_argument(
+    _ = parser.add_argument(
         "--verbose", "-v", action="store_true", help="Enable verbose logging"
     )
-    parser.add_argument(
+    _ = parser.add_argument(
         "--cache", action="store_true", help="Enable caching of fetched feeds"
     )
 
