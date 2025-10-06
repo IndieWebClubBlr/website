@@ -1,4 +1,5 @@
 from __future__ import annotations
+from bs4 import BeautifulSoup
 from datetime import datetime
 from dateutil import parser as date_parser
 from typing import TypedDict, cast, final
@@ -38,6 +39,16 @@ class Event:
         self.details = details
         self.underline_url = underline_url
         self.district_url = district_url
+        soup = BeautifulSoup(details, "html.parser")
+        agenda = soup.find(string="Agenda")
+        if agenda is not None:
+            agenda_header = agenda.parent
+            for s in agenda_header.previous_siblings:
+                s.decompose()
+            agenda_header.name = "h3"
+            self.summary = str(agenda_header.parent)
+        else:
+            self.summary = None
 
     def start_at_human(self) -> str:
         return self.start_at.astimezone(config.EVENTS_TZ).strftime(
@@ -107,9 +118,7 @@ def fetch_event_detail(
 
     if use_cache and cache_file.exists():
         logger.debug(f"Using cached content for: {url}")
-        post = cast(
-            DiscoursePost, json.loads(cache_file.read_text(encoding="utf-8"))
-        )
+        post = cast(DiscoursePost, json.loads(cache_file.read_text(encoding="utf-8")))
         return make_event(base_url, topic, post)
 
     try:

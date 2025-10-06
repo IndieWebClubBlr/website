@@ -46,14 +46,17 @@
     <section id="upcoming-event">
       {{#upcoming_event}}
       <h2>Upcoming Event</h2>
-      <div class="event h-event" id="event-{{{id}}}">
-        <h3><a href="{{underline_url}}" target="_blank" class="u-url p-name">{{title}}</a></h3>
-        <ul>
-          <li class="start-time">On: <time class="dt-start" datetime="{{start_at_machine}}">{{start_at_human}}</time></li>
-          <li class="end-time">Till: <time class="dt-end" datetime="{{end_at_machine}}">{{end_at_human}}</time></li>
-          <li class="location">At: <a class="p-location" href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA">Underline Center</a></li>
-          <li class="buy-link"><a href="{{district_url}}">BUY TICKETS!</a></li>
-        </ul>
+      <div class="h-event">
+        <div class="event" id="event-{{{id}}}">
+          <h3><a href="{{underline_url}}" target="_blank" class="u-url p-name">{{title}}</a></h3>
+          <ul>
+            <li class="start-time">On: <time class="dt-start" datetime="{{start_at_machine}}">{{start_at_human}}</time></li>
+            <li class="end-time">Till: <time class="dt-end" datetime="{{end_at_machine}}">{{end_at_human}}</time></li>
+            <li class="location">At: <a class="p-location" href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA">Underline Center</a></li>
+            <li class="buy-link"><a href="{{district_url}}">BUY TICKETS!</a></li>
+          </ul>
+        </div>
+        {{#summary}}<section class="summary p-summary">{{{summary}}}</section>{{/summary}}
       </div>
       <ul>
         <li><a href="#previous-events">See previous events.</a></li>
@@ -101,7 +104,7 @@
       {{#previous_events}}
       <div class="event" id="event-{{{id}}}">
         <h3><a href="{{underline_url}}" target="_blank">{{title}}</a></h3>
-        <div class="pub-time"><time datetime="{{start_at_machine}}">{{start_at_human}}</time></div>
+        <div class="start-time"><time datetime="{{start_at_machine}}">{{start_at_human}}</time></div>
       </div>
       {{/previous_events}}
     </section>

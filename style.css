@@ -88,9 +88,6 @@ a:hover {
 
 #intro ul {
   padding-left: 1em;
-}
-
-#intro ul li {
   list-style: disc;
 }
 
@@ -191,7 +188,7 @@ ul.meta li::after {
   content: "";
 }
 
-.event .start-time {
+.event .start-time, .event .location {
   font-size: 0.85em;
 }
 
@@ -199,7 +196,7 @@ ul.meta li::after {
   display: none;
 }
 
-li.location::after {
+.event .location::after {
   content: "";
 }
 
@@ -213,12 +210,18 @@ li.location::after {
   text-align: center;
 }
 
+#upcoming-event .summary ul {
+  padding-left: 1em;
+  list-style: disc;
+}
+
 #upcoming-event ul {
   margin-bottom: 0;
 }
 
 #upcoming-event .buy-link {
   font-weight: bold;
+  font-size: 1.1em;
 }
 
 #upcoming-event .buy-link::before {
