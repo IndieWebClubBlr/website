@@ -49,7 +49,7 @@
       <div class="h-event">
         <div class="event" id="event-{{{id}}}">
           <h3><a href="{{underline_url}}" target="_blank" class="u-url p-name">{{title}}</a></h3>
-          <ul>
+          <ul class="no-marker pointed-hand">
             <li class="start-time">On: <time class="dt-start" datetime="{{start_at_machine}}">{{start_at_human}}</time></li>
             <li class="end-time">Till: <time class="dt-end" datetime="{{end_at_machine}}">{{end_at_human}}</time></li>
             <li class="location">At: <a class="p-location" href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA">Underline Center</a></li>
@@ -58,7 +58,7 @@
         </div>
         {{#summary}}<section class="summary p-summary">{{{summary}}}</section>{{/summary}}
       </div>
-      <ul>
+      <ul class="no-marker pointed-hand">
         <li><a href="#previous-events">See previous events.</a></li>
         <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
         <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
@@ -67,7 +67,7 @@
       {{/upcoming_event}}
       {{^upcoming_event}}
       <h2>No Upcoming Events</h2>
-      <ul>
+      <ul class="no-marker pointed-hand">
         <li><a href="#previous-events">See previous events.</a></li>
         <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
         <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
@@ -78,14 +78,14 @@
 
     <section id="recent-posts">
       <h2>Recent Posts by Members</h2>
-      <ul>
+      <ul class="no-marker pointed-hand">
         <li><a href="{{site_url}}blogroll.atom">Subscribe as a feed.</a></li>
         <li><a href="{{site_url}}blogroll.opml">Download as an OPML file.</a></li>
       </ul>
       {{#entries}}
       <article class="entry">
         <h3><a href="{{link}}" target="_blank">{{title}}</a></h3>
-        <ul class="meta">
+        <ul class="meta no-marker">
           <li class="title">by <a href="{{feed_home_url}}">{{feed_title}}</a></li>
           <li class="pub-time"><time datetime="{{published_machine}}">{{published_human}}</time></li>
         </ul>
@@ -95,7 +95,7 @@
 
     <section id="previous-events">
       <h2>Previous Events</h2>
-      <ul>
+      <ul class="no-marker pointed-hand">
         <li><a href="#upcoming-event">See upcoming event.</a></li>
         <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
         <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>

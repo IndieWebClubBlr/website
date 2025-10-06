@@ -86,24 +86,6 @@ a:hover {
   text-decoration-style: dashed;
 }
 
-#intro ul {
-  padding-left: 1em;
-  list-style: disc;
-}
-
-ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-li:has(a)::after {
-  content: "👈";
-  vertical-align: middle;
-  display: inline;
-  font-size: 1lh;
-  margin-left: 0.3em;
-}
-
 header {
   padding-block: 1rem;
 }
@@ -173,9 +155,20 @@ header {
   }
 }
 
-ul.meta {
+ul.no-marker {
   list-style: none;
-  padding-inline-start: 0;
+  padding-left: 0;
+}
+
+ul.pointed-hand li:has(a)::after {
+  content: "👈";
+  vertical-align: middle;
+  display: inline;
+  font-size: 1lh;
+  margin-left: 0.3em;
+}
+
+ul.meta {
   font-size: 0.85em;
   margin-block: 0;
 }
@@ -184,20 +177,13 @@ ul.meta li.pub-time {
   display: none;
 }
 
-ul.meta li::after {
-  content: "";
-}
-
-.event .start-time, .event .location {
+.event .start-time,
+.event .location {
   font-size: 0.85em;
 }
 
 .event .end-time {
   display: none;
-}
-
-.event .location::after {
-  content: "";
 }
 
 #upcoming-event h3 {
@@ -208,11 +194,6 @@ ul.meta li::after {
   font-size: 1.5em;
   border: 0.4em double aquamarine;
   text-align: center;
-}
-
-#upcoming-event .summary ul {
-  padding-left: 1em;
-  list-style: disc;
 }
 
 #upcoming-event ul {
