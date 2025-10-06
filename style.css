@@ -191,8 +191,12 @@ ul.meta li::after {
   content: "";
 }
 
-.event .pub-time {
+.event .start-time {
   font-size: 0.85em;
+}
+
+.event .end-time {
+  display: none;
 }
 
 li.location::after {

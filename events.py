@@ -47,6 +47,14 @@ class Event:
     def start_at_machine(self) -> str:
         return self.start_at.isoformat()
 
+    def end_at_human(self) -> str:
+        return self.end_at.astimezone(config.EVENTS_TZ).strftime(
+            "%d %b %Y, %I:%M %p IST"
+        )
+
+    def end_at_machine(self) -> str:
+        return self.end_at.isoformat()
+
 
 DiscourseTopic = TypedDict(
     "DiscourseTopic", {"id": int, "created_at": str, "title": str, "slug": str}

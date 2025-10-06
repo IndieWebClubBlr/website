@@ -46,11 +46,12 @@
     <section id="upcoming-event">
       {{#upcoming_event}}
       <h2>Upcoming Event</h2>
-      <div class="event" id="event-{{{id}}}">
-        <h3><a href="{{underline_url}}" target="_blank">{{title}}</a></h3>
+      <div class="event h-event" id="event-{{{id}}}">
+        <h3><a href="{{underline_url}}" target="_blank" class="u-url p-name">{{title}}</a></h3>
         <ul>
-          <li class="pub-time">On: <time datetime="{{start_at_machine}}">{{start_at_human}}</time></li>
-          <li class="location">At: <a href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA">Underline Center</a></li>
+          <li class="start-time">On: <time class="dt-start" datetime="{{start_at_machine}}">{{start_at_human}}</time></li>
+          <li class="end-time">Till: <time class="dt-end" datetime="{{end_at_machine}}">{{end_at_human}}</time></li>
+          <li class="location">At: <a class="p-location" href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA">Underline Center</a></li>
           <li class="buy-link"><a href="{{district_url}}">BUY TICKETS!</a></li>
         </ul>
       </div>
