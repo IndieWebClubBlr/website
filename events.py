@@ -34,8 +34,8 @@ class Event:
         self.title = title
         self.slug = slug
         self.created_at = created_at
-        self.start_at = start_at
-        self.end_at = end_at
+        self.start_at = start_at.astimezone(config.EVENTS_TZ)
+        self.end_at = end_at.astimezone(config.EVENTS_TZ)
         self.details = details
         self.underline_url = underline_url
         self.district_url = district_url
@@ -51,17 +51,13 @@ class Event:
             self.summary = None
 
     def start_at_human(self) -> str:
-        return self.start_at.astimezone(config.EVENTS_TZ).strftime(
-            "%d %b %Y, %I:%M %p IST"
-        )
+        return self.start_at.strftime("%d %b %Y, %I:%M %p IST")
 
     def start_at_machine(self) -> str:
         return self.start_at.isoformat()
 
     def end_at_human(self) -> str:
-        return self.end_at.astimezone(config.EVENTS_TZ).strftime(
-            "%d %b %Y, %I:%M %p IST"
-        )
+        return self.end_at.strftime("%d %b %Y, %I:%M %p IST")
 
     def end_at_machine(self) -> str:
         return self.end_at.isoformat()
