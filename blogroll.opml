@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opml version="1.1">
   <head>
-    <title>Indieweb Club BLR Blogroll</title>
+    <title>Indieweb Club Bangalore Blogroll</title>
   </head>
   <body>
     <outline type="rss" text="9porcupine" xmlUrl="https://9porcupine.mataroa.blog/rss/" />
