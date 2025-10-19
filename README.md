@@ -1,6 +1,6 @@
 # IndieWebClub Bangalore Website
 
-This repository contains the source code for the IndieWebClub Bangalore website, a static site generated using Python. The website displays upcoming and past events, and a blogroll of recent posts from the community.
+This repository contains the source code for the [IndieWebClub Bangalore website](https://blr.indiewebclub.org/), a static site generated using Python. The website displays upcoming and past events, and a blogroll of recent posts from the community.
 
 ## Features
 
@@ -82,15 +82,25 @@ A brief overview of the project's file structure:
 
 ```
 /
-├── generator.py   # Main script to generate the static site.
-├── feeds.py       # Logic for fetching and parsing blogroll feeds.
-├── events.py      # Logic for fetching events from the Discourse API.
-├── config.py      # All configuration constants for the project.
-├── index.html     # The main pystache template for the website.
-├── blogroll.opml  # The list of feeds for the blogroll.
-├── style.css      # Main stylesheet.
-├── _site/         # Output directory for the generated website.
-└── Makefile       # Contains all the commands for building, serving, and cleaning the project.
+├── .github/           # GitHub Actions workflows for CI/CD.
+├── _site/             # Output directory for the generated website.
+├── CNAME              # Custom domain configuration for GitHub Pages.
+├── LICENSE            # The license for the project.
+├── README.md          # This file.
+├── Makefile           # Contains all the commands for building, serving, and cleaning the project.
+├── config.py          # All configuration constants for the project.
+├── events.py          # Logic for fetching events from the Discourse API.
+├── feeds.py           # Logic for fetching and parsing blogroll feeds.
+├── generator.py       # Main script to generate the static site.
+├── index.html         # The main pystache template for the website.
+├── style.css          # Main stylesheet.
+├── blogroll.opml      # The list of feeds for the blogroll.
+├── favicon.svg        # The website favicon image.
+├── preview.png        # The website OpenGraph preview image.
+├── pyrightconfig.json # Configuration file for the Pyright type checker.
+├── requirements.txt   # Python dependencies for the project.
+├── shell.nix          # Nix shell configuration for reproducible development environments.
+└── watch.sh           # A script to watch for file changes and rebuild the site.
 ```
 
 ## Contributing
