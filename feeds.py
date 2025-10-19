@@ -140,18 +140,19 @@ def generate_feed(
     if feed_subtitle is not None:
         fg.subtitle(feed_subtitle)
 
-    for entry in entries:
-        fe = fg.add_entry(order="append")
+    for entry in sorted(entries, key=lambda entry: entry.published, reverse=True):
+        if entry.link.startswith("http"):
+            fe = fg.add_entry(order="append")
 
-        fe.id(entry.link)
-        fe.title(entry.title)
-        fe.link(href=entry.link, rel="alternate")
-        fe.published(entry.published)
-        fe.updated(entry.published)
-        fe.author(name=entry.feed_title, uri=entry.feed_url)
+            fe.id(entry.link)
+            fe.title(entry.title)
+            fe.link(href=entry.link, rel="alternate")
+            fe.published(entry.published)
+            fe.updated(entry.published)
+            fe.author(name=entry.feed_title, uri=entry.feed_url)
 
-        for tag in entry.tags:
-            fe.category(term=tag)
+            for tag in entry.tags:
+                fe.category(term=tag)
 
     fg.atom_file(output_path, pretty=True)
 
