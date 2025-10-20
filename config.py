@@ -8,6 +8,7 @@ MAX_SHOWN_ENTRIES = 1
 MAX_FEED_ENTRIES = 10
 MAX_SHOWN_TAGS = 5
 MAX_SHOWN_EVENTS = 10
+MAX_SHOWN_WEEK_NOTES = 10
 MAX_WORKERS = 10  # concurrent feed fetches
 RECENT_DAYS = 182  # half year
 UA = "blr.indiewebclub.org generator"

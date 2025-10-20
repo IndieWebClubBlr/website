@@ -35,6 +35,31 @@ logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
 
+def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
+    # Group entries by OPML feed title
+    feed_groups: defaultdict[str, list[FeedEntry]] = defaultdict(list)
+
+    for entry in entries:
+        feed_groups[entry.feed_title].append(entry)
+
+    res_entries: list[FeedEntry] = []
+    for feed_title in feed_groups.keys():
+        group_entries = feed_groups[feed_title]
+        group_entries.sort(key=lambda x: x.published, reverse=True)
+        group_entries = [
+            deepcopy(entry) for entry in group_entries[: config.MAX_SHOWN_ENTRIES]
+        ]
+
+        for entry in group_entries:
+            entry.tags = entry.tags[: config.MAX_SHOWN_TAGS]
+
+        res_entries.extend(group_entries)
+
+    # Sort result entries globally by publication date for overall stats
+    res_entries.sort(key=lambda x: x.published, reverse=True)
+    return res_entries
+
+
 def generate_html(entries: list[FeedEntry], events: list[Event], output_dir: Path):
     """
     Generate HTML file from feed entries using Mustache templating.
@@ -45,29 +70,20 @@ def generate_html(entries: list[FeedEntry], events: list[Event], output_dir: Pat
     """
     logger.info(f"Generating HTML with {len(entries)} entries and {len(events)} events")
 
-    # Group entries by OPML feed title
-    feed_groups: defaultdict[str, list[FeedEntry]] = defaultdict(list)
+    # Separate week notes from other entries
+    week_notes: list[FeedEntry] = []
+    other_entries: list[FeedEntry] = []
 
     for entry in entries:
-        feed_groups[entry.feed_title].append(entry)
-
-    # Sort entries within each group by publication date (newest first)
-    # and take top 3 from each group
-    recent_entries: list[FeedEntry] = []
-    for feed_title in feed_groups.keys():
-        group_entries = feed_groups[feed_title]
-        group_entries.sort(key=lambda x: x.published, reverse=True)
-        group_entries = [
-            deepcopy(entry) for entry in group_entries[: config.MAX_SHOWN_ENTRIES]
-        ]  # Top 3 from this feed group
-
-        for entry in group_entries:
-            entry.tags = entry.tags[: config.MAX_SHOWN_TAGS]
-
-        recent_entries.extend(group_entries)
-
-    # Sort all entries globally by publication date for overall stats
-    recent_entries.sort(key=lambda x: x.published, reverse=True)
+        title = entry.title.lower()
+        if (
+            "weeknote" in title
+            or ("week" in title and "weekend" not in title)
+            or any("weeknote" in tag.lower() for tag in entry.tags)
+        ):
+            week_notes.append(entry)
+        else:
+            other_entries.append(entry)
 
     now = datetime.now(timezone.utc)
     previous_events = [event for event in events if event.start_at <= now]
@@ -80,9 +96,8 @@ def generate_html(entries: list[FeedEntry], events: list[Event], output_dir: Pat
         "webcal_url": config.WEBCAL_URL,
         "upcoming_event": upcoming_event,
         "previous_events": previous_events[: config.MAX_SHOWN_EVENTS],
-        "total_entries": len(recent_entries),
-        "total_feeds": len(feed_groups),
-        "entries": recent_entries,
+        "entries": group_feed_entries(other_entries),
+        "week_notes": group_feed_entries(week_notes)[: config.MAX_SHOWN_WEEK_NOTES],
         "generated_date": now.astimezone(config.EVENTS_TZ).strftime(
             "%d %b %Y, %I:%M %p IST"
         ),

@@ -3,8 +3,11 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="language" content="EN">
   <meta name="robots" content="index,follow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>IndieWebClub Bangalore</title>
 
   <meta name="title" content="IndieWebClub Bangalore">
   <meta name="description" content="Website of the IndieWebClub Bangalore community">
@@ -18,9 +21,6 @@
   <meta property="og:title" content="IndieWebClub Bangalore">
   <meta property="og:description" content="Website of the IndieWebClub Bangalore community">
   <meta property="og:image" content="{{{site_url}}}preview.png" />
-  <meta name="language" content="EN">
-
-  <title>IndieWebClub Bangalore</title>
 
   <link rel="canonical" href="{{{site_url}}}">
   <link rel="alternate" type="application/atom+xml" title="Blogroll" href="{{{site_url}}}blogroll.atom">
@@ -80,6 +80,19 @@
         <li><a href="{{site_url}}events.ics">Download as a calendar.</a></li>
       </ul>
       {{/upcoming_event}}
+    </section>
+
+    <section id="week-notes">
+      <h2>Week Notes by Members</h2>
+      {{#week_notes}}
+      <article class="entry">
+        <h3><a href="{{link}}" target="_blank">{{title}}</a></h3>
+        <ul class="meta no-marker">
+          <li class="title">by <a href="{{feed_home_url}}">{{feed_title}}</a></li>
+          <li class="pub-time"><time datetime="{{published_machine}}">{{published_human}}</time></li>
+        </ul>
+      </article>
+      {{/week_notes}}
     </section>
 
     <section id="recent-posts">
