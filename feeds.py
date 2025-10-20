@@ -261,7 +261,7 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> list[FeedEn
 
         # Calculate cutoff date
         now = datetime.now(timezone.utc)
-        cutoff_date = now - timedelta(days=config.RECENT_DAYS)
+        cutoff_date = now - timedelta(days=config.MAX_FEED_ENTRY_AGE)
 
         entries: list[FeedEntry] = []
 

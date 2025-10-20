@@ -73,7 +73,7 @@ The generated site is then deployed to the `gh-pages` branch of the repository.
 The project's behavior can be customized through the `config.py` file. This file includes settings for request timeouts, content length limits, feed and calendar file names, and more. Some of the key options you might want to modify are:
 
 -   `MAX_SHOWN_ENTRIES`: The number of posts to display per blog on the homepage.
--   `RECENT_DAYS`: The time window in days for fetching recent blog posts.
+-   `MAX_FEED_ENTRY_AGE`: The time window in days for fetching recent blog posts.
 -   `MAX_FEED_ENTRIES`: The maximum number of entries to fetch from each feed.
 
 ## Project Structure
