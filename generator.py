@@ -78,7 +78,7 @@ def generate_html(entries: list[FeedEntry], events: list[Event], output_dir: Pat
         title = entry.title.lower()
         if (
             "weeknote" in title
-            or ("week" in title and "weekend" not in title)
+            or ("week" in title and all(w not in title for w in ["weekend", "biweek", "midweek", "semiweek", "yesterweek"]))
             or any("weeknote" in tag.lower() for tag in entry.tags)
         ):
             week_notes.append(entry)
