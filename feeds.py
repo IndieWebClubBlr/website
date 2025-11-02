@@ -69,6 +69,23 @@ class FeedEntry:
         return self.published.isoformat()
 
 
+@final
+class FailedFeed:
+    """Represents a feed that failed to be fetched."""
+
+    def __init__(self, title: str, url: str):
+        self.title = title
+        self.url = url
+
+        if url.endswith("/"):
+            url = url[:-1]
+
+        parsed_url = urlparse(url)
+        path_parts = parsed_url.path.split("/")[:-1]
+
+        self.home_url = parsed_url._replace(path="/".join(path_parts)).geturl()
+
+
 def parse_opml_file(opml_path: Path) -> list[tuple[str, str]]:
     """
     Parse OPML file and extract feed URLs with their titles.
@@ -312,7 +329,9 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> list[FeedEn
         return []
 
 
-def process_single_feed(feed_info: tuple[str, str], use_cache: bool) -> list[FeedEntry]:
+def process_single_feed(
+    feed_info: tuple[str, str], use_cache: bool
+) -> list[FeedEntry] | None:
     """
     Process a single feed: fetch and parse it.
 
@@ -321,7 +340,7 @@ def process_single_feed(feed_info: tuple[str, str], use_cache: bool) -> list[Fee
         use_cache: Whether to use cached content.
 
     Returns:
-        List of FeedEntry objects.
+        List of FeedEntry objects, or None if processing fails.
     """
     feed_title, feed_url = feed_info
 
@@ -335,7 +354,7 @@ def process_single_feed(feed_info: tuple[str, str], use_cache: bool) -> list[Fee
         # Fetch feed content
         content = fetch_feed_content(feed_url)
         if not content:
-            return []
+            return None
 
     # Parse feed content
     entries = parse_feed(feed_title, feed_url, content)
@@ -357,7 +376,9 @@ def process_single_feed(feed_info: tuple[str, str], use_cache: bool) -> list[Fee
     return entries
 
 
-def fetch_all_feeds(feeds: list[tuple[str, str]], use_cache: bool) -> list[FeedEntry]:
+def fetch_all_feeds(
+    feeds: list[tuple[str, str]], use_cache: bool
+) -> tuple[list[FeedEntry], list[FailedFeed]]:
     """
     Fetch and parse all feeds concurrently.
 
@@ -366,14 +387,17 @@ def fetch_all_feeds(feeds: list[tuple[str, str]], use_cache: bool) -> list[FeedE
         use_cache: Whether to use cached content.
 
     Returns:
-        Combined list of all feed entries.
+        A tuple containing:
+        - Combined list of all feed entries.
+        - List of feeds that failed to be fetched.
     """
     if len(feeds) == 0:
-        return []
+        return [], []
 
     logger.info(f"Processing {len(feeds)} feeds with {config.MAX_WORKERS} workers")
 
     all_entries: list[FeedEntry] = []
+    failed_feeds: list[FailedFeed] = []
 
     with ThreadPoolExecutor(max_workers=config.MAX_WORKERS) as executor:
         # Submit all feed processing tasks
@@ -384,14 +408,17 @@ def fetch_all_feeds(feeds: list[tuple[str, str]], use_cache: bool) -> list[FeedE
 
         # Collect results as they complete
         for future in as_completed(future_to_feed):
-            feed_info = future_to_feed[future]
-            feed_title = feed_info[0]
+            feed_title, feed_url = future_to_feed[future]
 
             try:
                 entries = future.result()
-                all_entries.extend(entries)
+                if entries is not None:
+                    all_entries.extend(entries)
+                else:
+                    failed_feeds.append(FailedFeed(title=feed_title, url=feed_url))
             except Exception as e:
                 logger.error(f"Failed to process {feed_title}: {e}")
+                failed_feeds.append(FailedFeed(title=feed_title, url=feed_url))
 
     close_sessions()
-    return all_entries
+    return all_entries, failed_feeds

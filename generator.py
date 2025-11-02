@@ -19,7 +19,7 @@ from copy import deepcopy
 from datetime import datetime, timezone
 from events import Event, fetch_events
 from feedgen.feed import FeedGenerator
-from feeds import FeedEntry, parse_opml_file, fetch_all_feeds, generate_feed
+from feeds import FeedEntry, FailedFeed, parse_opml_file, fetch_all_feeds, generate_feed
 from icalendar import Calendar, Event as CalEvent
 from pathlib import Path
 from typing import Any
@@ -60,15 +60,24 @@ def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
     return res_entries
 
 
-def generate_html(entries: list[FeedEntry], events: list[Event], output_dir: Path):
+def generate_html(
+    entries: list[FeedEntry],
+    events: list[Event],
+    failed_feeds: list[FailedFeed],
+    output_dir: Path,
+):
     """
     Generate HTML file from feed entries using Mustache templating.
 
     Args:
         entries: List of FeedEntry objects to include.
-        output_path: Path where HTML file should be written.
+        events: List of Event objects to include.
+        failed_feeds: List of FailedFeed objects to include.
+        output_dir: Path where HTML file should be written.
     """
-    logger.info(f"Generating HTML with {len(entries)} entries and {len(events)} events")
+    logger.info(
+        f"Generating HTML with {len(entries)} entries, {len(events)} events, and {len(failed_feeds)} failed feeds"
+    )
 
     # Separate week notes from other entries
     week_notes: list[FeedEntry] = []
@@ -78,7 +87,13 @@ def generate_html(entries: list[FeedEntry], events: list[Event], output_dir: Pat
         title = entry.title.lower()
         if (
             "weeknote" in title
-            or ("week" in title and all(w not in title for w in ["weekend", "biweek", "midweek", "semiweek", "yesterweek"]))
+            or (
+                "week" in title
+                and all(
+                    w not in title
+                    for w in ["weekend", "biweek", "midweek", "semiweek", "yesterweek"]
+                )
+            )
             or any("weeknote" in tag.lower() for tag in entry.tags)
         ):
             week_notes.append(entry)
@@ -98,6 +113,8 @@ def generate_html(entries: list[FeedEntry], events: list[Event], output_dir: Pat
         "previous_events": previous_events[: config.MAX_SHOWN_EVENTS],
         "entries": group_feed_entries(other_entries),
         "week_notes": group_feed_entries(week_notes)[: config.MAX_SHOWN_WEEK_NOTES],
+        "failed_feeds": failed_feeds,
+        "has_failed_feeds": len(failed_feeds) != 0,
         "generated_date": now.astimezone(config.EVENTS_TZ).strftime(
             "%d %b %Y, %I:%M %p IST"
         ),
@@ -254,11 +271,11 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
             logger.warning("No feeds found in OPML file")
 
         # Fetch and parse all feeds
-        entries = fetch_all_feeds(feeds, use_cache=use_cache)
+        entries, failed_feeds = fetch_all_feeds(feeds, use_cache=use_cache)
         futures.append(executor.submit(generate_blogroll_feed, entries, output_dir))
 
         events = events_future.result()
-        generate_html(entries, events, output_dir)
+        generate_html(entries, events, failed_feeds, output_dir)
         _ = wait(futures)
 
     logger.info("Website generation completed successfully")
