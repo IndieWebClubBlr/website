@@ -5,7 +5,7 @@
   </head>
   <body>
     <outline type="rss" text="9porcupine" xmlUrl="https://9porcupine.mataroa.blog/rss/" />
-    <outline type="rss" text="A Believable Fiction" xmlUrl="https://a-believable-fiction.netlify.app/feed.xml" />
+    <outline type="rss" text="A Believable Fiction" xmlUrl="https://a-believable-fiction.pages.dev/feed.xml" />
     <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/notes/feed.atom" />
     <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/posts/feed.atom" />
     <outline type="rss" text="Abhinav Tushar" xmlUrl="https://lepisma.xyz/atom.xml" />
