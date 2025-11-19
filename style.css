@@ -186,30 +186,36 @@ ul.meta li.pub-time {
   display: none;
 }
 
-#upcoming-event h3 {
+#upcoming-events h3 {
   font-size: 1.5em;
 }
 
-#upcoming-event .event {
+#upcoming-events .event {
   font-size: 1.5em;
   border: 0.4em double aquamarine;
   text-align: center;
 }
 
-#upcoming-event ul {
+#upcoming-events ul {
   margin-bottom: 0;
 }
 
-#upcoming-event .buy-link {
+#upcoming-events .buy-link {
   font-weight: bold;
   font-size: 1.1em;
 }
 
-#upcoming-event .buy-link::before {
+#upcoming-events .buy-link::before {
   content: "👈";
   vertical-align: middle;
   display: inline-block;
   font-size: 1lh;
   margin-right: 0.3em;
   transform: rotateY(180deg);
+}
+
+#upcoming-events .description + hr {
+  width: 33%;
+  border: 1px dashed bisque;
+  margin-bottom: 1rem;
 }

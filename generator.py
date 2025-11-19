@@ -103,13 +103,14 @@ def generate_html(
     now = datetime.now(timezone.utc)
     previous_events = [event for event in events if event.start_at <= now]
     upcoming_events = [event for event in events if event.start_at > now]
-    upcoming_event = upcoming_events[-1] if len(upcoming_events) > 0 else None
+    upcoming_events.reverse()
 
     # Prepare template data
     template_data = {
         "site_url": config.SITE_URL,
         "webcal_url": config.WEBCAL_URL,
-        "upcoming_event": upcoming_event,
+        "upcoming_events": upcoming_events,
+        "has_upcoming_events": len(upcoming_events) > 0,
         "previous_events": previous_events[: config.MAX_SHOWN_EVENTS],
         "entries": group_feed_entries(other_entries),
         "week_notes": group_feed_entries(week_notes)[: config.MAX_SHOWN_WEEK_NOTES],

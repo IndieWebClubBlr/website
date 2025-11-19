@@ -49,9 +49,9 @@
       <p>You can join us on <a href="https://at.underline.center/indiewebclub-whatsapp">WhatsApp</a> or <a href="https://underline.center/c/indiewebclub/10">Discourse</a>.</p>
     </section>
   
-    <section id="upcoming-event">
-      {{#upcoming_event}}
-      <h2>Upcoming Event</h2>
+    <section id="upcoming-events">
+      <h2>{{^has_upcoming_events}}No {{/has_upcoming_events}}Upcoming Events</h2>
+      {{#upcoming_events}}
       <div class="h-event">
         <div class="event" id="event-{{{id}}}">
           <h3><a href="{{underline_url}}" target="_blank" class="u-url p-name">{{title}}</a></h3>
@@ -62,24 +62,15 @@
             <li class="buy-link"><a href="{{district_url}}">BUY TICKETS!</a></li>
           </ul>
         </div>
-        {{#summary}}<section class="description p-description e-content">{{{summary}}}</section>{{/summary}}
+        {{#summary}}<section class="description p-description e-content">{{{summary}}}</section><hr>{{/summary}}
       </div>
+      {{/upcoming_events}}
       <ul class="no-marker pointed-hand">
         <li><a href="#previous-events">See previous events.</a></li>
         <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
         <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
         <li><a href="{{site_url}}events.ics">Download as a calendar.</a></li>
       </ul>
-      {{/upcoming_event}}
-      {{^upcoming_event}}
-      <h2>No Upcoming Events</h2>
-      <ul class="no-marker pointed-hand">
-        <li><a href="#previous-events">See previous events.</a></li>
-        <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
-        <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
-        <li><a href="{{site_url}}events.ics">Download as a calendar.</a></li>
-      </ul>
-      {{/upcoming_event}}
     </section>
 
     <section id="week-notes">
@@ -126,7 +117,7 @@
     <section id="previous-events">
       <h2>Previous Events</h2>
       <ul class="no-marker pointed-hand">
-        <li><a href="#upcoming-event">See upcoming event.</a></li>
+        <li><a href="#upcoming-events">See upcoming events.</a></li>
         <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
         <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
         <li><a href="{{site_url}}events.ics">Download as a calendar.</a></li>
