@@ -1,13 +1,16 @@
 from __future__ import annotations
-from bs4 import BeautifulSoup
-from datetime import datetime
-from dateutil import parser as date_parser
-from typing import TypedDict, cast, final
-import config
+
 import hashlib
 import json
 import logging
+from datetime import datetime
+from typing import TypedDict, cast, final
+
 import requests
+from bs4 import BeautifulSoup
+from dateutil import parser as date_parser
+
+import config
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -46,6 +49,12 @@ class Event:
             for s in agenda_header.previous_siblings:
                 s.decompose()
             agenda_header.name = "h3"
+            blurb = soup.find(string="What is IndieWebClub?")
+            if blurb is not None:
+                blurb_header = blurb.parent
+                for s in blurb_header.next_siblings:
+                    s.decompose()
+                blurb_header.decompose()
             self.summary = str(agenda_header.parent)
         else:
             self.summary = None
@@ -89,7 +98,7 @@ def make_event(base_url: str, topic: DiscourseTopic, post: DiscoursePost) -> Eve
         start_at=date_parser.parse(event["starts_at"]),
         end_at=date_parser.parse(event["ends_at"]),
         details=post["cooked"],
-        underline_url=f'{base_url}/t/{topic["slug"]}',
+        underline_url=f"{base_url}/t/{topic['slug']}",
         district_url=event["url"],
     )
 
@@ -108,7 +117,7 @@ def fetch_event_detail(
     Returns:
       IWCB Event, None if fetch failed.
     """
-    url = f'{base_url}/t/{topic["id"]}.json'
+    url = f"{base_url}/t/{topic['id']}.json"
     cache_key = hashlib.sha256(url.encode()).hexdigest()
     cache_file = config.CACHE_DIR / cache_key
 
