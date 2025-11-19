@@ -5,6 +5,7 @@ import json
 import logging
 from datetime import datetime
 from typing import TypedDict, cast, final
+from urllib.parse import urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -31,7 +32,7 @@ class Event:
         end_at: datetime,
         details: str | None,
         underline_url: str,
-        district_url: str,
+        district_url: str | None,
     ):
         self.id = id
         self.title = title
@@ -90,6 +91,14 @@ DiscourseTopicPosts = TypedDict(
 
 def make_event(base_url: str, topic: DiscourseTopic, post: DiscoursePost) -> Event:
     event = post["event"]
+
+    url = event["url"]
+    parsed_url = urlparse(url)
+    if not parsed_url.scheme or not parsed_url.netloc:
+        district_url = None
+    else:
+        district_url = url
+
     return Event(
         id=topic["id"],
         title=topic["title"],
@@ -99,7 +108,7 @@ def make_event(base_url: str, topic: DiscourseTopic, post: DiscoursePost) -> Eve
         end_at=date_parser.parse(event["ends_at"]),
         details=post["cooked"],
         underline_url=f"{base_url}/t/{topic['slug']}",
-        district_url=event["url"],
+        district_url=district_url,
     )
 
 

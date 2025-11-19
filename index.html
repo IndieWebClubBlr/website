@@ -59,7 +59,12 @@
             <li class="start-time">On: <time class="dt-start" datetime="{{start_at_machine}}">{{start_at_human}}</time></li>
             <li class="end-time">Till: <time class="dt-end" datetime="{{end_at_machine}}">{{end_at_human}}</time></li>
             <li class="location">At: <a class="p-location" href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA">Underline Center</a></li>
+            {{#district_url}}
             <li class="buy-link"><a href="{{district_url}}">BUY TICKETS!</a></li>
+            {{/district_url}}
+            {{^district_url}}
+            <li>Tickets available soon</li>
+            {{/district_url}}
           </ul>
         </div>
         {{#summary}}<section class="description p-description e-content">{{{summary}}}</section><hr>{{/summary}}
