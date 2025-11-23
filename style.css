@@ -1,0 +1,221 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 112.5%;
+}
+
+@media screen and (max-width: 430px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+body {
+  line-height: 1.35;
+}
+
+body,
+h1,
+h3 {
+  margin: 0;
+}
+
+h2 {
+  margin-bottom: 0.4em;
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+body {
+  font-family:
+    Avenir, Montserrat, Corbel, "URW Gothic", source-sans-pro, sans-serif;
+  background-color: cornflowerblue;
+  color: white;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  body {
+    background-color: #486fb5;
+  }
+}
+
+header,
+main,
+footer {
+  max-width: 48rem;
+  min-width: 20rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+header,
+footer {
+  text-align: center;
+}
+
+footer {
+  font-size: smaller;
+}
+
+main {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+a {
+  color: yellow;
+  text-decoration-style: solid;
+  text-decoration-thickness: 0.8px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-style: dashed;
+}
+
+header {
+  padding-block: 1rem;
+}
+
+@keyframes tiny-wobble {
+  0% {
+    text-shadow:
+      4px 4px 0 yellowgreen,
+      6px 6px 0 red,
+      -4px -4px 0 darksalmon;
+  }
+
+  50% {
+    text-shadow:
+      5px 3px 0 yellowgreen,
+      7px 5px 0 red,
+      -3px -5px 0 darksalmon;
+  }
+
+  100% {
+    text-shadow:
+      3px 5px 0 yellowgreen,
+      5px 7px 0 red,
+      -5px -3px 0 darksalmon;
+  }
+}
+
+.logo {
+  font-size: 4rem;
+  line-height: 1;
+  transform: rotate(-4deg);
+  margin-top: 0.8lh;
+  margin-bottom: 0.6lh;
+  animation: tiny-wobble 0.1s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo {
+    animation: none;
+    text-shadow:
+      4px 4px 0 yellowgreen,
+      6px 6px 0 red,
+      -4px -4px 0 darksalmon;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .logo {
+    font-size: 3rem;
+    margin-top: 0.7lh;
+    margin-bottom: 0.4lh;
+  }
+}
+
+.entry,
+.event {
+  background-color: #f0f0f010;
+  padding: 0.8em;
+  margin-bottom: 1em;
+  border-radius: 0.8em;
+}
+
+@media screen and (max-width: 430px) {
+  .entry,
+  .event {
+    padding: 0.7em;
+  }
+}
+
+ul.no-marker {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.pointed-hand li:has(a)::after {
+  content: "👈";
+  vertical-align: middle;
+  display: inline;
+  font-size: 1lh;
+  margin-left: 0.3em;
+}
+
+ul.meta {
+  font-size: 0.85em;
+  margin-block: 0;
+}
+
+ul.meta li.pub-time {
+  display: none;
+}
+
+.event .start-time,
+.event .location {
+  font-size: 0.85em;
+}
+
+.event .end-time {
+  display: none;
+}
+
+#upcoming-events h3 {
+  font-size: 1.5em;
+}
+
+#upcoming-events .event {
+  font-size: 1.5em;
+  border: 0.4em double aquamarine;
+  text-align: center;
+}
+
+#upcoming-events ul {
+  margin-bottom: 0;
+}
+
+#upcoming-events .buy-link {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+#upcoming-events .buy-link::before {
+  content: "👈";
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 1lh;
+  margin-right: 0.3em;
+  transform: rotateY(180deg);
+}
+
+#upcoming-events .description + hr {
+  width: 33%;
+  border: 1px dashed bisque;
+  margin-bottom: 1rem;
+}
