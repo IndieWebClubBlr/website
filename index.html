@@ -51,6 +51,7 @@
   
     <section id="upcoming-events">
       <h2>{{^has_upcoming_events}}No {{/has_upcoming_events}}Upcoming Events</h2>
+      {{^has_upcoming_events}}<p>We meet on the 1st and 3rd Saturdays of each month. Please check back later or subscribe for updates.</p>{{/has_upcoming_events}}
       {{#upcoming_events}}
       <div class="h-event">
         <div class="event" id="event-{{{id}}}">
