@@ -91,7 +91,7 @@ def generate_html(
                 "week" in title
                 and all(
                     w not in title
-                    for w in ["weekend", "biweek", "midweek", "semiweek", "yesterweek"]
+                    for w in ["week's", "week’s", "weekend", "biweek", "midweek", "semiweek", "yesterweek"]
                 )
             )
             or any("weeknote" in tag.lower() for tag in entry.tags)
