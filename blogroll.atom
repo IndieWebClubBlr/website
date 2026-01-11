@@ -1,0 +1,1981 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://blr.indiewebclub.org/blogroll.atom</id>
+  <title>IndieWebClub Bangalore Blogroll</title>
+  <updated>2026-01-11T03:09:37.883065+00:00</updated>
+  <author>
+    <name>IndieWebClub Bangalore</name>
+  </author>
+  <link href="https://blr.indiewebclub.org/blogroll.atom" rel="self"/>
+  <link href="https://blr.indiewebclub.org/" rel="alternate"/>
+  <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
+  <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://blog.anikthink.com/blog/recipe-3-chider-pulao/</id>
+    <title>Chide'r pulao</title>
+    <updated>2026-01-10T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/recipe-3-chider-pulao/"/>
+    <published>2026-01-10T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/posts/jj-usage/?mtm_campaign=feed</id>
+    <title>How I use Jujutsu</title>
+    <updated>2026-01-10T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/posts/feed.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/posts/jj-usage/?mtm_campaign=feed"/>
+    <category term="tools"/>
+    <published>2026-01-10T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/migrating-my-website-s-analytics-from-plausible-to-umami/</id>
+    <title>Migrating my website's analytics from Plausible to Umami</title>
+    <updated>2026-01-09T19:10:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/migrating-my-website-s-analytics-from-plausible-to-umami/"/>
+    <published>2026-01-09T19:10:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://jatan.space/india-mars-articles/</id>
+    <title>Coverage of India’s exploration of Mars</title>
+    <updated>2026-01-09T14:00:51+00:00</updated>
+    <author>
+      <name>Jatan’s Space</name>
+      <uri>https://jatan.space/rss</uri>
+    </author>
+    <link href="https://jatan.space/india-mars-articles/"/>
+    <category term="Explore"/>
+    <published>2026-01-09T14:00:51+00:00</published>
+  </entry>
+  <entry>
+    <id>https://halfthere.mataroa.blog/blog/friendship/</id>
+    <title>"Friendship"</title>
+    <updated>2026-01-09T00:00:00+00:00</updated>
+    <author>
+      <name>halfthere</name>
+      <uri>https://halfthere.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://halfthere.mataroa.blog/blog/friendship/"/>
+    <published>2026-01-09T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vaxitas.xyz/snippets/vaxitas-2k26</id>
+    <title>Project Vaxitas: 2026</title>
+    <updated>2026-01-06T11:13:00+00:00</updated>
+    <author>
+      <name>Abhiram</name>
+      <uri>https://vaxitas.xyz/feed.atom</uri>
+    </author>
+    <link href="https://vaxitas.xyz/snippets/vaxitas-2k26"/>
+    <category term="snippets"/>
+    <category term="personal"/>
+    <category term="indieweb"/>
+    <published>2026-01-06T11:13:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankursethi.com/blog/no-full-albums/</id>
+    <title>I'm not listening to full albums anymore</title>
+    <updated>2026-01-06T10:57:23+00:00</updated>
+    <author>
+      <name>Ankur Sethi</name>
+      <uri>https://ankursethi.com/feeds/index.xml</uri>
+    </author>
+    <link href="https://ankursethi.com/blog/no-full-albums/"/>
+    <published>2026-01-06T10:57:23+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/list-5-to-do-blog-2026/</id>
+    <title>Things I want to add to my blog in 2026</title>
+    <updated>2026-01-06T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/list-5-to-do-blog-2026/"/>
+    <published>2026-01-06T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://halfthere.mataroa.blog/blog/sleeplessness-and-stranger-things/</id>
+    <title>Sleeplessness and Stranger Things</title>
+    <updated>2026-01-06T00:00:00+00:00</updated>
+    <author>
+      <name>halfthere</name>
+      <uri>https://halfthere.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://halfthere.mataroa.blog/blog/sleeplessness-and-stranger-things/"/>
+    <published>2026-01-06T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://akashbhat.com/new-post/</id>
+    <title>A list of useful videos for writers of fiction</title>
+    <updated>2026-01-05T15:42:00+00:00</updated>
+    <author>
+      <name>Akash Bhat</name>
+      <uri>https://akashbhat.com/feed/</uri>
+    </author>
+    <link href="https://akashbhat.com/new-post/"/>
+    <published>2026-01-05T15:42:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://jatan.space/moon-monday-issue-256/</id>
+    <title>All the rovers heading to the Moon over the next 10 years | Moon Monday #256</title>
+    <updated>2026-01-05T11:27:34+00:00</updated>
+    <author>
+      <name>Jatan’s Space</name>
+      <uri>https://jatan.space/rss</uri>
+    </author>
+    <link href="https://jatan.space/moon-monday-issue-256/"/>
+    <category term="Moon Monday"/>
+    <category term="Articles"/>
+    <published>2026-01-05T11:27:34+00:00</published>
+  </entry>
+  <entry>
+    <id>https://jatan.space/japan-moon-articles/</id>
+    <title>Articles on Japan’s Moon missions</title>
+    <updated>2026-01-05T09:12:01+00:00</updated>
+    <author>
+      <name>Jatan’s Space</name>
+      <uri>https://jatan.space/rss</uri>
+    </author>
+    <link href="https://jatan.space/japan-moon-articles/"/>
+    <category term="Explore"/>
+    <published>2026-01-05T09:12:01+00:00</published>
+  </entry>
+  <entry>
+    <id>https://lepisma.xyz/2026/01/05/2025/index.html</id>
+    <title>2025: A non-review</title>
+    <updated>2026-01-04T18:30:00+00:00</updated>
+    <author>
+      <name>Abhinav Tushar</name>
+      <uri>https://lepisma.xyz/atom.xml</uri>
+    </author>
+    <link href="https://lepisma.xyz/2026/01/05/2025/index.html"/>
+    <category term="personal"/>
+    <published>2026-01-04T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://atharvaraykar.com/reinforce/</id>
+    <title>11:59 PM</title>
+    <updated>2026-01-04T10:34:54+00:00</updated>
+    <author>
+      <name>Atharva Raykar</name>
+      <uri>https://atharvaraykar.com/rss/</uri>
+    </author>
+    <link href="https://atharvaraykar.com/reinforce/"/>
+    <published>2026-01-04T10:34:54+00:00</published>
+  </entry>
+  <entry>
+    <id>https://holistictravellers.com/posts/laos-luang-prabhang-cultural-experience/</id>
+    <title>Luang Prabhang: Sacred Traditions and Tourist Crowds</title>
+    <updated>2026-01-04T00:00:00+00:00</updated>
+    <author>
+      <name>Suneela &amp; Yeswanth</name>
+      <uri>https://holistictravellers.com/rss.xml</uri>
+    </author>
+    <link href="https://holistictravellers.com/posts/laos-luang-prabhang-cultural-experience/"/>
+    <published>2026-01-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-01-04/?mtm_campaign=feed</id>
+    <title>Notes for the Week #1 (2026)</title>
+    <updated>2026-01-04T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/notes/feed.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-01-04/?mtm_campaign=feed"/>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-01-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vishalr.dev/devlog/Me Now Plan/Init-on-me-now-plan</id>
+    <title>Me Now Plan: Init on ME NOW PLAN</title>
+    <updated>2026-01-03T18:30:00+00:00</updated>
+    <author>
+      <name>Vishal R</name>
+      <uri>https://vishalr.dev/rss.xml</uri>
+    </author>
+    <link href="https://vishalr.dev/devlog/Me Now Plan/Init-on-me-now-plan"/>
+    <category term="DevLog"/>
+    <category term="Me Now Plan"/>
+    <published>2026-01-03T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://adityan.bearblog.dev/what-is-the-meaning-of-life/</id>
+    <title>What is the meaning of life?</title>
+    <updated>2026-01-03T11:32:00+00:00</updated>
+    <author>
+      <name>adityan</name>
+      <uri>https://adityan.bearblog.dev/feed/</uri>
+    </author>
+    <link href="https://adityan.bearblog.dev/what-is-the-meaning-of-life/"/>
+    <published>2026-01-03T11:32:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://himanshikalra.com/emotional-support-water-bottle/</id>
+    <title>Emotional Support Water Bottle</title>
+    <updated>2026-01-03T11:23:07+00:00</updated>
+    <author>
+      <name>Himanshi Kalra</name>
+      <uri>https://himanshikalra.com/feed/</uri>
+    </author>
+    <link href="https://himanshikalra.com/emotional-support-water-bottle/"/>
+    <category term="Uncategorized"/>
+    <published>2026-01-03T11:23:07+00:00</published>
+  </entry>
+  <entry>
+    <id>https://jatan.space/the-dawn-of-your-light/</id>
+    <title>Poem: The dawn of your light</title>
+    <updated>2026-01-03T11:21:48+00:00</updated>
+    <author>
+      <name>Jatan’s Space</name>
+      <uri>https://jatan.space/rss</uri>
+    </author>
+    <link href="https://jatan.space/the-dawn-of-your-light/"/>
+    <published>2026-01-03T11:21:48+00:00</published>
+  </entry>
+  <entry>
+    <id>https://adityan.bearblog.dev/hello-world/</id>
+    <title>Hello World.</title>
+    <updated>2026-01-03T10:55:00+00:00</updated>
+    <author>
+      <name>adityan</name>
+      <uri>https://adityan.bearblog.dev/feed/</uri>
+    </author>
+    <link href="https://adityan.bearblog.dev/hello-world/"/>
+    <published>2026-01-03T10:55:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-1-2026/</id>
+    <title>Weeknotes: Week #1 (2026)</title>
+    <updated>2026-01-03T10:50:58+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-1-2026/"/>
+    <published>2026-01-03T10:50:58+00:00</published>
+  </entry>
+  <entry>
+    <id>https://akashbhat.com/best-fountain-pens-india-under-5000-rupees/</id>
+    <title>A guide to buying fountian pens in India</title>
+    <updated>2026-01-03T10:32:00+00:00</updated>
+    <author>
+      <name>Akash Bhat</name>
+      <uri>https://akashbhat.com/feed/</uri>
+    </author>
+    <link href="https://akashbhat.com/best-fountain-pens-india-under-5000-rupees/"/>
+    <published>2026-01-03T10:32:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-14-w2601/</id>
+    <title>Weeknote #14 [W26.01] - Blocking people, moral questions, and coconut water coffee</title>
+    <updated>2026-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-14-w2601/"/>
+    <published>2026-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://halfthere.mataroa.blog/blog/week-note-1/</id>
+    <title>Week Note 1</title>
+    <updated>2026-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>halfthere</name>
+      <uri>https://halfthere.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://halfthere.mataroa.blog/blog/week-note-1/"/>
+    <published>2026-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://kartikkwatra.com/blog/weeknote-2026-w45/</id>
+    <title>Weeknote 2026-W1</title>
+    <updated>2026-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>Kartik Kwatra</name>
+      <uri>https://kartikkwatra.com/rss.xml</uri>
+    </author>
+    <link href="https://kartikkwatra.com/blog/weeknote-2026-w45/"/>
+    <published>2026-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/blog-intent/</id>
+    <title>BLOG INTENT</title>
+    <updated>2026-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/blog-intent/"/>
+    <published>2026-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/unsent-drafts/</id>
+    <title>Unsent Drafts</title>
+    <updated>2026-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/unsent-drafts/"/>
+    <published>2026-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20260103-a-weeknote-because-tanvi-is-scary</id>
+    <title>A weeknote because Tanvi is scary</title>
+    <updated>2026-01-02T18:30:00+00:00</updated>
+    <author>
+      <name>Azan's notes</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20260103-a-weeknote-because-tanvi-is-scary"/>
+    <published>2026-01-02T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/coming-around-on-the-utility-of-llms/</id>
+    <title>Coming around on the utility of LLMs</title>
+    <updated>2026-01-02T16:53:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/coming-around-on-the-utility-of-llms/"/>
+    <published>2026-01-02T16:53:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/posts/infinite-fun-space/</id>
+    <title>Infinite fun machine</title>
+    <updated>2026-01-02T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/posts/infinite-fun-space/"/>
+    <published>2026-01-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankit.earth/status/1767277502/</id>
+    <title>1767277502</title>
+    <updated>2026-01-01T19:55:02+00:00</updated>
+    <author>
+      <name>Ankit Gadiya</name>
+      <uri>https://ankit.earth/atom.xml</uri>
+    </author>
+    <link href="https://ankit.earth/status/1767277502/"/>
+    <published>2026-01-01T19:55:02+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/list-4-apps-for-2025/</id>
+    <title>34 apps I used a lot in 2025</title>
+    <updated>2026-01-01T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/list-4-apps-for-2025/"/>
+    <published>2026-01-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vaxitas.xyz/snippets/breaking-square-root</id>
+    <title>Float Like Double Precision, Sting Like Square Root Computation</title>
+    <updated>2025-12-31T05:29:00+00:00</updated>
+    <author>
+      <name>Abhiram</name>
+      <uri>https://vaxitas.xyz/feed.atom</uri>
+    </author>
+    <link href="https://vaxitas.xyz/snippets/breaking-square-root"/>
+    <category term="snippets"/>
+    <category term="programming"/>
+    <category term="sicp"/>
+    <published>2025-12-31T05:29:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-mastodon-polls/?mtm_campaign=feed</id>
+    <title>Polls I Ran on Mastodon in 2025</title>
+    <updated>2025-12-31T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/notes/feed.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-mastodon-polls/?mtm_campaign=feed"/>
+    <category term="indieweb"/>
+    <category term="self-hosting"/>
+    <category term="programming"/>
+    <category term="fediverse"/>
+    <published>2025-12-31T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/recipe-2-banana-bread/</id>
+    <title>Banana bread</title>
+    <updated>2025-12-31T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/recipe-2-banana-bread/"/>
+    <published>2025-12-31T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20251231-proga-and-how-to-protect-consumers</id>
+    <title>PROGA and how to "protect" consumers</title>
+    <updated>2025-12-30T18:30:00+00:00</updated>
+    <author>
+      <name>Azan's notes</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20251231-proga-and-how-to-protect-consumers"/>
+    <published>2025-12-30T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://journal.jatan.space/default-apps-2025/</id>
+    <title>Apps and digital tools I liked in 2025</title>
+    <updated>2025-12-30T12:38:31+00:00</updated>
+    <author>
+      <name>Jatan</name>
+      <uri>https://journal.jatan.space/rss/</uri>
+    </author>
+    <link href="https://journal.jatan.space/default-apps-2025/"/>
+    <category term="Essays &amp; Musings"/>
+    <published>2025-12-30T12:38:31+00:00</published>
+  </entry>
+  <entry>
+    <id>https://lepisma.xyz/journal/2025/12/30/a-year-without-common-cold/index.html</id>
+    <title>A Year without Common Cold</title>
+    <updated>2025-12-29T18:30:00+00:00</updated>
+    <author>
+      <name>Abhinav Tushar</name>
+      <uri>https://lepisma.xyz/journal/atom.xml</uri>
+    </author>
+    <link href="https://lepisma.xyz/journal/2025/12/30/a-year-without-common-cold/index.html"/>
+    <category term="personal"/>
+    <published>2025-12-29T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.evalapply.org/posts/after-ai/index.html</id>
+    <title>After "AI": Anticipating a post-LLM science &amp; technology revolution</title>
+    <updated>2025-12-29T00:00:00+00:00</updated>
+    <author>
+      <name>Aditya Athalye</name>
+      <uri>https://www.evalapply.org/index.xml</uri>
+    </author>
+    <link href="https://www.evalapply.org/posts/after-ai/index.html"/>
+    <category term="meta"/>
+    <category term="riff"/>
+    <category term="ai"/>
+    <category term="intelligence_augmentation"/>
+    <category term="tools_for_thought"/>
+    <published>2025-12-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-13-w2552/</id>
+    <title>Weeknote #13 [W25.52] - Recipes, parties, orange cake, and completing yearly goals</title>
+    <updated>2025-12-29T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-13-w2552/"/>
+    <published>2025-12-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://lepisma.xyz/journal/2025/12/29/books-read-in-2025/index.html</id>
+    <title>Books Read in 2025</title>
+    <updated>2025-12-28T18:30:00+00:00</updated>
+    <author>
+      <name>Abhinav Tushar</name>
+      <uri>https://lepisma.xyz/journal/atom.xml</uri>
+    </author>
+    <link href="https://lepisma.xyz/journal/2025/12/29/books-read-in-2025/index.html"/>
+    <category term="personal"/>
+    <category term="books"/>
+    <published>2025-12-28T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-52-2025/</id>
+    <title>Weeknotes: Week #52 (2025)</title>
+    <updated>2025-12-28T14:35:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-52-2025/"/>
+    <published>2025-12-28T14:35:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://atharvaraykar.com/righteous-aversion/</id>
+    <title>You don't need to be angry, anxious or sad to be useful</title>
+    <updated>2025-12-28T08:24:28+00:00</updated>
+    <author>
+      <name>Atharva Raykar</name>
+      <uri>https://atharvaraykar.com/rss/</uri>
+    </author>
+    <link href="https://atharvaraykar.com/righteous-aversion/"/>
+    <published>2025-12-28T08:24:28+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-12-28/?mtm_campaign=feed</id>
+    <title>Notes for the Week #52 (2025)</title>
+    <updated>2025-12-28T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/notes/feed.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-12-28/?mtm_campaign=feed"/>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-12-28T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://youtube.com/playlist?list=PLxlIzqc0aEwm4AlvW3PQaEkaoTmNy9FBW</id>
+    <title>Agalloch</title>
+    <updated>2025-12-27T11:08:13+00:00</updated>
+    <author>
+      <name>Azan's playlists</name>
+      <uri>https://azan-n.com/playlists/rss.xml</uri>
+    </author>
+    <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwm4AlvW3PQaEkaoTmNy9FBW"/>
+    <published>2025-12-27T11:08:13+00:00</published>
+  </entry>
+  <entry>
+    <id>https://journal.jatan.space/newsletter-for-friends-08/</id>
+    <title>Moon samples, poetry, and community | Newsletter for friends #08</title>
+    <updated>2025-12-26T16:02:53+00:00</updated>
+    <author>
+      <name>Jatan</name>
+      <uri>https://journal.jatan.space/rss/</uri>
+    </author>
+    <link href="https://journal.jatan.space/newsletter-for-friends-08/"/>
+    <category term="Newsletter for friends"/>
+    <published>2025-12-26T16:02:53+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-website-work/?mtm_campaign=feed</id>
+    <title>Working on My Website in 2025</title>
+    <updated>2025-12-26T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/notes/feed.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-website-work/?mtm_campaign=feed"/>
+    <category term="self-hosting"/>
+    <category term="indieweb"/>
+    <published>2025-12-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://lepisma.xyz/journal/2025/12/26/the-privilege-of-familiarity/index.html</id>
+    <title>The Privilege of Familiarity</title>
+    <updated>2025-12-25T18:30:00+00:00</updated>
+    <author>
+      <name>Abhinav Tushar</name>
+      <uri>https://lepisma.xyz/journal/atom.xml</uri>
+    </author>
+    <link href="https://lepisma.xyz/journal/2025/12/26/the-privilege-of-familiarity/index.html"/>
+    <category term="personal"/>
+    <published>2025-12-25T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-12-w2551/</id>
+    <title>Weeknote #12 [W25.51] - A week of watching films in Trivandrum</title>
+    <updated>2025-12-24T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-12-w2551/"/>
+    <published>2025-12-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/recipe-1-onion-tomato-uttapam/</id>
+    <title>Onion &amp; tomato uttapam</title>
+    <updated>2025-12-23T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/recipe-1-onion-tomato-uttapam/"/>
+    <published>2025-12-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://youtube.com/playlist?list=PLxlIzqc0aEwkvi23H1nJ1r4JpK0YAreAN</id>
+    <title>Alif</title>
+    <updated>2025-12-22T08:28:46+00:00</updated>
+    <author>
+      <name>Azan's playlists</name>
+      <uri>https://azan-n.com/playlists/rss.xml</uri>
+    </author>
+    <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwkvi23H1nJ1r4JpK0YAreAN"/>
+    <published>2025-12-22T08:28:46+00:00</published>
+  </entry>
+  <entry>
+    <id>https://youtube.com/playlist?list=PLxlIzqc0aEwlNDlkVembXZgLtb8m25cZX</id>
+    <title>Avicii</title>
+    <updated>2025-12-22T05:30:09+00:00</updated>
+    <author>
+      <name>Azan's playlists</name>
+      <uri>https://azan-n.com/playlists/rss.xml</uri>
+    </author>
+    <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwlNDlkVembXZgLtb8m25cZX"/>
+    <published>2025-12-22T05:30:09+00:00</published>
+  </entry>
+  <entry>
+    <id>https://sagrika27.wordpress.com/2025/12/21/delete/</id>
+    <title>Delete</title>
+    <updated>2025-12-21T14:20:30+00:00</updated>
+    <author>
+      <name>Sagrika Padha</name>
+      <uri>https://sagrika27.wordpress.com/feed/</uri>
+    </author>
+    <link href="https://sagrika27.wordpress.com/2025/12/21/delete/"/>
+    <category term="Uncategorized"/>
+    <published>2025-12-21T14:20:30+00:00</published>
+  </entry>
+  <entry>
+    <id>https://holistictravellers.com/posts/laos-vang-vieng-from-war-history/</id>
+    <title>Laos Uncovered: From War History to Limestone Cliffs</title>
+    <updated>2025-12-21T00:00:00+00:00</updated>
+    <author>
+      <name>Suneela &amp; Yeswanth</name>
+      <uri>https://holistictravellers.com/rss.xml</uri>
+    </author>
+    <link href="https://holistictravellers.com/posts/laos-vang-vieng-from-war-history/"/>
+    <published>2025-12-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-12-21/?mtm_campaign=feed</id>
+    <title>Notes for the Weeks #50–51 (2025)</title>
+    <updated>2025-12-21T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/notes/feed.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-12-21/?mtm_campaign=feed"/>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-12-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vaxitas.xyz/snippets/predictions-for-2026</id>
+    <title>My Predictions for 2026</title>
+    <updated>2025-12-20T19:45:00+00:00</updated>
+    <author>
+      <name>Abhiram</name>
+      <uri>https://vaxitas.xyz/feed.atom</uri>
+    </author>
+    <link href="https://vaxitas.xyz/snippets/predictions-for-2026"/>
+    <category term="snippets"/>
+    <category term="personal"/>
+    <category term="indieweb"/>
+    <published>2025-12-20T19:45:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://flavorfulsuffering.xyz/posts/writing/present-in-kitchen/</id>
+    <title>What's the deal with being in a kitchen?</title>
+    <updated>2025-12-20T14:57:59+00:00</updated>
+    <author>
+      <name>Shubham</name>
+      <uri>https://flavorfulsuffering.xyz/rss.xml</uri>
+    </author>
+    <link href="https://flavorfulsuffering.xyz/posts/writing/present-in-kitchen/"/>
+    <published>2025-12-20T14:57:59+00:00</published>
+  </entry>
+  <entry>
+    <id>https://sagrika27.wordpress.com/2025/12/20/year-notes-2025/</id>
+    <title>Year Notes: 2025</title>
+    <updated>2025-12-20T11:25:50+00:00</updated>
+    <author>
+      <name>Sagrika Padha</name>
+      <uri>https://sagrika27.wordpress.com/feed/</uri>
+    </author>
+    <link href="https://sagrika27.wordpress.com/2025/12/20/year-notes-2025/"/>
+    <category term="Uncategorized"/>
+    <category term="blog"/>
+    <category term="life"/>
+    <category term="writing"/>
+    <published>2025-12-20T11:25:50+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankursethi.com/blog/tech-predictions-2026/</id>
+    <title>Tech predictions for 2026, presented without nuance, context, or evidence</title>
+    <updated>2025-12-20T11:19:13+00:00</updated>
+    <author>
+      <name>Ankur Sethi</name>
+      <uri>https://ankursethi.com/feeds/index.xml</uri>
+    </author>
+    <link href="https://ankursethi.com/blog/tech-predictions-2026/"/>
+    <published>2025-12-20T11:19:13+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-51-2025/</id>
+    <title>Weeknotes: Week #51 (2025)</title>
+    <updated>2025-12-20T10:55:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-51-2025/"/>
+    <published>2025-12-20T10:55:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://adithyanair.com/blog/the-truman-show/</id>
+    <title>Thoughts On The Truman Show And Its Villain</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>Adithya Nair</name>
+      <uri>https://adithyanair.com/rss.xml</uri>
+    </author>
+    <link href="https://adithyanair.com/blog/the-truman-show/"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/list-3-2026-to-do/</id>
+    <title>Things I want to get done in 2026</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/list-3-2026-to-do/"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://heftymouse.me/blog/lonely-planet-india/</id>
+    <title>2003 Lonely Planet India guide</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>heftymouse</name>
+      <uri>https://heftymouse.me/blog/rss.xml</uri>
+    </author>
+    <link href="https://heftymouse.me/blog/lonely-planet-india/"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://naazeam.mataroa.blog/p/word-is-going-to-end-in-2026/</id>
+    <title>World is going to end in 2026</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>naazeam</name>
+      <uri>https://naazeam.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://naazeam.mataroa.blog/p/word-is-going-to-end-in-2026/"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://naazeam.mataroa.blog/p/kintsugi-is-far-deeper-than-it-sounds/</id>
+    <title>Kintsugi Is Far Deeper Than It Sounds</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>naazeam</name>
+      <uri>https://naazeam.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://naazeam.mataroa.blog/p/kintsugi-is-far-deeper-than-it-sounds/"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.xypnox.com/blag/posts/hq-audio/</id>
+    <title>High Quality Audio</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>xypnox</name>
+      <uri>https://www.xypnox.com/rss.xml</uri>
+    </author>
+    <link href="https://www.xypnox.com/blag/posts/hq-audio/"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/feynman-001/</id>
+    <title>Feynman #001</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/feynman-001/"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/feynman-002/</id>
+    <title>Feynman #002</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/feynman-002/"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/bookmarks-001/</id>
+    <title>Bookmarks #001</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/bookmarks-001/"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/sticky-notes-001/</id>
+    <title>Sticky Notes #001</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/sticky-notes-001/"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/2026-begins/</id>
+    <title>2026 Begins</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/2026-begins/"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/bookmarks-002/</id>
+    <title>Bookmarks #002</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/bookmarks-002/"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://youtube.com/playlist?list=PLxlIzqc0aEwnfw3zZj8fPnNcB69e4q4Ma</id>
+    <title>The Fray</title>
+    <updated>2025-12-18T06:27:40+00:00</updated>
+    <author>
+      <name>Azan's playlists</name>
+      <uri>https://azan-n.com/playlists/rss.xml</uri>
+    </author>
+    <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwnfw3zZj8fPnNcB69e4q4Ma"/>
+    <published>2025-12-18T06:27:40+00:00</published>
+  </entry>
+  <entry>
+    <id>https://journal.jatan.space/words/</id>
+    <title>Poem: Words</title>
+    <updated>2025-12-17T15:20:00+00:00</updated>
+    <author>
+      <name>Jatan</name>
+      <uri>https://journal.jatan.space/rss/</uri>
+    </author>
+    <link href="https://journal.jatan.space/words/"/>
+    <published>2025-12-17T15:20:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-11-w2550/</id>
+    <title>Weeknote #11 [W25.50] - A new home for the blog, and arriving at Trivandrum for IFFK</title>
+    <updated>2025-12-17T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-11-w2550/"/>
+    <published>2025-12-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://jatan.space/moon-monday-issue-255/</id>
+    <title>Achievements and shortfalls in global lunar exploration in 2025</title>
+    <updated>2025-12-15T11:04:30+00:00</updated>
+    <author>
+      <name>Jatan’s Space</name>
+      <uri>https://jatan.space/rss</uri>
+    </author>
+    <link href="https://jatan.space/moon-monday-issue-255/"/>
+    <category term="Moon Monday"/>
+    <category term="Explore"/>
+    <category term="China and Luna"/>
+    <category term="US Artemis"/>
+    <category term="ISRO Chandrayaan"/>
+    <published>2025-12-15T11:04:30+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vaxitas.xyz/snippets/masonry-with-css-and-js</id>
+    <title>Masonries For Dummies</title>
+    <updated>2025-12-14T20:09:00+00:00</updated>
+    <author>
+      <name>Abhiram</name>
+      <uri>https://vaxitas.xyz/feed.atom</uri>
+    </author>
+    <link href="https://vaxitas.xyz/snippets/masonry-with-css-and-js"/>
+    <category term="snippets"/>
+    <category term="programming"/>
+    <category term="web"/>
+    <published>2025-12-14T20:09:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://youtube.com/playlist?list=PLxlIzqc0aEwkRREdIQKAzeu24N0-Ro24I</id>
+    <title>The F16s</title>
+    <updated>2025-12-14T17:35:32+00:00</updated>
+    <author>
+      <name>Azan's playlists</name>
+      <uri>https://azan-n.com/playlists/rss.xml</uri>
+    </author>
+    <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwkRREdIQKAzeu24N0-Ro24I"/>
+    <published>2025-12-14T17:35:32+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/my-experience-at-droidcon-india-2025/</id>
+    <title>My experience at droidcon India 2025</title>
+    <updated>2025-12-14T06:47:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/my-experience-at-droidcon-india-2025/"/>
+    <published>2025-12-14T06:47:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://holistictravellers.com/posts/discovering-bali-beyond-the-tourist-trail/</id>
+    <title>Discovering Bali: Beyond the Tourist Trail</title>
+    <updated>2025-12-14T00:00:00+00:00</updated>
+    <author>
+      <name>Suneela &amp; Yeswanth</name>
+      <uri>https://holistictravellers.com/rss.xml</uri>
+    </author>
+    <link href="https://holistictravellers.com/posts/discovering-bali-beyond-the-tourist-trail/"/>
+    <published>2025-12-14T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://purposewithpals.wordpress.com/2025/12/13/no-one-thing/</id>
+    <title>No one thing.</title>
+    <updated>2025-12-13T03:52:48+00:00</updated>
+    <author>
+      <name>Palak Malik</name>
+      <uri>https://purposewithpals.wordpress.com/feed/</uri>
+    </author>
+    <link href="https://purposewithpals.wordpress.com/2025/12/13/no-one-thing/"/>
+    <category term="thoughts"/>
+    <category term="life"/>
+    <category term="mental-health"/>
+    <category term="writing"/>
+    <category term="struggle"/>
+    <category term="poetry"/>
+    <published>2025-12-13T03:52:48+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-aoc-2/?mtm_campaign=feed</id>
+    <title>Solving Advent of Code 2025 in Janet: Days 5–8</title>
+    <updated>2025-12-13T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/notes/feed.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-aoc-2/?mtm_campaign=feed"/>
+    <category term="programming"/>
+    <category term="advent-of-code"/>
+    <category term="janet"/>
+    <published>2025-12-13T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vaxitas.xyz/snippets/early-web-memories</id>
+    <title>Early Web Memories</title>
+    <updated>2025-12-12T12:36:00+00:00</updated>
+    <author>
+      <name>Abhiram</name>
+      <uri>https://vaxitas.xyz/feed.atom</uri>
+    </author>
+    <link href="https://vaxitas.xyz/snippets/early-web-memories"/>
+    <category term="snippets"/>
+    <category term="personal"/>
+    <category term="indieweb"/>
+    <published>2025-12-12T12:36:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://jatan.space/indian-space-issue-34/</id>
+    <title>ISRO and India had a mixed year in space in 2025</title>
+    <updated>2025-12-12T12:01:21+00:00</updated>
+    <author>
+      <name>Jatan’s Space</name>
+      <uri>https://jatan.space/rss</uri>
+    </author>
+    <link href="https://jatan.space/indian-space-issue-34/"/>
+    <category term="Indian Space"/>
+    <category term="Explore"/>
+    <category term="ISRO Chandrayaan"/>
+    <published>2025-12-12T12:01:21+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20251212-a-case-for-regulator-backed-open-source-tools</id>
+    <title>A case for regulator-backed open-source tools</title>
+    <updated>2025-12-11T18:30:00+00:00</updated>
+    <author>
+      <name>Azan's notes</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20251212-a-case-for-regulator-backed-open-source-tools"/>
+    <published>2025-12-11T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankursethi.com/blog/gemini-api-key-frustration/</id>
+    <title>Getting a Gemini API key is an exercise in frustration</title>
+    <updated>2025-12-10T09:05:55+00:00</updated>
+    <author>
+      <name>Ankur Sethi</name>
+      <uri>https://ankursethi.com/feeds/index.xml</uri>
+    </author>
+    <link href="https://ankursethi.com/blog/gemini-api-key-frustration/"/>
+    <published>2025-12-10T09:05:55+00:00</published>
+  </entry>
+  <entry>
+    <id>https://itihas.review/20251209184154-fuck_wasm_pack.html</id>
+    <title>Fuck wasm-pack</title>
+    <updated>2025-12-09T18:50:00+00:00</updated>
+    <author>
+      <name>Itihas</name>
+      <uri>https://itihas.review/reviewed-feed.xml</uri>
+    </author>
+    <link href="https://itihas.review/20251209184154-fuck_wasm_pack.html"/>
+    <published>2025-12-09T18:50:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://itihas.review/20251209135203-it_s_about_the_hunt_for_me.html</id>
+    <title>it's about the hunt for me,</title>
+    <updated>2025-12-09T14:02:00+00:00</updated>
+    <author>
+      <name>Itihas</name>
+      <uri>https://itihas.review/reviewed-feed.xml</uri>
+    </author>
+    <link href="https://itihas.review/20251209135203-it_s_about_the_hunt_for_me.html"/>
+    <published>2025-12-09T14:02:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankursethi.com/blog/my-first-online-shopping-experience/</id>
+    <title>My first online shopping experience, at the tender age of twelve</title>
+    <updated>2025-12-08T14:51:48+00:00</updated>
+    <author>
+      <name>Ankur Sethi</name>
+      <uri>https://ankursethi.com/feeds/index.xml</uri>
+    </author>
+    <link href="https://ankursethi.com/blog/my-first-online-shopping-experience/"/>
+    <published>2025-12-08T14:51:48+00:00</published>
+  </entry>
+  <entry>
+    <id>https://jatan.space/moon-monday-issue-254/</id>
+    <title>Moon Monday #254: The one following last week’s embarrassing typo</title>
+    <updated>2025-12-08T10:53:55+00:00</updated>
+    <author>
+      <name>Jatan’s Space</name>
+      <uri>https://jatan.space/rss</uri>
+    </author>
+    <link href="https://jatan.space/moon-monday-issue-254/"/>
+    <category term="Moon Monday"/>
+    <published>2025-12-08T10:53:55+00:00</published>
+  </entry>
+  <entry>
+    <id>https://youtube.com/playlist?list=PLxlIzqc0aEwkoaKWqrQpwndP7gKtAxEuc</id>
+    <title>Metallica</title>
+    <updated>2025-12-08T08:18:54+00:00</updated>
+    <author>
+      <name>Azan's playlists</name>
+      <uri>https://azan-n.com/playlists/rss.xml</uri>
+    </author>
+    <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwkoaKWqrQpwndP7gKtAxEuc"/>
+    <published>2025-12-08T08:18:54+00:00</published>
+  </entry>
+  <entry>
+    <id>https://youtube.com/playlist?list=PLxlIzqc0aEwncUnjE1LRJGiMp2mPD_8Mq</id>
+    <title>Megadeth</title>
+    <updated>2025-12-08T07:25:46+00:00</updated>
+    <author>
+      <name>Azan's playlists</name>
+      <uri>https://azan-n.com/playlists/rss.xml</uri>
+    </author>
+    <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwncUnjE1LRJGiMp2mPD_8Mq"/>
+    <published>2025-12-08T07:25:46+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-default-apps/?mtm_campaign=feed</id>
+    <title>Apps I Use (2025)</title>
+    <updated>2025-12-08T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/notes/feed.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-default-apps/?mtm_campaign=feed"/>
+    <category term="personal"/>
+    <category term="observations"/>
+    <category term="software"/>
+    <published>2025-12-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/notes/note-2025-08-20/</id>
+    <title>Better angels of our nature</title>
+    <updated>2025-12-08T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/notes/note-2025-08-20/"/>
+    <published>2025-12-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/notes/civilizations-live-and-die-by-what-is-cool/</id>
+    <title>Civilizations live and die by what is cool</title>
+    <updated>2025-12-08T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/notes/civilizations-live-and-die-by-what-is-cool/"/>
+    <published>2025-12-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/notes/note-2025-12-8/</id>
+    <title>Heavy is the head</title>
+    <updated>2025-12-08T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/notes/note-2025-12-8/"/>
+    <published>2025-12-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/</id>
+    <title>Self help as communicating metaphors</title>
+    <updated>2025-12-08T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/"/>
+    <published>2025-12-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2025-48/</id>
+    <title>Week 48 In the Year of our Lord, 2025</title>
+    <updated>2025-12-07T04:30:00+00:00</updated>
+    <author>
+      <name>A Believable Fiction</name>
+      <uri>https://a-believable-fiction.pages.dev/feed.xml</uri>
+    </author>
+    <link href="https://a-believable-fiction.pages.dev//posts/weeknotes/2025-48/"/>
+    <published>2025-12-07T04:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://holistictravellers.com/posts/seville-spain/</id>
+    <title>Seville nobody tells you about</title>
+    <updated>2025-12-07T00:00:00+00:00</updated>
+    <author>
+      <name>Suneela &amp; Yeswanth</name>
+      <uri>https://holistictravellers.com/rss.xml</uri>
+    </author>
+    <link href="https://holistictravellers.com/posts/seville-spain/"/>
+    <published>2025-12-07T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-12-07/?mtm_campaign=feed</id>
+    <title>Notes for the Week #49 (2025)</title>
+    <updated>2025-12-07T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/notes/feed.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-12-07/?mtm_campaign=feed"/>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-12-07T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://lepisma.xyz/journal/2025/12/07/my-humble-wrapped/index.html</id>
+    <title>My Humble Wrapped</title>
+    <updated>2025-12-06T18:30:00+00:00</updated>
+    <author>
+      <name>Abhinav Tushar</name>
+      <uri>https://lepisma.xyz/journal/atom.xml</uri>
+    </author>
+    <link href="https://lepisma.xyz/journal/2025/12/07/my-humble-wrapped/index.html"/>
+    <category term="music"/>
+    <category term="personal"/>
+    <published>2025-12-06T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vishalr.dev/blog/Open-Source-India-2025</id>
+    <title>Open Source India 2025</title>
+    <updated>2025-12-06T18:30:00+00:00</updated>
+    <author>
+      <name>Vishal R</name>
+      <uri>https://vishalr.dev/rss.xml</uri>
+    </author>
+    <link href="https://vishalr.dev/blog/Open-Source-India-2025"/>
+    <category term="Blog"/>
+    <published>2025-12-06T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20251206-things-i-have-written-and-deleted</id>
+    <title>Things I have written and deleted</title>
+    <updated>2025-12-05T18:30:00+00:00</updated>
+    <author>
+      <name>Azan's notes</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20251206-things-i-have-written-and-deleted"/>
+    <published>2025-12-05T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-aoc-1/?mtm_campaign=feed</id>
+    <title>Solving Advent of Code 2025 in Janet: Days 1–4</title>
+    <updated>2025-12-05T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/notes/feed.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-aoc-1/?mtm_campaign=feed"/>
+    <category term="programming"/>
+    <category term="advent-of-code"/>
+    <category term="janet"/>
+    <published>2025-12-05T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://itihas.review/20251204173528-deploy_ente_via_a_flake.html</id>
+    <title>deploy ente via a flake</title>
+    <updated>2025-12-04T18:20:00+00:00</updated>
+    <author>
+      <name>Itihas</name>
+      <uri>https://itihas.review/reviewed-feed.xml</uri>
+    </author>
+    <link href="https://itihas.review/20251204173528-deploy_ente_via_a_flake.html"/>
+    <published>2025-12-04T18:20:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://jatan.space/indian-space-issue-33/</id>
+    <title>A space program can only move as swiftly as its rockets. It’s India’s time to act on that.</title>
+    <updated>2025-12-04T12:38:00+00:00</updated>
+    <author>
+      <name>Jatan’s Space</name>
+      <uri>https://jatan.space/rss</uri>
+    </author>
+    <link href="https://jatan.space/indian-space-issue-33/"/>
+    <category term="Indian Space"/>
+    <category term="Articles"/>
+    <category term="ISRO Chandrayaan"/>
+    <published>2025-12-04T12:38:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankursethi.com/blog/using-llms-for-web-search/</id>
+    <title>Using LLMs for web search</title>
+    <updated>2025-12-03T14:04:10+00:00</updated>
+    <author>
+      <name>Ankur Sethi</name>
+      <uri>https://ankursethi.com/feeds/index.xml</uri>
+    </author>
+    <link href="https://ankursethi.com/blog/using-llms-for-web-search/"/>
+    <published>2025-12-03T14:04:10+00:00</published>
+  </entry>
+  <entry>
+    <id>https://purposewithpals.wordpress.com/2025/12/03/in-a-bright-blur/</id>
+    <title>In a bright blur</title>
+    <updated>2025-12-03T02:47:44+00:00</updated>
+    <author>
+      <name>Palak Malik</name>
+      <uri>https://purposewithpals.wordpress.com/feed/</uri>
+    </author>
+    <link href="https://purposewithpals.wordpress.com/2025/12/03/in-a-bright-blur/"/>
+    <category term="life"/>
+    <category term="poetry"/>
+    <category term="art"/>
+    <category term="creativity"/>
+    <category term="love"/>
+    <category term="mental-health"/>
+    <category term="poem"/>
+    <category term="struggle"/>
+    <category term="writing"/>
+    <published>2025-12-03T02:47:44+00:00</published>
+  </entry>
+  <entry>
+    <id>https://jatan.space/moon-monday-issue-253/</id>
+    <title>Moon Monday #253: A peek at new lunar samples and mission updates</title>
+    <updated>2025-12-01T10:46:25+00:00</updated>
+    <author>
+      <name>Jatan’s Space</name>
+      <uri>https://jatan.space/rss</uri>
+    </author>
+    <link href="https://jatan.space/moon-monday-issue-253/"/>
+    <category term="Moon Monday"/>
+    <published>2025-12-01T10:46:25+00:00</published>
+  </entry>
+  <entry>
+    <id>https://purposewithpals.wordpress.com/2025/12/01/dont-say-a-word/</id>
+    <title>Don’t say a word</title>
+    <updated>2025-12-01T10:01:45+00:00</updated>
+    <author>
+      <name>Palak Malik</name>
+      <uri>https://purposewithpals.wordpress.com/feed/</uri>
+    </author>
+    <link href="https://purposewithpals.wordpress.com/2025/12/01/dont-say-a-word/"/>
+    <category term="life"/>
+    <category term="poetry"/>
+    <category term="art"/>
+    <category term="creativity"/>
+    <category term="love"/>
+    <category term="mental-health"/>
+    <category term="poem"/>
+    <category term="relationships"/>
+    <category term="struggle"/>
+    <category term="writing"/>
+    <published>2025-12-01T10:01:45+00:00</published>
+  </entry>
+  <entry>
+    <id>https://adithyanair.com/blog/epoch/</id>
+    <title>Notes On The Epoch Video</title>
+    <updated>2025-12-01T00:00:00+00:00</updated>
+    <author>
+      <name>Adithya Nair</name>
+      <uri>https://adithyanair.com/rss.xml</uri>
+    </author>
+    <link href="https://adithyanair.com/blog/epoch/"/>
+    <published>2025-12-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankit.earth/blog/my-emacs-presentation-stack/</id>
+    <title>My Emacs Presentation Stack</title>
+    <updated>2025-11-30T00:00:00+00:00</updated>
+    <author>
+      <name>Ankit Gadiya</name>
+      <uri>https://ankit.earth/atom.xml</uri>
+    </author>
+    <link href="https://ankit.earth/blog/my-emacs-presentation-stack/"/>
+    <published>2025-11-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-feed-popularity/?mtm_campaign=feed</id>
+    <title>Feed Popularity</title>
+    <updated>2025-11-30T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/notes/feed.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-feed-popularity/?mtm_campaign=feed"/>
+    <category term="observations"/>
+    <category term="feeds"/>
+    <published>2025-11-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vaxitas.xyz/now/sep-2025</id>
+    <title>September 2025</title>
+    <updated>2025-11-28T11:24:00+00:00</updated>
+    <author>
+      <name>Abhiram</name>
+      <uri>https://vaxitas.xyz/feed.atom</uri>
+    </author>
+    <link href="https://vaxitas.xyz/now/sep-2025"/>
+    <category term="now"/>
+    <published>2025-11-28T11:24:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://purposewithpals.wordpress.com/2025/11/26/all-my-wants/</id>
+    <title>All My Wants</title>
+    <updated>2025-11-26T05:54:43+00:00</updated>
+    <author>
+      <name>Palak Malik</name>
+      <uri>https://purposewithpals.wordpress.com/feed/</uri>
+    </author>
+    <link href="https://purposewithpals.wordpress.com/2025/11/26/all-my-wants/"/>
+    <category term="life"/>
+    <category term="poetry"/>
+    <category term="art"/>
+    <category term="creativity"/>
+    <category term="love"/>
+    <category term="mental-health"/>
+    <category term="poem"/>
+    <category term="relationships"/>
+    <category term="struggle"/>
+    <category term="writing"/>
+    <published>2025-11-26T05:54:43+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20251126-cloudflare-and-sovereignty</id>
+    <title>Cloudflare and sovereignty</title>
+    <updated>2025-11-25T18:30:00+00:00</updated>
+    <author>
+      <name>Azan's notes</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20251126-cloudflare-and-sovereignty"/>
+    <published>2025-11-25T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://youtube.com/playlist?list=PLxlIzqc0aEwkBqQGeIJUZNiU9TGotj1-r</id>
+    <title>The Algorithm</title>
+    <updated>2025-11-25T05:09:38+00:00</updated>
+    <author>
+      <name>Azan's playlists</name>
+      <uri>https://azan-n.com/playlists/rss.xml</uri>
+    </author>
+    <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwkBqQGeIJUZNiU9TGotj1-r"/>
+    <published>2025-11-25T05:09:38+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20251125-the-trash-that-is-nextjs</id>
+    <title>The trash that is NextJS</title>
+    <updated>2025-11-24T18:30:00+00:00</updated>
+    <author>
+      <name>Azan's notes</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20251125-the-trash-that-is-nextjs"/>
+    <published>2025-11-24T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://jatan.space/moon-monday-issue-252/</id>
+    <title>Lunar sample science updates straight from Hong Kong | Moon Monday #252</title>
+    <updated>2025-11-24T11:26:57+00:00</updated>
+    <author>
+      <name>Jatan’s Space</name>
+      <uri>https://jatan.space/rss</uri>
+    </author>
+    <link href="https://jatan.space/moon-monday-issue-252/"/>
+    <category term="Moon Monday"/>
+    <category term="China and Luna"/>
+    <category term="Articles"/>
+    <published>2025-11-24T11:26:57+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankit.earth/blog/church-booleans/</id>
+    <title>Church Booleans</title>
+    <updated>2025-11-24T00:00:00+00:00</updated>
+    <author>
+      <name>Ankit Gadiya</name>
+      <uri>https://ankit.earth/atom.xml</uri>
+    </author>
+    <link href="https://ankit.earth/blog/church-booleans/"/>
+    <published>2025-11-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://youtube.com/playlist?list=PLxlIzqc0aEwmckUS8BiteLzeRQVBt39h2</id>
+    <title>Iron Maiden</title>
+    <updated>2025-11-23T10:27:05+00:00</updated>
+    <author>
+      <name>Azan's playlists</name>
+      <uri>https://azan-n.com/playlists/rss.xml</uri>
+    </author>
+    <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwmckUS8BiteLzeRQVBt39h2"/>
+    <published>2025-11-23T10:27:05+00:00</published>
+  </entry>
+  <entry>
+    <id>https://atharvaraykar.com/slop/</id>
+    <title>Rude Slop Behaviour</title>
+    <updated>2025-11-23T06:38:13+00:00</updated>
+    <author>
+      <name>Atharva Raykar</name>
+      <uri>https://atharvaraykar.com/rss/</uri>
+    </author>
+    <link href="https://atharvaraykar.com/slop/"/>
+    <published>2025-11-23T06:38:13+00:00</published>
+  </entry>
+  <entry>
+    <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2025-46/</id>
+    <title>Week 46 In the Year of our Lord, 2025</title>
+    <updated>2025-11-23T04:30:00+00:00</updated>
+    <author>
+      <name>A Believable Fiction</name>
+      <uri>https://a-believable-fiction.pages.dev/feed.xml</uri>
+    </author>
+    <link href="https://a-believable-fiction.pages.dev//posts/weeknotes/2025-46/"/>
+    <published>2025-11-23T04:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://holistictravellers.com/posts/lisbon-and-algarve-portugal/</id>
+    <title>Portugal's Stories: Resilience in Lisbon, Beauty in the Algarve</title>
+    <updated>2025-11-21T00:00:00+00:00</updated>
+    <author>
+      <name>Suneela &amp; Yeswanth</name>
+      <uri>https://holistictravellers.com/rss.xml</uri>
+    </author>
+    <link href="https://holistictravellers.com/posts/lisbon-and-algarve-portugal/"/>
+    <published>2025-11-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://purposewithpals.wordpress.com/2025/11/19/are-you-ready-to-go/</id>
+    <title>Are you ready to go?</title>
+    <updated>2025-11-19T07:57:47+00:00</updated>
+    <author>
+      <name>Palak Malik</name>
+      <uri>https://purposewithpals.wordpress.com/feed/</uri>
+    </author>
+    <link href="https://purposewithpals.wordpress.com/2025/11/19/are-you-ready-to-go/"/>
+    <category term="art"/>
+    <category term="life"/>
+    <category term="poetry"/>
+    <category term="creativity"/>
+    <category term="mental-health"/>
+    <category term="poem"/>
+    <category term="relationships"/>
+    <category term="struggle"/>
+    <category term="writing"/>
+    <published>2025-11-19T07:57:47+00:00</published>
+  </entry>
+  <entry>
+    <id>https://youtube.com/playlist?list=PLxlIzqc0aEwk1LnFCLeDgjldiDujbELry</id>
+    <title>that 2006 rock sound</title>
+    <updated>2025-11-18T08:40:33+00:00</updated>
+    <author>
+      <name>Azan's playlists</name>
+      <uri>https://azan-n.com/playlists/rss.xml</uri>
+    </author>
+    <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwk1LnFCLeDgjldiDujbELry"/>
+    <published>2025-11-18T08:40:33+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankit.earth/blog/lambda-calculus/</id>
+    <title>Lambda Calculus</title>
+    <updated>2025-11-17T00:00:00+00:00</updated>
+    <author>
+      <name>Ankit Gadiya</name>
+      <uri>https://ankit.earth/atom.xml</uri>
+    </author>
+    <link href="https://ankit.earth/blog/lambda-calculus/"/>
+    <published>2025-11-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2025-45/</id>
+    <title>Week 45 In the Year of our Lord, 2025</title>
+    <updated>2025-11-16T04:30:00+00:00</updated>
+    <author>
+      <name>A Believable Fiction</name>
+      <uri>https://a-believable-fiction.pages.dev/feed.xml</uri>
+    </author>
+    <link href="https://a-believable-fiction.pages.dev//posts/weeknotes/2025-45/"/>
+    <published>2025-11-16T04:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://holistictravellers.com/posts/porto-portugal-beyond-the-bridge/</id>
+    <title>Beyond the Bridge: Learning Portuguese History in Porto</title>
+    <updated>2025-11-16T00:00:00+00:00</updated>
+    <author>
+      <name>Suneela &amp; Yeswanth</name>
+      <uri>https://holistictravellers.com/rss.xml</uri>
+    </author>
+    <link href="https://holistictravellers.com/posts/porto-portugal-beyond-the-bridge/"/>
+    <published>2025-11-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.kashyapsuhas.com/blog/f8-and-forget</id>
+    <title>f8 and forget</title>
+    <updated>2025-11-15T11:12:02+00:00</updated>
+    <author>
+      <name>Suhas Kashyap</name>
+      <uri>https://www.kashyapsuhas.com/blog/feed.xml</uri>
+    </author>
+    <link href="https://www.kashyapsuhas.com/blog/f8-and-forget"/>
+    <published>2025-11-15T11:12:02+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankit.earth/status/1763127234/</id>
+    <title>1763127234</title>
+    <updated>2025-11-14T19:03:54+00:00</updated>
+    <author>
+      <name>Ankit Gadiya</name>
+      <uri>https://ankit.earth/atom.xml</uri>
+    </author>
+    <link href="https://ankit.earth/status/1763127234/"/>
+    <published>2025-11-14T19:03:54+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vishalr.dev/blog/Proof-That-Even-I-Can-Stick-to-a-Routine</id>
+    <title>Proof That Even I Can Stick to a Routine</title>
+    <updated>2025-11-14T18:30:00+00:00</updated>
+    <author>
+      <name>Vishal R</name>
+      <uri>https://vishalr.dev/rss.xml</uri>
+    </author>
+    <link href="https://vishalr.dev/blog/Proof-That-Even-I-Can-Stick-to-a-Routine"/>
+    <category term="Blog"/>
+    <published>2025-11-14T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>http://rasagy.in/sketchnotes/uber-design-night-ai-2025/</id>
+    <title>Uber Design Night on Pixel, Purpose, and Perspective</title>
+    <updated>2025-11-14T08:44:14+00:00</updated>
+    <author>
+      <name>Rasagy Sharma</name>
+      <uri>https://rasagy.in/index.xml</uri>
+    </author>
+    <link href="http://rasagy.in/sketchnotes/uber-design-night-ai-2025/"/>
+    <published>2025-11-14T08:44:14+00:00</published>
+  </entry>
+  <entry>
+    <id>https://adithyanair.com/blog/raindrop/</id>
+    <title>How I'm Organizing My Links</title>
+    <updated>2025-11-10T00:00:00+00:00</updated>
+    <author>
+      <name>Adithya Nair</name>
+      <uri>https://adithyanair.com/rss.xml</uri>
+    </author>
+    <link href="https://adithyanair.com/blog/raindrop/"/>
+    <published>2025-11-10T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankursethi.com/weeknotes/2025-w45-text-message-bankruptcy/</id>
+    <title>Weeknote 2025-W45: Text message bankruptcy</title>
+    <updated>2025-11-09T18:40:09+00:00</updated>
+    <author>
+      <name>Ankur Sethi</name>
+      <uri>https://ankursethi.com/feeds/index.xml</uri>
+    </author>
+    <link href="https://ankursethi.com/weeknotes/2025-w45-text-message-bankruptcy/"/>
+    <published>2025-11-09T18:40:09+00:00</published>
+  </entry>
+  <entry>
+    <id>https://holistictravellers.com/posts/bruges-belgium-captured-our-hearts/</id>
+    <title>Bruges: A city frozen in time</title>
+    <updated>2025-11-09T00:00:00+00:00</updated>
+    <author>
+      <name>Suneela &amp; Yeswanth</name>
+      <uri>https://holistictravellers.com/rss.xml</uri>
+    </author>
+    <link href="https://holistictravellers.com/posts/bruges-belgium-captured-our-hearts/"/>
+    <published>2025-11-09T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankursethi.com/blog/the-solace-of-work/</id>
+    <title>The solace of work</title>
+    <updated>2025-11-07T18:19:39+00:00</updated>
+    <author>
+      <name>Ankur Sethi</name>
+      <uri>https://ankursethi.com/feeds/index.xml</uri>
+    </author>
+    <link href="https://ankursethi.com/blog/the-solace-of-work/"/>
+    <published>2025-11-07T18:19:39+00:00</published>
+  </entry>
+  <entry>
+    <id>https://itihas.review/hamiltonian.html</id>
+    <title>Hamiltonian</title>
+    <updated>2025-11-07T17:08:00+00:00</updated>
+    <author>
+      <name>Itihas</name>
+      <uri>https://itihas.review/reviewed-feed.xml</uri>
+    </author>
+    <link href="https://itihas.review/hamiltonian.html"/>
+    <published>2025-11-07T17:08:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20251106-my-application-to-flyio</id>
+    <title>My application to fly.io</title>
+    <updated>2025-11-05T18:30:00+00:00</updated>
+    <author>
+      <name>Azan's notes</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20251106-my-application-to-flyio"/>
+    <published>2025-11-05T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://itihas.review/20250213190135-pinebook_pro_adventures.html</id>
+    <title>pinebook pro adventures</title>
+    <updated>2025-11-05T16:24:00+00:00</updated>
+    <author>
+      <name>Itihas</name>
+      <uri>https://itihas.review/reviewed-feed.xml</uri>
+    </author>
+    <link href="https://itihas.review/20250213190135-pinebook_pro_adventures.html"/>
+    <published>2025-11-05T16:24:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://itihas.review/20210721200800-cfar_modules.html</id>
+    <title>The strategic level</title>
+    <updated>2025-11-04T17:18:00+00:00</updated>
+    <author>
+      <name>Itihas</name>
+      <uri>https://itihas.review/reviewed-feed.xml</uri>
+    </author>
+    <link href="https://itihas.review/20210721200800-cfar_modules.html"/>
+    <published>2025-11-04T17:18:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://itihas.review/20250225124026-variations_in_the_error_terms_by_nodes_in_a_distributed_system.html</id>
+    <title>beating, cascading, and other ways distributed systems respond to synchronicity (and lack thereof)</title>
+    <updated>2025-11-04T17:06:00+00:00</updated>
+    <author>
+      <name>Itihas</name>
+      <uri>https://itihas.review/reviewed-feed.xml</uri>
+    </author>
+    <link href="https://itihas.review/20250225124026-variations_in_the_error_terms_by_nodes_in_a_distributed_system.html"/>
+    <published>2025-11-04T17:06:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://itihas.review/20251104164944-adding_noise.html</id>
+    <title>adding noise</title>
+    <updated>2025-11-04T17:06:00+00:00</updated>
+    <author>
+      <name>Itihas</name>
+      <uri>https://itihas.review/reviewed-feed.xml</uri>
+    </author>
+    <link href="https://itihas.review/20251104164944-adding_noise.html"/>
+    <published>2025-11-04T17:06:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://itihas.review/20251103150626-run_a_stack_of_processes.html</id>
+    <title>run a stack of processes</title>
+    <updated>2025-11-03T15:08:00+00:00</updated>
+    <author>
+      <name>Itihas</name>
+      <uri>https://itihas.review/reviewed-feed.xml</uri>
+    </author>
+    <link href="https://itihas.review/20251103150626-run_a_stack_of_processes.html"/>
+    <published>2025-11-03T15:08:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankursethi.com/weeknotes/2025-w44-oklahoma-smash/</id>
+    <title>Weeknote 2025-W44: Oklahoma smash</title>
+    <updated>2025-11-02T18:08:46+00:00</updated>
+    <author>
+      <name>Ankur Sethi</name>
+      <uri>https://ankursethi.com/feeds/index.xml</uri>
+    </author>
+    <link href="https://ankursethi.com/weeknotes/2025-w44-oklahoma-smash/"/>
+    <published>2025-11-02T18:08:46+00:00</published>
+  </entry>
+  <entry>
+    <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2025-43/</id>
+    <title>Week 43 In the Year of our Lord, 2025</title>
+    <updated>2025-11-02T04:30:00+00:00</updated>
+    <author>
+      <name>A Believable Fiction</name>
+      <uri>https://a-believable-fiction.pages.dev/feed.xml</uri>
+    </author>
+    <link href="https://a-believable-fiction.pages.dev//posts/weeknotes/2025-43/"/>
+    <published>2025-11-02T04:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://holistictravellers.com/posts/adventures-in-north-spain/</id>
+    <title>Road Tripping Through Northern Spain: From Bilbao to the Camino</title>
+    <updated>2025-11-02T00:00:00+00:00</updated>
+    <author>
+      <name>Suneela &amp; Yeswanth</name>
+      <uri>https://holistictravellers.com/rss.xml</uri>
+    </author>
+    <link href="https://holistictravellers.com/posts/adventures-in-north-spain/"/>
+    <published>2025-11-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://itihas.review/20250424124816-early_guesses_at_toricelli_s_shape.html</id>
+    <title>Early guesses at Toricelli's shape</title>
+    <updated>2025-11-01T15:52:00+00:00</updated>
+    <author>
+      <name>Itihas</name>
+      <uri>https://itihas.review/reviewed-feed.xml</uri>
+    </author>
+    <link href="https://itihas.review/20250424124816-early_guesses_at_toricelli_s_shape.html"/>
+    <published>2025-11-01T15:52:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://himanshikalra.com/feeling-algernonish/</id>
+    <title>Feeling Algernonish, The New Daily Driver Setup</title>
+    <updated>2025-11-01T11:57:06+00:00</updated>
+    <author>
+      <name>Himanshi Kalra</name>
+      <uri>https://himanshikalra.com/feed/</uri>
+    </author>
+    <link href="https://himanshikalra.com/feeling-algernonish/"/>
+    <category term="technical"/>
+    <published>2025-11-01T11:57:06+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankursethi.com/blog/everything-is-index-cards/</id>
+    <title>Everything is index cards</title>
+    <updated>2025-11-01T11:49:49+00:00</updated>
+    <author>
+      <name>Ankur Sethi</name>
+      <uri>https://ankursethi.com/feeds/index.xml</uri>
+    </author>
+    <link href="https://ankursethi.com/blog/everything-is-index-cards/"/>
+    <published>2025-11-01T11:49:49+00:00</published>
+  </entry>
+  <entry>
+    <id>https://xn--ri8hp8b.ws/blog/on-moving-men-and-material/</id>
+    <title>On moving men and material</title>
+    <updated>2025-11-01T00:00:00+00:00</updated>
+    <author>
+      <name>twitu</name>
+      <uri>https://xn--ri8hp8b.ws/rss/</uri>
+    </author>
+    <link href="https://xn--ri8hp8b.ws/blog/on-moving-men-and-material/"/>
+    <published>2025-11-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://georgesupreeth.com/web/blog/blog_geo_251031_self_assesment_for_non-professionals/</id>
+    <title>Self Assesment for non-professionals</title>
+    <updated>2025-10-30T19:23:12+00:00</updated>
+    <author>
+      <name>George Supreeth</name>
+      <uri>https://georgesupreeth.com/web/blog/index.xml</uri>
+    </author>
+    <link href="https://georgesupreeth.com/web/blog/blog_geo_251031_self_assesment_for_non-professionals/"/>
+    <published>2025-10-30T19:23:12+00:00</published>
+  </entry>
+  <entry>
+    <id>https://purposewithpals.wordpress.com/2025/10/29/midweek-musings/</id>
+    <title>Midweek Musings</title>
+    <updated>2025-10-29T07:04:18+00:00</updated>
+    <author>
+      <name>Palak Malik</name>
+      <uri>https://purposewithpals.wordpress.com/feed/</uri>
+    </author>
+    <link href="https://purposewithpals.wordpress.com/2025/10/29/midweek-musings/"/>
+    <category term="art"/>
+    <category term="poetry"/>
+    <category term="conscious mind"/>
+    <category term="consciousness"/>
+    <category term="creativity"/>
+    <category term="life"/>
+    <category term="love"/>
+    <category term="mental-health"/>
+    <category term="relationships"/>
+    <category term="spirituality"/>
+    <category term="struggle"/>
+    <category term="writing"/>
+    <published>2025-10-29T07:04:18+00:00</published>
+  </entry>
+  <entry>
+    <id>https://lepisma.xyz/journal/2025/10/28/vocabulary/index.html</id>
+    <title>My blog's vocabulary</title>
+    <updated>2025-10-27T18:30:00+00:00</updated>
+    <author>
+      <name>Abhinav Tushar</name>
+      <uri>https://lepisma.xyz/journal/atom.xml</uri>
+    </author>
+    <link href="https://lepisma.xyz/journal/2025/10/28/vocabulary/index.html"/>
+    <category term="personal"/>
+    <category term="viz"/>
+    <published>2025-10-27T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2025-42/</id>
+    <title>Week 42 In the Year of our Lord, 2025</title>
+    <updated>2025-10-26T04:30:00+00:00</updated>
+    <author>
+      <name>A Believable Fiction</name>
+      <uri>https://a-believable-fiction.pages.dev/feed.xml</uri>
+    </author>
+    <link href="https://a-believable-fiction.pages.dev//posts/weeknotes/2025-42/"/>
+    <published>2025-10-26T04:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/posts/arithmetic-bytecode-vm/?mtm_campaign=feed</id>
+    <title>A Fast Bytecode VM for Arithmetic: The Virtual Machine</title>
+    <updated>2025-10-21T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/posts/feed.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/posts/arithmetic-bytecode-vm/?mtm_campaign=feed"/>
+    <category term="interpreters"/>
+    <category term="virtual-machines"/>
+    <category term="haskell"/>
+    <published>2025-10-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://lepisma.xyz/journal/2025/10/21/books-i-have-slept-the-longest-on/index.html</id>
+    <title>Books I have slept the longest on</title>
+    <updated>2025-10-20T18:30:00+00:00</updated>
+    <author>
+      <name>Abhinav Tushar</name>
+      <uri>https://lepisma.xyz/journal/atom.xml</uri>
+    </author>
+    <link href="https://lepisma.xyz/journal/2025/10/21/books-i-have-slept-the-longest-on/index.html"/>
+    <category term="books"/>
+    <category term="viz"/>
+    <published>2025-10-20T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://ankursethi.com/weeknotes/2025-w42-magical-and-terrifying/</id>
+    <title>Weeknote 2025-W42: Magical and terrifying</title>
+    <updated>2025-10-20T02:49:58+00:00</updated>
+    <author>
+      <name>Ankur Sethi</name>
+      <uri>https://ankursethi.com/feeds/index.xml</uri>
+    </author>
+    <link href="https://ankursethi.com/weeknotes/2025-w42-magical-and-terrifying/"/>
+    <published>2025-10-20T02:49:58+00:00</published>
+  </entry>
+  <entry>
+    <id>https://lepisma.xyz/journal/2025/10/20/ego/index.html</id>
+    <title>Ego</title>
+    <updated>2025-10-19T18:30:00+00:00</updated>
+    <author>
+      <name>Abhinav Tushar</name>
+      <uri>https://lepisma.xyz/journal/atom.xml</uri>
+    </author>
+    <link href="https://lepisma.xyz/journal/2025/10/20/ego/index.html"/>
+    <category term="indieweb"/>
+    <category term="carnival"/>
+    <published>2025-10-19T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2025-41/</id>
+    <title>Week 41 In the Year of our Lord, 2025</title>
+    <updated>2025-10-19T04:30:00+00:00</updated>
+    <author>
+      <name>A Believable Fiction</name>
+      <uri>https://a-believable-fiction.pages.dev/feed.xml</uri>
+    </author>
+    <link href="https://a-believable-fiction.pages.dev//posts/weeknotes/2025-41/"/>
+    <published>2025-10-19T04:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://holistictravellers.com/posts/muri-switzerland-stoos-hike/</id>
+    <title>From Mountain Peaks to Local Life: Our Swiss Adventure in Muri</title>
+    <updated>2025-10-18T00:00:00+00:00</updated>
+    <author>
+      <name>Suneela &amp; Yeswanth</name>
+      <uri>https://holistictravellers.com/rss.xml</uri>
+    </author>
+    <link href="https://holistictravellers.com/posts/muri-switzerland-stoos-hike/"/>
+    <published>2025-10-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://siddhant14.mataroa.blog/blog/hosting-guide/</id>
+    <title>Visiting my place Guide!</title>
+    <updated>2025-10-18T00:00:00+00:00</updated>
+    <author>
+      <name>siddhant14</name>
+      <uri>https://siddhant14.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://siddhant14.mataroa.blog/blog/hosting-guide/"/>
+    <published>2025-10-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://georgesupreeth.com/web/blog/blog_geo_251017_practice_to_make_things/</id>
+    <title>Practicing to make Stuff</title>
+    <updated>2025-10-17T13:01:02+00:00</updated>
+    <author>
+      <name>George Supreeth</name>
+      <uri>https://georgesupreeth.com/web/blog/index.xml</uri>
+    </author>
+    <link href="https://georgesupreeth.com/web/blog/blog_geo_251017_practice_to_make_things/"/>
+    <published>2025-10-17T13:01:02+00:00</published>
+  </entry>
+  <entry>
+    <id>https://lepisma.xyz/journal/2025/10/14/reading-for-ignorance/index.html</id>
+    <title>Reading for Ignorance</title>
+    <updated>2025-10-13T18:30:00+00:00</updated>
+    <author>
+      <name>Abhinav Tushar</name>
+      <uri>https://lepisma.xyz/journal/atom.xml</uri>
+    </author>
+    <link href="https://lepisma.xyz/journal/2025/10/14/reading-for-ignorance/index.html"/>
+    <category term="personal"/>
+    <published>2025-10-13T18:30:00+00:00</published>
+  </entry>
+</feed>
