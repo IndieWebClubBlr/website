@@ -77,13 +77,8 @@ class FailedFeed:
         self.title = title
         self.url = url
 
-        if url.endswith("/"):
-            url = url[:-1]
-
         parsed_url = urlparse(url)
-        path_parts = parsed_url.path.split("/")[:-1]
-
-        self.home_url = parsed_url._replace(path="/".join(path_parts)).geturl()
+        self.home_url = f"{parsed_url.scheme}://{parsed_url.netloc}/"
 
 
 def parse_opml_file(opml_path: Path) -> list[tuple[str, str]]:
@@ -465,6 +460,9 @@ def fetch_all_feeds(
                 entries = future.result()
                 if entries is not None:
                     all_entries.extend(entries)
+                    # Track feeds with no entries after filtering
+                    if len(entries) == 0:
+                        failed_feeds.append(FailedFeed(title=feed_title, url=feed_url))
                 else:
                     failed_feeds.append(FailedFeed(title=feed_title, url=feed_url))
             except Exception as e:

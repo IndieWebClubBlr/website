@@ -281,6 +281,7 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
 
         # Fetch and parse all feeds
         entries, failed_feeds = fetch_all_feeds(feeds, use_cache=use_cache)
+        failed_feeds.sort(key=lambda f: f.title.lower())
         futures.append(executor.submit(generate_blogroll_feed, entries, output_dir))
 
         events = events_future.result()
