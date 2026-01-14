@@ -5,7 +5,7 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 from pathlib import Path
 from typing import final
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urljoin
 import config
 import feedparser
 import hashlib
@@ -224,6 +224,32 @@ def fetch_feed_content(url: str) -> str | None:
     return None
 
 
+def normalize_link(link: str, feed_url: str) -> str:
+    """
+    Convert relative URLs to absolute URLs using the feed's domain as base.
+
+    Args:
+        link: The link to normalize (can be absolute or relative).
+        feed_url: The feed URL to extract the domain from.
+
+    Returns:
+        Absolute URL.
+    """
+    if not link:
+        return link
+
+    # If it's already absolute, return as-is
+    if link.startswith("http://") or link.startswith("https://"):
+        return link
+
+    # Extract domain from feed URL
+    parsed = urlparse(feed_url)
+    base_url = f"{parsed.scheme}://{parsed.netloc}/"
+
+    # Use urljoin to properly combine domain with relative path
+    return urljoin(base_url, link)
+
+
 def parse_feed_date(date_string: str) -> datetime | None:
     """
     Parse various date formats commonly found in feeds.
@@ -287,6 +313,9 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> list[FeedEn
             title = getattr(entry, "title", "Untitled")
             link = getattr(entry, "link", "")
 
+            # Normalize link to absolute URL
+            link = normalize_link(link, feed_url)
+
             # Parse publication date
             published = None
             for date_field in ["published", "updated", "created"]:
@@ -295,6 +324,12 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> list[FeedEn
                     published = parse_feed_date(date_value)
                     if published:
                         break
+
+            # Log if no valid date was found
+            if not published:
+                logger.warning(
+                    f"Feed '{feed_title}': Entry '{title}' has no valid date"
+                )
 
             # Skip entries without valid dates or too old
             if not published or published < cutoff_date or published > now:
