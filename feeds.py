@@ -5,7 +5,7 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 from pathlib import Path
 from typing import final
-from urllib.parse import urlparse, urljoin
+from urllib.parse import urlparse, urljoin, quote
 import config
 import feedparser
 import hashlib
@@ -227,27 +227,30 @@ def fetch_feed_content(url: str) -> str | None:
 def normalize_link(link: str, feed_url: str) -> str:
     """
     Convert relative URLs to absolute URLs using the feed's domain as base.
+    Properly encodes spaces and special characters in the URL.
 
     Args:
         link: The link to normalize (can be absolute or relative).
         feed_url: The feed URL to extract the domain from.
 
     Returns:
-        Absolute URL.
+        Absolute URL with properly percent-encoded characters.
     """
     if not link:
         return link
 
-    # If it's already absolute, return as-is
+    # If it's already absolute, encode and return
     if link.startswith("http://") or link.startswith("https://"):
-        return link
+        return quote(link, safe=":/?#[]@!$&'()*+,;=")
 
     # Extract domain from feed URL
     parsed = urlparse(feed_url)
     base_url = f"{parsed.scheme}://{parsed.netloc}/"
 
     # Use urljoin to properly combine domain with relative path
-    return urljoin(base_url, link)
+    absolute_url = urljoin(base_url, link)
+    # Encode the URL, preserving URL structure characters
+    return quote(absolute_url, safe=":/?#[]@!$&'()*+,;=")
 
 
 def parse_feed_date(date_string: str) -> datetime | None:
