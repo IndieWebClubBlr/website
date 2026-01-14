@@ -250,7 +250,7 @@ def normalize_link(link: str, feed_url: str) -> str:
     # Use urljoin to properly combine domain with relative path
     absolute_url = urljoin(base_url, link)
     # Encode the URL, preserving URL structure characters
-    return quote(absolute_url, safe=":/?#[]@!$&'()*+,;=")
+    return quote(absolute_url, safe=":/?#[]@!$&'()*+,;=").strip()
 
 
 def parse_feed_date(date_string: str) -> datetime | None:
@@ -313,11 +313,25 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> list[FeedEn
 
         for entry in parsed_feed.entries:
             # Extract and normalize entry data
-            title = getattr(entry, "title", "Untitled")
-            link = getattr(entry, "link", "")
+            title = getattr(entry, "title", None)
+            link = getattr(entry, "link", None)
+            if title:
+                title = title.strip()
 
-            # Normalize link to absolute URL
+            # Validate title
+            if not title:
+                logger.warning(
+                    f"Feed '{feed_title}': Skipping entry with empty title (link: {link})"
+                )
+                continue
+
             link = normalize_link(link, feed_url)
+            # Validate link
+            if not link:
+                logger.warning(
+                    f"Feed '{feed_title}': Skipping entry '{title}' with empty link"
+                )
+                continue
 
             # Parse publication date
             published = None
@@ -328,7 +342,6 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> list[FeedEn
                     if published:
                         break
 
-            # Log if no valid date was found
             if not published:
                 logger.warning(
                     f"Feed '{feed_title}': Entry '{title}' has no valid date"
@@ -345,8 +358,8 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> list[FeedEn
 
             entries.append(
                 FeedEntry(
-                    title=title.strip(),
-                    link=link.strip(),
+                    title=title,
+                    link=link,
                     published=published,
                     feed_title=feed_title,
                     feed_url=feed_url,
