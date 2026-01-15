@@ -13,22 +13,27 @@ Usage:
 """
 
 from __future__ import annotations
+
+import argparse
+import logging
+import shutil
+import sys
 from collections import defaultdict
 from concurrent.futures import Future, ThreadPoolExecutor, wait
 from copy import deepcopy
 from datetime import datetime, timezone
-from events import Event, fetch_events
-from feedgen.feed import FeedGenerator
-from feeds import FeedEntry, FailedFeed, parse_opml_file, fetch_all_feeds, generate_feed
-from icalendar import Calendar, Event as CalEvent
 from pathlib import Path
 from typing import Any
-import argparse
-import config
-import logging
+
+import markdown
 import pystache
-import shutil
-import sys
+from feedgen.feed import FeedGenerator
+from icalendar import Calendar
+from icalendar import Event as CalEvent
+
+import config
+from events import Event, fetch_events
+from feeds import FailedFeed, FeedEntry, fetch_all_feeds, generate_feed, parse_opml_file
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -36,6 +41,15 @@ logger = logging.getLogger(__name__)
 
 
 def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
+    """
+    Group and sort feed entries by feed title, keeping only the most recent entries per feed.
+
+    Args:
+        entries: List of FeedEntry objects to group.
+
+    Returns:
+        List of FeedEntry objects grouped by feed title and sorted by publication date.
+    """
     # Group entries by OPML feed title
     feed_groups: defaultdict[str, list[FeedEntry]] = defaultdict(list)
 
@@ -58,6 +72,73 @@ def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
     # Sort result entries globally by publication date for overall stats
     res_entries.sort(key=lambda x: x.published, reverse=True)
     return res_entries
+
+
+def read_template(file_name: str) -> str:
+    """
+    Read a template file.
+
+    Args:
+        file_name: Name of the template file to read.
+
+    Returns:
+        Template file contents as string.
+    """
+    try:
+        with open(file_name) as index_tpl:
+            return index_tpl.read()
+    except FileNotFoundError:
+        logger.error(f"Template file {file_name} not found.")
+        raise
+
+
+def markdown_to_html(markdown_file: Path) -> str:
+    """
+    Convert a Markdown file to HTML.
+
+    Args:
+        markdown_file: Path to the Markdown file.
+
+    Returns:
+        HTML string.
+    """
+    try:
+        markdown_content = markdown_file.read_text(encoding="utf-8")
+        return markdown.markdown(markdown_content)
+    except Exception as e:
+        logger.error(f"Failed to convert markdown from {markdown_file}: {e}")
+        raise
+
+
+def render_and_save_html(html_content: str, output_file: str, output_dir: Path):
+    """
+    Render HTML content with default template and save to file.
+
+    Args:
+        html_content: The HTML content to render.
+        output_file: Output HTML filename.
+        output_dir: Path where HTML file should be written.
+    """
+    try:
+        now = datetime.now(timezone.utc)
+        template_data = {
+            "site_url": config.SITE_URL,
+            "generated_date": now.astimezone(config.EVENTS_TZ).strftime(
+                "%d %b %Y, %I:%M %p IST"
+            ),
+            "content": html_content,
+        }
+        default_template = read_template("default.html")
+        renderer = pystache.Renderer()
+        content = renderer.render(default_template, template_data)
+
+        output_path = output_dir.joinpath(output_file)
+        _ = output_path.write_text(content, encoding="utf-8")
+        logger.info(f"HTML page written to: {output_path}")
+
+    except Exception as e:
+        logger.error(f"Failed to render and save HTML to {output_file}: {e}")
+        raise
 
 
 def generate_html(
@@ -115,7 +196,6 @@ def generate_html(
 
     # Prepare template data
     template_data = {
-        "site_url": config.SITE_URL,
         "webcal_url": config.WEBCAL_URL,
         "upcoming_events": upcoming_events,
         "has_upcoming_events": len(upcoming_events) > 0,
@@ -124,27 +204,19 @@ def generate_html(
         "week_notes": group_feed_entries(week_notes)[: config.MAX_SHOWN_WEEK_NOTES],
         "failed_feeds": failed_feeds,
         "has_failed_feeds": len(failed_feeds) != 0,
-        "generated_date": now.astimezone(config.EVENTS_TZ).strftime(
-            "%d %b %Y, %I:%M %p IST"
-        ),
     }
 
-    try:
-        with open("index.html") as index_tpl:
-            html_template = index_tpl.read()
-    except FileNotFoundError:
-        logger.error("Template file index.html not found.")
-        raise
-
+    index_template = read_template("index.html")
     # Render template
     try:
         renderer = pystache.Renderer()
-        html_content = renderer.render(html_template, template_data)
+        # Generate index.html
+        render_and_save_html(
+            renderer.render(index_template, template_data), "index.html", output_dir
+        )
 
-        # Write to file
-        output_path = output_dir.joinpath("index.html")
-        _ = output_path.write_text(html_content, encoding="utf-8")
-        logger.info(f"HTML file written to: {output_path}")
+        # Generate static pages from markdown files
+        render_and_save_html(markdown_to_html(Path("coc.md")), "coc.html", output_dir)
 
     except Exception as e:
         logger.error(f"Failed to generate HTML: {e}")
@@ -181,9 +253,8 @@ def generate_events_feed(events: list[Event], output_dir: Path):
     Creates an Atom feed from a list of Event objects.
 
     Args:
-        events: A list of Event objects to include in the calender.
-        output_path: Path where Atom file should be written.
-
+        events: A list of Event objects to include in the feed.
+        output_dir: Path where Atom file should be written.
     """
     logger.info(f"Generating events feed with {len(events)} events")
     output_path = output_dir.joinpath(config.EVENTS_FEED_FILE)
@@ -214,12 +285,11 @@ def generate_events_feed(events: list[Event], output_dir: Path):
 
 def generate_events_calendar(events: list[Event], output_dir: Path):
     """
-    Creates an Calendar from a list of Event objects.
+    Creates a Calendar from a list of Event objects.
 
     Args:
-        events: A list of Event objects to include in the feed.
-        output_path: Path where Calendar file should be written.
-
+        events: A list of Event objects to include in the calendar.
+        output_dir: Path where Calendar file should be written.
     """
     logger.info(f"Generating events calendar with {len(events)} events")
 
@@ -245,6 +315,14 @@ def generate_events_calendar(events: list[Event], output_dir: Path):
 
 
 def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
+    """
+    Generate the complete website from OPML feeds, events, and static pages.
+
+    Args:
+        opml_path: Path to the OPML file containing feed URLs.
+        output_dir: Path where generated artifacts should be written.
+        use_cache: Whether to use cached feeds.
+    """
     with ThreadPoolExecutor() as executor:
         futures: list[Future[Any]] = []
 

@@ -1,152 +1,106 @@
-<!doctype html>
-<html lang="en">
+<section id="intro">
+  <h2>What is IndieWebClub?</h2>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="language" content="EN">
-  <meta name="robots" content="index,follow">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <p>IndieWebClub is part of a growing <a href="https://indieweb.org/Homebrew_Website_Club">world-wide network of meetups</a> for everyone who wants to take back their web experience from social media silos, and own their online identities & content, or just want support with blogging!</p>
+  <ul>
+    <li>📝 Want to blog more and looking for: ideas, momentum, and a supportive community?</li>
+    <li>📅 Join a gathering of like-minded people and get friendly support with writing, creating, and anything related to using and improving your own website!</li>
+    <li>👩🏽‍💻 You do not need to have any tech background or experience in having your own website. You can even start with a Google Doc or your local notes app!</li>
+  </ul>
 
-  <title>IndieWebClub Bangalore</title>
+  <p>The IndieWebClub Bangalore community organizes in-person meetups at a roughly two-week cadence in the city of Bangalore, India.</p>
+  <p>You can join us on <a href="https://chat.whatsapp.com/HAkQhfGeR8AJ2xKCMBTaIw">WhatsApp</a> or <a href="https://underline.center/c/indiewebclub/10">Discourse</a>.</p>
+</section>
 
-  <meta name="title" content="IndieWebClub Bangalore">
-  <meta name="description" content="Website of the IndieWebClub Bangalore community">
-
-  <link rel="icon" href="{{{site_url}}}favicon.svg">
-
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:url" content="{{{site_url}}}">
-  <meta property="og:site_name" content="IndieWebClub Bangalore">
-  <meta property="og:title" content="IndieWebClub Bangalore">
-  <meta property="og:description" content="Website of the IndieWebClub Bangalore community">
-  <meta property="og:image" content="{{{site_url}}}preview.png" />
-
-  <link rel="canonical" href="{{{site_url}}}">
-  <link rel="alternate" type="application/atom+xml" title="Blogroll" href="{{{site_url}}}blogroll.atom">
-  <link rel="alternate" type="application/atom+xml" title="Events" href="{{{site_url}}}events.atom">
-  <link rel="stylesheet" href="/style.css">
-  <script defer data-domain="blr.indiewebclub.org" src="https://stati.stic.earth/js/script.file-downloads.outbound-links.js"></script>
-</head>
-
-<body>
-  <header>
-    <h1 class="logo">IndieWebClub<br>Bangalore</h1>
-  </header>
-
-  <main>
-    <section id="intro">
-      <h2>What is IndieWebClub?</h2>
-
-      <p>IndieWebClub is part of a growing <a href="https://indieweb.org/Homebrew_Website_Club">world-wide network of meetups</a> for everyone who wants to take back their web experience from social media silos, and own their online identities & content, or just want support with blogging!</p>
-      <ul>
-        <li>📝 Want to blog more and looking for: ideas, momentum, and a supportive community?</li>
-        <li>📅 Join a gathering of like-minded people and get friendly support with writing, creating, and anything related to using and improving your own website!</li>
-        <li>👩🏽‍💻 You do not need to have any tech background or experience in having your own website. You can even start with a Google Doc or your local notes app!</li>
-      </ul>
-
-      <p>The IndieWebClub Bangalore community organizes in-person meetups at a roughly two-week cadence in the city of Bangalore, India.</p>
-      <p>You can join us on <a href="https://chat.whatsapp.com/HAkQhfGeR8AJ2xKCMBTaIw">WhatsApp</a> or <a href="https://underline.center/c/indiewebclub/10">Discourse</a>.</p>
-    </section>
-  
-    <section id="upcoming-events">
-      <h2>{{^has_upcoming_events}}No {{/has_upcoming_events}}Upcoming Events</h2>
-      {{^has_upcoming_events}}<p>We meet on the 1st and 3rd Saturdays of each month. Please check back later or subscribe for updates.</p>{{/has_upcoming_events}}
-      {{#upcoming_events}}
-      <div class="h-event">
-        <div class="event" id="event-{{{id}}}">
-          <h3><a href="{{underline_url}}" target="_blank" class="u-url p-name">{{title}}</a></h3>
-          <ul class="no-marker pointed-hand">
-            <li class="start-time">On: <time class="dt-start" datetime="{{start_at_machine}}">{{start_at_human}}</time></li>
-            <li class="end-time">Till: <time class="dt-end" datetime="{{end_at_machine}}">{{end_at_human}}</time></li>
-            <li class="location">At: <a class="p-location" href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA">Underline Center</a></li>
-            {{#district_url}}
-            <li class="buy-link"><a href="{{district_url}}">BUY TICKETS!</a></li>
-            {{/district_url}}
-            {{^district_url}}
-            <li>Tickets available soon</li>
-            {{/district_url}}
-          </ul>
-        </div>
-        {{#summary}}<section class="description p-description e-content">{{{summary}}}</section><hr>{{/summary}}
-      </div>
-      {{/upcoming_events}}
+<section id="upcoming-events">
+  <h2>{{^has_upcoming_events}}No {{/has_upcoming_events}}Upcoming Events</h2>
+  {{^has_upcoming_events}}<p>We meet on the 1st and 3rd Saturdays of each month. Please check back later or subscribe for updates.</p>{{/has_upcoming_events}}
+  {{#upcoming_events}}
+  <div class="h-event">
+    <div class="event" id="event-{{{id}}}">
+      <h3><a href="{{underline_url}}" target="_blank" class="u-url p-name">{{title}}</a></h3>
       <ul class="no-marker pointed-hand">
-        <li><a href="#previous-events">See previous events.</a></li>
-        <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
-        <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
-        <li><a href="{{site_url}}events.ics">Download as a calendar.</a></li>
+        <li class="start-time">On: <time class="dt-start" datetime="{{start_at_machine}}">{{start_at_human}}</time></li>
+        <li class="end-time">Till: <time class="dt-end" datetime="{{end_at_machine}}">{{end_at_human}}</time></li>
+        <li class="location">At: <a class="p-location" href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA">Underline Center</a></li>
+        {{#district_url}}
+        <li class="buy-link"><a href="{{district_url}}">BUY TICKETS!</a></li>
+        {{/district_url}}
+        {{^district_url}}
+        <li>Tickets available soon</li>
+        {{/district_url}}
       </ul>
-    </section>
+    </div>
+    {{#summary}}<section class="description p-description e-content">{{{summary}}}</section><hr>{{/summary}}
+  </div>
+  {{/upcoming_events}}
+  <ul class="no-marker pointed-hand">
+    <li><a href="#previous-events">See previous events.</a></li>
+    <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
+    <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
+    <li><a href="{{site_url}}events.ics">Download as a calendar.</a></li>
+  </ul>
+</section>
 
-    <section id="week-notes">
-      <h2>Week Notes by Members</h2>
-      {{#week_notes}}
-      <article class="entry">
-        <h3><a href="{{link}}" target="_blank">{{title}}</a></h3>
-        <ul class="meta no-marker">
-          <li class="title">by <a href="{{feed_home_url}}">{{feed_title}}</a></li>
-          <li class="pub-time"><time datetime="{{published_machine}}">{{published_human}}</time></li>
-        </ul>
-      </article>
-      {{/week_notes}}
-    </section>
+<section id="week-notes">
+  <h2>Week Notes by Members</h2>
+  {{#week_notes}}
+  <article class="entry">
+    <h3><a href="{{link}}" target="_blank">{{title}}</a></h3>
+    <ul class="meta no-marker">
+      <li class="title">by <a href="{{feed_home_url}}">{{feed_title}}</a></li>
+      <li class="pub-time"><time datetime="{{published_machine}}">{{published_human}}</time></li>
+    </ul>
+  </article>
+  {{/week_notes}}
+</section>
 
-    <section id="recent-posts">
-      <h2>Recent Posts by Members</h2>
-      <ul class="no-marker pointed-hand">
-        <li><a href="{{site_url}}blogroll.atom">Subscribe as a feed.</a></li>
-        <li><a href="{{site_url}}blogroll.opml">Download as an OPML file.</a></li>
-      </ul>
-      {{#entries}}
-      <article class="entry">
-        <h3><a href="{{link}}" target="_blank">{{title}}</a></h3>
-        <ul class="meta no-marker">
-          <li class="title">by <a href="{{feed_home_url}}">{{feed_title}}</a></li>
-          <li class="pub-time"><time datetime="{{published_machine}}">{{published_human}}</time></li>
-        </ul>
-      </article>
-      {{/entries}}
-    </section>
+<section id="recent-posts">
+  <h2>Recent Posts by Members</h2>
+  <ul class="no-marker pointed-hand">
+    <li><a href="{{site_url}}blogroll.atom">Subscribe as a feed.</a></li>
+    <li><a href="{{site_url}}blogroll.opml">Download as an OPML file.</a></li>
+  </ul>
+  {{#entries}}
+  <article class="entry">
+    <h3><a href="{{link}}" target="_blank">{{title}}</a></h3>
+    <ul class="meta no-marker">
+      <li class="title">by <a href="{{feed_home_url}}">{{feed_title}}</a></li>
+      <li class="pub-time"><time datetime="{{published_machine}}">{{published_human}}</time></li>
+    </ul>
+  </article>
+  {{/entries}}
+</section>
 
-    {{#has_failed_feeds}}
-    <section id="failed-feeds">
-      <h2>Other Member Websites</h2>
-      <ul>
-        {{#failed_feeds}}
-        <li><a href="{{home_url}}" target="_blank">{{title}}</a></li>
-        {{/failed_feeds}}
-      </ul>
-    </section>
-    {{/has_failed_feeds}}
+{{#has_failed_feeds}}
+<section id="failed-feeds">
+  <h2>Other Member Websites</h2>
+  <ul>
+    {{#failed_feeds}}
+    <li><a href="{{home_url}}" target="_blank">{{title}}</a></li>
+    {{/failed_feeds}}
+  </ul>
+</section>
+{{/has_failed_feeds}}
 
-    <section id="previous-events">
-      <h2>Previous Events</h2>
-      <ul class="no-marker pointed-hand">
-        <li><a href="#upcoming-events">See upcoming events.</a></li>
-        <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
-        <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
-        <li><a href="{{site_url}}events.ics">Download as a calendar.</a></li>
-      </ul>
-      {{#previous_events}}
-      <div class="event" id="event-{{{id}}}">
-        <h3><a href="{{underline_url}}" target="_blank">{{title}}</a></h3>
-        <div class="start-time"><time datetime="{{start_at_machine}}">{{start_at_human}}</time></div>
-      </div>
-      {{/previous_events}}
-    </section>
+<section id="previous-events">
+  <h2>Previous Events</h2>
+  <ul class="no-marker pointed-hand">
+    <li><a href="#upcoming-events">See upcoming events.</a></li>
+    <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
+    <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
+    <li><a href="{{site_url}}events.ics">Download as a calendar.</a></li>
+  </ul>
+  {{#previous_events}}
+  <div class="event" id="event-{{{id}}}">
+    <h3><a href="{{underline_url}}" target="_blank">{{title}}</a></h3>
+    <div class="start-time"><time datetime="{{start_at_machine}}">{{start_at_human}}</time></div>
+  </div>
+  {{/previous_events}}
+</section>
 
-    <section>
-      <h2>Code of Conduct</h2>
-      <p>We have a <a href="https://underline.center/faq">Code of Conduct</a> that we expect our club members to follow.<p>
-      <p>The contents of this website are lightly moderated by <a href="https://ankursethi.com/">Ankur</a> and <a href="https://tanvibhakta.in/">Tanvi</a>. Please contact us if you find any objectionable content on this website.</p>
-  </main>
-
-  <footer>
-    <div><a href="https://indieweb.org/"><img src="{{{site_url}}}indiewebcamp-button.svg" style="image-rendering:pixelated;"></a></div>
-    <div>Last generated at: <time datetime="{{generated_date}}">{{generated_date}}</time></div>
-    <div><a href="https://github.com/IndieWebClubBlr/website/">Source</a></div>
-  </footer>
-</body>
-
-</html>
+<section>
+  <h2>Code of Conduct</h2>
+  <p>We have a <a href="/coc.html">Code of Conduct</a> that we expect our club members to follow.</p>
+  <p>The contents of this website are lightly moderated by <a href="https://ankursethi.com/">Ankur</a> and <a href="https://tanvibhakta.in/">Tanvi</a>. Please contact us if you find any objectionable content on this website.</p>
+</section>

@@ -11,6 +11,7 @@ let
       pystache
       python-dateutil
       beautifulsoup4
+      markdown
     ];
   pythonEnv = pkgs.python3.withPackages pythonPackages;
   run = pkgs.writeShellScriptBin "run" ''

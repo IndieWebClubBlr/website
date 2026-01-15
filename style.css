@@ -140,6 +140,11 @@ header {
   }
 }
 
+.logo a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .entry,
 .event {
   background-color: #f0f0f010;
