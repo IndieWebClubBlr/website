@@ -24,6 +24,10 @@ h3 {
   margin: 0;
 }
 
+h1 {
+  font-size: 3rem;
+}
+
 h2 {
   margin-bottom: 0.4em;
   font-size: 2rem;
