@@ -55,7 +55,13 @@ EVENTS_CAL_FILE = "events.ics"
 CACHE_DIR = Path(".cache")
 
 # List of static assets to be copied to the output directory.
-ASSETS = ["style.css", "indiewebcamp-button.svg", "preview.png", "favicon.svg", "CNAME"]
+ASSETS = [
+    "assets/style.css",
+    "assets/indiewebcamp-button.svg",
+    "assets/preview.png",
+    "assets/favicon.svg",
+    "CNAME",
+]
 
 # Log format for the application.
 LOG_FORMAT = "%(asctime)s [%(levelname)s] (%(threadName)s) %(message)s"

@@ -11,7 +11,7 @@ import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 
-import config
+from src import config
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)

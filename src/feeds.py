@@ -6,7 +6,7 @@ from feedgen.feed import FeedGenerator
 from pathlib import Path
 from typing import final
 from urllib.parse import urlparse, urljoin, quote
-import config
+from src import config
 import feedparser
 import hashlib
 import logging

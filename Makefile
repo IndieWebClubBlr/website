@@ -54,16 +54,16 @@ install:
 build: setup blogroll.opml
 	@echo "Building website..."
 	mkdir -p _site/
-	$(VENV_PYTHON) generator.py blogroll.opml _site $(if $(VERBOSE),--verbose) $(if $(CACHE),--cache)
+	$(VENV_PYTHON) src/generator.py blogroll.opml _site $(if $(VERBOSE),--verbose) $(if $(CACHE),--cache)
 	@echo "Generated website"
 
 # Copy the assets
 assets:
 	@echo "Copying assets..."
 	mkdir -p _site/
-	cp *.css _site/
-	cp *.svg _site/
-	cp *.png _site/
+	cp assets/*.css _site/
+	cp assets/*.svg _site/
+	cp assets/*.png _site/
 	@echo "Copied assets"
 
 # Clean up generated files
@@ -72,6 +72,7 @@ clean:
 	rm -rf _site || true
 	rm -f *.pyc
 	rm -rf __pycache__ || true
+	rm -rf src/__pycache__ || true
 	@echo "Cleanup complete"
 
 # Clean up virtual environment

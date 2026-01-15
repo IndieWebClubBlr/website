@@ -31,9 +31,21 @@ from feedgen.feed import FeedGenerator
 from icalendar import Calendar
 from icalendar import Event as CalEvent
 
-import config
-from events import Event, fetch_events
-from feeds import FailedFeed, FeedEntry, fetch_all_feeds, generate_feed, parse_opml_file
+import sys
+from pathlib import Path
+
+# Add parent directory to path so we can import src modules
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from src import config
+from src.events import Event, fetch_events
+from src.feeds import (
+    FailedFeed,
+    FeedEntry,
+    fetch_all_feeds,
+    generate_feed,
+    parse_opml_file,
+)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -85,7 +97,8 @@ def read_template(file_name: str) -> str:
         Template file contents as string.
     """
     try:
-        with open(file_name) as index_tpl:
+        template_path = Path("templates") / file_name
+        with open(template_path) as index_tpl:
             return index_tpl.read()
     except FileNotFoundError:
         logger.error(f"Template file {file_name} not found.")
@@ -335,12 +348,14 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
         )
 
         # Copy assets
-        futures.extend(
-            (
-                executor.submit(shutil.copyfile, asset, output_dir.joinpath(asset))
-                for asset in config.ASSETS
-            )
-        )
+        def copy_asset(asset_path: str) -> None:
+            src = Path(asset_path)
+            dst = output_dir.joinpath(src.name)
+            if src.exists():
+                shutil.copyfile(src, dst)
+                logger.debug(f"Copied asset: {src} -> {dst}")
+
+        futures.extend((executor.submit(copy_asset, asset) for asset in config.ASSETS))
 
         def generate_events_files(events_future: Future[list[Event]]):
             events = events_future.result()

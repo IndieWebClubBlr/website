@@ -87,21 +87,27 @@ A brief overview of the project's file structure:
 /
 ├── .github/           # GitHub Actions workflows for CI/CD.
 ├── _site/             # Output directory for the generated website.
+├── assets/            # Static assets (CSS, SVG icons, PNG images).
+│   ├── favicon.svg
+│   ├── indiewebcamp-button.svg
+│   ├── preview.png
+│   └── style.css
 ├── pages/             # Markdown files for static pages (automatically converted to HTML).
+│   └── coc.md
+├── src/               # Python source code.
+│   ├── __init__.py
+│   ├── config.py      # Configuration constants for the project.
+│   ├── events.py      # Logic for fetching events from the Discourse API.
+│   ├── feeds.py       # Logic for fetching and parsing blogroll feeds.
+│   └── generator.py   # Main script to generate the static site.
+├── templates/         # HTML templates.
+│   ├── default.html   # Template for wrapping generated content with site layout.
+│   └── index.html     # The pystache template for the homepage.
 ├── CNAME              # Custom domain configuration for GitHub Pages.
 ├── LICENSE            # The license for the project.
 ├── README.md          # This file.
 ├── Makefile           # Contains all the commands for building, serving, and cleaning the project.
-├── config.py          # All configuration constants for the project.
-├── default.html       # Template for wrapping generated content with site layout.
-├── events.py          # Logic for fetching events from the Discourse API.
-├── feeds.py           # Logic for fetching and parsing blogroll feeds.
-├── generator.py       # Main script to generate the static site.
-├── index.html         # The pystache template for the homepage.
-├── style.css          # Main stylesheet.
 ├── blogroll.opml      # The list of feeds for the blogroll.
-├── favicon.svg        # The website favicon image.
-├── preview.png        # The website OpenGraph preview image.
 ├── pyrightconfig.json # Configuration file for the Pyright type checker.
 ├── requirements.txt   # Python dependencies for the project.
 ├── shell.nix          # Nix shell configuration for reproducible development environments.
