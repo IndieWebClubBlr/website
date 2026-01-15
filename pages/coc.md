@@ -1,3 +1,5 @@
+# Code of Conduct
+
 **IndieWebClub Bangalore** (IWCB) is committed to providing a friendly, safe and welcoming environment for all, regardless of level of expertise, gender, gender identity and expression, sexual orientation, disability, personal appearance, body size, race, ethnicity, age, religion, nationality, or other similar characteristic.
 
 This code of conduct outlines our expectations for all those who participate in our community, as well as the consequences for unacceptable behavior.
@@ -70,4 +72,4 @@ The enforcement policies listed above apply to all IWCB channels, both online an
 *Adapted from the [Underline Center's Code of Conduct](https://underline.center/faq).*
 *This Code of Conduct is distributed under a [Creative Commons Attribution-ShareAlike license](http://creativecommons.org/licenses/by-sa/3.0/).*
 
-You can suggest edits to [this document on GitHub](https://github.com/IndieWebClubBlr/website/blob/main/coc.md).
+You can suggest edits to [this document on GitHub](https://github.com/IndieWebClubBlr/website/blob/main/pages/coc.md).

@@ -216,7 +216,10 @@ def generate_html(
         )
 
         # Generate static pages from markdown files
-        render_and_save_html(markdown_to_html(Path("coc.md")), "coc.html", output_dir)
+        markdown_files = sorted(Path("./pages/").glob("*.md"))
+        for md_file in markdown_files:
+            html_filename = md_file.stem + ".html"
+            render_and_save_html(markdown_to_html(md_file), html_filename, output_dir)
 
     except Exception as e:
         logger.error(f"Failed to generate HTML: {e}")
