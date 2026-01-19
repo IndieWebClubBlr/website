@@ -24,8 +24,7 @@
     <outline type="rss" text="Haripriya" xmlUrl="https://api.haripriya.org/blog-feed.xml" />
     <outline type="rss" text="Harsh Shandilya" xmlUrl="https://msfjarvis.dev/index.xml" />
     <outline type="rss" text="Himanshi Kalra" xmlUrl="https://himanshikalra.com/feed/" />
-    <outline type="rss" text="Itihas" xmlUrl="https://itihasic.substack.com/feed" />
-    <outline type="rss" text="Itihas" xmlUrl="https://itihas.review/reviewed-feed.xml" />
+    <outline type="rss" text="Itihas" xmlUrl="https://itihas.review/featured.xml" />
     <outline type="rss" text="Jatan" xmlUrl="https://journal.jatan.space/rss/" />
     <outline type="rss" text="Jatan’s Space" xmlUrl="https://jatan.space/rss" />
     <outline type="rss" text="Karthik Balakrishnan" xmlUrl="https://karthikbalakrishnan.com/feed.xml" />
