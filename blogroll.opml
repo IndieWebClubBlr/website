@@ -4,6 +4,7 @@
     <title>Indieweb Club Bangalore Blogroll</title>
   </head>
   <body>
+    <!-- Keep sorted alphabetically, case-insensitive -->
     <outline type="rss" text="9porcupine" xmlUrl="https://9porcupine.mataroa.blog/rss/" />
     <outline type="rss" text="A Believable Fiction" xmlUrl="https://a-believable-fiction.pages.dev/feed.xml" />
     <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/notes/feed.atom" />
@@ -13,18 +14,26 @@
     <outline type="rss" text="Abhiram" xmlUrl="https://vaxitas.xyz/feed.atom" />
     <outline type="rss" text="Adithya Nair" xmlUrl="https://adithyanair.com/rss.xml" />
     <outline type="rss" text="Aditya Athalye" xmlUrl="https://www.evalapply.org/index.xml" />
+    <outline type="rss" text="adityan" xmlUrl="https://adityan.bearblog.dev/feed/" />
     <outline type="rss" text="Akash Bhat" xmlUrl="https://akashbhat.com/feed/" />
     <outline type="rss" text="Akhil Unnikrishnan" xmlUrl="https://akhilunnikrishnan.com/feed/" />
+    <outline type="rss" text="akils" xmlUrl="https://akils.mataroa.blog/rss/" />
+    <outline type="rss" text="Anik" xmlUrl="https://blog.anikthink.com/rss.xml" />
     <outline type="rss" text="Ankit Gadiya" xmlUrl="https://ankit.earth/atom.xml" />
     <outline type="rss" text="Ankur Sethi" xmlUrl="https://ankursethi.com/feeds/index.xml" />
+    <outline type="rss" text="asthabugs" xmlUrl="https://asthabugs.mataroa.blog/rss/" />
     <outline type="rss" text="Atharva Raykar" xmlUrl="https://atharvaraykar.com/rss/" />
     <outline type="rss" text="Azan's notes" xmlUrl="https://azan-n.com/notes/rss.xml" />
     <outline type="rss" text="Azan's playlists" xmlUrl="https://azan-n.com/playlists/rss.xml" />
+    <outline type="rss" text="forwhatitsworth" xmlUrl="https://forwhatitsworth.netlify.app/index.xml" />
     <outline type="rss" text="George Supreeth" xmlUrl="https://georgesupreeth.com/web/blog/index.xml" />
+    <outline type="rss" text="halfthere" xmlUrl="https://halfthere.mataroa.blog/rss/" />
     <outline type="rss" text="Haripriya" xmlUrl="https://api.haripriya.org/blog-feed.xml" />
     <outline type="rss" text="Harsh Shandilya" xmlUrl="https://msfjarvis.dev/index.xml" />
+    <outline type="rss" text="heftymouse" xmlUrl="https://heftymouse.me/blog/rss.xml" />
     <outline type="rss" text="Himanshi Kalra" xmlUrl="https://himanshikalra.com/feed/" />
     <outline type="rss" text="Itihas" xmlUrl="https://itihas.review/featured.xml" />
+    <outline type="rss" text="itrytobefunny" xmlUrl="https://itrytobefunny.mataroa.blog/rss/" />
     <outline type="rss" text="Jatan" xmlUrl="https://journal.jatan.space/rss/" />
     <outline type="rss" text="Jatan’s Space" xmlUrl="https://jatan.space/rss" />
     <outline type="rss" text="Karthik Balakrishnan" xmlUrl="https://karthikbalakrishnan.com/feed.xml" />
@@ -32,41 +41,34 @@
     <outline type="rss" text="Kartik Kwatra" xmlUrl="https://kartikkwatra.com/rss.xml" />
     <outline type="rss" text="Kaustubh M." xmlUrl="https://kaustubh.page/rss.xml" />
     <outline type="rss" text="Kavya Rajeev" xmlUrl="https://hot-narwhal.pikapod.net/rss/" />
-    <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/index.xml" />
+    <outline type="rss" text="manuecrire" xmlUrl="https://manuecrire.mataroa.blog/rss/" />
+    <outline type="rss" text="mariammwrites" xmlUrl="https://mariammwrites.mataroa.blog/rss/" />
+    <outline type="rss" text="naazeam" xmlUrl="https://naazeam.mataroa.blog/rss/" />
     <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/books/index.xml" />
+    <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/index.xml" />
+    <outline type="rss" text="nim" xmlUrl="https://nim.mataroa.blog/rss/" />
     <outline type="rss" text="Palak Malik" xmlUrl="https://purposewithpals.wordpress.com/feed/" />
+    <outline type="rss" text="pcr1339" xmlUrl="https://pcr1339.mataroa.blog/rss/" />
     <outline type="rss" text="Prabhanshu" xmlUrl="https://prabhanshu.mataroa.blog/rss/" />
     <outline type="rss" text="Prasanna Bhogale" xmlUrl="https://theclarkeorbit.github.io/feeds/blog.atom.xml" />
     <outline type="rss" text="Rasagy Sharma" xmlUrl="https://rasagy.in/index.xml" />
     <outline type="rss" text="Sagrika Padha" xmlUrl="https://sagrika27.wordpress.com/feed/" />
-    <outline type="rss" text="Shubham" xmlUrl="https://shubham.mataroa.blog/rss/" />
+    <outline type="rss" text="sayakel" xmlUrl="https://sayakel.mataroa.blog/rss/" />
+    <outline type="rss" text="shraddha" xmlUrl="https://shraddha.mataroa.blog/rss/" />
     <outline type="rss" text="Shubham" xmlUrl="https://flavorfulsuffering.xyz/rss.xml" />
+    <outline type="rss" text="Shubham" xmlUrl="https://shubham.mataroa.blog/rss/" />
+    <outline type="rss" text="siddhant14" xmlUrl="https://siddhant14.mataroa.blog/rss/" />
+    <outline type="rss" text="slatechalkings" xmlUrl="https://slatechalkings.mataroa.blog/rss/" />
     <outline type="rss" text="Suhas Kashyap" xmlUrl="https://www.kashyapsuhas.com/blog/feed.xml" />
     <outline type="rss" text="Suneela &amp; Yeswanth" xmlUrl="https://holistictravellers.com/rss.xml" />
     <outline type="rss" text="Tanvi Bhakta" xmlUrl="https://tanvibhakta.in/feed.xml" />
-    <outline type="rss" text="Uvaise Nazir" xmlUrl="https://uvaisenazir.substack.com/feed" />
-    <outline type="rss" text="Vishal R" xmlUrl="https://vishalr.dev/rss.xml" />
-    <outline type="rss" text="adityan" xmlUrl="https://adityan.bearblog.dev/feed/" />
-    <outline type="rss" text="akils" xmlUrl="https://akils.mataroa.blog/rss/" />
-    <outline type="rss" text="Anik" xmlUrl="https://blog.anikthink.com/rss.xml" />
-    <outline type="rss" text="asthabugs" xmlUrl="https://asthabugs.mataroa.blog/rss/" />
-    <outline type="rss" text="forwhatitsworth" xmlUrl="https://forwhatitsworth.netlify.app/index.xml" />
-    <outline type="rss" text="halfthere" xmlUrl="https://halfthere.mataroa.blog/rss/" />
-    <outline type="rss" text="heftymouse" xmlUrl="https://heftymouse.me/blog/rss.xml" />
-    <outline type="rss" text="itrytobefunny" xmlUrl="https://itrytobefunny.mataroa.blog/rss/" />
-    <outline type="rss" text="manuecrire" xmlUrl="https://manuecrire.mataroa.blog/rss/" />
-    <outline type="rss" text="mariammwrites" xmlUrl="https://mariammwrites.mataroa.blog/rss/" />
-    <outline type="rss" text="naazeam" xmlUrl="https://naazeam.mataroa.blog/rss/" />
-    <outline type="rss" text="nim" xmlUrl="https://nim.mataroa.blog/rss/" />
-    <outline type="rss" text="pcr1339" xmlUrl="https://pcr1339.mataroa.blog/rss/" />
-    <outline type="rss" text="sayakel" xmlUrl="https://sayakel.mataroa.blog/rss/" />
-    <outline type="rss" text="shraddha" xmlUrl="https://shraddha.mataroa.blog/rss/" />
-    <outline type="rss" text="siddhant14" xmlUrl="https://siddhant14.mataroa.blog/rss/" />
-    <outline type="rss" text="slatechalkings" xmlUrl="https://slatechalkings.mataroa.blog/rss/" />
     <outline type="rss" text="that-hyperactive-sardar" xmlUrl="https://that-hyperactive-sardar.mataroa.blog/rss/" />
     <outline type="rss" text="Thejesh GN" xmlUrl="https://feeds.thejeshgn.com/thejeshgn" />
     <outline type="rss" text="twitu" xmlUrl="https://xn--ri8hp8b.ws/rss/" />
+    <outline type="rss" text="Uvaise Nazir" xmlUrl="https://uvaisenazir.substack.com/feed" />
+    <outline type="rss" text="Vishal R" xmlUrl="https://vishalr.dev/rss.xml" />
     <outline type="rss" text="wrld" xmlUrl="https://wrld.mataroa.blog/rss/" />
     <outline type="rss" text="xypnox" xmlUrl="https://www.xypnox.com/rss.xml" />
+    <!-- Keep sorted alphabetically, case-insensitive -->
   </body>
 </opml>
