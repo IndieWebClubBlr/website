@@ -24,8 +24,7 @@
     <outline type="rss" text="Ankur Sethi" xmlUrl="https://ankursethi.com/feeds/index.xml" />
     <outline type="rss" text="asthabugs" xmlUrl="https://asthabugs.mataroa.blog/rss/" />
     <outline type="rss" text="Atharva Raykar" xmlUrl="https://atharvaraykar.com/rss/" />
-    <outline type="rss" text="Azan's notes" xmlUrl="https://azan-n.com/notes/rss.xml" />
-    <outline type="rss" text="Azan's playlists" xmlUrl="https://azan-n.com/playlists/rss.xml" />
+    <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/rss.xml" />
     <outline type="rss" text="forwhatitsworth" xmlUrl="https://forwhatitsworth.netlify.app/index.xml" />
     <outline type="rss" text="George Supreeth" xmlUrl="https://georgesupreeth.com/web/blog/index.xml" />
     <outline type="rss" text="halfthere" xmlUrl="https://halfthere.mataroa.blog/rss/" />
