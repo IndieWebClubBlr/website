@@ -1,22 +1,36 @@
 from __future__ import annotations
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timedelta, timezone
-from dateutil import parser as date_parser
-from feedgen.feed import FeedGenerator
-from pathlib import Path
-from typing import final
-from urllib.parse import urlparse, urljoin, quote
-from src import config
-import feedparser
+
 import hashlib
 import logging
-import requests
 import threading
 import xml.etree.ElementTree as ET
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import final
+from urllib.parse import quote, urljoin, urlparse
+
+import feedparser
+import requests
+from dateutil import parser as date_parser
+from feedgen.feed import FeedGenerator
+
+from src import config
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
+
+
+@dataclass
+class FeedInfo:
+    """Represents feed information from OPML."""
+
+    title: str
+    xml_url: str
+    html_url: str
+
 
 sessions: dict[int, requests.Session] = {}
 
@@ -69,27 +83,15 @@ class FeedEntry:
         return self.published.isoformat()
 
 
-@final
-class FailedFeed:
-    """Represents a feed that failed to be fetched."""
-
-    def __init__(self, title: str, url: str):
-        self.title = title
-        self.url = url
-
-        parsed_url = urlparse(url)
-        self.home_url = f"{parsed_url.scheme}://{parsed_url.netloc}/"
-
-
-def parse_opml_file(opml_path: Path) -> list[tuple[str, str]]:
+def parse_opml_file(opml_path: Path) -> list[FeedInfo]:
     """
-    Parse OPML file and extract feed URLs with their titles.
+    Parse OPML file and extract feed URLs with their titles and home page URLs.
 
     Args:
         opml_path: Path to the OPML file.
 
     Returns:
-        List of tuples containing (feed_title, feed_url).
+        List of FeedInfo objects.
 
     Raises:
         FileNotFoundError: If OPML file doesn't exist.
@@ -101,18 +103,25 @@ def parse_opml_file(opml_path: Path) -> list[tuple[str, str]]:
         tree = ET.parse(opml_path)
         root = tree.getroot()
 
-        feeds: list[tuple[str, str]] = []
+        feeds: list[FeedInfo] = []
 
         # Look for outline elements with xmlUrl attribute
         for outline in root.iter("outline"):
             xml_url = outline.get("xmlUrl")
             if xml_url:
                 title = outline.get("title") or outline.get("text")
+                html_url = outline.get("htmlUrl")
                 if title is None:
                     logger.error(f"OPML feed {xml_url} does not have title or text")
                     raise
-                feeds.append((title, xml_url))
-                logger.debug(f"Found feed: {title} -> {xml_url}")
+                if html_url is None:
+                    logger.warning(
+                        f"OPML feed {title} does not have htmlUrl, using feed domain"
+                    )
+                    parsed_url = urlparse(xml_url)
+                    html_url = f"{parsed_url.scheme}://{parsed_url.netloc}/"
+                feeds.append(FeedInfo(title=title, xml_url=xml_url, html_url=html_url))
+                logger.debug(f"Found feed: {title} -> {xml_url} -> {html_url}")
 
         logger.info(f"Found {len(feeds)} feeds in OPML file")
         return feeds
@@ -126,10 +135,8 @@ def parse_opml_file(opml_path: Path) -> list[tuple[str, str]]:
 
 
 def generate_feed(
-    feed_url: str,
-    feed_title: str,
+    feed_info: FeedInfo,
     author_name: str | None,
-    feed_home_url: str,
     feed_subtitle: str | None,
     entries: list[FeedEntry],
     output_path: Path,
@@ -138,17 +145,20 @@ def generate_feed(
     Creates an Atom feed from a list of FeedEntry objects.
 
     Args:
+        feed_info: FeedInfo object containing feed title, URL, and home URL.
+        author_name: Author name (optional).
+        feed_subtitle: Feed subtitle (optional).
         entries: A list of FeedEntry objects to include in the feed.
         output_path: Path where Atom file should be written.
     """
     fg = FeedGenerator()
 
-    fg.id(feed_url)
-    fg.title(feed_title)
+    fg.id(feed_info.xml_url)
+    fg.title(feed_info.title)
     if author_name is not None:
         fg.author(name=author_name)
-    fg.link(href=feed_url, rel="self")
-    fg.link(href=feed_home_url, rel="alternate")
+    fg.link(href=feed_info.xml_url, rel="self")
+    fg.link(href=feed_info.html_url, rel="alternate")
     if feed_subtitle is not None:
         fg.subtitle(feed_subtitle)
 
@@ -375,20 +385,20 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> list[FeedEn
         return []
 
 
-def process_single_feed(
-    feed_info: tuple[str, str], use_cache: bool
-) -> list[FeedEntry] | None:
+def process_single_feed(feed_info: FeedInfo, use_cache: bool) -> list[FeedEntry] | None:
     """
     Process a single feed: fetch and parse it.
 
     Args:
-        feed_info: Tuple of (feed_title, feed_url).
+        feed_info: FeedInfo object containing feed metadata.
         use_cache: Whether to use cached content.
 
     Returns:
         List of FeedEntry objects, or None if processing fails.
     """
-    feed_title, feed_url = feed_info
+    feed_title = feed_info.title
+    feed_url = feed_info.xml_url
+    home_url = feed_info.html_url
 
     cache_key = hashlib.sha256(feed_url.encode()).hexdigest()
     cache_file = config.CACHE_DIR / cache_key
@@ -408,10 +418,8 @@ def process_single_feed(
     if use_cache and len(entries) > 0:
         # Save content to cache
         generate_feed(
-            feed_url=feed_url,
-            feed_title=entries[0].feed_title,
+            feed_info=feed_info,
             author_name=entries[0].feed_title,
-            feed_home_url=entries[0].feed_home_url,
             feed_subtitle=None,
             entries=entries,
             output_path=cache_file,
@@ -423,13 +431,13 @@ def process_single_feed(
 
 
 def fetch_all_feeds(
-    feeds: list[tuple[str, str]], use_cache: bool
-) -> tuple[list[FeedEntry], list[FailedFeed]]:
+    feeds: list[FeedInfo], use_cache: bool
+) -> tuple[list[FeedEntry], list[FeedInfo]]:
     """
     Fetch and parse all feeds concurrently.
 
     Args:
-        feeds: List of (feed_title, feed_url) tuples.
+        feeds: List of FeedInfo objects.
         use_cache: Whether to use cached content.
 
     Returns:
@@ -443,7 +451,7 @@ def fetch_all_feeds(
     logger.info(f"Processing {len(feeds)} feeds with {config.MAX_WORKERS} workers")
 
     all_entries: list[FeedEntry] = []
-    failed_feeds: list[FailedFeed] = []
+    failed_feeds: list[FeedInfo] = []
 
     with ThreadPoolExecutor(max_workers=config.MAX_WORKERS) as executor:
         # Submit all feed processing tasks
@@ -454,7 +462,7 @@ def fetch_all_feeds(
 
         # Collect results as they complete
         for future in as_completed(future_to_feed):
-            feed_title, feed_url = future_to_feed[future]
+            feed_info = future_to_feed[future]
 
             try:
                 entries = future.result()
@@ -462,12 +470,12 @@ def fetch_all_feeds(
                     all_entries.extend(entries)
                     # Track feeds with no entries after filtering
                     if len(entries) == 0:
-                        failed_feeds.append(FailedFeed(title=feed_title, url=feed_url))
+                        failed_feeds.append(feed_info)
                 else:
-                    failed_feeds.append(FailedFeed(title=feed_title, url=feed_url))
+                    failed_feeds.append(feed_info)
             except Exception as e:
-                logger.error(f"Failed to process {feed_title}: {e}")
-                failed_feeds.append(FailedFeed(title=feed_title, url=feed_url))
+                logger.error(f"Failed to process {feed_info.title}: {e}")
+                failed_feeds.append(feed_info)
 
     close_sessions()
     return all_entries, failed_feeds

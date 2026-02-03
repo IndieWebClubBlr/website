@@ -31,17 +31,14 @@ from feedgen.feed import FeedGenerator
 from icalendar import Calendar
 from icalendar import Event as CalEvent
 
-import sys
-from pathlib import Path
-
 # Add parent directory to path so we can import src modules
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src import config
 from src.events import Event, fetch_events
 from src.feeds import (
-    FailedFeed,
     FeedEntry,
+    FeedInfo,
     fetch_all_feeds,
     generate_feed,
     parse_opml_file,
@@ -157,7 +154,7 @@ def render_and_save_html(html_content: str, output_file: str, output_dir: Path):
 def generate_html(
     entries: list[FeedEntry],
     events: list[Event],
-    failed_feeds: list[FailedFeed],
+    failed_feeds: list[FeedInfo],
     output_dir: Path,
 ):
     """
@@ -166,7 +163,7 @@ def generate_html(
     Args:
         entries: List of FeedEntry objects to include.
         events: List of Event objects to include.
-        failed_feeds: List of FailedFeed objects to include.
+        failed_feeds: List of FeedInfo objects for failed feeds.
         output_dir: Path where HTML file should be written.
     """
     logger.info(
@@ -251,11 +248,15 @@ def generate_blogroll_feed(entries: list[FeedEntry], output_dir: Path):
     output_path = output_dir.joinpath(config.BLOGROLL_FEED_FILE)
     feed_url = config.SITE_URL + output_path.name
 
+    feed_info = FeedInfo(
+        title="IndieWebClub Bangalore Blogroll",
+        xml_url=feed_url,
+        html_url=config.SITE_URL,
+    )
+
     generate_feed(
-        feed_url=feed_url,
-        feed_title="IndieWebClub Bangalore Blogroll",
+        feed_info=feed_info,
         author_name="IndieWebClub Bangalore",
-        feed_home_url=config.SITE_URL,
         feed_subtitle="Recent posts by IndieWebClub Bangalore folks.",
         entries=entries,
         output_path=output_path,
