@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
+from enum import Enum
 from pathlib import Path
 from typing import final
 from urllib.parse import quote, urljoin, urlparse
@@ -30,6 +31,22 @@ class FeedInfo:
     title: str
     xml_url: str
     html_url: str
+
+
+class FailureReason(Enum):
+    """Enum for feed failure reasons."""
+
+    ERROR = "error"  # Network/parsing errors
+    NO_ENTRIES = "no_entries"  # Feed has no entries
+    ALL_FILTERED = "all_filtered"  # Entries exist but all filtered out
+
+
+@dataclass
+class FailedFeedInfo:
+    """Represents a feed that failed with reason."""
+
+    feed_info: FeedInfo
+    reason: FailureReason
 
 
 sessions: dict[int, requests.Session] = {}
@@ -288,7 +305,9 @@ def parse_feed_date(date_string: str) -> datetime | None:
         return None
 
 
-def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> list[FeedEntry]:
+def parse_feed(
+    feed_title: str, feed_url: str, feed_content: str
+) -> tuple[list[FeedEntry], bool | None]:
     """
     Parse feed content and extract recent entries.
 
@@ -297,7 +316,7 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> list[FeedEn
         feed_content: Raw feed content.
 
     Returns:
-        List of FeedEntry objects.
+        List of FeedEntry objects, and if the feed had any entries originally.
     """
     try:
         logger.debug(f"Parsing feed: {feed_title}")
@@ -316,7 +335,9 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> list[FeedEn
 
         entries: list[FeedEntry] = []
 
+        has_entries = False
         for entry in parsed_feed.entries:
+            has_entries = True
             # Extract and normalize entry data
             title = getattr(entry, "title", None)
             link = getattr(entry, "link", None)
@@ -378,14 +399,16 @@ def parse_feed(feed_title: str, feed_url: str, feed_content: str) -> list[FeedEn
         entries = entries[: config.MAX_FEED_ENTRIES]
 
         logger.debug(f"Extracted {len(entries)} recent entries from {feed_title}")
-        return entries
+        return entries, has_entries
 
     except Exception as e:
         logger.warning(f"Failed to parse feed {feed_title}: {e}")
-        return []
+        return [], None
 
 
-def process_single_feed(feed_info: FeedInfo, use_cache: bool) -> list[FeedEntry] | None:
+def process_single_feed(
+    feed_info: FeedInfo, use_cache: bool
+) -> tuple[list[FeedEntry], FailureReason | None]:
     """
     Process a single feed: fetch and parse it.
 
@@ -394,7 +417,7 @@ def process_single_feed(feed_info: FeedInfo, use_cache: bool) -> list[FeedEntry]
         use_cache: Whether to use cached content.
 
     Returns:
-        List of FeedEntry objects, or None if processing fails.
+        Tuple of (entries list, failure_reason). failure_reason is None if successful.
     """
     feed_title = feed_info.title
     feed_url = feed_info.xml_url
@@ -410,12 +433,24 @@ def process_single_feed(feed_info: FeedInfo, use_cache: bool) -> list[FeedEntry]
         # Fetch feed content
         content = fetch_feed_content(feed_url)
         if not content:
-            return None
+            return [], FailureReason.ERROR
 
     # Parse feed content
-    entries = parse_feed(feed_title, feed_url, content)
+    (entries, has_entries) = parse_feed(feed_title, feed_url, content)
 
-    if use_cache and len(entries) > 0:
+    if len(entries) == 0:
+        logger.info(f"Processed {feed_title}: 0 entries")
+        if has_entries is None:
+            return [], FailureReason.ERROR
+        elif has_entries:
+            return [], FailureReason.ALL_FILTERED
+        else:
+            return [], FailureReason.NO_ENTRIES
+
+    for entry in entries:
+        entry.feed_home_url = home_url
+
+    if use_cache:
         # Save content to cache
         generate_feed(
             feed_info=feed_info,
@@ -427,12 +462,12 @@ def process_single_feed(feed_info: FeedInfo, use_cache: bool) -> list[FeedEntry]
         logger.debug(f"Cached content for: {feed_url}")
 
     logger.info(f"Processed {feed_title}: {len(entries)} entries")
-    return entries
+    return entries, None
 
 
 def fetch_all_feeds(
     feeds: list[FeedInfo], use_cache: bool
-) -> tuple[list[FeedEntry], list[FeedInfo]]:
+) -> tuple[list[FeedEntry], list[FailedFeedInfo]]:
     """
     Fetch and parse all feeds concurrently.
 
@@ -451,7 +486,7 @@ def fetch_all_feeds(
     logger.info(f"Processing {len(feeds)} feeds with {config.MAX_WORKERS} workers")
 
     all_entries: list[FeedEntry] = []
-    failed_feeds: list[FeedInfo] = []
+    failed_feeds: list[FailedFeedInfo] = []
 
     with ThreadPoolExecutor(max_workers=config.MAX_WORKERS) as executor:
         # Submit all feed processing tasks
@@ -465,17 +500,19 @@ def fetch_all_feeds(
             feed_info = future_to_feed[future]
 
             try:
-                entries = future.result()
-                if entries is not None:
-                    all_entries.extend(entries)
-                    # Track feeds with no entries after filtering
-                    if len(entries) == 0:
-                        failed_feeds.append(feed_info)
+                entries, failure_reason = future.result()
+                if failure_reason is not None:
+                    failed_feeds.append(
+                        FailedFeedInfo(feed_info=feed_info, reason=failure_reason)
+                    )
                 else:
-                    failed_feeds.append(feed_info)
+                    all_entries.extend(entries)
+
             except Exception as e:
                 logger.error(f"Failed to process {feed_info.title}: {e}")
-                failed_feeds.append(feed_info)
+                failed_feeds.append(
+                    FailedFeedInfo(feed_info=feed_info, reason=FailureReason.ERROR)
+                )
 
     close_sessions()
     return all_entries, failed_feeds

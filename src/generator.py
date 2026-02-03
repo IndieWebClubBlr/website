@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import random
 import shutil
 import sys
 from collections import defaultdict
@@ -37,6 +38,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src import config
 from src.events import Event, fetch_events
 from src.feeds import (
+    FailedFeedInfo,
+    FailureReason,
     FeedEntry,
     FeedInfo,
     fetch_all_feeds,
@@ -120,6 +123,13 @@ def markdown_to_html(markdown_file: Path) -> str:
         raise
 
 
+def save_html(content: str, output_file: str, output_dir: Path):
+    output_path = output_dir.joinpath(output_file)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    _ = output_path.write_text(content, encoding="utf-8")
+    logger.info(f"HTML page written to: {output_path}")
+
+
 def render_and_save_html(html_content: str, output_file: str, output_dir: Path):
     """
     Render HTML content with default template and save to file.
@@ -141,10 +151,7 @@ def render_and_save_html(html_content: str, output_file: str, output_dir: Path):
         default_template = read_template("default.html")
         renderer = pystache.Renderer()
         content = renderer.render(default_template, template_data)
-
-        output_path = output_dir.joinpath(output_file)
-        _ = output_path.write_text(content, encoding="utf-8")
-        logger.info(f"HTML page written to: {output_path}")
+        save_html(content, output_file, output_dir)
 
     except Exception as e:
         logger.error(f"Failed to render and save HTML to {output_file}: {e}")
@@ -154,7 +161,7 @@ def render_and_save_html(html_content: str, output_file: str, output_dir: Path):
 def generate_html(
     entries: list[FeedEntry],
     events: list[Event],
-    failed_feeds: list[FeedInfo],
+    failed_feeds: list[FailedFeedInfo],
     output_dir: Path,
 ):
     """
@@ -163,7 +170,7 @@ def generate_html(
     Args:
         entries: List of FeedEntry objects to include.
         events: List of Event objects to include.
-        failed_feeds: List of FeedInfo objects for failed feeds.
+        failed_feeds: List of FailedFeedInfo objects for failed feeds.
         output_dir: Path where HTML file should be written.
     """
     logger.info(
@@ -331,6 +338,59 @@ def generate_events_calendar(events: list[Event], output_dir: Path):
     logger.info(f"Events calendar written to: {output_path}")
 
 
+def generate_webring(
+    entries: list[FeedEntry],
+    failed_feeds: list[FailedFeedInfo],
+    output_dir: Path,
+):
+    """
+    Generate webring redirect files.
+
+    Selects two random feeds from those with entries or filtered entries.
+
+    Args:
+        entries: List of FeedEntry objects.
+        failed_feeds: List of FailedFeedInfo objects.
+        output_dir: Path where HTML files should be written.
+    """
+    # Collect all feeds with entries
+    feeds_with_entries: set[str] = set()
+    for entry in entries:
+        feeds_with_entries.add(entry.feed_home_url)
+
+    # Add failed feeds that were filtered (had entries but all filtered out)
+    for failed in failed_feeds:
+        if failed.reason == FailureReason.ALL_FILTERED:
+            feeds_with_entries.add(failed.feed_info.html_url)
+
+    # Need at least 2 feeds for webring
+    if len(feeds_with_entries) < 2:
+        logger.warning(
+            f"Not enough feeds for webring (need 2, have {len(feeds_with_entries)})"
+        )
+        return
+
+    # Select 2 random feeds
+    [prev_link, next_link] = random.sample(list(feeds_with_entries), 2)
+
+    template_content = read_template("webring-redirect.html")
+    renderer = pystache.Renderer()
+
+    save_html(
+        renderer.render(template_content, {"path": prev_link}),
+        "webring/previous.html",
+        output_dir,
+    )
+    logger.info(f"Generated webring previous link: {prev_link}")
+
+    save_html(
+        renderer.render(template_content, {"path": next_link}),
+        "webring/next.html",
+        output_dir,
+    )
+    logger.info(f"Generated webring previous link: {next_link}")
+
+
 def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
     """
     Generate the complete website from OPML feeds, events, and static pages.
@@ -378,11 +438,12 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
 
         # Fetch and parse all feeds
         entries, failed_feeds = fetch_all_feeds(feeds, use_cache=use_cache)
-        failed_feeds.sort(key=lambda f: f.title.lower())
+        failed_feeds.sort(key=lambda f: f.feed_info.title.lower())
         futures.append(executor.submit(generate_blogroll_feed, entries, output_dir))
 
         events = events_future.result()
         generate_html(entries, events, failed_feeds, output_dir)
+        generate_webring(entries, failed_feeds, output_dir)
         _ = wait(futures)
 
     logger.info("Website generation completed successfully")
