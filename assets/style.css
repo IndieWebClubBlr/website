@@ -237,7 +237,7 @@ ul.meta li.pub-time {
 
 /* fix overflow in pages/webring.md */
 li > code {
-  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Code highlighting, Monokai theme */
