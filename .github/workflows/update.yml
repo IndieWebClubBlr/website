@@ -13,6 +13,13 @@ jobs:
         uses: actions/checkout@master
         with:
           ref: main
+      - name: Cache favicons
+        uses: actions/cache@v4
+        with:
+          path: .cache/favicons.json
+          key: favicons-${{ github.run_id }}
+          restore-keys: |
+            favicons-
       - name: python setup
         uses: actions/setup-python@v5
         with:

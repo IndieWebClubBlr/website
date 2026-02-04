@@ -7,9 +7,8 @@
     <!-- Keep sorted alphabetically, case-insensitive -->
     <outline type="rss" text="9porcupine" xmlUrl="https://9porcupine.mataroa.blog/rss/" htmlUrl="https://9porcupine.mataroa.blog/" />
     <outline type="rss" text="A Believable Fiction" xmlUrl="https://a-believable-fiction.pages.dev/feed.xml" htmlUrl="https://a-believable-fiction.pages.dev/" />
-    <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/notes/feed.atom" htmlUrl="https://abhinavsarkar.net/" />
-    <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/posts/feed.atom" htmlUrl="https://abhinavsarkar.net/" />
-    <outline type="rss" text="Abhinav's Photos" xmlUrl="https://abhinavsarkar.net/photography/feed.atom" htmlUrl="https://abhinavsarkar.net/photography/" />
+    <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/all.atom" htmlUrl="https://abhinavsarkar.net/" />
+    <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/photography/feed.atom" htmlUrl="https://abhinavsarkar.net/photography/" />
     <outline type="rss" text="Abhinav Tushar" xmlUrl="https://lepisma.xyz/atom.xml" htmlUrl="https://lepisma.xyz/" />
     <outline type="rss" text="Abhinav Tushar" xmlUrl="https://lepisma.xyz/journal/atom.xml" htmlUrl="https://lepisma.xyz/journal/" />
     <outline type="rss" text="Abhiram" xmlUrl="https://vaxitas.xyz/feed.atom" htmlUrl="https://vaxitas.xyz/" />
@@ -45,8 +44,8 @@
     <outline type="rss" text="manuecrire" xmlUrl="https://manuecrire.mataroa.blog/rss/" htmlUrl="https://manuecrire.mataroa.blog/" />
     <outline type="rss" text="mariammwrites" xmlUrl="https://mariammwrites.mataroa.blog/rss/" htmlUrl="https://mariammwrites.mataroa.blog/" />
     <outline type="rss" text="naazeam" xmlUrl="https://naazeam.mataroa.blog/rss/" htmlUrl="https://naazeam.mataroa.blog/" />
-    <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/books/index.xml" htmlUrl="https://navendu.me/books/" />
     <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/index.xml" htmlUrl="https://navendu.me/" />
+    <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/books/index.xml" htmlUrl="https://navendu.me/books/" />
     <outline type="rss" text="nim" xmlUrl="https://nim.mataroa.blog/rss/" htmlUrl="https://nim.mataroa.blog/" />
     <outline type="rss" text="Palak Malik" xmlUrl="https://purposewithpals.wordpress.com/feed/" htmlUrl="https://purposewithpals.wordpress.com/" />
     <outline type="rss" text="pcr1339" xmlUrl="https://pcr1339.mataroa.blog/rss/" htmlUrl="https://pcr1339.mataroa.blog/" />

@@ -13,6 +13,7 @@ let
       beautifulsoup4
       markdown
       pygments
+      favicon
     ];
   pythonEnv = pkgs.python3.withPackages pythonPackages;
   run = pkgs.writeShellScriptBin "run" ''

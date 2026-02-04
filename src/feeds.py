@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import hashlib
 import logging
-import threading
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -18,6 +17,7 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from src import config
+from src.utils import SessionManager
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -49,26 +49,11 @@ class FailedFeedInfo:
     reason: FailureReason
 
 
-sessions: dict[int, requests.Session] = {}
-
-
-def get_session() -> requests.Session:
-    cur_thread_id = threading.get_ident()
-    if cur_thread_id not in sessions:
-        session = requests.Session()
-        session.headers.update(
-            {
-                "User-Agent": config.UA,
-                "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml",
-            }
-        )
-        sessions[cur_thread_id] = session
-    return sessions[cur_thread_id]
-
-
-def close_sessions():
-    for session in sessions.values():
-        session.close()
+session_manager = SessionManager(
+    {
+        "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml",
+    }
+)
 
 
 @final
@@ -215,8 +200,9 @@ def fetch_feed_content(url: str) -> str | None:
             logger.warning(f"Invalid URL format: {url}")
             return None
 
-        session = get_session()
-        response = session.get(url, timeout=config.REQUEST_TIMEOUT, stream=True)
+        response = session_manager.get().get(
+            url, timeout=config.REQUEST_TIMEOUT, stream=True
+        )
         response.raise_for_status()
 
         # Check content length
@@ -514,5 +500,5 @@ def fetch_all_feeds(
                     FailedFeedInfo(feed_info=feed_info, reason=FailureReason.ERROR)
                 )
 
-    close_sessions()
+    session_manager.close_all()
     return all_entries, failed_feeds
