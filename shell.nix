@@ -12,6 +12,7 @@ let
       python-dateutil
       beautifulsoup4
       markdown
+      pygments
     ];
   pythonEnv = pkgs.python3.withPackages pythonPackages;
   run = pkgs.writeShellScriptBin "run" ''

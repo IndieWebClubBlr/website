@@ -117,7 +117,10 @@ def markdown_to_html(markdown_file: Path) -> str:
     """
     try:
         markdown_content = markdown_file.read_text(encoding="utf-8")
-        return markdown.markdown(markdown_content)
+        return markdown.markdown(
+            markdown_content,
+            extensions=["fenced_code", "admonition", "codehilite", "smarty"],
+        )
     except Exception as e:
         logger.error(f"Failed to convert markdown from {markdown_file}: {e}")
         raise
@@ -127,10 +130,10 @@ def save_html(content: str, output_file: str, output_dir: Path):
     output_path = output_dir.joinpath(output_file)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     _ = output_path.write_text(content, encoding="utf-8")
-    logger.info(f"HTML page written to: {output_path}")
+    logger.info(f"HTML file written to: {output_path}")
 
 
-def render_and_save_html(html_content: str, output_file: str, output_dir: Path):
+def render_and_save_html(html_content: str, output_dir: Path):
     """
     Render HTML content with default template and save to file.
 
@@ -151,10 +154,10 @@ def render_and_save_html(html_content: str, output_file: str, output_dir: Path):
         default_template = read_template("default.html")
         renderer = pystache.Renderer()
         content = renderer.render(default_template, template_data)
-        save_html(content, output_file, output_dir)
+        save_html(content, "index.html", output_dir)
 
     except Exception as e:
-        logger.error(f"Failed to render and save HTML to {output_file}: {e}")
+        logger.error(f"Failed to render and save HTML to {output_dir}/index.html: {e}")
         raise
 
 
@@ -229,14 +232,17 @@ def generate_html(
         renderer = pystache.Renderer()
         # Generate index.html
         render_and_save_html(
-            renderer.render(index_template, template_data), "index.html", output_dir
+            html_content=renderer.render(index_template, template_data),
+            output_dir=output_dir,
         )
 
         # Generate static pages from markdown files
         markdown_files = sorted(Path("./pages/").glob("*.md"))
         for md_file in markdown_files:
-            html_filename = md_file.stem + ".html"
-            render_and_save_html(markdown_to_html(md_file), html_filename, output_dir)
+            render_and_save_html(
+                html_content=markdown_to_html(md_file),
+                output_dir=output_dir / md_file.stem,
+            )
 
     except Exception as e:
         logger.error(f"Failed to generate HTML: {e}")
@@ -354,14 +360,18 @@ def generate_webring(
         output_dir: Path where HTML files should be written.
     """
     # Collect all feeds with entries
-    feeds_with_entries: set[str] = set()
+    feeds_with_entries: dict[str, FeedInfo] = {}
     for entry in entries:
-        feeds_with_entries.add(entry.feed_home_url)
+        feeds_with_entries[entry.feed_home_url] = FeedInfo(
+            title=entry.feed_title,
+            xml_url=entry.feed_url,
+            html_url=entry.feed_home_url,
+        )
 
     # Add failed feeds that were filtered (had entries but all filtered out)
     for failed in failed_feeds:
         if failed.reason == FailureReason.ALL_FILTERED:
-            feeds_with_entries.add(failed.feed_info.html_url)
+            feeds_with_entries[failed.feed_info.html_url] = failed.feed_info
 
     # Need at least 2 feeds for webring
     if len(feeds_with_entries) < 2:
@@ -371,24 +381,28 @@ def generate_webring(
         return
 
     # Select 2 random feeds
-    [prev_link, next_link] = random.sample(list(feeds_with_entries), 2)
+    [prev_link, next_link] = random.sample(list(feeds_with_entries.values()), 2)
 
     template_content = read_template("webring-redirect.html")
     renderer = pystache.Renderer()
 
     save_html(
-        renderer.render(template_content, {"path": prev_link}),
+        renderer.render(
+            template_content, {"title": prev_link.title, "url": prev_link.html_url}
+        ),
         "webring/previous.html",
         output_dir,
     )
-    logger.info(f"Generated webring previous link: {prev_link}")
+    logger.info(f"Generated webring previous link: {prev_link.html_url}")
 
     save_html(
-        renderer.render(template_content, {"path": next_link}),
+        renderer.render(
+            template_content, {"title": next_link.title, "url": next_link.html_url}
+        ),
         "webring/next.html",
         output_dir,
     )
-    logger.info(f"Generated webring previous link: {next_link}")
+    logger.info(f"Generated webring previous link: {next_link.html_url}")
 
 
 def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
