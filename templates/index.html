@@ -70,18 +70,8 @@
     </ul>
   </article>
   {{/entries}}
+  <p>See the <a href="/members/">Member Directory</a>.</p>
 </section>
-
-{{#has_failed_feeds}}
-<section id="failed-feeds">
-  <h2>Other Member Websites</h2>
-  <ul>
-    {{#failed_feeds}}
-    <li><a href="{{feed_info.html_url}}" target="_blank">{{feed_info.title}}</a></li>
-    {{/failed_feeds}}
-  </ul>
-</section>
-{{/has_failed_feeds}}
 
 <section id="previous-events">
   <h2>Previous Events</h2>

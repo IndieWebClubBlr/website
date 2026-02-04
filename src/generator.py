@@ -46,6 +46,8 @@ from src.feeds import (
     generate_feed,
     parse_opml_file,
 )
+from src.member_dir import generate_members_page
+from src.utils import read_template, render_and_save_html, save_html
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -86,25 +88,6 @@ def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
     return res_entries
 
 
-def read_template(file_name: str) -> str:
-    """
-    Read a template file.
-
-    Args:
-        file_name: Name of the template file to read.
-
-    Returns:
-        Template file contents as string.
-    """
-    try:
-        template_path = Path("templates") / file_name
-        with open(template_path) as index_tpl:
-            return index_tpl.read()
-    except FileNotFoundError:
-        logger.error(f"Template file {file_name} not found.")
-        raise
-
-
 def markdown_to_html(markdown_file: Path) -> str:
     """
     Convert a Markdown file to HTML.
@@ -126,58 +109,23 @@ def markdown_to_html(markdown_file: Path) -> str:
         raise
 
 
-def save_html(content: str, output_file: str, output_dir: Path):
-    output_path = output_dir.joinpath(output_file)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    _ = output_path.write_text(content, encoding="utf-8")
-    logger.info(f"HTML file written to: {output_path}")
-
-
-def render_and_save_html(html_content: str, output_dir: Path):
-    """
-    Render HTML content with default template and save to file.
-
-    Args:
-        html_content: The HTML content to render.
-        output_file: Output HTML filename.
-        output_dir: Path where HTML file should be written.
-    """
-    try:
-        now = datetime.now(timezone.utc)
-        template_data = {
-            "site_url": config.SITE_URL,
-            "generated_date": now.astimezone(config.EVENTS_TZ).strftime(
-                "%d %b %Y, %I:%M %p IST"
-            ),
-            "content": html_content,
-        }
-        default_template = read_template("default.html")
-        renderer = pystache.Renderer()
-        content = renderer.render(default_template, template_data)
-        save_html(content, "index.html", output_dir)
-
-    except Exception as e:
-        logger.error(f"Failed to render and save HTML to {output_dir}/index.html: {e}")
-        raise
-
-
-def generate_html(
+def generate_homepage(
     entries: list[FeedEntry],
     events: list[Event],
     failed_feeds: list[FailedFeedInfo],
     output_dir: Path,
 ):
     """
-    Generate HTML file from feed entries using Mustache templating.
+    Generate homepage from feed entries using Mustache templating.
 
     Args:
         entries: List of FeedEntry objects to include.
         events: List of Event objects to include.
         failed_feeds: List of FailedFeedInfo objects for failed feeds.
-        output_dir: Path where HTML file should be written.
+        output_dir: Path where homepage file should be written.
     """
     logger.info(
-        f"Generating HTML with {len(entries)} entries, {len(events)} events, and {len(failed_feeds)} failed feeds"
+        f"Generating the homepage with {len(entries)} entries, {len(events)} events, and {len(failed_feeds)} failed feeds"
     )
 
     # Separate week notes from other entries
@@ -227,7 +175,6 @@ def generate_html(
     }
 
     index_template = read_template("index.html")
-    # Render template
     try:
         renderer = pystache.Renderer()
         # Generate index.html
@@ -235,17 +182,8 @@ def generate_html(
             html_content=renderer.render(index_template, template_data),
             output_dir=output_dir,
         )
-
-        # Generate static pages from markdown files
-        markdown_files = sorted(Path("./pages/").glob("*.md"))
-        for md_file in markdown_files:
-            render_and_save_html(
-                html_content=markdown_to_html(md_file),
-                output_dir=output_dir / md_file.stem,
-            )
-
     except Exception as e:
-        logger.error(f"Failed to generate HTML: {e}")
+        logger.error(f"Failed to generate the homepage: {e}")
         raise
 
 
@@ -432,6 +370,17 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
 
         futures.extend((executor.submit(copy_asset, asset) for asset in config.ASSETS))
 
+        # Generate static pages from markdown files
+        markdown_files = sorted(Path("./pages/").glob("*.md"))
+        for md_file in markdown_files:
+            futures.append(
+                executor.submit(
+                    render_and_save_html,
+                    markdown_to_html(md_file),
+                    output_dir / md_file.stem,
+                )
+            )
+
         def generate_events_files(events_future: Future[list[Event]]):
             events = events_future.result()
             futures.extend(
@@ -450,14 +399,19 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
         if not feeds:
             logger.warning("No feeds found in OPML file")
 
+        futures.append(executor.submit(generate_members_page, feeds, output_dir))
+
         # Fetch and parse all feeds
         entries, failed_feeds = fetch_all_feeds(feeds, use_cache=use_cache)
         failed_feeds.sort(key=lambda f: f.feed_info.title.lower())
         futures.append(executor.submit(generate_blogroll_feed, entries, output_dir))
+        futures.append(
+            executor.submit(generate_webring, entries, failed_feeds, output_dir)
+        )
 
         events = events_future.result()
-        generate_html(entries, events, failed_feeds, output_dir)
-        generate_webring(entries, failed_feeds, output_dir)
+        generate_homepage(entries, events, failed_feeds, output_dir)
+
         _ = wait(futures)
 
     logger.info("Website generation completed successfully")
@@ -495,7 +449,7 @@ def main():
 
     if args.cache:
         logger.info("Caching enabled")
-        config.CACHE_DIR.mkdir(exist_ok=True)
+    config.CACHE_DIR.mkdir(exist_ok=True)
 
     try:
         generate_website(opml_path, output_dir, args.cache)
