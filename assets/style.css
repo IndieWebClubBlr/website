@@ -232,6 +232,12 @@ ul.meta li.pub-time {
 .codehilite pre {
   padding: 0.5em;
   font-size: 0.9em;
+  overflow-x: auto;
+}
+
+/* fix overflow in pages/webring.md */
+li > code {
+  word-break: break-word;
 }
 
 /* Code highlighting, Monokai theme */
