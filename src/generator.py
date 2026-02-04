@@ -161,23 +161,23 @@ def render_and_save_html(html_content: str, output_dir: Path):
         raise
 
 
-def generate_html(
+def generate_homepage(
     entries: list[FeedEntry],
     events: list[Event],
     failed_feeds: list[FailedFeedInfo],
     output_dir: Path,
 ):
     """
-    Generate HTML file from feed entries using Mustache templating.
+    Generate homepage from feed entries using Mustache templating.
 
     Args:
         entries: List of FeedEntry objects to include.
         events: List of Event objects to include.
         failed_feeds: List of FailedFeedInfo objects for failed feeds.
-        output_dir: Path where HTML file should be written.
+        output_dir: Path where homepage file should be written.
     """
     logger.info(
-        f"Generating HTML with {len(entries)} entries, {len(events)} events, and {len(failed_feeds)} failed feeds"
+        f"Generating the homepage with {len(entries)} entries, {len(events)} events, and {len(failed_feeds)} failed feeds"
     )
 
     # Separate week notes from other entries
@@ -227,7 +227,6 @@ def generate_html(
     }
 
     index_template = read_template("index.html")
-    # Render template
     try:
         renderer = pystache.Renderer()
         # Generate index.html
@@ -235,17 +234,8 @@ def generate_html(
             html_content=renderer.render(index_template, template_data),
             output_dir=output_dir,
         )
-
-        # Generate static pages from markdown files
-        markdown_files = sorted(Path("./pages/").glob("*.md"))
-        for md_file in markdown_files:
-            render_and_save_html(
-                html_content=markdown_to_html(md_file),
-                output_dir=output_dir / md_file.stem,
-            )
-
     except Exception as e:
-        logger.error(f"Failed to generate HTML: {e}")
+        logger.error(f"Failed to generate the homepage: {e}")
         raise
 
 
@@ -432,6 +422,17 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
 
         futures.extend((executor.submit(copy_asset, asset) for asset in config.ASSETS))
 
+        # Generate static pages from markdown files
+        markdown_files = sorted(Path("./pages/").glob("*.md"))
+        for md_file in markdown_files:
+            futures.append(
+                executor.submit(
+                    render_and_save_html,
+                    markdown_to_html(md_file),
+                    output_dir / md_file.stem,
+                )
+            )
+
         def generate_events_files(events_future: Future[list[Event]]):
             events = events_future.result()
             futures.extend(
@@ -454,10 +455,13 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
         entries, failed_feeds = fetch_all_feeds(feeds, use_cache=use_cache)
         failed_feeds.sort(key=lambda f: f.feed_info.title.lower())
         futures.append(executor.submit(generate_blogroll_feed, entries, output_dir))
+        futures.append(
+            executor.submit(generate_webring, entries, failed_feeds, output_dir)
+        )
 
         events = events_future.result()
-        generate_html(entries, events, failed_feeds, output_dir)
-        generate_webring(entries, failed_feeds, output_dir)
+        generate_homepage(entries, events, failed_feeds, output_dir)
+
         _ = wait(futures)
 
     logger.info("Website generation completed successfully")

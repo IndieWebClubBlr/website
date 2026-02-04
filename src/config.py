@@ -7,7 +7,7 @@ from zoneinfo import ZoneInfo
 REQUEST_TIMEOUT = 30
 
 # Number of concurrent workers to fetch feeds.
-MAX_WORKERS = 10
+MAX_WORKERS = 12
 
 # User-Agent string for feed fetching.
 UA = "blr.indiewebclub.org generator"
