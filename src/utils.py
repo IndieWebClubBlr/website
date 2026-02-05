@@ -9,6 +9,7 @@ import threading
 from datetime import datetime, timezone
 from pathlib import Path
 
+import markdown
 import pystache
 import requests
 
@@ -100,4 +101,25 @@ def render_and_save_html(html_content: str, output_dir: Path):
 
     except Exception as e:
         logger.error(f"Failed to render and save HTML to {output_dir}/index.html: {e}")
+        raise
+
+
+def markdown_to_html(markdown_file: Path) -> str:
+    """
+    Convert a Markdown file to HTML.
+
+    Args:
+        markdown_file: Path to the Markdown file.
+
+    Returns:
+        HTML string.
+    """
+    try:
+        markdown_content = markdown_file.read_text(encoding="utf-8")
+        return markdown.markdown(
+            markdown_content,
+            extensions=["fenced_code", "admonition", "codehilite", "smarty"],
+        )
+    except Exception as e:
+        logger.error(f"Failed to convert markdown from {markdown_file}: {e}")
         raise

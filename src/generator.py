@@ -26,7 +26,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-import markdown
 import pystache
 from feedgen.feed import FeedGenerator
 from icalendar import Calendar
@@ -47,7 +46,7 @@ from src.feeds import (
     parse_opml_file,
 )
 from src.member_dir import generate_members_page
-from src.utils import read_template, render_and_save_html, save_html
+from src.utils import markdown_to_html, read_template, render_and_save_html, save_html
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -86,27 +85,6 @@ def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
     # Sort result entries globally by publication date for overall stats
     res_entries.sort(key=lambda x: x.published, reverse=True)
     return res_entries
-
-
-def markdown_to_html(markdown_file: Path) -> str:
-    """
-    Convert a Markdown file to HTML.
-
-    Args:
-        markdown_file: Path to the Markdown file.
-
-    Returns:
-        HTML string.
-    """
-    try:
-        markdown_content = markdown_file.read_text(encoding="utf-8")
-        return markdown.markdown(
-            markdown_content,
-            extensions=["fenced_code", "admonition", "codehilite", "smarty"],
-        )
-    except Exception as e:
-        logger.error(f"Failed to convert markdown from {markdown_file}: {e}")
-        raise
 
 
 def generate_homepage(
