@@ -4,7 +4,7 @@ from zoneinfo import ZoneInfo
 # Configuration constants
 
 # Timeout for network requests in seconds.
-REQUEST_TIMEOUT = 30
+REQUEST_TIMEOUT = 60
 
 # Number of concurrent workers to fetch feeds.
 MAX_WORKERS = 12
@@ -13,7 +13,7 @@ MAX_WORKERS = 12
 UA = "blr.indiewebclub.org generator"
 
 # Maximum content length for fetched feeds in bytes.
-MAX_CONTENT_LENGTH = 5 * 1024 * 1024
+MAX_CONTENT_LENGTH = 10 * 1024 * 1024
 
 # Maximum age in days of recent entries to fetch from each feed.
 MAX_FEED_ENTRY_AGE = 90
