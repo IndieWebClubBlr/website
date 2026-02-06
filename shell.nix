@@ -25,7 +25,7 @@ pkgs.mkShell {
     pythonEnv
     black
     ruff
-    pyright
+    basedpyright
 
     run
   ];

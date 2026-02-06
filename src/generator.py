@@ -20,11 +20,10 @@ import random
 import shutil
 import sys
 from collections import defaultdict
-from concurrent.futures import Future, ThreadPoolExecutor, wait
 from copy import deepcopy
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
 
 import pystache
 from feedgen.feed import FeedGenerator
@@ -35,6 +34,7 @@ from icalendar import Event as CalEvent
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src import config
+from src.build import Build
 from src.events import Event, fetch_events
 from src.feeds import (
     FailedFeedInfo,
@@ -51,6 +51,14 @@ from src.utils import markdown_to_html, read_template, render_and_save_html, sav
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
+
+
+@dataclass
+class BuildContext:
+    feeds: list[FeedInfo] = field(default_factory=list)
+    entries: list[FeedEntry] = field(default_factory=list)
+    failed_feeds: list[FailedFeedInfo] = field(default_factory=list)
+    events: list[Event] = field(default_factory=list)
 
 
 def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
@@ -330,69 +338,91 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
         output_dir: Path where generated artifacts should be written.
         use_cache: Whether to use cached feeds.
     """
-    with ThreadPoolExecutor() as executor:
-        futures: list[Future[Any]] = []
+    ctx = BuildContext()
+    build = Build()
 
-        # Copy OPML file
-        futures.append(
-            executor.submit(shutil.copyfile, opml_path, output_dir.joinpath(opml_path))
+    @build.rule("copy_opml")
+    def _(_target: str) -> None:
+        _ = shutil.copyfile(opml_path, output_dir / opml_path.name)
+
+    @build.rule("copy_assets:*")
+    def _(target: str) -> None:
+        asset = target.split(":", 1)[1]
+        src = Path(asset)
+        if src.exists():
+            dst = output_dir / src.name
+            _ = shutil.copyfile(src, dst)
+            logger.debug(f"Copied asset: {src} -> {dst}")
+
+    @build.rule("render_page:*")
+    def _(target: str) -> None:
+        page_name = target.split(":", 1)[1]
+        md_file = Path(f"./pages/{page_name}.md")
+        render_and_save_html(markdown_to_html(md_file), output_dir / page_name)
+
+    @build.rule("parse_opml")
+    def _(_target: str) -> None:
+        ctx.feeds = parse_opml_file(opml_path)
+
+    @build.rule("fetch_events")
+    def _(_target: str) -> None:
+        ctx.events = fetch_events(use_cache=use_cache)
+
+    @build.rule("fetch_feeds")
+    def _(_target: str) -> None:
+        build.need("parse_opml")
+        ctx.entries, ctx.failed_feeds = fetch_all_feeds(ctx.feeds, use_cache=use_cache)
+        ctx.failed_feeds.sort(key=lambda f: f.feed_info.title.lower())
+
+    @build.rule("generate_members")
+    def _(_target: str) -> None:
+        build.need("parse_opml")
+        generate_members_page(ctx.feeds, output_dir)
+
+    @build.rule("generate_events_feed")
+    def _(_target: str) -> None:
+        build.need("fetch_events")
+        generate_events_feed(ctx.events, output_dir)
+
+    @build.rule("generate_events_calendar")
+    def _(_target: str) -> None:
+        build.need("fetch_events")
+        generate_events_calendar(ctx.events, output_dir)
+
+    @build.rule("generate_blogroll")
+    def _(_target: str) -> None:
+        build.need("fetch_feeds")
+        generate_blogroll_feed(ctx.entries, output_dir)
+
+    @build.rule("generate_webring")
+    def _(_target: str) -> None:
+        build.need("fetch_feeds")
+        generate_webring(ctx.entries, ctx.failed_feeds, output_dir)
+
+    @build.rule("generate_homepage")
+    def _(_target: str) -> None:
+        build.need("fetch_feeds", "fetch_events")
+        generate_homepage(ctx.entries, ctx.events, ctx.failed_feeds, output_dir)
+
+    @build.rule("all")
+    def _(_target: str) -> None:
+        asset_targets = [f"copy_assets:{asset}" for asset in config.ASSETS]
+        page_targets = [f"render_page:{f.stem}" for f in Path("./pages/").glob("*.md")]
+
+        build.need(
+            "copy_opml",
+            "generate_members",
+            "generate_events_feed",
+            "generate_events_calendar",
+            "generate_blogroll",
+            "generate_webring",
+            "generate_homepage",
+            *asset_targets,
+            *page_targets,
         )
+        logger.info("Website generation completed successfully")
 
-        # Copy assets
-        def copy_asset(asset_path: str) -> None:
-            src = Path(asset_path)
-            dst = output_dir.joinpath(src.name)
-            if src.exists():
-                shutil.copyfile(src, dst)
-                logger.debug(f"Copied asset: {src} -> {dst}")
-
-        futures.extend((executor.submit(copy_asset, asset) for asset in config.ASSETS))
-
-        # Generate static pages from markdown files
-        markdown_files = sorted(Path("./pages/").glob("*.md"))
-        for md_file in markdown_files:
-            futures.append(
-                executor.submit(
-                    render_and_save_html,
-                    markdown_to_html(md_file),
-                    output_dir / md_file.stem,
-                )
-            )
-
-        def generate_events_files(events_future: Future[list[Event]]):
-            events = events_future.result()
-            futures.extend(
-                (
-                    executor.submit(generate_events_feed, events, output_dir),
-                    executor.submit(generate_events_calendar, events, output_dir),
-                )
-            )
-
-        # Fetch all events
-        events_future = executor.submit(fetch_events, use_cache=use_cache)
-        events_future.add_done_callback(generate_events_files)
-
-        # Parse OPML file
-        feeds = parse_opml_file(opml_path)
-        if not feeds:
-            logger.warning("No feeds found in OPML file")
-
-        futures.append(executor.submit(generate_members_page, feeds, output_dir))
-
-        # Fetch and parse all feeds
-        entries, failed_feeds = fetch_all_feeds(feeds, use_cache=use_cache)
-        failed_feeds.sort(key=lambda f: f.feed_info.title.lower())
-        futures.append(executor.submit(generate_blogroll_feed, entries, output_dir))
-        futures.append(
-            executor.submit(generate_webring, entries, failed_feeds, output_dir)
-        )
-
-        events = events_future.result()
-        generate_homepage(entries, events, failed_feeds, output_dir)
-
-        _ = wait(futures)
-
-    logger.info("Website generation completed successfully")
+    build.run("all")
 
 
 def main():
