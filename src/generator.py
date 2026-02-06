@@ -53,14 +53,6 @@ logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class BuildContext:
-    feeds: list[FeedInfo] = field(default_factory=list)
-    entries: list[FeedEntry] = field(default_factory=list)
-    failed_feeds: list[FailedFeedInfo] = field(default_factory=list)
-    events: list[Event] = field(default_factory=list)
-
-
 def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
     """
     Group and sort feed entries by feed title, keeping only the most recent entries per feed.
@@ -329,6 +321,14 @@ def generate_webring(
     logger.info(f"Generated webring previous link: {next_link.html_url}")
 
 
+@dataclass
+class BuildCache:
+    feeds: list[FeedInfo] = field(default_factory=list)
+    entries: list[FeedEntry] = field(default_factory=list)
+    failed_feeds: list[FailedFeedInfo] = field(default_factory=list)
+    events: list[Event] = field(default_factory=list)
+
+
 def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
     """
     Generate the complete website from OPML feeds, events, and static pages.
@@ -338,15 +338,15 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
         output_dir: Path where generated artifacts should be written.
         use_cache: Whether to use cached feeds.
     """
-    ctx = BuildContext()
+    cache = BuildCache()
     build = Build()
 
     @build.rule("copy_opml")
-    def _(_target: str) -> None:
+    def _(_target: str):
         _ = shutil.copyfile(opml_path, output_dir / opml_path.name)
 
     @build.rule("copy_assets:*")
-    def _(target: str) -> None:
+    def _(target: str):
         asset = target.split(":", 1)[1]
         src = Path(asset)
         if src.exists():
@@ -355,57 +355,59 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
             logger.debug(f"Copied asset: {src} -> {dst}")
 
     @build.rule("render_page:*")
-    def _(target: str) -> None:
+    def _(target: str):
         page_name = target.split(":", 1)[1]
         md_file = Path(f"./pages/{page_name}.md")
         render_and_save_html(markdown_to_html(md_file), output_dir / page_name)
 
     @build.rule("parse_opml")
-    def _(_target: str) -> None:
-        ctx.feeds = parse_opml_file(opml_path)
+    def _(_target: str):
+        cache.feeds = parse_opml_file(opml_path)
 
     @build.rule("fetch_events")
-    def _(_target: str) -> None:
-        ctx.events = fetch_events(use_cache=use_cache)
+    def _(_target: str):
+        cache.events = fetch_events(use_cache=use_cache)
 
     @build.rule("fetch_feeds")
-    def _(_target: str) -> None:
+    def _(_target: str):
         build.need("parse_opml")
-        ctx.entries, ctx.failed_feeds = fetch_all_feeds(ctx.feeds, use_cache=use_cache)
-        ctx.failed_feeds.sort(key=lambda f: f.feed_info.title.lower())
+        cache.entries, cache.failed_feeds = fetch_all_feeds(
+            cache.feeds, use_cache=use_cache
+        )
+        cache.failed_feeds.sort(key=lambda f: f.feed_info.title.lower())
 
     @build.rule("generate_members")
-    def _(_target: str) -> None:
+    def _(_target: str):
         build.need("parse_opml")
-        generate_members_page(ctx.feeds, output_dir)
+        generate_members_page(cache.feeds, output_dir)
 
     @build.rule("generate_events_feed")
-    def _(_target: str) -> None:
+    def _(_target: str):
         build.need("fetch_events")
-        generate_events_feed(ctx.events, output_dir)
+        generate_events_feed(cache.events, output_dir)
 
     @build.rule("generate_events_calendar")
-    def _(_target: str) -> None:
+    def _(_target: str):
         build.need("fetch_events")
-        generate_events_calendar(ctx.events, output_dir)
+        generate_events_calendar(cache.events, output_dir)
 
     @build.rule("generate_blogroll")
-    def _(_target: str) -> None:
+    def _(_target: str):
         build.need("fetch_feeds")
-        generate_blogroll_feed(ctx.entries, output_dir)
+        generate_blogroll_feed(cache.entries, output_dir)
 
     @build.rule("generate_webring")
-    def _(_target: str) -> None:
+    def _(_target: str):
         build.need("fetch_feeds")
-        generate_webring(ctx.entries, ctx.failed_feeds, output_dir)
+        generate_webring(cache.entries, cache.failed_feeds, output_dir)
 
     @build.rule("generate_homepage")
-    def _(_target: str) -> None:
+    def _(_target: str):
         build.need("fetch_feeds", "fetch_events")
-        generate_homepage(ctx.entries, ctx.events, ctx.failed_feeds, output_dir)
+        generate_homepage(cache.entries, cache.events, cache.failed_feeds, output_dir)
 
-    @build.rule("all")
-    def _(_target: str) -> None:
+    @build.rule("website")
+    def _(_target: str):
         asset_targets = [f"copy_assets:{asset}" for asset in config.ASSETS]
         page_targets = [f"render_page:{f.stem}" for f in Path("./pages/").glob("*.md")]
 
@@ -422,7 +424,7 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
         )
         logger.info("Website generation completed successfully")
 
-    build.run("all")
+    build.run("website")
 
 
 def main():

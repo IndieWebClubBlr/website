@@ -64,4 +64,4 @@ ASSETS = [
 ]
 
 # Log format for the application.
-LOG_FORMAT = "%(asctime)s [%(levelname)s] (%(threadName)-23s) %(message)s"
+LOG_FORMAT = "%(asctime)s [%(levelname)-7s] (%(threadName)-10s) %(message)s"

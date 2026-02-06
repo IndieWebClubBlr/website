@@ -474,7 +474,9 @@ def fetch_all_feeds(
     all_entries: list[FeedEntry] = []
     failed_feeds: list[FailedFeedInfo] = []
 
-    with ThreadPoolExecutor(max_workers=config.MAX_WORKERS) as executor:
+    with ThreadPoolExecutor(
+        max_workers=config.MAX_WORKERS, thread_name_prefix="Fetcher"
+    ) as executor:
         # Submit all feed processing tasks
         future_to_feed = {
             executor.submit(process_single_feed, feed_info, use_cache): feed_info
