@@ -101,7 +101,7 @@ def make_event(base_url: str, topic: DiscourseTopic, post: DiscoursePost) -> Eve
 
     return Event(
         id=topic["id"],
-        title=topic["title"],
+        title=topic["title"].replace(" with Ankur and Tanvi", ""),
         slug=topic["slug"],
         created_at=date_parser.parse(topic["created_at"]),
         start_at=date_parser.parse(event["starts_at"]),
