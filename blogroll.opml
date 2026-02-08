@@ -24,6 +24,7 @@
     <outline type="rss" text="asthabugs" xmlUrl="https://asthabugs.mataroa.blog/rss/" htmlUrl="https://asthabugs.mataroa.blog/" />
     <outline type="rss" text="Atharva Raykar" xmlUrl="https://atharvaraykar.com/rss/" htmlUrl="https://atharvaraykar.com/" />
     <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/rss.xml" htmlUrl="https://azan-n.com/" />
+    <outline type="rss" text="flyingsymphony" xmlUrl="https://flyingsymphony.mataroa.blog/rss/" htmlUrl="https://flyingsymphony.mataroa.blog/" />
     <outline type="rss" text="forwhatitsworth" xmlUrl="https://forwhatitsworth.netlify.app/index.xml" htmlUrl="https://forwhatitsworth.netlify.app/" />
     <outline type="rss" text="George Supreeth" xmlUrl="https://georgesupreeth.com/web/blog/index.xml" htmlUrl="https://georgesupreeth.com/" />
     <outline type="rss" text="halfthere" xmlUrl="https://halfthere.mataroa.blog/rss/" htmlUrl="https://halfthere.mataroa.blog/" />
@@ -47,10 +48,13 @@
     <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/index.xml" htmlUrl="https://navendu.me/" />
     <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/books/index.xml" htmlUrl="https://navendu.me/books/" />
     <outline type="rss" text="nim" xmlUrl="https://nim.mataroa.blog/rss/" htmlUrl="https://nim.mataroa.blog/" />
+    <outline type="rss" text="Nithitsuki" xmlUrl="https://nithitsuki.com/index.xml" htmlUrl="https://nithitsuki.com/" />
     <outline type="rss" text="Palak Malik" xmlUrl="https://purposewithpals.wordpress.com/feed/" htmlUrl="https://purposewithpals.wordpress.com/" />
     <outline type="rss" text="pcr1339" xmlUrl="https://pcr1339.mataroa.blog/rss/" htmlUrl="https://pcr1339.mataroa.blog/" />
     <outline type="rss" text="Prabhanshu" xmlUrl="https://prabhanshu.mataroa.blog/rss/" htmlUrl="https://prabhanshu.mataroa.blog/" />
+    <outline type="rss" text="Pranit Bauva" xmlUrl="https://bauva.com/feed/" htmlUrl="https://bauva.com/blog/" />
     <outline type="rss" text="Prasanna Bhogale" xmlUrl="https://theclarkeorbit.github.io/feeds/blog.atom.xml" htmlUrl="https://theclarkeorbit.github.io/" />
+    <outline type="rss" text="promethean" xmlUrl="https://promethean.mataroa.blog/rss/" htmlUrl="https://promethean.mataroa.blog/" />
     <outline type="rss" text="Rasagy Sharma" xmlUrl="https://rasagy.in/index.xml" htmlUrl="https://rasagy.in/" />
     <outline type="rss" text="Sagrika Padha" xmlUrl="https://sagrika27.wordpress.com/feed/" htmlUrl="https://sagrika27.wordpress.com/" />
     <outline type="rss" text="sayakel" xmlUrl="https://sayakel.mataroa.blog/rss/" htmlUrl="https://sayakel.mataroa.blog/" />
