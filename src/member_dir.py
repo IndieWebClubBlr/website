@@ -92,25 +92,38 @@ def get_name_key(feed: FeedInfo) -> str:
     return feed.title.lower()
 
 
-def generate_members_page(feeds: list[FeedInfo], output_dir: Path):
+def generate_members_page(
+    entry_feeds: list[FeedInfo], opml_feeds: list[FeedInfo], output_dir: Path
+):
     """
     Generate the members directory page.
 
     Args:
-        feeds: List of FeedInfo objects from the OPML file.
+        entry_feeds: List of FeedInfo objects that have entries.
+        opml_feeds: Original ordered list of FeedInfo from the OPML file,
+            used to determine the preferred URL for members with multiple feeds.
         output_dir: Path where HTML file should be written.
     """
-    logger.info(f"Generating members page with {len(feeds)} feeds")
+    logger.info(f"Generating members page with {len(entry_feeds)} feeds")
 
-    seen_names: set[str] = set()
-    unique_feeds: list[FeedInfo] = []
-
-    for feed in feeds:
+    # Build a priority map from the OPML order: for each member name,
+    # the first feed listed in the OPML is the preferred one.
+    opml_priority: dict[str, str] = {}
+    for feed in opml_feeds:
         name_key = get_name_key(feed)
-        if name_key in seen_names:
-            continue
-        seen_names.add(name_key)
-        unique_feeds.append(feed)
+        if name_key not in opml_priority:
+            opml_priority[name_key] = feed.html_url
+
+    # Deduplicate feeds by member name, preferring the OPML-first URL.
+    feeds_by_name: dict[str, FeedInfo] = {}
+    for feed in entry_feeds:
+        name_key = get_name_key(feed)
+        if name_key not in feeds_by_name:
+            feeds_by_name[name_key] = feed
+        elif feed.html_url == opml_priority.get(name_key):
+            feeds_by_name[name_key] = feed
+
+    unique_feeds = list(feeds_by_name.values())
 
     cache_file = config.CACHE_DIR / "favicons.json"
     cache: dict[str, str] = {}

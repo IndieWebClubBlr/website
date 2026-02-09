@@ -436,7 +436,7 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
     @build.rule("generate_members")
     def _(_target: str):
         build.need("get_feeds_with_entries")
-        generate_members_page(cache.feeds_with_entries, output_dir)
+        generate_members_page(cache.feeds_with_entries, cache.feeds, output_dir)
 
     @build.rule("generate_webring")
     def _(_target: str):
