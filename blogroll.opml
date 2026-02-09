@@ -23,7 +23,10 @@
     <outline type="rss" text="Ankur Sethi" xmlUrl="https://ankursethi.com/feeds/index.xml" htmlUrl="https://ankursethi.com/" />
     <outline type="rss" text="asthabugs" xmlUrl="https://asthabugs.mataroa.blog/rss/" htmlUrl="https://asthabugs.mataroa.blog/" />
     <outline type="rss" text="Atharva Raykar" xmlUrl="https://atharvaraykar.com/rss/" htmlUrl="https://atharvaraykar.com/" />
-    <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/rss.xml" htmlUrl="https://azan-n.com/" />
+    <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/notes/rss.xml" htmlUrl="https://azan-n.com/" />
+    <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/projects/rss.xml" htmlUrl="https://azan-n.com/" />
+    <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/playlists/rss.xml" htmlUrl="https://azan-n.com/" />
+    <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/photos/rss.xml" htmlUrl="https://azan-n.com/" />
     <outline type="rss" text="flyingsymphony" xmlUrl="https://flyingsymphony.mataroa.blog/rss/" htmlUrl="https://flyingsymphony.mataroa.blog/" />
     <outline type="rss" text="forwhatitsworth" xmlUrl="https://forwhatitsworth.netlify.app/index.xml" htmlUrl="https://forwhatitsworth.netlify.app/" />
     <outline type="rss" text="George Supreeth" xmlUrl="https://georgesupreeth.com/web/blog/index.xml" htmlUrl="https://georgesupreeth.com/" />
