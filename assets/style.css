@@ -489,7 +489,7 @@ pre { line-height: 125%; }
 .member-info {
   display: flex;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.1em;
   min-width: 0;
 }
 
@@ -499,19 +499,25 @@ pre { line-height: 125%; }
   white-space: nowrap;
 }
 
-.member-feed {
-  flex-shrink: 0;
+.member-badges {
   display: flex;
-  align-items: center;
+  gap: 0.13em;
+  flex-shrink: 0;
+  margin-left: 0.15em;;
 }
 
-.member-feed svg {
-  width: 20px;
-  height: 20px;
-  color: #fb9e3a;
-  opacity: 0.8;
+a.member-badge {
+  font-size: 0.5em;
+  padding: 0.1em 0.3em;
+  border-radius: 0.25em;
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  white-space: nowrap;
+  text-decoration: none;
 }
 
-.member-feed:hover svg {
-  opacity: 1;
+@media screen and (max-width: 430px) {
+  a.member-badge {
+    font-size: 0.65em;
+  }
 }
