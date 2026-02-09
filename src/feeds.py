@@ -17,7 +17,7 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from src import config
-from src.utils import SessionManager
+from src.utils import SessionManager, add_utm_params
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -170,7 +170,9 @@ def generate_feed(
 
             fe.id(entry.link)
             fe.title(entry.title)
-            fe.link(href=entry.link, rel="alternate")
+            fe.link(
+                href=add_utm_params(entry.link, "feed", "blogroll"), rel="alternate"
+            )
             fe.published(entry.published)
             fe.updated(entry.published)
             fe.author(name=entry.feed_title, uri=entry.feed_url)

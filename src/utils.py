@@ -8,6 +8,7 @@ import logging
 import threading
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 import markdown
 import pystache
@@ -102,6 +103,24 @@ def render_and_save_html(html_content: str, output_dir: Path):
     except Exception as e:
         logger.error(f"Failed to render and save HTML to {output_dir}/index.html: {e}")
         raise
+
+
+def add_utm_params(url: str, medium: str, campaign: str) -> str:
+    """
+    Add UTM parameters to a URL, replacing any existing UTM parameters.
+
+    Properly handles URLs that already have query parameters.
+    """
+    parsed = urlparse(url)
+    params = parse_qs(parsed.query)
+    # Remove existing utm_ params
+    params = {k: v for k, v in params.items() if not k.startswith("utm_")}
+    # Add new utm params
+    params["utm_source"] = ["blr.indiewebclub.org"]
+    params["utm_medium"] = [medium]
+    params["utm_campaign"] = [campaign]
+    new_query = urlencode(params, doseq=True)
+    return urlunparse(parsed._replace(query=new_query))
 
 
 def markdown_to_html(markdown_file: Path) -> str:

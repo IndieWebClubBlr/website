@@ -15,7 +15,12 @@ import pystache
 
 from src import config
 from src.feeds import FeedInfo
-from src.utils import SessionManager, read_template, render_and_save_html
+from src.utils import (
+    SessionManager,
+    add_utm_params,
+    read_template,
+    render_and_save_html,
+)
 
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
@@ -157,7 +162,14 @@ def generate_members_page(feeds: list[FeedInfo], output_dir: Path):
     members.sort(key=lambda m: get_name_key(m[0]))
     members_template = read_template("members.html")
 
-    ctx = [{"feed": feed, "icon_url": icon_url} for (feed, icon_url) in members]
+    ctx = [
+        {
+            "feed": feed,
+            "icon_url": icon_url,
+            "html_url_utm": add_utm_params(feed.html_url, "website", "members"),
+        }
+        for (feed, icon_url) in members
+    ]
     try:
         renderer = pystache.Renderer()
         render_and_save_html(

@@ -46,7 +46,13 @@ from src.feeds import (
     parse_opml_file,
 )
 from src.member_dir import generate_members_page
-from src.utils import markdown_to_html, read_template, render_and_save_html, save_html
+from src.utils import (
+    add_utm_params,
+    markdown_to_html,
+    read_template,
+    render_and_save_html,
+    save_html,
+)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -140,14 +146,29 @@ def generate_homepage(
     upcoming_events = [event for event in events if event.start_at > now]
     upcoming_events.reverse()
 
+    def entry_ctx(entry: FeedEntry) -> dict[str, str]:
+        return {
+            "title": entry.title,
+            "link_utm": add_utm_params(entry.link, "website", "blogroll"),
+            "feed_title": entry.feed_title,
+            "feed_home_url_utm": add_utm_params(
+                entry.feed_home_url, "website", "blogroll"
+            ),
+            "published_machine": entry.published_machine(),
+            "published_human": entry.published_human(),
+        }
+
     # Prepare template data
     template_data = {
         "webcal_url": config.WEBCAL_URL,
         "upcoming_events": upcoming_events,
         "has_upcoming_events": len(upcoming_events) > 0,
         "previous_events": previous_events[: config.MAX_SHOWN_EVENTS],
-        "entries": group_feed_entries(other_entries),
-        "week_notes": group_feed_entries(week_notes)[: config.MAX_SHOWN_WEEK_NOTES],
+        "entries": [entry_ctx(e) for e in group_feed_entries(other_entries)],
+        "week_notes": [
+            entry_ctx(e)
+            for e in group_feed_entries(week_notes)[: config.MAX_SHOWN_WEEK_NOTES]
+        ],
         "failed_feeds": failed_feeds,
         "has_failed_feeds": len(failed_feeds) != 0,
     }
@@ -307,7 +328,12 @@ def generate_webring(feeds_with_entries: list[FeedInfo], output_dir: Path):
 
     save_html(
         renderer.render(
-            template_content, {"title": prev_link.title, "url": prev_link.html_url}
+            template_content,
+            {
+                "title": prev_link.title,
+                "url": prev_link.html_url,
+                "url_utm": add_utm_params(prev_link.html_url, "website", "webring"),
+            },
         ),
         "webring/previous.html",
         output_dir,
@@ -316,7 +342,12 @@ def generate_webring(feeds_with_entries: list[FeedInfo], output_dir: Path):
 
     save_html(
         renderer.render(
-            template_content, {"title": next_link.title, "url": next_link.html_url}
+            template_content,
+            {
+                "title": next_link.title,
+                "url": next_link.html_url,
+                "url_utm": add_utm_params(next_link.html_url, "website", "webring"),
+            },
         ),
         "webring/next.html",
         output_dir,

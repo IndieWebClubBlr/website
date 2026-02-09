@@ -46,9 +46,9 @@
   <h2>Week Notes by Members</h2>
   {{#week_notes}}
   <article class="entry">
-    <h3><a href="{{link}}" target="_blank">{{title}}</a></h3>
+    <h3><a href="{{link_utm}}" target="_blank">{{title}}</a></h3>
     <ul class="meta no-marker">
-      <li class="title">by <a href="{{feed_home_url}}">{{feed_title}}</a></li>
+      <li class="title">by <a href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
       <li class="pub-time"><time datetime="{{published_machine}}">{{published_human}}</time></li>
     </ul>
   </article>
@@ -63,9 +63,9 @@
   </ul>
   {{#entries}}
   <article class="entry">
-    <h3><a href="{{link}}" target="_blank">{{title}}</a></h3>
+    <h3><a href="{{link_utm}}" target="_blank">{{title}}</a></h3>
     <ul class="meta no-marker">
-      <li class="title">by <a href="{{feed_home_url}}">{{feed_title}}</a></li>
+      <li class="title">by <a href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
       <li class="pub-time"><time datetime="{{published_machine}}">{{published_human}}</time></li>
     </ul>
   </article>
