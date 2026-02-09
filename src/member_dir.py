@@ -36,11 +36,29 @@ BEARBLOG_FAVICON = "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/sv
 
 @dataclass
 class IndieWebFeatures:
+    personal_domain: bool = False
     h_card: bool = False
     webmention: bool = False
     indieauth: bool = False
     rel_me: bool = False
     opengraph: bool = False
+
+
+def _has_personal_domain(url: str) -> bool:
+    return not any(
+        domain in url
+        for domain in [
+            "bearblog.dev",
+            "github.io",
+            "mataroa.blog",
+            "medium.com",
+            "netlify.app",
+            "pages.dev",
+            "pikapod.net",
+            "substack.com",
+            "wordpress.com",
+        ]
+    )
 
 
 def _has_h_card(soup: object) -> bool:
@@ -92,8 +110,11 @@ def _has_opengraph(soup: object) -> bool:
     return result is not None
 
 
-def check_indieweb_features(soup: object, headers: dict[str, str]) -> IndieWebFeatures:
+def check_indieweb_features(
+    soup: object, url: str, headers: dict[str, str]
+) -> IndieWebFeatures:
     return IndieWebFeatures(
+        personal_domain=_has_personal_domain(url),
         h_card=_has_h_card(soup),
         webmention=_has_webmention(soup, headers),
         indieauth=_has_indieauth(soup, headers),
@@ -254,9 +275,9 @@ def generate_members_page(
         elif site_result:
             from bs4 import BeautifulSoup
 
-            _, html, headers = site_result
+            url, html, headers = site_result
             soup = BeautifulSoup(html, "html.parser")
-            features = check_indieweb_features(soup, headers)
+            features = check_indieweb_features(soup, url, headers)
         else:
             features = IndieWebFeatures()
 
@@ -289,7 +310,7 @@ def generate_members_page(
     logger.debug(f"Got favicons for {len(members)} websites")
 
     try:
-        if random.random() < 0.01:
+        if random.random() <= 0.04:
             if favicon_cache_file.exists():
                 favicon_cache_file.unlink()
                 logger.debug("Deleted cached favicons")
@@ -320,6 +341,7 @@ def generate_members_page(
             "feed": feed,
             "icon_url": icon_url,
             "html_url_utm": add_utm_params(feed.html_url, "website", "members"),
+            "has_personal_domain": features.personal_domain,
             "has_h_card": features.h_card,
             "has_webmention": features.webmention,
             "has_indieauth": features.indieauth,

@@ -18,6 +18,7 @@
         </a>
         <span class="member-badges">
           <a class="member-badge" href="https://indieweb.org/feed" target="_blank" title="Feed">RSS</a>
+          {{#has_personal_domain}}<a class="member-badge" title="Personal domain" href="https://indieweb.org/personal-domain" target="_blank">PD</a>{{/has_personal_domain}}
           {{#has_h_card}}<a class="member-badge" title="h-card" href="https://indieweb.org/h-card" target="_blank">HC</a>{{/has_h_card}}
           {{#has_webmention}}<a class="member-badge" title="Webmention" href="https://indieweb.org/Webmention" target="_blank">WM</a>{{/has_webmention}}
           {{#has_indieauth}}<a class="member-badge" title="IndieAuth" href="https://indieweb.org/IndieAuth" target="_blank">IA</a>{{/has_indieauth}}
