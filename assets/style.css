@@ -457,7 +457,7 @@ pre { line-height: 125%; }
 }
 
 /* Member Directory */
-.member-grid {
+#members .member-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
@@ -465,12 +465,12 @@ pre { line-height: 125%; }
 }
 
 @media screen and (max-width: 630px) {
-  .member-grid {
+  #members .member-grid {
     gap: 0.5rem;
   }
 }
 
-.member-card {
+#members .member-card {
   background-color: var(--color-card-bg);
   border: 0.1px solid var(--color-border-accent);
   padding: 0.5em;
@@ -480,33 +480,48 @@ pre { line-height: 125%; }
   gap: 0.5em;
 }
 
-.member-avatar {
+#members .member-avatar {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
 }
 
-.member-info {
+#members .member-feed {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: 0.1em;
-  min-width: 0;
 }
 
-.member-name {
+#members .member-feed svg {
+  width: 20px;
+  height: 20px;
+  color: #fb9e3a;
+  opacity: 0.8;
+}
+
+#members .member-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.1em;
+  min-width: 0;
+  flex-grow: 2;
+}
+
+#members .member-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.member-badges {
-  display: flex;
+#members .member-badges {
+  display: none;
   gap: 0.13em;
   flex-shrink: 0;
   margin-left: 0.15em;;
 }
 
-a.member-badge {
+#members .member-badge {
   font-size: 0.5em;
   padding: 0.1em 0.3em;
   border-radius: 0.25em;
@@ -517,7 +532,19 @@ a.member-badge {
 }
 
 @media screen and (max-width: 430px) {
-  a.member-badge {
+  #members .member-badge {
     font-size: 0.65em;
   }
+}
+
+#members #controls {
+  float: right;
+}
+
+#members #controls:has(#show-badges:checked) ~ .member-grid .member-info .member-feed {
+  display: none;
+}
+
+#members #controls:has(#show-badges:checked) ~ .member-grid .member-info .member-badges {
+  display: flex;
 }

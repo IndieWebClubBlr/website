@@ -1,13 +1,23 @@
 <section id="members">
   <h1>Member Directory</h1>
+  <form id="controls">
+    <input id="show-badges" type="checkbox">
+    <label for="show-badges">Show Indieweb badges</label>
+  </form>
   <div class="member-grid">
     {{#members}}
     <div class="member-card">
       <img class="member-avatar" src="{{icon_url}}" alt="" loading="lazy" />
       <div class="member-info">
         <a href="{{html_url_utm}}" class="member-name" title="{{feed.title}}" target="_blank">{{feed.title}}</a>
+        <a href="{{feed.xml_url}}" class="member-feed" target="_blank" title="RSS/Atom Feed">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="6.18" cy="17.82" r="2.18"/>
+            <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+          </svg>
+        </a>
         <span class="member-badges">
-          <a class="member-badge" href="{{feed.xml_url}}" target="_blank" title="RSS/Atom Feed">RSS</a>
+          <a class="member-badge" href="https://indieweb.org/feed" target="_blank" title="Feed">RSS</a>
           {{#has_h_card}}<a class="member-badge" title="h-card" href="https://indieweb.org/h-card" target="_blank">HC</a>{{/has_h_card}}
           {{#has_webmention}}<a class="member-badge" title="Webmention" href="https://indieweb.org/Webmention" target="_blank">WM</a>{{/has_webmention}}
           {{#has_indieauth}}<a class="member-badge" title="IndieAuth" href="https://indieweb.org/IndieAuth" target="_blank">IA</a>{{/has_indieauth}}

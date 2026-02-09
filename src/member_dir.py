@@ -243,8 +243,10 @@ def generate_members_page(
         has_favicon = name_key in favicon_cache
         has_indieweb = name_key in indieweb_cache
 
-        # Fetch the site HTML once for both favicon and IndieWeb checks.
-        site_result = fetch_site_html(feed.html_url)
+        site_result = None
+        if not has_favicon or not has_indieweb:
+            # Fetch the site HTML once for both favicon and IndieWeb checks.
+            site_result = fetch_site_html(feed.html_url)
 
         # IndieWeb features
         if has_indieweb:
