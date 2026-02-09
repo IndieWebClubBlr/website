@@ -260,21 +260,9 @@ def generate_events_calendar(events: list[Event], output_dir: Path):
     logger.info(f"Events calendar written to: {output_path}")
 
 
-def generate_webring(
-    entries: list[FeedEntry],
-    failed_feeds: list[FailedFeedInfo],
-    output_dir: Path,
-):
-    """
-    Generate webring redirect files.
-
-    Selects two random feeds from those with entries or filtered entries.
-
-    Args:
-        entries: List of FeedEntry objects.
-        failed_feeds: List of FailedFeedInfo objects.
-        output_dir: Path where HTML files should be written.
-    """
+def get_feeds_with_entries(
+    entries: list[FeedEntry], failed_feeds: list[FailedFeedInfo]
+) -> list[FeedInfo]:
     # Collect all feeds with entries
     feeds_with_entries: dict[str, FeedInfo] = {}
     for entry in entries:
@@ -289,6 +277,21 @@ def generate_webring(
         if failed.reason == FailureReason.ALL_FILTERED:
             feeds_with_entries[failed.feed_info.html_url] = failed.feed_info
 
+    return list(feeds_with_entries.values())
+
+
+def generate_webring(feeds_with_entries: list[FeedInfo], output_dir: Path):
+    """
+    Generate webring redirect files.
+
+    Selects two random feeds from those with entries or filtered entries.
+
+    Args:
+        entries: List of FeedEntry objects.
+        failed_feeds: List of FailedFeedInfo objects.
+        output_dir: Path where HTML files should be written.
+    """
+
     # Need at least 2 feeds for webring
     if len(feeds_with_entries) < 2:
         logger.warning(
@@ -297,7 +300,7 @@ def generate_webring(
         return
 
     # Select 2 random feeds
-    [prev_link, next_link] = random.sample(list(feeds_with_entries.values()), 2)
+    [prev_link, next_link] = random.sample(list(feeds_with_entries), 2)
 
     template_content = read_template("webring-redirect.html")
     renderer = pystache.Renderer()
@@ -326,6 +329,7 @@ class BuildCache:
     feeds: list[FeedInfo] = field(default_factory=list)
     entries: list[FeedEntry] = field(default_factory=list)
     failed_feeds: list[FailedFeedInfo] = field(default_factory=list)
+    feeds_with_entries: list[FeedInfo] = field(default_factory=list)
     events: list[Event] = field(default_factory=list)
 
 
@@ -376,11 +380,6 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
         )
         cache.failed_feeds.sort(key=lambda f: f.feed_info.title.lower())
 
-    @build.rule("generate_members")
-    def _(_target: str):
-        build.need("parse_opml")
-        generate_members_page(cache.feeds, output_dir)
-
     @build.rule("generate_events_feed")
     def _(_target: str):
         build.need("fetch_events")
@@ -396,10 +395,22 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
         build.need("fetch_feeds")
         generate_blogroll_feed(cache.entries, output_dir)
 
-    @build.rule("generate_webring")
+    @build.rule("get_feeds_with_entries")
     def _(_target: str):
         build.need("fetch_feeds")
-        generate_webring(cache.entries, cache.failed_feeds, output_dir)
+        cache.feeds_with_entries = get_feeds_with_entries(
+            cache.entries, cache.failed_feeds
+        )
+
+    @build.rule("generate_members")
+    def _(_target: str):
+        build.need("get_feeds_with_entries")
+        generate_members_page(cache.feeds_with_entries, output_dir)
+
+    @build.rule("generate_webring")
+    def _(_target: str):
+        build.need("get_feeds_with_entries")
+        generate_webring(cache.feeds_with_entries, output_dir)
 
     @build.rule("generate_homepage")
     def _(_target: str):
