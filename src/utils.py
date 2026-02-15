@@ -13,6 +13,7 @@ from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 import markdown
 import pystache
 import requests
+from markdown.extensions.toc import TocExtension
 
 from src import config
 
@@ -137,7 +138,13 @@ def markdown_to_html(markdown_file: Path) -> str:
         markdown_content = markdown_file.read_text(encoding="utf-8")
         return markdown.markdown(
             markdown_content,
-            extensions=["fenced_code", "admonition", "codehilite", "smarty"],
+            extensions=[
+                "fenced_code",
+                "admonition",
+                "codehilite",
+                "smarty",
+                TocExtension(toc_depth="2-3"),
+            ],
         )
     except Exception as e:
         logger.error(f"Failed to convert markdown from {markdown_file}: {e}")

@@ -1,4 +1,4 @@
-# IWCB Webring
+# IndieWebClub Bangalore Webring
 
 The IndieWebClub Bangalore [Webring](https://indieweb.org/webring) is a way to connect the websites of its member and encourage discovery within our community. If you're a member, please consider adding the webring navigation to your website.
 
