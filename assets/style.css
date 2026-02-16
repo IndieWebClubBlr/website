@@ -34,12 +34,7 @@ html {
   }
 }
 
-body {
-  line-height: 1.35;
-}
-
 body,
-h1,
 h3 {
   margin: 0;
 }
@@ -63,6 +58,7 @@ h3 {
 }
 
 body {
+  line-height: 1.35;
   font-family:
     Avenir, Montserrat, Corbel, "URW Gothic", source-sans-pro, sans-serif;
   background-color: var(--color-bg);
@@ -92,6 +88,10 @@ header {
 
 footer {
   font-size: smaller;
+}
+
+header h1 {
+  margin: 0;
 }
 
 main {
@@ -462,6 +462,7 @@ pre { line-height: 125%; }
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
   margin-top: 2rem;
+  clear: both;
 }
 
 @media screen and (max-width: 630px) {
@@ -538,6 +539,7 @@ pre { line-height: 125%; }
 
 #members #controls {
   float: right;
+  margin-bottom: 0.5em;
 }
 
 #members #controls:has(#show-badges:checked) ~ .member-grid .member-info .member-feed {
