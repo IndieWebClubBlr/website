@@ -9,7 +9,7 @@ from datetime import datetime, timedelta, timezone
 from enum import Enum
 from pathlib import Path
 from typing import final
-from urllib.parse import quote, urljoin, urlparse
+from urllib.parse import quote, urlsplit, urlparse
 
 import feedparser
 import requests
@@ -249,17 +249,16 @@ def normalize_link(link: str, feed_url: str) -> str:
     if not link:
         return link
 
-    # If it's already absolute, encode and return
-    if link.startswith("http://") or link.startswith("https://"):
+    if (
+        link.startswith("http://") or link.startswith("https://")
+    ) and not link.startswith("http://localhost:"):
         return quote(link, safe=":/?#[]@!$&'()*+,;=")
 
-    # Extract domain from feed URL
     parsed = urlparse(feed_url)
-    base_url = f"{parsed.scheme}://{parsed.netloc}/"
-
-    # Use urljoin to properly combine domain with relative path
-    absolute_url = urljoin(base_url, link)
-    # Encode the URL, preserving URL structure characters
+    link_parts = urlsplit(link)
+    absolute_url = link_parts._replace(
+        scheme=parsed.scheme, netloc=parsed.netloc
+    ).geturl()
     return quote(absolute_url, safe=":/?#[]@!$&'()*+,;=").strip()
 
 
