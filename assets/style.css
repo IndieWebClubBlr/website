@@ -549,3 +549,30 @@ pre { line-height: 125%; }
 #members #controls:has(#show-badges:checked) ~ .member-grid .member-info .member-badges {
   display: flex;
 }
+
+#newsletter form input[type="email"] {
+  width: 100%;
+  max-width: 20rem;
+  height: 2em;
+  font-size: 1em;
+}
+
+#newsletter input[type="submit"] {
+  font-size: 1em;
+  padding: 0.25em 0.5em;
+}
+
+#newsletter form {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25em;
+  align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+  #newsletter form {
+    flex-direction: column;
+    gap: 0.25em;
+    align-items: flex-start;
+  }
+}

@@ -355,6 +355,16 @@ def generate_webring(feeds_with_entries: list[FeedInfo], output_dir: Path):
     logger.info(f"Generated webring previous link: {next_link.html_url}")
 
 
+def generate_newsletter_subscribe_page(output_dir: Path):
+    renderer = pystache.Renderer()
+
+    render_and_save_html(
+        html_content=renderer.render(read_template("nl-subsribe.html"), {}),
+        output_dir=output_dir / "newsletter",
+    )
+    logger.info("Generated newsletter subscription page")
+
+
 @dataclass
 class BuildCache:
     feeds: list[FeedInfo] = field(default_factory=list)
@@ -443,6 +453,10 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
         build.need("get_feeds_with_entries")
         generate_webring(cache.feeds_with_entries, output_dir)
 
+    @build.rule("generate_newsletter_subscribe_page")
+    def _(_target: str):
+        generate_newsletter_subscribe_page(output_dir)
+
     @build.rule("generate_homepage")
     def _(_target: str):
         build.need("fetch_feeds", "fetch_events")
@@ -460,6 +474,7 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
             "generate_events_calendar",
             "generate_blogroll",
             "generate_webring",
+            "generate_newsletter_subscribe_page",
             "generate_homepage",
             *asset_targets,
             *page_targets,

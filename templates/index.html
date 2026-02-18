@@ -36,7 +36,7 @@
   {{/upcoming_events}}
   <ul class="no-marker pointed-hand">
     <li><a href="#previous-events">See previous events.</a></li>
-    <li><a href="/topics/">See events topics.</a></li>
+    <li><a href="{{site_url}}topics/">See events topics.</a></li>
     <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
     <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
     <li><a href="{{site_url}}events.ics">Download as a calendar.</a></li>
@@ -60,8 +60,9 @@
   <h2>Recent Posts by Members</h2>
   <ul class="no-marker pointed-hand">
     <li><a href="{{site_url}}blogroll.atom">Subscribe as a feed.</a></li>
+    <li><a href="{{site_url}}newsletter/">Subscribe as a newsletter.</a></li>
     <li><a href="{{site_url}}blogroll.opml">Download as an OPML file.</a></li>
-    <li><a href="/members/">See the Member Directory</a>.</li>
+    <li><a href="{{site_url}}members/">See the Member Directory</a>.</li>
   </ul>
   {{#entries}}
   <article class="entry">
@@ -78,7 +79,7 @@
   <h2>Previous Events</h2>
   <ul class="no-marker pointed-hand">
     <li><a href="#upcoming-events">See upcoming events.</a></li>
-    <li><a href="/topics/">See events topics.</a></li>
+    <li><a href="{{site_url}}topics/">See events topics.</a></li>
     <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
     <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
     <li><a href="{{site_url}}events.ics">Download as a calendar.</a></li>
@@ -93,11 +94,11 @@
 
 <section>
   <h2>Webring</h2>
-  <p>If you are member of IWCB, please consider joining our <a href="/webring/">webring</a> to encourage discovery within our community.</p>
+  <p>If you are member of IWCB, please consider joining our <a href="{{site_url}}webring/">webring</a> to encourage discovery within our community.</p>
 </section>
 
 <section>
   <h2>Code of Conduct</h2>
-  <p>We have a <a href="/coc/">Code of Conduct</a> that we expect our club members to follow.</p>
+  <p>We have a <a href="{{site_url}}coc/">Code of Conduct</a> that we expect our club members to follow.</p>
   <p>The contents of this website are lightly moderated by <a href="https://ankursethi.com/">Ankur</a> and <a href="https://tanvibhakta.in/">Tanvi</a>. Please contact us if you find any objectionable content on this website.</p>
 </section>

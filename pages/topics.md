@@ -1,4 +1,4 @@
-# IndieWebClub Bangalore Topics
+# Topics
 
 [TOC]
 
