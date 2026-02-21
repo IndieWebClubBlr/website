@@ -4,7 +4,7 @@
     <title>Indieweb Club Bangalore Blogroll</title>
   </head>
   <body>
-    <!-- Keep sorted alphabetically, case-insensitive -->
+    <!-- Keep sorted alphabetically, case-insensitive, main blog first -->
     <outline type="rss" text="9porcupine" xmlUrl="https://9porcupine.mataroa.blog/rss/" htmlUrl="https://9porcupine.mataroa.blog/" />
     <outline type="rss" text="A Believable Fiction" xmlUrl="https://a-believable-fiction.pages.dev/feed.xml" htmlUrl="https://a-believable-fiction.pages.dev/" />
     <outline type="rss" text="Abhigyan Trips" xmlUrl="https://abhi.now/blog/feed.xml" htmlUrl="https://abhi.now/blog/" />
@@ -60,6 +60,7 @@
     <outline type="rss" text="Prasanna Bhogale" xmlUrl="https://theclarkeorbit.github.io/feeds/blog.atom.xml" htmlUrl="https://theclarkeorbit.github.io/" />
     <outline type="rss" text="promethean" xmlUrl="https://promethean.mataroa.blog/rss/" htmlUrl="https://promethean.mataroa.blog/" />
     <outline type="rss" text="Rasagy Sharma" xmlUrl="https://rasagy.in/index.xml" htmlUrl="https://rasagy.in/" />
+    <outline type="rss" text="Santrupti P" xmlUrl="https://santacandesign.github.io/portfoliosite/feed.xml" htmlUrl="https://santacandesign.github.io/portfoliosite/" />
     <outline type="rss" text="Sagrika Padha" xmlUrl="https://sagrika27.wordpress.com/feed/" htmlUrl="https://sagrika27.wordpress.com/" />
     <outline type="rss" text="sayakel" xmlUrl="https://sayakel.mataroa.blog/rss/" htmlUrl="https://sayakel.mataroa.blog/" />
     <outline type="rss" text="Sharada Rao" xmlUrl="https://sharadarao.wordpress.com/" htmlUrl="https://sharadarao.wordpress.com/" />
@@ -67,7 +68,7 @@
     <outline type="rss" text="Shubham" xmlUrl="https://flavorfulsuffering.xyz/rss.xml" htmlUrl="https://flavorfulsuffering.xyz/" />
     <outline type="rss" text="Shubham" xmlUrl="https://shubham.mataroa.blog/rss/" htmlUrl="https://shubham.mataroa.blog/" />
     <outline type="rss" text="siddhant14" xmlUrl="https://siddhant14.mataroa.blog/rss/" htmlUrl="https://siddhant14.mataroa.blog/" />
-   <outline type="rss" text="Simar" xmlUrl="https://laguna-dream.github.io/rss.xml" htmlUrl="https://laguna-dream.github.io/"/>
+    <outline type="rss" text="Simar" xmlUrl="https://laguna-dream.github.io/rss.xml" htmlUrl="https://laguna-dream.github.io/" />
     <outline type="rss" text="slatechalkings" xmlUrl="https://slatechalkings.mataroa.blog/rss/" htmlUrl="https://slatechalkings.mataroa.blog/" />
     <outline type="rss" text="Suhas Kashyap" xmlUrl="https://www.kashyapsuhas.com/blog/feed.xml" htmlUrl="https://www.kashyapsuhas.com/" />
     <outline type="rss" text="Suneela &amp; Yeswanth" xmlUrl="https://holistictravellers.com/rss.xml" htmlUrl="https://holistictravellers.com/" />
@@ -79,6 +80,6 @@
     <outline type="rss" text="Vishal R" xmlUrl="https://vishalr.dev/rss.xml" htmlUrl="https://vishalr.dev/" />
     <outline type="rss" text="wrld" xmlUrl="https://wrld.mataroa.blog/rss/" htmlUrl="https://wrld.mataroa.blog/" />
     <outline type="rss" text="xypnox" xmlUrl="https://www.xypnox.com/rss.xml" htmlUrl="https://www.xypnox.com/" />
-    <!-- Keep sorted alphabetically, case-insensitive -->
+    <!-- Keep sorted alphabetically, case-insensitive, main blog first -->
   </body>
 </opml>
