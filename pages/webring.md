@@ -60,4 +60,4 @@ Please [raise a pull request](https://github.com/IndieWebClubBlr/website/pulls) 
 
 ## Disclaimer
 
-The webring connects member websites but does not endorse their content. Members are responsible for their own sites. If you have concerns about a member's website, please [contact the admins](/coc/#:~:text=Reporting%20Guidelines).
+The webring connects member websites but does not endorse their content. Members are responsible for their own sites. If you have concerns about a member's website, please contact the admins via [email](mailto:blr+mod@indiewebclub.org).

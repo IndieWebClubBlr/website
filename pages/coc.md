@@ -54,7 +54,7 @@ If a community member engages in unacceptable behavior, the moderators may take 
 
 These are the policies for upholding our community's standards of conduct.
 
-If you are subject to or witness unacceptable behavior, or have any other concerns, please notify a moderator as soon as possible. You can report inappropriate behavior you witnessed or experienced to the concerned organizer (in case of a physical event) or the moderator (in case of an online forum). You can also contact [Ankur](https://ankursethi.com/) or [Tanvi](https://tanvibhakta.in/). All reports will be handled with discretion.
+If you are subject to or witness unacceptable behavior, or have any other concerns, please notify a moderator as soon as possible. You can report inappropriate behavior you witnessed or experienced to the concerned organizer (in case of a physical event) or the moderator (in case of an online forum). You can also contact moderators via [email](mailto:blr+mod@indiewebclub.org). All reports will be handled with discretion.
 
 1. Remarks that violate the IWCB's standards of conduct, including hateful, hurtful, oppressive, or exclusionary remarks, are not allowed. (Cursing is okay, but never targeting another member, and never in a hateful manner.)
 2. Remarks that moderators find inappropriate, whether listed in the code of conduct or not, are also not allowed.

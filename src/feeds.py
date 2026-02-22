@@ -9,7 +9,7 @@ from datetime import datetime, timedelta, timezone
 from enum import Enum
 from pathlib import Path
 from typing import final
-from urllib.parse import quote, urlsplit, urlparse
+from urllib.parse import quote, urlparse, urlsplit
 
 import feedparser
 import requests
