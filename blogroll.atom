@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-01T08:22:09.217712+00:00</updated>
+  <updated>2026-03-01T09:23:28.447058+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,6 +10,20 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://thejeshgn.com/2026/03/01/big-loop-ride-in-a-day/</id>
+    <title>Big Loop Ride in a Day</title>
+    <updated>2026-03-01T08:56:57+00:00</updated>
+    <author>
+      <name>Thejesh GN</name>
+      <uri>https://feeds.thejeshgn.com/thejeshgn</uri>
+    </author>
+    <link href="https://thejeshgn.com/2026/03/01/big-loop-ride-in-a-day/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <category term="Travel"/>
+    <category term="Motorcycle Diaries"/>
+    <category term="Motorcycling"/>
+    <published>2026-03-01T08:56:57+00:00</published>
+  </entry>
   <entry>
     <id>https://thejeshgn.com/2026/02/27/weekly-notes-09-2026/</id>
     <title>Weekly Notes 09/2026</title>
@@ -231,17 +245,6 @@
     <published>2026-02-21T04:59:50+00:00</published>
   </entry>
   <entry>
-    <id>https://blog.anikthink.com/blog/recipe-7-cabbage-saute/</id>
-    <title>Cabbage, lightly sautéed with garlic</title>
-    <updated>2026-02-21T00:00:00+00:00</updated>
-    <author>
-      <name>Anik</name>
-      <uri>https://blog.anikthink.com/rss.xml</uri>
-    </author>
-    <link href="https://blog.anikthink.com/blog/recipe-7-cabbage-saute/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-21T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii</id>
     <title>A weeknote because Tanvi is scary - II</title>
     <updated>2026-02-21T00:00:00+00:00</updated>
@@ -250,6 +253,17 @@
       <uri>https://azan-n.com/notes/rss.xml</uri>
     </author>
     <link href="https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/recipe-7-cabbage-saute/</id>
+    <title>Cabbage, lightly sautéed with garlic</title>
+    <updated>2026-02-21T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/recipe-7-cabbage-saute/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-21T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -414,17 +428,6 @@
     <published>2026-02-16T11:10:57+00:00</published>
   </entry>
   <entry>
-    <id>https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/</id>
-    <title>[Blog] Your Mac apps have SQLite databases you can just query</title>
-    <updated>2026-02-16T00:00:00+00:00</updated>
-    <author>
-      <name>Tanvi Bhakta</name>
-      <uri>https://tanvibhakta.in/feed.xml</uri>
-    </author>
-    <link href="https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-16T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://www.kashyapsuhas.com/blog/im-1750-on-aoe2-now</id>
     <title>I'm 1750 Elo on Age of Empires 2 now</title>
     <updated>2026-02-16T00:00:00+00:00</updated>
@@ -446,6 +449,17 @@
     <link href="https://abhinavsarkar.net/notes/2026-weeknotes-02-16/?mtm_campaign=feed&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <category term="weeknotes"/>
     <category term="personal"/>
+    <published>2026-02-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/</id>
+    <title>[Blog] Your Mac apps have SQLite databases you can just query</title>
+    <updated>2026-02-16T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-16T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -853,17 +867,6 @@
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://forwhatitsworth.netlify.app/posts/good-old-neon/</id>
-    <title>Book review - Good Old Neon by David Foster Wallace</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/posts/good-old-neon/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/</id>
     <title>First time at the Indie Web Club</title>
     <updated>2026-02-08T00:00:00+00:00</updated>
@@ -930,6 +933,30 @@
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://www.xypnox.com/blag/posts/recommendations/</id>
+    <title>Recommendations</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>xypnox</name>
+      <uri>https://www.xypnox.com/rss.xml</uri>
+    </author>
+    <link href="https://www.xypnox.com/blag/posts/recommendations/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-02-08/?mtm_campaign=feed</id>
+    <title>Notes for the Week #6 (2026)</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-02-08/?mtm_campaign=feed&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://tanvibhakta.in/blog/lollapalooza-2026/</id>
     <title>[Blog] Lollapalooza 2026</title>
     <updated>2026-02-08T00:00:00+00:00</updated>
@@ -960,30 +987,6 @@
       <uri>https://tanvibhakta.in/feed.xml</uri>
     </author>
     <link href="https://tanvibhakta.in/weeknotes/week-of-feb-8th-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.xypnox.com/blag/posts/recommendations/</id>
-    <title>Recommendations</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>xypnox</name>
-      <uri>https://www.xypnox.com/rss.xml</uri>
-    </author>
-    <link href="https://www.xypnox.com/blag/posts/recommendations/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://abhinavsarkar.net/notes/2026-weeknotes-02-08/?mtm_campaign=feed</id>
-    <title>Notes for the Week #6 (2026)</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>Abhinav Sarkar</name>
-      <uri>https://abhinavsarkar.net/all.atom</uri>
-    </author>
-    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-02-08/?mtm_campaign=feed&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <category term="weeknotes"/>
-    <category term="personal"/>
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1462,20 +1465,6 @@
     <published>2026-01-25T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://thejeshgn.com/2026/01/23/weekly-notes-04-2026/</id>
-    <title>Weekly Notes 04/2026</title>
-    <updated>2026-01-23T17:35:56+00:00</updated>
-    <author>
-      <name>Thejesh GN</name>
-      <uri>https://feeds.thejeshgn.com/thejeshgn</uri>
-    </author>
-    <link href="https://thejeshgn.com/2026/01/23/weekly-notes-04-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <category term="Weekly Notes"/>
-    <category term="WN-04"/>
-    <category term="Workouts"/>
-    <published>2026-01-23T17:35:56+00:00</published>
-  </entry>
-  <entry>
     <id>https://purposewithpals.wordpress.com/2026/01/23/coloured-inks-smelly-perfumes/</id>
     <title>Coloured Inks &amp; Smelly Perfumes</title>
     <updated>2026-01-23T12:07:42+00:00</updated>
@@ -1847,17 +1836,6 @@
     <published>2026-01-17T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://kartikkwatra.com/blog/my-ai-development-workflow/</id>
-    <title>My AI developemt workflow</title>
-    <updated>2026-01-17T00:00:00+00:00</updated>
-    <author>
-      <name>Kartik Kwatra</name>
-      <uri>https://kartikkwatra.com/rss.xml</uri>
-    </author>
-    <link href="https://kartikkwatra.com/blog/my-ai-development-workflow/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-17T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://slatechalkings.mataroa.blog/blog/the-memory-trail/</id>
     <title>The Memory Trail</title>
     <updated>2026-01-17T00:00:00+00:00</updated>
@@ -1866,6 +1844,17 @@
       <uri>https://slatechalkings.mataroa.blog/rss/</uri>
     </author>
     <link href="https://slatechalkings.mataroa.blog/blog/the-memory-trail/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://kartikkwatra.com/blog/my-ai-development-workflow/</id>
+    <title>My AI developemt workflow</title>
+    <updated>2026-01-17T00:00:00+00:00</updated>
+    <author>
+      <name>Kartik Kwatra</name>
+      <uri>https://kartikkwatra.com/rss.xml</uri>
+    </author>
+    <link href="https://kartikkwatra.com/blog/my-ai-development-workflow/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-17T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1882,17 +1871,6 @@
     <category term="ai"/>
     <category term="intelligence_augmentation"/>
     <category term="tools_for_thought"/>
-    <published>2026-01-16T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/on-subjectivity-of-art/</id>
-    <title>Art as a race to the bottom</title>
-    <updated>2026-01-16T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/on-subjectivity-of-art/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-16T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2241,17 +2219,6 @@
     <published>2026-01-03T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://kartikkwatra.com/blog/weeknote-2026-w1/</id>
-    <title>Weeknote 2026-W1 | '12 grapes under the table'</title>
-    <updated>2026-01-03T00:00:00+00:00</updated>
-    <author>
-      <name>Kartik Kwatra</name>
-      <uri>https://kartikkwatra.com/rss.xml</uri>
-    </author>
-    <link href="https://kartikkwatra.com/blog/weeknote-2026-w1/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-03T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://slatechalkings.mataroa.blog/blog/blog-intent/</id>
     <title>BLOG INTENT</title>
     <updated>2026-01-03T00:00:00+00:00</updated>
@@ -2271,6 +2238,17 @@
       <uri>https://slatechalkings.mataroa.blog/rss/</uri>
     </author>
     <link href="https://slatechalkings.mataroa.blog/blog/unsent-drafts/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://kartikkwatra.com/blog/weeknote-2026-w1/</id>
+    <title>Weeknote 2026-W1 | '12 grapes under the table'</title>
+    <updated>2026-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>Kartik Kwatra</name>
+      <uri>https://kartikkwatra.com/rss.xml</uri>
+    </author>
+    <link href="https://kartikkwatra.com/blog/weeknote-2026-w1/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-03T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2304,17 +2282,6 @@
       <uri>https://azan-n.com/notes/rss.xml</uri>
     </author>
     <link href="https://azan-n.com/notes/20260102-all-my-download-metrics-in-one-place?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-02T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/posts/infinite-fun-space/</id>
-    <title>Infinite fun machine</title>
-    <updated>2026-01-02T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/posts/infinite-fun-space/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-02T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2943,50 +2910,6 @@
     </author>
     <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwncUnjE1LRJGiMp2mPD_8Mq&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2025-12-08T07:25:46+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/note-2025-08-20/</id>
-    <title>Better angels of our nature</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/note-2025-08-20/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/civilizations-live-and-die-by-what-is-cool/</id>
-    <title>Civilizations live and die by what is cool</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/civilizations-live-and-die-by-what-is-cool/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/note-2025-12-8/</id>
-    <title>Heavy is the head</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/note-2025-12-8/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/</id>
-    <title>Self help as communicating metaphors</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2025-48/</id>
