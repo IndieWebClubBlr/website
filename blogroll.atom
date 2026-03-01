@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-01T12:32:50.759563+00:00</updated>
+  <updated>2026-03-01T13:35:19.674724+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,6 +10,17 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://abhinavsarkar.net/photography/#photo-116154144453069385</id>
+    <title>End of Line</title>
+    <updated>2026-03-01T13:26:27+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/photography/feed.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/photography/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll#photo-116154144453069385"/>
+    <published>2026-03-01T13:26:27+00:00</published>
+  </entry>
   <entry>
     <id>https://thejeshgn.com/2026/03/01/big-loop-ride-in-a-day/</id>
     <title>Big Loop Ride in a Day</title>
@@ -155,17 +166,6 @@
     <published>2026-02-23T12:06:28+00:00</published>
   </entry>
   <entry>
-    <id>https://kdqed.com/bmrcl-ridership-revenue-analysis</id>
-    <title>Bengaluru Metro: Ridership Data For Revenue Optimization</title>
-    <updated>2026-02-23T00:00:00+00:00</updated>
-    <author>
-      <name>Karthik Devan</name>
-      <uri>https://kdqed.com/feed.xml</uri>
-    </author>
-    <link href="https://kdqed.com/bmrcl-ridership-revenue-analysis?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-23T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://msfjarvis.dev/posts/weeknotes-week-8-2026/</id>
     <title>Weeknotes: Week #8 (2026)</title>
     <updated>2026-02-22T15:26:00+00:00</updated>
@@ -245,17 +245,6 @@
     <published>2026-02-21T04:59:50+00:00</published>
   </entry>
   <entry>
-    <id>https://blog.anikthink.com/blog/recipe-7-cabbage-saute/</id>
-    <title>Cabbage, lightly sautéed with garlic</title>
-    <updated>2026-02-21T00:00:00+00:00</updated>
-    <author>
-      <name>Anik</name>
-      <uri>https://blog.anikthink.com/rss.xml</uri>
-    </author>
-    <link href="https://blog.anikthink.com/blog/recipe-7-cabbage-saute/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-21T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii</id>
     <title>A weeknote because Tanvi is scary - II</title>
     <updated>2026-02-21T00:00:00+00:00</updated>
@@ -264,6 +253,17 @@
       <uri>https://azan-n.com/notes/rss.xml</uri>
     </author>
     <link href="https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/recipe-7-cabbage-saute/</id>
+    <title>Cabbage, lightly sautéed with garlic</title>
+    <updated>2026-02-21T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/recipe-7-cabbage-saute/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-21T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -586,17 +586,6 @@
     <published>2026-02-13T16:29:06+00:00</published>
   </entry>
   <entry>
-    <id>https://ankursethi.com/blog/i-used-a-local-llm-to-analyze-my-journal-entries/</id>
-    <title>I used a local LLM to analyze my journal entries</title>
-    <updated>2026-02-13T16:04:58+00:00</updated>
-    <author>
-      <name>Ankur Sethi</name>
-      <uri>https://ankursethi.com/feeds/index.xml</uri>
-    </author>
-    <link href="https://ankursethi.com/blog/i-used-a-local-llm-to-analyze-my-journal-entries/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-13T16:04:58+00:00</published>
-  </entry>
-  <entry>
     <id>https://georgesupreeth.com/web/blog/blog_geo_260213_make_many_backups/</id>
     <title>Make many backups</title>
     <updated>2026-02-13T13:06:31+00:00</updated>
@@ -640,17 +629,6 @@
     <link href="https://jatan.space/indian-space-issue-35/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <category term="Indian Space"/>
     <published>2026-02-11T11:55:03+00:00</published>
-  </entry>
-  <entry>
-    <id>https://kdqed.com/linkin-park-bengaluru-personal-account</id>
-    <title>Linkin Park in Bengaluru 2026 - A Very Personal Account</title>
-    <updated>2026-02-10T00:00:00+00:00</updated>
-    <author>
-      <name>Karthik Devan</name>
-      <uri>https://kdqed.com/feed.xml</uri>
-    </author>
-    <link href="https://kdqed.com/linkin-park-bengaluru-personal-account?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-10T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://itihas.review/20260208163910-gutcraft_a_prospective.html</id>
@@ -801,17 +779,6 @@
     <published>2026-02-08T11:30:40+00:00</published>
   </entry>
   <entry>
-    <id>https://ankursethi.com/blog/the-only-correct-recipe-for-making-chai/</id>
-    <title>The only correct recipe for making chai</title>
-    <updated>2026-02-08T11:29:19+00:00</updated>
-    <author>
-      <name>Ankur Sethi</name>
-      <uri>https://ankursethi.com/feeds/index.xml</uri>
-    </author>
-    <link href="https://ankursethi.com/blog/the-only-correct-recipe-for-making-chai/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T11:29:19+00:00</published>
-  </entry>
-  <entry>
     <id>https://georgesupreeth.com/web/blog/blog_geo_260208_back_to_ledger/</id>
     <title>Back to Ledger</title>
     <updated>2026-02-08T07:22:38+00:00</updated>
@@ -867,17 +834,6 @@
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/</id>
-    <title>First time at the Indie Web Club</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>flyingsymphony</name>
-      <uri>https://flyingsymphony.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://heftymouse.me/blog/astro-rss-images/</id>
     <title>Making Astro asset images work in RSS</title>
     <updated>2026-02-08T00:00:00+00:00</updated>
@@ -886,6 +842,28 @@
       <uri>https://heftymouse.me/blog/rss.xml</uri>
     </author>
     <link href="https://heftymouse.me/blog/astro-rss-images/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/posts/good-old-neon/</id>
+    <title>Book review - Good Old Neon by David Foster Wallace</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/posts/good-old-neon/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/</id>
+    <title>First time at the Indie Web Club</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>flyingsymphony</name>
+      <uri>https://flyingsymphony.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1024,17 +1002,6 @@
     </author>
     <link href="https://thoughts.jatan.space/posts/hear-less-but-better-from-me?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-06T14:35:58+00:00</published>
-  </entry>
-  <entry>
-    <id>https://ankursethi.com/blog/write-bad-have-fun/</id>
-    <title>Write quickly, edit lightly, prefer rewrites, publish with flaws</title>
-    <updated>2026-02-06T10:11:05+00:00</updated>
-    <author>
-      <name>Ankur Sethi</name>
-      <uri>https://ankursethi.com/feeds/index.xml</uri>
-    </author>
-    <link href="https://ankursethi.com/blog/write-bad-have-fun/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-06T10:11:05+00:00</published>
   </entry>
   <entry>
     <id>https://journal.jatan.space/one-sane-fediverse-profile-to-rule-them-all/</id>
@@ -1246,17 +1213,6 @@
     <category term="WN-05"/>
     <category term="Workouts"/>
     <published>2026-01-30T17:29:09+00:00</published>
-  </entry>
-  <entry>
-    <id>https://ankursethi.com/blog/genai-gatekeeping/</id>
-    <title>Generative AI and the era of increased gatekeeping</title>
-    <updated>2026-01-30T16:39:22+00:00</updated>
-    <author>
-      <name>Ankur Sethi</name>
-      <uri>https://ankursethi.com/feeds/index.xml</uri>
-    </author>
-    <link href="https://ankursethi.com/blog/genai-gatekeeping/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-30T16:39:22+00:00</published>
   </entry>
   <entry>
     <id>https://blog.anikthink.com/blog/recipe-5-pad-thai/</id>
@@ -1803,17 +1759,6 @@
     <published>2026-01-17T11:52:57+00:00</published>
   </entry>
   <entry>
-    <id>https://ankursethi.com/blog/smallest-possible-change/</id>
-    <title>Pushing the smallest possible change to production</title>
-    <updated>2026-01-17T11:51:32+00:00</updated>
-    <author>
-      <name>Ankur Sethi</name>
-      <uri>https://ankursethi.com/feeds/index.xml</uri>
-    </author>
-    <link href="https://ankursethi.com/blog/smallest-possible-change/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-17T11:51:32+00:00</published>
-  </entry>
-  <entry>
     <id>https://youtube.com/playlist?list=PLxlIzqc0aEwk98b_AcS6PArYLK0dPiBDp</id>
     <title>Ben Howard</title>
     <updated>2026-01-17T09:47:51+00:00</updated>
@@ -1871,6 +1816,17 @@
     <category term="ai"/>
     <category term="intelligence_augmentation"/>
     <category term="tools_for_thought"/>
+    <published>2026-01-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/notes/on-subjectivity-of-art/</id>
+    <title>Art as a race to the bottom</title>
+    <updated>2026-01-16T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/notes/on-subjectivity-of-art/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-16T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2048,17 +2004,6 @@
     <category term="personal"/>
     <category term="indieweb"/>
     <published>2026-01-06T11:13:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://ankursethi.com/blog/no-full-albums/</id>
-    <title>I'm not listening to full albums anymore</title>
-    <updated>2026-01-06T10:57:23+00:00</updated>
-    <author>
-      <name>Ankur Sethi</name>
-      <uri>https://ankursethi.com/feeds/index.xml</uri>
-    </author>
-    <link href="https://ankursethi.com/blog/no-full-albums/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-06T10:57:23+00:00</published>
   </entry>
   <entry>
     <id>https://akashbhat.com/new-post/</id>
@@ -2282,6 +2227,17 @@
       <uri>https://azan-n.com/notes/rss.xml</uri>
     </author>
     <link href="https://azan-n.com/notes/20260102-all-my-download-metrics-in-one-place?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/posts/infinite-fun-space/</id>
+    <title>Infinite fun machine</title>
+    <updated>2026-01-02T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/posts/infinite-fun-space/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-02T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2587,17 +2543,6 @@
     <published>2025-12-20T11:20:19+00:00</published>
   </entry>
   <entry>
-    <id>https://ankursethi.com/blog/tech-predictions-2026/</id>
-    <title>Tech predictions for 2026, presented without nuance, context, or evidence</title>
-    <updated>2025-12-20T11:19:13+00:00</updated>
-    <author>
-      <name>Ankur Sethi</name>
-      <uri>https://ankursethi.com/feeds/index.xml</uri>
-    </author>
-    <link href="https://ankursethi.com/blog/tech-predictions-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-20T11:19:13+00:00</published>
-  </entry>
-  <entry>
     <id>https://adithyanair.com/blog/the-truman-show/</id>
     <title>Thoughts On The Truman Show And Its Villain</title>
     <updated>2025-12-20T00:00:00+00:00</updated>
@@ -2868,28 +2813,6 @@
     <published>2025-12-11T04:52:18+00:00</published>
   </entry>
   <entry>
-    <id>https://ankursethi.com/blog/gemini-api-key-frustration/</id>
-    <title>Getting a Gemini API key is an exercise in frustration</title>
-    <updated>2025-12-10T09:05:55+00:00</updated>
-    <author>
-      <name>Ankur Sethi</name>
-      <uri>https://ankursethi.com/feeds/index.xml</uri>
-    </author>
-    <link href="https://ankursethi.com/blog/gemini-api-key-frustration/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-10T09:05:55+00:00</published>
-  </entry>
-  <entry>
-    <id>https://ankursethi.com/blog/my-first-online-shopping-experience/</id>
-    <title>My first online shopping experience, at the tender age of twelve</title>
-    <updated>2025-12-08T14:51:48+00:00</updated>
-    <author>
-      <name>Ankur Sethi</name>
-      <uri>https://ankursethi.com/feeds/index.xml</uri>
-    </author>
-    <link href="https://ankursethi.com/blog/my-first-online-shopping-experience/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T14:51:48+00:00</published>
-  </entry>
-  <entry>
     <id>https://youtube.com/playlist?list=PLxlIzqc0aEwkoaKWqrQpwndP7gKtAxEuc</id>
     <title>Metallica</title>
     <updated>2025-12-08T08:18:54+00:00</updated>
@@ -2910,6 +2833,50 @@
     </author>
     <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwncUnjE1LRJGiMp2mPD_8Mq&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2025-12-08T07:25:46+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/notes/note-2025-08-20/</id>
+    <title>Better angels of our nature</title>
+    <updated>2025-12-08T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/notes/note-2025-08-20/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2025-12-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/notes/civilizations-live-and-die-by-what-is-cool/</id>
+    <title>Civilizations live and die by what is cool</title>
+    <updated>2025-12-08T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/notes/civilizations-live-and-die-by-what-is-cool/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2025-12-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/notes/note-2025-12-8/</id>
+    <title>Heavy is the head</title>
+    <updated>2025-12-08T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/notes/note-2025-12-8/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2025-12-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/</id>
+    <title>Self help as communicating metaphors</title>
+    <updated>2025-12-08T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2025-12-08T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2025-48/</id>
@@ -2972,17 +2939,6 @@
     <category term="haskell"/>
     <category term="scala"/>
     <published>2025-12-04T19:22:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://ankursethi.com/blog/using-llms-for-web-search/</id>
-    <title>Using LLMs for web search</title>
-    <updated>2025-12-03T14:04:10+00:00</updated>
-    <author>
-      <name>Ankur Sethi</name>
-      <uri>https://ankursethi.com/feeds/index.xml</uri>
-    </author>
-    <link href="https://ankursethi.com/blog/using-llms-for-web-search/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-03T14:04:10+00:00</published>
   </entry>
   <entry>
     <id>https://abhinavsarkar.net/photography/#photo-115655531352999760</id>
