@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-01T15:16:53.386734+00:00</updated>
+  <updated>2026-03-01T15:44:34.275649+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,6 +10,17 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-9-2026/</id>
+    <title>Weeknotes: Week #9 (2026)</title>
+    <updated>2026-03-01T14:07:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-9-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-03-01T14:07:00+00:00</published>
+  </entry>
   <entry>
     <id>https://abhinavsarkar.net/photography/#photo-116154144453069385</id>
     <title>End of Line</title>
@@ -212,17 +223,6 @@
     <published>2026-02-22T04:30:00+00:00</published>
   </entry>
   <entry>
-    <id>https://azan-n.com/notes/20260228-music-at-hack4play-with-strudelcc</id>
-    <title>Music at hack4play with strudel.cc</title>
-    <updated>2026-02-22T00:00:00+00:00</updated>
-    <author>
-      <name>Azan</name>
-      <uri>https://azan-n.com/notes/rss.xml</uri>
-    </author>
-    <link href="https://azan-n.com/notes/20260228-music-at-hack4play-with-strudelcc?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-22T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://holistictravellers.com/posts/vietnam-ninh-binh-boat-tour/</id>
     <title>King Kong:Skull Island in Real Life: Exploring Ninh Binh</title>
     <updated>2026-02-22T00:00:00+00:00</updated>
@@ -231,6 +231,17 @@
       <uri>https://holistictravellers.com/rss.xml</uri>
     </author>
     <link href="https://holistictravellers.com/posts/vietnam-ninh-binh-boat-tour/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20260228-music-at-hack4play-with-strudelcc</id>
+    <title>Music at hack4play with strudel.cc</title>
+    <updated>2026-02-22T00:00:00+00:00</updated>
+    <author>
+      <name>Azan</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20260228-music-at-hack4play-with-strudelcc?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-22T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -269,14 +280,14 @@
     <published>2026-02-21T04:59:50+00:00</published>
   </entry>
   <entry>
-    <id>https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii</id>
-    <title>A weeknote because Tanvi is scary - II</title>
+    <id>https://promethean.mataroa.blog/blog/different-schools-of-philosophy-in-eastern-and-western-schools/</id>
+    <title>Different Schools of Philosophy in Eastern and Western schools</title>
     <updated>2026-02-21T00:00:00+00:00</updated>
     <author>
-      <name>Azan</name>
-      <uri>https://azan-n.com/notes/rss.xml</uri>
+      <name>promethean</name>
+      <uri>https://promethean.mataroa.blog/rss/</uri>
     </author>
-    <link href="https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <link href="https://promethean.mataroa.blog/blog/different-schools-of-philosophy-in-eastern-and-western-schools/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-21T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -291,14 +302,14 @@
     <published>2026-02-21T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://promethean.mataroa.blog/blog/different-schools-of-philosophy-in-eastern-and-western-schools/</id>
-    <title>Different Schools of Philosophy in Eastern and Western schools</title>
+    <id>https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii</id>
+    <title>A weeknote because Tanvi is scary - II</title>
     <updated>2026-02-21T00:00:00+00:00</updated>
     <author>
-      <name>promethean</name>
-      <uri>https://promethean.mataroa.blog/rss/</uri>
+      <name>Azan</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
     </author>
-    <link href="https://promethean.mataroa.blog/blog/different-schools-of-philosophy-in-eastern-and-western-schools/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <link href="https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-21T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -360,17 +371,6 @@
     <published>2026-02-18T09:30:00+00:00</published>
   </entry>
   <entry>
-    <id>https://blog.anikthink.com/blog/weeknote-20-w2607/</id>
-    <title>Weeknote #20 [W26.07] - Rest &amp; recuperate</title>
-    <updated>2026-02-18T00:00:00+00:00</updated>
-    <author>
-      <name>Anik</name>
-      <uri>https://blog.anikthink.com/rss.xml</uri>
-    </author>
-    <link href="https://blog.anikthink.com/blog/weeknote-20-w2607/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-18T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://halfthere.mataroa.blog/blog/totoro-crochet-bucket-hat/</id>
     <title>totoro crochet bucket hat</title>
     <updated>2026-02-18T00:00:00+00:00</updated>
@@ -379,6 +379,17 @@
       <uri>https://halfthere.mataroa.blog/rss/</uri>
     </author>
     <link href="https://halfthere.mataroa.blog/blog/totoro-crochet-bucket-hat/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-20-w2607/</id>
+    <title>Weeknote #20 [W26.07] - Rest &amp; recuperate</title>
+    <updated>2026-02-18T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-20-w2607/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-18T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -452,17 +463,6 @@
     <published>2026-02-16T11:10:57+00:00</published>
   </entry>
   <entry>
-    <id>https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/</id>
-    <title>[Blog] Your Mac apps have SQLite databases you can just query</title>
-    <updated>2026-02-16T00:00:00+00:00</updated>
-    <author>
-      <name>Tanvi Bhakta</name>
-      <uri>https://tanvibhakta.in/feed.xml</uri>
-    </author>
-    <link href="https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-16T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://www.kashyapsuhas.com/blog/im-1750-on-aoe2-now</id>
     <title>I'm 1750 Elo on Age of Empires 2 now</title>
     <updated>2026-02-16T00:00:00+00:00</updated>
@@ -471,6 +471,17 @@
       <uri>https://www.kashyapsuhas.com/blog/feed.xml</uri>
     </author>
     <link href="https://www.kashyapsuhas.com/blog/im-1750-on-aoe2-now?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/</id>
+    <title>[Blog] Your Mac apps have SQLite databases you can just query</title>
+    <updated>2026-02-16T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-16T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -632,17 +643,6 @@
     <published>2026-02-13T13:06:31+00:00</published>
   </entry>
   <entry>
-    <id>https://blog.anikthink.com/blog/weeknote-19-w2606/</id>
-    <title>Weeknote #19 [W26.06] - Growing Cinema Next Door, chaotic sales pitches and the positive addition bias</title>
-    <updated>2026-02-12T00:00:00+00:00</updated>
-    <author>
-      <name>Anik</name>
-      <uri>https://blog.anikthink.com/rss.xml</uri>
-    </author>
-    <link href="https://blog.anikthink.com/blog/weeknote-19-w2606/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-12T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://halfthere.mataroa.blog/blog/my-first-amigurumi/</id>
     <title>my first amigurumi</title>
     <updated>2026-02-12T00:00:00+00:00</updated>
@@ -651,6 +651,17 @@
       <uri>https://halfthere.mataroa.blog/rss/</uri>
     </author>
     <link href="https://halfthere.mataroa.blog/blog/my-first-amigurumi/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-19-w2606/</id>
+    <title>Weeknote #19 [W26.06] - Growing Cinema Next Door, chaotic sales pitches and the positive addition bias</title>
+    <updated>2026-02-12T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-19-w2606/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-12T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -858,135 +869,14 @@
     <published>2026-02-08T04:30:00+00:00</published>
   </entry>
   <entry>
-    <id>https://adithyanair.com/blog/reviews/</id>
-    <title>Why I Review Things</title>
+    <id>https://www.xypnox.com/blag/posts/recommendations/</id>
+    <title>Recommendations</title>
     <updated>2026-02-08T00:00:00+00:00</updated>
     <author>
-      <name>Adithya Nair</name>
-      <uri>https://adithyanair.com/rss.xml</uri>
+      <name>xypnox</name>
+      <uri>https://www.xypnox.com/rss.xml</uri>
     </author>
-    <link href="https://adithyanair.com/blog/reviews/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://azan-n.com/notes/20260208-a-reminder-to-not-go-to-electronic-dance-music-gigs</id>
-    <title>A reminder to not go to electronic dance music gigs</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>Azan</name>
-      <uri>https://azan-n.com/notes/rss.xml</uri>
-    </author>
-    <link href="https://azan-n.com/notes/20260208-a-reminder-to-not-go-to-electronic-dance-music-gigs?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://azan-n.com/notes/20260209-a-review-of-mangalore-pearl</id>
-    <title>A review of Mangalore Pearl</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>Azan</name>
-      <uri>https://azan-n.com/notes/rss.xml</uri>
-    </author>
-    <link href="https://azan-n.com/notes/20260209-a-review-of-mangalore-pearl?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/posts/good-old-neon/</id>
-    <title>Book review - Good Old Neon by David Foster Wallace</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/posts/good-old-neon/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://heftymouse.me/blog/astro-rss-images/</id>
-    <title>Making Astro asset images work in RSS</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>heftymouse</name>
-      <uri>https://heftymouse.me/blog/rss.xml</uri>
-    </author>
-    <link href="https://heftymouse.me/blog/astro-rss-images/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/</id>
-    <title>First time at the Indie Web Club</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>flyingsymphony</name>
-      <uri>https://flyingsymphony.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://mariammwrites.mataroa.blog/blog/why-reviews/</id>
-    <title>Why Reviews</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>mariammwrites</name>
-      <uri>https://mariammwrites.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://mariammwrites.mataroa.blog/blog/why-reviews/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://nithitsuki.com/posts/anokha/</id>
-    <title>Anokha 2026 - a Travel diary entry</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>Nithitsuki</name>
-      <uri>https://nithitsuki.com/index.xml</uri>
-    </author>
-    <link href="https://nithitsuki.com/posts/anokha/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://promethean.mataroa.blog/blog/framework-for-reviewing-media/</id>
-    <title>Framework for Reviewing Media</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>promethean</name>
-      <uri>https://promethean.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://promethean.mataroa.blog/blog/framework-for-reviewing-media/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://holistictravellers.com/posts/vietnam-dalat-getting-lost/</id>
-    <title>Getting lost in Dalat, Vietnam</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>Suneela &amp; Yeswanth</name>
-      <uri>https://holistictravellers.com/rss.xml</uri>
-    </author>
-    <link href="https://holistictravellers.com/posts/vietnam-dalat-getting-lost/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://tanvibhakta.in/blog/lollapalooza-2026/</id>
-    <title>[Blog] Lollapalooza 2026</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>Tanvi Bhakta</name>
-      <uri>https://tanvibhakta.in/feed.xml</uri>
-    </author>
-    <link href="https://tanvibhakta.in/blog/lollapalooza-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://tanvibhakta.in/weeknotes/week-of-feb-1st-2026/</id>
-    <title>[Weeknotes] Week of Feb 1st, 2026</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>Tanvi Bhakta</name>
-      <uri>https://tanvibhakta.in/feed.xml</uri>
-    </author>
-    <link href="https://tanvibhakta.in/weeknotes/week-of-feb-1st-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <link href="https://www.xypnox.com/blag/posts/recommendations/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1001,14 +891,135 @@
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://www.xypnox.com/blag/posts/recommendations/</id>
-    <title>Recommendations</title>
+    <id>https://tanvibhakta.in/weeknotes/week-of-feb-1st-2026/</id>
+    <title>[Weeknotes] Week of Feb 1st, 2026</title>
     <updated>2026-02-08T00:00:00+00:00</updated>
     <author>
-      <name>xypnox</name>
-      <uri>https://www.xypnox.com/rss.xml</uri>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
     </author>
-    <link href="https://www.xypnox.com/blag/posts/recommendations/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-feb-1st-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/blog/lollapalooza-2026/</id>
+    <title>[Blog] Lollapalooza 2026</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/blog/lollapalooza-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://promethean.mataroa.blog/blog/framework-for-reviewing-media/</id>
+    <title>Framework for Reviewing Media</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>promethean</name>
+      <uri>https://promethean.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://promethean.mataroa.blog/blog/framework-for-reviewing-media/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://nithitsuki.com/posts/anokha/</id>
+    <title>Anokha 2026 - a Travel diary entry</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Nithitsuki</name>
+      <uri>https://nithitsuki.com/index.xml</uri>
+    </author>
+    <link href="https://nithitsuki.com/posts/anokha/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://mariammwrites.mataroa.blog/blog/why-reviews/</id>
+    <title>Why Reviews</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>mariammwrites</name>
+      <uri>https://mariammwrites.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://mariammwrites.mataroa.blog/blog/why-reviews/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://holistictravellers.com/posts/vietnam-dalat-getting-lost/</id>
+    <title>Getting lost in Dalat, Vietnam</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Suneela &amp; Yeswanth</name>
+      <uri>https://holistictravellers.com/rss.xml</uri>
+    </author>
+    <link href="https://holistictravellers.com/posts/vietnam-dalat-getting-lost/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://heftymouse.me/blog/astro-rss-images/</id>
+    <title>Making Astro asset images work in RSS</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>heftymouse</name>
+      <uri>https://heftymouse.me/blog/rss.xml</uri>
+    </author>
+    <link href="https://heftymouse.me/blog/astro-rss-images/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/posts/good-old-neon/</id>
+    <title>Book review - Good Old Neon by David Foster Wallace</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/posts/good-old-neon/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/</id>
+    <title>First time at the Indie Web Club</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>flyingsymphony</name>
+      <uri>https://flyingsymphony.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20260209-a-review-of-mangalore-pearl</id>
+    <title>A review of Mangalore Pearl</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Azan</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20260209-a-review-of-mangalore-pearl?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20260208-a-reminder-to-not-go-to-electronic-dance-music-gigs</id>
+    <title>A reminder to not go to electronic dance music gigs</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Azan</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20260208-a-reminder-to-not-go-to-electronic-dance-music-gigs?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://adithyanair.com/blog/reviews/</id>
+    <title>Why I Review Things</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Adithya Nair</name>
+      <uri>https://adithyanair.com/rss.xml</uri>
+    </author>
+    <link href="https://adithyanair.com/blog/reviews/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1106,17 +1117,6 @@
     <published>2026-02-05T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://azan-n.com/notes/20260204-a-conversation-about-chancenkarte</id>
-    <title>A conversation about Chancenkarte</title>
-    <updated>2026-02-04T00:00:00+00:00</updated>
-    <author>
-      <name>Azan</name>
-      <uri>https://azan-n.com/notes/rss.xml</uri>
-    </author>
-    <link href="https://azan-n.com/notes/20260204-a-conversation-about-chancenkarte?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-04T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://halfthere.mataroa.blog/blog/i-love-cinema-but-film-festivals-make-me-want-to-die/</id>
     <title>i love cinema but film festivals make me want to die</title>
     <updated>2026-02-04T00:00:00+00:00</updated>
@@ -1125,6 +1125,17 @@
       <uri>https://halfthere.mataroa.blog/rss/</uri>
     </author>
     <link href="https://halfthere.mataroa.blog/blog/i-love-cinema-but-film-festivals-make-me-want-to-die/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20260204-a-conversation-about-chancenkarte</id>
+    <title>A conversation about Chancenkarte</title>
+    <updated>2026-02-04T00:00:00+00:00</updated>
+    <author>
+      <name>Azan</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20260204-a-conversation-about-chancenkarte?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-04T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1294,17 +1305,6 @@
     <published>2026-01-30T16:39:22+00:00</published>
   </entry>
   <entry>
-    <id>https://blog.anikthink.com/blog/recipe-5-pad-thai/</id>
-    <title>Pad Thai</title>
-    <updated>2026-01-30T00:00:00+00:00</updated>
-    <author>
-      <name>Anik</name>
-      <uri>https://blog.anikthink.com/rss.xml</uri>
-    </author>
-    <link href="https://blog.anikthink.com/blog/recipe-5-pad-thai/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-30T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://halfthere.mataroa.blog/blog/ramble-rage-is-a-right/</id>
     <title>Ramble: Rage is a right</title>
     <updated>2026-01-30T00:00:00+00:00</updated>
@@ -1313,6 +1313,17 @@
       <uri>https://halfthere.mataroa.blog/rss/</uri>
     </author>
     <link href="https://halfthere.mataroa.blog/blog/ramble-rage-is-a-right/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/recipe-5-pad-thai/</id>
+    <title>Pad Thai</title>
+    <updated>2026-01-30T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/recipe-5-pad-thai/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-30T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1522,17 +1533,6 @@
     <published>2026-01-23T12:07:42+00:00</published>
   </entry>
   <entry>
-    <id>https://halfthere.mataroa.blog/blog/pasta-and-a-letter-from-far-far-away/</id>
-    <title>Pasta and a Letter from Far Far Away</title>
-    <updated>2026-01-23T00:00:00+00:00</updated>
-    <author>
-      <name>halfthere</name>
-      <uri>https://halfthere.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://halfthere.mataroa.blog/blog/pasta-and-a-letter-from-far-far-away/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-23T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://tanvibhakta.in/weeknotes/week-of-jan-23rd-2026/</id>
     <title>[Weeknotes] Week of Jan 23rd, 2026</title>
     <updated>2026-01-23T00:00:00+00:00</updated>
@@ -1541,6 +1541,17 @@
       <uri>https://tanvibhakta.in/feed.xml</uri>
     </author>
     <link href="https://tanvibhakta.in/weeknotes/week-of-jan-23rd-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://halfthere.mataroa.blog/blog/pasta-and-a-letter-from-far-far-away/</id>
+    <title>Pasta and a Letter from Far Far Away</title>
+    <updated>2026-01-23T00:00:00+00:00</updated>
+    <author>
+      <name>halfthere</name>
+      <uri>https://halfthere.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://halfthere.mataroa.blog/blog/pasta-and-a-letter-from-far-far-away/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-23T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1621,17 +1632,6 @@
     <published>2026-01-20T03:07:43.982000+00:00</published>
   </entry>
   <entry>
-    <id>https://blog.anikthink.com/blog/weeknote-16-w2603/</id>
-    <title>Weeknote #16 [W26.03] - Curating films, and chasing reading goals</title>
-    <updated>2026-01-20T00:00:00+00:00</updated>
-    <author>
-      <name>Anik</name>
-      <uri>https://blog.anikthink.com/rss.xml</uri>
-    </author>
-    <link href="https://blog.anikthink.com/blog/weeknote-16-w2603/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-20T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://kartikkwatra.com/blog/weeknote-2026-w3/</id>
     <title>Weeknote 2026-W3 | IQ vs AQI</title>
     <updated>2026-01-20T00:00:00+00:00</updated>
@@ -1640,6 +1640,17 @@
       <uri>https://kartikkwatra.com/rss.xml</uri>
     </author>
     <link href="https://kartikkwatra.com/blog/weeknote-2026-w3/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-16-w2603/</id>
+    <title>Weeknote #16 [W26.03] - Curating films, and chasing reading goals</title>
+    <updated>2026-01-20T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-16-w2603/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-20T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1860,17 +1871,6 @@
     <published>2026-01-17T09:47:51+00:00</published>
   </entry>
   <entry>
-    <id>https://azan-n.com/notes/20260117-a-nice-thing-a-stranger-has-done-for-me</id>
-    <title>A nice thing a stranger has done for me</title>
-    <updated>2026-01-17T00:00:00+00:00</updated>
-    <author>
-      <name>Azan</name>
-      <uri>https://azan-n.com/notes/rss.xml</uri>
-    </author>
-    <link href="https://azan-n.com/notes/20260117-a-nice-thing-a-stranger-has-done-for-me?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-17T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://slatechalkings.mataroa.blog/blog/the-memory-trail/</id>
     <title>The Memory Trail</title>
     <updated>2026-01-17T00:00:00+00:00</updated>
@@ -1890,6 +1890,17 @@
       <uri>https://kartikkwatra.com/rss.xml</uri>
     </author>
     <link href="https://kartikkwatra.com/blog/my-ai-development-workflow/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20260117-a-nice-thing-a-stranger-has-done-for-me</id>
+    <title>A nice thing a stranger has done for me</title>
+    <updated>2026-01-17T00:00:00+00:00</updated>
+    <author>
+      <name>Azan</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20260117-a-nice-thing-a-stranger-has-done-for-me?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-17T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2241,25 +2252,14 @@
     <published>2026-01-03T10:32:00+00:00</published>
   </entry>
   <entry>
-    <id>https://azan-n.com/notes/20260103-a-weeknote-because-tanvi-is-scary</id>
-    <title>A weeknote because Tanvi is scary</title>
+    <id>https://tanvibhakta.in/blog/website-2026/</id>
+    <title>[Blog] What do you want from your website in ten years?</title>
     <updated>2026-01-03T00:00:00+00:00</updated>
     <author>
-      <name>Azan</name>
-      <uri>https://azan-n.com/notes/rss.xml</uri>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
     </author>
-    <link href="https://azan-n.com/notes/20260103-a-weeknote-because-tanvi-is-scary?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-03T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://slatechalkings.mataroa.blog/blog/blog-intent/</id>
-    <title>BLOG INTENT</title>
-    <updated>2026-01-03T00:00:00+00:00</updated>
-    <author>
-      <name>slatechalkings</name>
-      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://slatechalkings.mataroa.blog/blog/blog-intent/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <link href="https://tanvibhakta.in/blog/website-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-03T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2274,14 +2274,14 @@
     <published>2026-01-03T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://tanvibhakta.in/blog/website-2026/</id>
-    <title>[Blog] What do you want from your website in ten years?</title>
+    <id>https://slatechalkings.mataroa.blog/blog/blog-intent/</id>
+    <title>BLOG INTENT</title>
     <updated>2026-01-03T00:00:00+00:00</updated>
     <author>
-      <name>Tanvi Bhakta</name>
-      <uri>https://tanvibhakta.in/feed.xml</uri>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
     </author>
-    <link href="https://tanvibhakta.in/blog/website-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <link href="https://slatechalkings.mataroa.blog/blog/blog-intent/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-03T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2296,25 +2296,25 @@
     <published>2026-01-03T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://msfjarvis.dev/posts/coming-around-on-the-utility-of-llms/</id>
-    <title>Coming around on the utility of LLMs</title>
-    <updated>2026-01-02T16:53:00+00:00</updated>
-    <author>
-      <name>Harsh Shandilya</name>
-      <uri>https://msfjarvis.dev/index.xml</uri>
-    </author>
-    <link href="https://msfjarvis.dev/posts/coming-around-on-the-utility-of-llms/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-02T16:53:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://azan-n.com/notes/20260102-all-my-download-metrics-in-one-place</id>
-    <title>All my download metrics in one place</title>
-    <updated>2026-01-02T00:00:00+00:00</updated>
+    <id>https://azan-n.com/notes/20260103-a-weeknote-because-tanvi-is-scary</id>
+    <title>A weeknote because Tanvi is scary</title>
+    <updated>2026-01-03T00:00:00+00:00</updated>
     <author>
       <name>Azan</name>
       <uri>https://azan-n.com/notes/rss.xml</uri>
     </author>
-    <link href="https://azan-n.com/notes/20260102-all-my-download-metrics-in-one-place?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <link href="https://azan-n.com/notes/20260103-a-weeknote-because-tanvi-is-scary?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/blog/define-partner/</id>
+    <title>[Blog] Define: partner</title>
+    <updated>2026-01-02T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/blog/define-partner/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-02T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2329,14 +2329,14 @@
     <published>2026-01-02T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://tanvibhakta.in/blog/define-partner/</id>
-    <title>[Blog] Define: partner</title>
+    <id>https://azan-n.com/notes/20260102-all-my-download-metrics-in-one-place</id>
+    <title>All my download metrics in one place</title>
     <updated>2026-01-02T00:00:00+00:00</updated>
     <author>
-      <name>Tanvi Bhakta</name>
-      <uri>https://tanvibhakta.in/feed.xml</uri>
+      <name>Azan</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
     </author>
-    <link href="https://tanvibhakta.in/blog/define-partner/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <link href="https://azan-n.com/notes/20260102-all-my-download-metrics-in-one-place?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-02T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2642,25 +2642,80 @@
     <published>2025-12-20T11:19:13+00:00</published>
   </entry>
   <entry>
-    <id>https://adithyanair.com/blog/the-truman-show/</id>
-    <title>Thoughts On The Truman Show And Its Villain</title>
+    <id>https://www.xypnox.com/blag/posts/hq-audio/</id>
+    <title>High Quality Audio</title>
     <updated>2025-12-20T00:00:00+00:00</updated>
     <author>
-      <name>Adithya Nair</name>
-      <uri>https://adithyanair.com/rss.xml</uri>
+      <name>xypnox</name>
+      <uri>https://www.xypnox.com/rss.xml</uri>
     </author>
-    <link href="https://adithyanair.com/blog/the-truman-show/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <link href="https://www.xypnox.com/blag/posts/hq-audio/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2025-12-20T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://heftymouse.me/blog/lonely-planet-india/</id>
-    <title>2003 Lonely Planet India guide</title>
+    <id>https://slatechalkings.mataroa.blog/blog/sticky-notes-001/</id>
+    <title>Sticky Notes #001</title>
     <updated>2025-12-20T00:00:00+00:00</updated>
     <author>
-      <name>heftymouse</name>
-      <uri>https://heftymouse.me/blog/rss.xml</uri>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
     </author>
-    <link href="https://heftymouse.me/blog/lonely-planet-india/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <link href="https://slatechalkings.mataroa.blog/blog/sticky-notes-001/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/feynman-002/</id>
+    <title>Feynman #002</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/feynman-002/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/feynman-001/</id>
+    <title>Feynman #001</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/feynman-001/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/bookmarks-002/</id>
+    <title>Bookmarks #002</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/bookmarks-002/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/bookmarks-001/</id>
+    <title>Bookmarks #001</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/bookmarks-001/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2025-12-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/2026-begins/</id>
+    <title>2026 Begins</title>
+    <updated>2025-12-20T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/2026-begins/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2025-12-20T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2686,80 +2741,25 @@
     <published>2025-12-20T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://slatechalkings.mataroa.blog/blog/feynman-002/</id>
-    <title>Feynman #002</title>
+    <id>https://heftymouse.me/blog/lonely-planet-india/</id>
+    <title>2003 Lonely Planet India guide</title>
     <updated>2025-12-20T00:00:00+00:00</updated>
     <author>
-      <name>slatechalkings</name>
-      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+      <name>heftymouse</name>
+      <uri>https://heftymouse.me/blog/rss.xml</uri>
     </author>
-    <link href="https://slatechalkings.mataroa.blog/blog/feynman-002/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <link href="https://heftymouse.me/blog/lonely-planet-india/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2025-12-20T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://slatechalkings.mataroa.blog/blog/bookmarks-001/</id>
-    <title>Bookmarks #001</title>
+    <id>https://adithyanair.com/blog/the-truman-show/</id>
+    <title>Thoughts On The Truman Show And Its Villain</title>
     <updated>2025-12-20T00:00:00+00:00</updated>
     <author>
-      <name>slatechalkings</name>
-      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+      <name>Adithya Nair</name>
+      <uri>https://adithyanair.com/rss.xml</uri>
     </author>
-    <link href="https://slatechalkings.mataroa.blog/blog/bookmarks-001/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-20T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://slatechalkings.mataroa.blog/blog/sticky-notes-001/</id>
-    <title>Sticky Notes #001</title>
-    <updated>2025-12-20T00:00:00+00:00</updated>
-    <author>
-      <name>slatechalkings</name>
-      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://slatechalkings.mataroa.blog/blog/sticky-notes-001/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-20T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://slatechalkings.mataroa.blog/blog/2026-begins/</id>
-    <title>2026 Begins</title>
-    <updated>2025-12-20T00:00:00+00:00</updated>
-    <author>
-      <name>slatechalkings</name>
-      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://slatechalkings.mataroa.blog/blog/2026-begins/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-20T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://slatechalkings.mataroa.blog/blog/bookmarks-002/</id>
-    <title>Bookmarks #002</title>
-    <updated>2025-12-20T00:00:00+00:00</updated>
-    <author>
-      <name>slatechalkings</name>
-      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://slatechalkings.mataroa.blog/blog/bookmarks-002/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-20T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://slatechalkings.mataroa.blog/blog/feynman-001/</id>
-    <title>Feynman #001</title>
-    <updated>2025-12-20T00:00:00+00:00</updated>
-    <author>
-      <name>slatechalkings</name>
-      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://slatechalkings.mataroa.blog/blog/feynman-001/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-20T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.xypnox.com/blag/posts/hq-audio/</id>
-    <title>High Quality Audio</title>
-    <updated>2025-12-20T00:00:00+00:00</updated>
-    <author>
-      <name>xypnox</name>
-      <uri>https://www.xypnox.com/rss.xml</uri>
-    </author>
-    <link href="https://www.xypnox.com/blag/posts/hq-audio/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <link href="https://adithyanair.com/blog/the-truman-show/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2025-12-20T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2956,6 +2956,28 @@
     <published>2025-12-08T07:25:46+00:00</published>
   </entry>
   <entry>
+    <id>https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/</id>
+    <title>Self help as communicating metaphors</title>
+    <updated>2025-12-08T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2025-12-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://forwhatitsworth.netlify.app/notes/note-2025-12-8/</id>
+    <title>Heavy is the head</title>
+    <updated>2025-12-08T00:00:00+00:00</updated>
+    <author>
+      <name>forwhatitsworth</name>
+      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
+    </author>
+    <link href="https://forwhatitsworth.netlify.app/notes/note-2025-12-8/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2025-12-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://forwhatitsworth.netlify.app/notes/note-2025-08-20/</id>
     <title>Better angels of our nature</title>
     <updated>2025-12-08T00:00:00+00:00</updated>
@@ -2975,28 +2997,6 @@
       <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
     </author>
     <link href="https://forwhatitsworth.netlify.app/notes/civilizations-live-and-die-by-what-is-cool/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/note-2025-12-8/</id>
-    <title>Heavy is the head</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/note-2025-12-8/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/</id>
-    <title>Self help as communicating metaphors</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2025-12-08T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -3022,6 +3022,18 @@
     <published>2025-12-07T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://vishalr.dev/blog/Open-Source-India-2025</id>
+    <title>Open Source India 2025</title>
+    <updated>2025-12-06T18:30:00+00:00</updated>
+    <author>
+      <name>Vishal R</name>
+      <uri>https://vishalr.dev/rss.xml</uri>
+    </author>
+    <link href="https://vishalr.dev/blog/Open-Source-India-2025?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <category term="Blog"/>
+    <published>2025-12-06T18:30:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://lepisma.xyz/journal/2025/12/07/my-humble-wrapped/index.html</id>
     <title>My Humble Wrapped</title>
     <updated>2025-12-06T18:30:00+00:00</updated>
@@ -3032,18 +3044,6 @@
     <link href="https://lepisma.xyz/journal/2025/12/07/my-humble-wrapped/index.html?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <category term="music"/>
     <category term="personal"/>
-    <published>2025-12-06T18:30:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://vishalr.dev/blog/Open-Source-India-2025</id>
-    <title>Open Source India 2025</title>
-    <updated>2025-12-06T18:30:00+00:00</updated>
-    <author>
-      <name>Vishal R</name>
-      <uri>https://vishalr.dev/rss.xml</uri>
-    </author>
-    <link href="https://vishalr.dev/blog/Open-Source-India-2025?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <category term="Blog"/>
     <published>2025-12-06T18:30:00+00:00</published>
   </entry>
   <entry>
