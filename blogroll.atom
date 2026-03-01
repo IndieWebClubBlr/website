@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-01T07:51:16.227540+00:00</updated>
+  <updated>2026-03-01T08:22:09.217712+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -231,17 +231,6 @@
     <published>2026-02-21T04:59:50+00:00</published>
   </entry>
   <entry>
-    <id>https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii</id>
-    <title>A weeknote because Tanvi is scary - II</title>
-    <updated>2026-02-21T00:00:00+00:00</updated>
-    <author>
-      <name>Azan</name>
-      <uri>https://azan-n.com/notes/rss.xml</uri>
-    </author>
-    <link href="https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-21T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://blog.anikthink.com/blog/recipe-7-cabbage-saute/</id>
     <title>Cabbage, lightly sautéed with garlic</title>
     <updated>2026-02-21T00:00:00+00:00</updated>
@@ -250,6 +239,17 @@
       <uri>https://blog.anikthink.com/rss.xml</uri>
     </author>
     <link href="https://blog.anikthink.com/blog/recipe-7-cabbage-saute/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii</id>
+    <title>A weeknote because Tanvi is scary - II</title>
+    <updated>2026-02-21T00:00:00+00:00</updated>
+    <author>
+      <name>Azan</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-21T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -414,17 +414,6 @@
     <published>2026-02-16T11:10:57+00:00</published>
   </entry>
   <entry>
-    <id>https://www.kashyapsuhas.com/blog/im-1750-on-aoe2-now</id>
-    <title>I'm 1750 Elo on Age of Empires 2 now</title>
-    <updated>2026-02-16T00:00:00+00:00</updated>
-    <author>
-      <name>Suhas Kashyap</name>
-      <uri>https://www.kashyapsuhas.com/blog/feed.xml</uri>
-    </author>
-    <link href="https://www.kashyapsuhas.com/blog/im-1750-on-aoe2-now?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-16T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/</id>
     <title>[Blog] Your Mac apps have SQLite databases you can just query</title>
     <updated>2026-02-16T00:00:00+00:00</updated>
@@ -433,6 +422,17 @@
       <uri>https://tanvibhakta.in/feed.xml</uri>
     </author>
     <link href="https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.kashyapsuhas.com/blog/im-1750-on-aoe2-now</id>
+    <title>I'm 1750 Elo on Age of Empires 2 now</title>
+    <updated>2026-02-16T00:00:00+00:00</updated>
+    <author>
+      <name>Suhas Kashyap</name>
+      <uri>https://www.kashyapsuhas.com/blog/feed.xml</uri>
+    </author>
+    <link href="https://www.kashyapsuhas.com/blog/im-1750-on-aoe2-now?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-16T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -864,17 +864,6 @@
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://heftymouse.me/blog/astro-rss-images/</id>
-    <title>Making Astro asset images work in RSS</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>heftymouse</name>
-      <uri>https://heftymouse.me/blog/rss.xml</uri>
-    </author>
-    <link href="https://heftymouse.me/blog/astro-rss-images/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/</id>
     <title>First time at the Indie Web Club</title>
     <updated>2026-02-08T00:00:00+00:00</updated>
@@ -886,14 +875,14 @@
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://nithitsuki.com/posts/anokha/</id>
-    <title>Anokha 2026 - a Travel diary entry</title>
+    <id>https://heftymouse.me/blog/astro-rss-images/</id>
+    <title>Making Astro asset images work in RSS</title>
     <updated>2026-02-08T00:00:00+00:00</updated>
     <author>
-      <name>Nithitsuki</name>
-      <uri>https://nithitsuki.com/index.xml</uri>
+      <name>heftymouse</name>
+      <uri>https://heftymouse.me/blog/rss.xml</uri>
     </author>
-    <link href="https://nithitsuki.com/posts/anokha/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <link href="https://heftymouse.me/blog/astro-rss-images/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -905,6 +894,17 @@
       <uri>https://mariammwrites.mataroa.blog/rss/</uri>
     </author>
     <link href="https://mariammwrites.mataroa.blog/blog/why-reviews/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://nithitsuki.com/posts/anokha/</id>
+    <title>Anokha 2026 - a Travel diary entry</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Nithitsuki</name>
+      <uri>https://nithitsuki.com/index.xml</uri>
+    </author>
+    <link href="https://nithitsuki.com/posts/anokha/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -927,17 +927,6 @@
       <uri>https://holistictravellers.com/rss.xml</uri>
     </author>
     <link href="https://holistictravellers.com/posts/vietnam-dalat-getting-lost/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://www.xypnox.com/blag/posts/recommendations/</id>
-    <title>Recommendations</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>xypnox</name>
-      <uri>https://www.xypnox.com/rss.xml</uri>
-    </author>
-    <link href="https://www.xypnox.com/blag/posts/recommendations/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -971,6 +960,17 @@
       <uri>https://tanvibhakta.in/feed.xml</uri>
     </author>
     <link href="https://tanvibhakta.in/weeknotes/week-of-feb-8th-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://www.xypnox.com/blag/posts/recommendations/</id>
+    <title>Recommendations</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>xypnox</name>
+      <uri>https://www.xypnox.com/rss.xml</uri>
+    </author>
+    <link href="https://www.xypnox.com/blag/posts/recommendations/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
