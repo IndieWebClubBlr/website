@@ -164,7 +164,9 @@ def generate_feed(
     if feed_subtitle is not None:
         fg.subtitle(feed_subtitle)
 
-    for entry in sorted(entries, key=lambda entry: entry.published, reverse=True):
+    for entry in sorted(
+        entries, key=lambda entry: (entry.published, entry.link), reverse=True
+    ):
         if entry.link.startswith("http"):
             fe = fg.add_entry(order="append")
 
