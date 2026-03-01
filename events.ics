@@ -1,0 +1,83 @@
+BEGIN:VCALENDAR
+DESCRIPTION:Events by IndieWebClub Bangalore
+X-WR-CALDESC:Events by IndieWebClub Bangalore
+NAME:IndieWebClub Bangalore Events
+X-WR-CALNAME:IndieWebClub Bangalore Events
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #21
+DTSTART;TZID=Asia/Kolkata:20260307T140000
+DTEND;TZID=Asia/Kolkata:20260307T170000
+UID:indiewebclubblr-event-723
+URL:https://underline.center/t/indiewebclub-21
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #20
+DTSTART;TZID=Asia/Kolkata:20260221T140000
+DTEND;TZID=Asia/Kolkata:20260221T170000
+UID:indiewebclubblr-event-720
+URL:https://underline.center/t/indiewebclub-20
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #19
+DTSTART;TZID=Asia/Kolkata:20260208T140000
+DTEND;TZID=Asia/Kolkata:20260208T170000
+UID:indiewebclubblr-event-708
+URL:https://underline.center/t/indiewebclub-19
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #18
+DTSTART;TZID=Asia/Kolkata:20260117T143000
+DTEND;TZID=Asia/Kolkata:20260117T173000
+UID:indiewebclubblr-event-688
+URL:https://underline.center/t/indiewebclub-18-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #17
+DTSTART;TZID=Asia/Kolkata:20260103T140000
+DTEND;TZID=Asia/Kolkata:20260103T170000
+UID:indiewebclubblr-event-666
+URL:https://underline.center/t/indiewebclub-17-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #16
+DTSTART;TZID=Asia/Kolkata:20251220T140000
+DTEND;TZID=Asia/Kolkata:20251220T170000
+UID:indiewebclubblr-event-622
+URL:https://underline.center/t/indiewebclub-16-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #15
+DTSTART;TZID=Asia/Kolkata:20251206T140000
+DTEND;TZID=Asia/Kolkata:20251206T170000
+UID:indiewebclubblr-event-621
+URL:https://underline.center/t/indiewebclub-15-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #14
+DTSTART;TZID=Asia/Kolkata:20251115T140000
+DTEND;TZID=Asia/Kolkata:20251115T170000
+UID:indiewebclubblr-event-612
+URL:https://underline.center/t/indiewebclub-14-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #13
+DTSTART;TZID=Asia/Kolkata:20251101T140000
+DTEND;TZID=Asia/Kolkata:20251101T170000
+UID:indiewebclubblr-event-602
+URL:https://underline.center/t/indiewebclub-13-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #12
+DTSTART;TZID=Asia/Kolkata:20251018T140000
+DTEND;TZID=Asia/Kolkata:20251018T170000
+UID:indiewebclubblr-event-576
+URL:https://underline.center/t/indiewebclub-12-with-ankur-and-tanvi
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #11
+DTSTART;TZID=Asia/Kolkata:20251004T140000
+DTEND;TZID=Asia/Kolkata:20251004T170000
+UID:indiewebclubblr-event-556
+URL:https://underline.center/t/indiewebclub-11-with-ankur-and-tanvi
+END:VEVENT
+END:VCALENDAR

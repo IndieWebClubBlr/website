@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="language" content="EN">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>IndieWebClub Bangalore</title>
+
+  <meta name="title" content="IndieWebClub Bangalore">
+  <meta name="description" content="Website of the IndieWebClub Bangalore community">
+
+  <link rel="icon" href="https://blr.indiewebclub.org/favicon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://blr.indiewebclub.org/">
+  <meta property="og:site_name" content="IndieWebClub Bangalore">
+  <meta property="og:title" content="IndieWebClub Bangalore">
+  <meta property="og:description" content="Website of the IndieWebClub Bangalore community">
+  <meta property="og:image" content="https://blr.indiewebclub.org/preview.png" />
+
+  <meta name="google-site-verification" content="W9zo_09H7si4AyfH3mhx1dUCwhNjdI_QsT58UoybSqk" />
+
+  <link rel="canonical" href="https://blr.indiewebclub.org/">
+  <link rel="alternate" type="application/atom+xml" title="Blogroll" href="https://blr.indiewebclub.org/blogroll.atom">
+  <link rel="alternate" type="application/atom+xml" title="Events" href="https://blr.indiewebclub.org/events.atom">
+  <link rel="stylesheet" href="/style.css">
+  <script defer data-domain="blr.indiewebclub.org" src="https://stati.stic.earth/js/script.file-downloads.outbound-links.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1 class="logo"><a href="/">IndieWebClub<br>Bangalore</a></h1>
+  </header>
+
+  <main>
+    <h1 id="webring">Webring</h1>
+<p>The IndieWebClub Bangalore <a href="https://indieweb.org/webring">Webring</a> is a way to connect the websites of its member and encourage discovery within our community. If you&rsquo;re a member, please consider adding the webring navigation to your website.</p>
+<h2 id="adding-the-webring-to-your-site">Adding the Webring to Your Site</h2>
+<p>The webring provides links to two randomly-selected member websites: <em>Previous</em> and <em>Next</em>. These links change every day, helping people discover each member&rsquo;s work.</p>
+<p>The webring files are hosted on our website:</p>
+<ul>
+<li><code>https://blr.indiewebclub.org/webring/previous.html</code></li>
+<li><code>https://blr.indiewebclub.org/webring/next.html</code></li>
+</ul>
+<p>They redirect visitors to the chosen members&rsquo; websites.</p>
+<p>Add the following HTML to your website (e.g., in the footer or sidebar), or add a custom one that uses the URLs above:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;webring&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://blr.indiewebclub.org/webring/previous.html&quot;</span><span class="p">&gt;</span>← Previous<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+  | <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://blr.indiewebclub.org/&quot;</span><span class="p">&gt;</span>IndieWebClub Bangalore<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> |
+  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://blr.indiewebclub.org/webring/next.html&quot;</span><span class="p">&gt;</span>Next →<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>You can customize the appearance with CSS:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">.</span><span class="nc">webring</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#ccc</span><span class="p">;</span>
+<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">webring</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">text-decoration</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="w">  </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">webring</span><span class="w"> </span><span class="nt">a</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">text-decoration</span><span class="p">:</span><span class="w"> </span><span class="kc">underline</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>It will look something like this:</p>
+<div class="webring">
+  <a href="https://blr.indiewebclub.org/webring/previous.html">← Previous</a>
+  | <a href="https://blr.indiewebclub.org/">IndieWebClub Bangalore</a> |
+  <a href="https://blr.indiewebclub.org/webring/next.html">Next →</a>
+</div>
+
+<h2 id="requirements">Requirements</h2>
+<p>First, you must participate in the IndieWebClub Bangalore <a href="/#upcoming-events">meetups</a> and join our online community. Then, you must add your blog&rsquo;s feed to the <a href="/blogroll.opml"><code>blogroll.opml</code></a> file with a <code>htmlUrl</code> pointing to your website. Also, your feed must contain at least one post.</p>
+<p>Please <a href="https://github.com/IndieWebClubBlr/website/pulls">raise a pull request</a> to add your blog, or contact an admin in the community space.</p>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>The webring connects member websites but does not endorse their content. Members are responsible for their own sites. If you have concerns about a member&rsquo;s website, please contact the admins via <a href="mailto:blr+mod@indiewebclub.org">email</a>.</p>
+  </main>
+
+  <footer>
+    <div><a href="https://indieweb.org/"><img src="https://blr.indiewebclub.org/indiewebcamp-button.svg" style="image-rendering:pixelated;"></a></div>
+    <div>Last generated at: <time datetime="01 Mar 2026, 09:45 AM IST">01 Mar 2026, 09:45 AM IST</time></div>
+    <div><a href="https://github.com/IndieWebClubBlr/website/">Source</a></div>
+  </footer>
+</body>
+
+</html>
