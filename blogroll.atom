@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-01T09:23:28.447058+00:00</updated>
+  <updated>2026-03-01T10:18:37.732278+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -153,17 +153,6 @@
     <link href="https://jatan.space/moon-monday-issue-263/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <category term="Moon Monday"/>
     <published>2026-02-23T12:06:28+00:00</published>
-  </entry>
-  <entry>
-    <id>https://kdqed.com/bmrcl-ridership-revenue-analysis</id>
-    <title>Bengaluru Metro: Ridership Data For Revenue Optimization</title>
-    <updated>2026-02-23T00:00:00+00:00</updated>
-    <author>
-      <name>Karthik Devan</name>
-      <uri>https://kdqed.com/feed.xml</uri>
-    </author>
-    <link href="https://kdqed.com/bmrcl-ridership-revenue-analysis?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-23T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://msfjarvis.dev/posts/weeknotes-week-8-2026/</id>
@@ -439,6 +428,17 @@
     <published>2026-02-16T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/</id>
+    <title>[Blog] Your Mac apps have SQLite databases you can just query</title>
+    <updated>2026-02-16T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://abhinavsarkar.net/notes/2026-weeknotes-02-16/?mtm_campaign=feed</id>
     <title>Notes for the Week #7 (2026)</title>
     <updated>2026-02-16T00:00:00+00:00</updated>
@@ -449,17 +449,6 @@
     <link href="https://abhinavsarkar.net/notes/2026-weeknotes-02-16/?mtm_campaign=feed&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <category term="weeknotes"/>
     <category term="personal"/>
-    <published>2026-02-16T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/</id>
-    <title>[Blog] Your Mac apps have SQLite databases you can just query</title>
-    <updated>2026-02-16T00:00:00+00:00</updated>
-    <author>
-      <name>Tanvi Bhakta</name>
-      <uri>https://tanvibhakta.in/feed.xml</uri>
-    </author>
-    <link href="https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-16T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -640,17 +629,6 @@
     <link href="https://jatan.space/indian-space-issue-35/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <category term="Indian Space"/>
     <published>2026-02-11T11:55:03+00:00</published>
-  </entry>
-  <entry>
-    <id>https://kdqed.com/linkin-park-bengaluru-personal-account</id>
-    <title>Linkin Park in Bengaluru 2026 - A Very Personal Account</title>
-    <updated>2026-02-10T00:00:00+00:00</updated>
-    <author>
-      <name>Karthik Devan</name>
-      <uri>https://kdqed.com/feed.xml</uri>
-    </author>
-    <link href="https://kdqed.com/linkin-park-bengaluru-personal-account?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-10T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://itihas.review/20260208163910-gutcraft_a_prospective.html</id>
@@ -867,17 +845,6 @@
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/</id>
-    <title>First time at the Indie Web Club</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>flyingsymphony</name>
-      <uri>https://flyingsymphony.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://heftymouse.me/blog/astro-rss-images/</id>
     <title>Making Astro asset images work in RSS</title>
     <updated>2026-02-08T00:00:00+00:00</updated>
@@ -886,6 +853,17 @@
       <uri>https://heftymouse.me/blog/rss.xml</uri>
     </author>
     <link href="https://heftymouse.me/blog/astro-rss-images/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/</id>
+    <title>First time at the Indie Web Club</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>flyingsymphony</name>
+      <uri>https://flyingsymphony.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -944,19 +922,6 @@
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://abhinavsarkar.net/notes/2026-weeknotes-02-08/?mtm_campaign=feed</id>
-    <title>Notes for the Week #6 (2026)</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>Abhinav Sarkar</name>
-      <uri>https://abhinavsarkar.net/all.atom</uri>
-    </author>
-    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-02-08/?mtm_campaign=feed&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <category term="weeknotes"/>
-    <category term="personal"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://tanvibhakta.in/blog/lollapalooza-2026/</id>
     <title>[Blog] Lollapalooza 2026</title>
     <updated>2026-02-08T00:00:00+00:00</updated>
@@ -987,6 +952,19 @@
       <uri>https://tanvibhakta.in/feed.xml</uri>
     </author>
     <link href="https://tanvibhakta.in/weeknotes/week-of-feb-8th-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-02-08/?mtm_campaign=feed</id>
+    <title>Notes for the Week #6 (2026)</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-02-08/?mtm_campaign=feed&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <category term="weeknotes"/>
+    <category term="personal"/>
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1836,17 +1814,6 @@
     <published>2026-01-17T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://slatechalkings.mataroa.blog/blog/the-memory-trail/</id>
-    <title>The Memory Trail</title>
-    <updated>2026-01-17T00:00:00+00:00</updated>
-    <author>
-      <name>slatechalkings</name>
-      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://slatechalkings.mataroa.blog/blog/the-memory-trail/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-17T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://kartikkwatra.com/blog/my-ai-development-workflow/</id>
     <title>My AI developemt workflow</title>
     <updated>2026-01-17T00:00:00+00:00</updated>
@@ -1855,6 +1822,17 @@
       <uri>https://kartikkwatra.com/rss.xml</uri>
     </author>
     <link href="https://kartikkwatra.com/blog/my-ai-development-workflow/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://slatechalkings.mataroa.blog/blog/the-memory-trail/</id>
+    <title>The Memory Trail</title>
+    <updated>2026-01-17T00:00:00+00:00</updated>
+    <author>
+      <name>slatechalkings</name>
+      <uri>https://slatechalkings.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://slatechalkings.mataroa.blog/blog/the-memory-trail/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-17T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2219,6 +2197,17 @@
     <published>2026-01-03T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://kartikkwatra.com/blog/weeknote-2026-w1/</id>
+    <title>Weeknote 2026-W1 | '12 grapes under the table'</title>
+    <updated>2026-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>Kartik Kwatra</name>
+      <uri>https://kartikkwatra.com/rss.xml</uri>
+    </author>
+    <link href="https://kartikkwatra.com/blog/weeknote-2026-w1/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://slatechalkings.mataroa.blog/blog/blog-intent/</id>
     <title>BLOG INTENT</title>
     <updated>2026-01-03T00:00:00+00:00</updated>
@@ -2238,17 +2227,6 @@
       <uri>https://slatechalkings.mataroa.blog/rss/</uri>
     </author>
     <link href="https://slatechalkings.mataroa.blog/blog/unsent-drafts/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-03T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://kartikkwatra.com/blog/weeknote-2026-w1/</id>
-    <title>Weeknote 2026-W1 | '12 grapes under the table'</title>
-    <updated>2026-01-03T00:00:00+00:00</updated>
-    <author>
-      <name>Kartik Kwatra</name>
-      <uri>https://kartikkwatra.com/rss.xml</uri>
-    </author>
-    <link href="https://kartikkwatra.com/blog/weeknote-2026-w1/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-03T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -3014,26 +2992,5 @@
     <category term="struggle"/>
     <category term="writing"/>
     <published>2025-12-03T02:47:44+00:00</published>
-  </entry>
-  <entry>
-    <id>https://purposewithpals.wordpress.com/2025/12/01/dont-say-a-word/</id>
-    <title>Don’t say a word</title>
-    <updated>2025-12-01T10:01:45+00:00</updated>
-    <author>
-      <name>Palak Malik</name>
-      <uri>https://purposewithpals.wordpress.com/feed/</uri>
-    </author>
-    <link href="https://purposewithpals.wordpress.com/2025/12/01/dont-say-a-word/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <category term="life"/>
-    <category term="poetry"/>
-    <category term="art"/>
-    <category term="creativity"/>
-    <category term="love"/>
-    <category term="mental-health"/>
-    <category term="poem"/>
-    <category term="relationships"/>
-    <category term="struggle"/>
-    <category term="writing"/>
-    <published>2025-12-01T10:01:45+00:00</published>
   </entry>
 </feed>
