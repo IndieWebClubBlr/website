@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-01T17:18:25.039490+00:00</updated>
+  <updated>2026-03-01T18:24:33.481119+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,6 +10,17 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-9-2026/</id>
+    <title>Weeknotes: Week #9 (2026)</title>
+    <updated>2026-03-01T14:07:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-9-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-03-01T14:07:00+00:00</published>
+  </entry>
   <entry>
     <id>https://abhinavsarkar.net/photography/#photo-116154144453069385</id>
     <title>End of Line</title>
@@ -177,6 +188,17 @@
     <link href="https://jatan.space/moon-monday-issue-263/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <category term="Moon Monday"/>
     <published>2026-02-23T12:06:28+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-8-2026/</id>
+    <title>Weeknotes: Week #8 (2026)</title>
+    <updated>2026-02-22T15:26:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-8-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-22T15:26:00+00:00</published>
   </entry>
   <entry>
     <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2026-07/</id>
@@ -441,6 +463,17 @@
     <published>2026-02-16T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/</id>
+    <title>[Blog] Your Mac apps have SQLite databases you can just query</title>
+    <updated>2026-02-16T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/blog/your-mac-apps-have-sqlite-databases-you-can-query/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://abhinavsarkar.net/notes/2026-weeknotes-02-16/?mtm_campaign=feed</id>
     <title>Notes for the Week #7 (2026)</title>
     <updated>2026-02-16T00:00:00+00:00</updated>
@@ -452,6 +485,17 @@
     <category term="weeknotes"/>
     <category term="personal"/>
     <published>2026-02-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-7-2026/</id>
+    <title>Weeknotes: Week #7 (2026)</title>
+    <updated>2026-02-15T14:52:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-7-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-15T14:52:00+00:00</published>
   </entry>
   <entry>
     <id>https://journal.jatan.space/writing-goals-2026/</id>
@@ -511,6 +555,17 @@
     </author>
     <link href="https://thoughts.jatan.space/posts/poetry-powerful-and-purposeful?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-14T12:47:56+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-feb-14th-2026/</id>
+    <title>[Weeknotes] Week of Feb 14th, 2026</title>
+    <updated>2026-02-14T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-feb-14th-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-14T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://lepisma.xyz/journal/2026/02/14/something2vec/index.html</id>
@@ -726,6 +781,17 @@
     <published>2026-02-08T17:20:00+00:00</published>
   </entry>
   <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-6-2026/</id>
+    <title>Weeknotes: Week #6 (2026)</title>
+    <updated>2026-02-08T14:09:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-6-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T14:09:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://bauva.com/blog/financial-shenanigans-ai-agent/</id>
     <title>Financial Shenanigans AI agent</title>
     <updated>2026-02-08T11:39:27+00:00</updated>
@@ -789,6 +855,39 @@
       <uri>https://www.xypnox.com/rss.xml</uri>
     </author>
     <link href="https://www.xypnox.com/blag/posts/recommendations/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-feb-8th-2026/</id>
+    <title>[Weeknotes] Week of Feb 8th, 2026</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-feb-8th-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-feb-1st-2026/</id>
+    <title>[Weeknotes] Week of Feb 1st, 2026</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-feb-1st-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/blog/lollapalooza-2026/</id>
+    <title>[Blog] Lollapalooza 2026</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/blog/lollapalooza-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1100,6 +1199,17 @@
     <published>2026-02-01T16:21:22+00:00</published>
   </entry>
   <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-5-2026/</id>
+    <title>Weeknotes: Week #5 (2026)</title>
+    <updated>2026-02-01T15:09:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-5-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-01T15:09:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://abhinavsarkar.net/notes/2026-weeknotes-02-01/?mtm_campaign=feed</id>
     <title>Notes for the Week #5 (2026)</title>
     <updated>2026-02-01T00:00:00+00:00</updated>
@@ -1134,6 +1244,17 @@
     </author>
     <link href="https://abhinavsarkar.net/photography/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll#photo-115988372714527260"/>
     <published>2026-01-31T06:48:32.961000+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/blog/update-on-my-llm-usage-patterns-jan-2026/</id>
+    <title>[Blog] Update on my llm usage patterns (Jan 2026)</title>
+    <updated>2026-01-31T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/blog/update-on-my-llm-usage-patterns-jan-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-31T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://thejeshgn.com/2026/01/30/weekly-notes-05-2026/</id>
@@ -1320,6 +1441,17 @@
     <published>2026-01-25T18:30:00+00:00</published>
   </entry>
   <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-4-2026/</id>
+    <title>Weeknotes: Week #4 (2026)</title>
+    <updated>2026-01-25T10:16:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-4-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-25T10:16:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://himanshikalra.com/on-being-a-language-whore/</id>
     <title>On being a language whore</title>
     <updated>2026-01-25T07:32:45+00:00</updated>
@@ -1377,6 +1509,17 @@
     <category term="struggle"/>
     <category term="writing"/>
     <published>2026-01-23T12:07:42+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-jan-23rd-2026/</id>
+    <title>[Weeknotes] Week of Jan 23rd, 2026</title>
+    <updated>2026-01-23T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-jan-23rd-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-23T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://halfthere.mataroa.blog/blog/pasta-and-a-letter-from-far-far-away/</id>
@@ -1591,6 +1734,17 @@
     </author>
     <link href="https://navendu.me/posts/ladybug-clock-puzzle/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-18T07:22:59+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-3-2026/</id>
+    <title>Weeknotes: Week #3 (2026)</title>
+    <updated>2026-01-18T06:50:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-3-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-18T06:50:00+00:00</published>
   </entry>
   <entry>
     <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2026-02/</id>
@@ -1859,6 +2013,17 @@
     <published>2026-01-12T12:38:48+00:00</published>
   </entry>
   <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-2-2026/</id>
+    <title>Weeknotes: Week #2 (2026)</title>
+    <updated>2026-01-11T14:08:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-2-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-11T14:08:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://abhinavsarkar.net/photography/#photo-115874623867935440</id>
     <title>All that remains</title>
     <updated>2026-01-11T04:40:43.301000+00:00</updated>
@@ -1893,6 +2058,17 @@
     <link href="https://abhinavsarkar.net/posts/jj-usage/?mtm_campaign=feed&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <category term="tools"/>
     <published>2026-01-10T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/migrating-my-website-s-analytics-from-plausible-to-umami/</id>
+    <title>Migrating my website's analytics from Plausible to Umami</title>
+    <updated>2026-01-09T19:10:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/migrating-my-website-s-analytics-from-plausible-to-umami/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-09T19:10:00+00:00</published>
   </entry>
   <entry>
     <id>https://vaxitas.xyz/snippets/vaxitas-2k26</id>
@@ -2032,6 +2208,17 @@
     <published>2026-01-03T10:55:00+00:00</published>
   </entry>
   <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-1-2026/</id>
+    <title>Weeknotes: Week #1 (2026)</title>
+    <updated>2026-01-03T10:50:58+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-1-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-03T10:50:58+00:00</published>
+  </entry>
+  <entry>
     <id>https://akashbhat.com/best-fountain-pens-india-under-5000-rupees/</id>
     <title>A guide to buying fountian pens in India</title>
     <updated>2026-01-03T10:32:00+00:00</updated>
@@ -2041,6 +2228,17 @@
     </author>
     <link href="https://akashbhat.com/best-fountain-pens-india-under-5000-rupees/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-03T10:32:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/blog/website-2026/</id>
+    <title>[Blog] What do you want from your website in ten years?</title>
+    <updated>2026-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/blog/website-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-03T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://slatechalkings.mataroa.blog/blog/unsent-drafts/</id>
@@ -2085,6 +2283,17 @@
     </author>
     <link href="https://azan-n.com/notes/20260103-a-weeknote-because-tanvi-is-scary?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/blog/define-partner/</id>
+    <title>[Blog] Define: partner</title>
+    <updated>2026-01-02T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/blog/define-partner/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-02T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://forwhatitsworth.netlify.app/posts/infinite-fun-space/</id>
@@ -2255,6 +2464,17 @@
     </author>
     <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwm4AlvW3PQaEkaoTmNy9FBW&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2025-12-27T11:08:13+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-dec-27th-2025/</id>
+    <title>[Weeknotes] Week of Dec 27th, 2025</title>
+    <updated>2025-12-27T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-dec-27th-2025/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2025-12-27T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://journal.jatan.space/newsletter-for-friends-08/</id>
