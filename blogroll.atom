@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-01T15:44:34.275649+00:00</updated>
+  <updated>2026-03-01T16:19:56.006312+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,17 +10,6 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
-  <entry>
-    <id>https://msfjarvis.dev/posts/weeknotes-week-9-2026/</id>
-    <title>Weeknotes: Week #9 (2026)</title>
-    <updated>2026-03-01T14:07:00+00:00</updated>
-    <author>
-      <name>Harsh Shandilya</name>
-      <uri>https://msfjarvis.dev/index.xml</uri>
-    </author>
-    <link href="https://msfjarvis.dev/posts/weeknotes-week-9-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-03-01T14:07:00+00:00</published>
-  </entry>
   <entry>
     <id>https://abhinavsarkar.net/photography/#photo-116154144453069385</id>
     <title>End of Line</title>
@@ -199,17 +188,6 @@
     </author>
     <link href="https://kdqed.com/bmrcl-ridership-revenue-analysis?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-23T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://msfjarvis.dev/posts/weeknotes-week-8-2026/</id>
-    <title>Weeknotes: Week #8 (2026)</title>
-    <updated>2026-02-22T15:26:00+00:00</updated>
-    <author>
-      <name>Harsh Shandilya</name>
-      <uri>https://msfjarvis.dev/index.xml</uri>
-    </author>
-    <link href="https://msfjarvis.dev/posts/weeknotes-week-8-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-22T15:26:00+00:00</published>
   </entry>
   <entry>
     <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2026-07/</id>
@@ -496,17 +474,6 @@
     <category term="weeknotes"/>
     <category term="personal"/>
     <published>2026-02-16T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://msfjarvis.dev/posts/weeknotes-week-7-2026/</id>
-    <title>Weeknotes: Week #7 (2026)</title>
-    <updated>2026-02-15T14:52:00+00:00</updated>
-    <author>
-      <name>Harsh Shandilya</name>
-      <uri>https://msfjarvis.dev/index.xml</uri>
-    </author>
-    <link href="https://msfjarvis.dev/posts/weeknotes-week-7-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-15T14:52:00+00:00</published>
   </entry>
   <entry>
     <id>https://journal.jatan.space/writing-goals-2026/</id>
@@ -803,17 +770,6 @@
     <published>2026-02-08T17:20:00+00:00</published>
   </entry>
   <entry>
-    <id>https://msfjarvis.dev/posts/weeknotes-week-6-2026/</id>
-    <title>Weeknotes: Week #6 (2026)</title>
-    <updated>2026-02-08T14:09:00+00:00</updated>
-    <author>
-      <name>Harsh Shandilya</name>
-      <uri>https://msfjarvis.dev/index.xml</uri>
-    </author>
-    <link href="https://msfjarvis.dev/posts/weeknotes-week-6-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T14:09:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://bauva.com/blog/financial-shenanigans-ai-agent/</id>
     <title>Financial Shenanigans AI agent</title>
     <updated>2026-02-08T11:39:27+00:00</updated>
@@ -965,17 +921,6 @@
       <uri>https://heftymouse.me/blog/rss.xml</uri>
     </author>
     <link href="https://heftymouse.me/blog/astro-rss-images/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/posts/good-old-neon/</id>
-    <title>Book review - Good Old Neon by David Foster Wallace</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/posts/good-old-neon/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -1221,17 +1166,6 @@
     <published>2026-02-01T16:21:22+00:00</published>
   </entry>
   <entry>
-    <id>https://msfjarvis.dev/posts/weeknotes-week-5-2026/</id>
-    <title>Weeknotes: Week #5 (2026)</title>
-    <updated>2026-02-01T15:09:00+00:00</updated>
-    <author>
-      <name>Harsh Shandilya</name>
-      <uri>https://msfjarvis.dev/index.xml</uri>
-    </author>
-    <link href="https://msfjarvis.dev/posts/weeknotes-week-5-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-01T15:09:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://abhinavsarkar.net/notes/2026-weeknotes-02-01/?mtm_campaign=feed</id>
     <title>Notes for the Week #5 (2026)</title>
     <updated>2026-02-01T00:00:00+00:00</updated>
@@ -1463,17 +1397,6 @@
     <published>2026-01-25T18:30:00+00:00</published>
   </entry>
   <entry>
-    <id>https://msfjarvis.dev/posts/weeknotes-week-4-2026/</id>
-    <title>Weeknotes: Week #4 (2026)</title>
-    <updated>2026-01-25T10:16:00+00:00</updated>
-    <author>
-      <name>Harsh Shandilya</name>
-      <uri>https://msfjarvis.dev/index.xml</uri>
-    </author>
-    <link href="https://msfjarvis.dev/posts/weeknotes-week-4-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-25T10:16:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://himanshikalra.com/on-being-a-language-whore/</id>
     <title>On being a language whore</title>
     <updated>2026-01-25T07:32:45+00:00</updated>
@@ -1632,17 +1555,6 @@
     <published>2026-01-20T03:07:43.982000+00:00</published>
   </entry>
   <entry>
-    <id>https://kartikkwatra.com/blog/weeknote-2026-w3/</id>
-    <title>Weeknote 2026-W3 | IQ vs AQI</title>
-    <updated>2026-01-20T00:00:00+00:00</updated>
-    <author>
-      <name>Kartik Kwatra</name>
-      <uri>https://kartikkwatra.com/rss.xml</uri>
-    </author>
-    <link href="https://kartikkwatra.com/blog/weeknote-2026-w3/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-20T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://blog.anikthink.com/blog/weeknote-16-w2603/</id>
     <title>Weeknote #16 [W26.03] - Curating films, and chasing reading goals</title>
     <updated>2026-01-20T00:00:00+00:00</updated>
@@ -1758,17 +1670,6 @@
     <published>2026-01-18T07:22:59+00:00</published>
   </entry>
   <entry>
-    <id>https://msfjarvis.dev/posts/weeknotes-week-3-2026/</id>
-    <title>Weeknotes: Week #3 (2026)</title>
-    <updated>2026-01-18T06:50:00+00:00</updated>
-    <author>
-      <name>Harsh Shandilya</name>
-      <uri>https://msfjarvis.dev/index.xml</uri>
-    </author>
-    <link href="https://msfjarvis.dev/posts/weeknotes-week-3-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-18T06:50:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2026-02/</id>
     <title>Week 02 In the Year of our Lord, 2026</title>
     <updated>2026-01-18T04:30:00+00:00</updated>
@@ -1882,17 +1783,6 @@
     <published>2026-01-17T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://kartikkwatra.com/blog/my-ai-development-workflow/</id>
-    <title>My AI developemt workflow</title>
-    <updated>2026-01-17T00:00:00+00:00</updated>
-    <author>
-      <name>Kartik Kwatra</name>
-      <uri>https://kartikkwatra.com/rss.xml</uri>
-    </author>
-    <link href="https://kartikkwatra.com/blog/my-ai-development-workflow/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-17T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://azan-n.com/notes/20260117-a-nice-thing-a-stranger-has-done-for-me</id>
     <title>A nice thing a stranger has done for me</title>
     <updated>2026-01-17T00:00:00+00:00</updated>
@@ -1917,17 +1807,6 @@
     <category term="ai"/>
     <category term="intelligence_augmentation"/>
     <category term="tools_for_thought"/>
-    <published>2026-01-16T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/on-subjectivity-of-art/</id>
-    <title>Art as a race to the bottom</title>
-    <updated>2026-01-16T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/on-subjectivity-of-art/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-16T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2035,17 +1914,6 @@
     <published>2026-01-12T12:38:48+00:00</published>
   </entry>
   <entry>
-    <id>https://msfjarvis.dev/posts/weeknotes-week-2-2026/</id>
-    <title>Weeknotes: Week #2 (2026)</title>
-    <updated>2026-01-11T14:08:00+00:00</updated>
-    <author>
-      <name>Harsh Shandilya</name>
-      <uri>https://msfjarvis.dev/index.xml</uri>
-    </author>
-    <link href="https://msfjarvis.dev/posts/weeknotes-week-2-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-11T14:08:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://abhinavsarkar.net/photography/#photo-115874623867935440</id>
     <title>All that remains</title>
     <updated>2026-01-11T04:40:43.301000+00:00</updated>
@@ -2080,17 +1948,6 @@
     <link href="https://abhinavsarkar.net/posts/jj-usage/?mtm_campaign=feed&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <category term="tools"/>
     <published>2026-01-10T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://msfjarvis.dev/posts/migrating-my-website-s-analytics-from-plausible-to-umami/</id>
-    <title>Migrating my website's analytics from Plausible to Umami</title>
-    <updated>2026-01-09T19:10:00+00:00</updated>
-    <author>
-      <name>Harsh Shandilya</name>
-      <uri>https://msfjarvis.dev/index.xml</uri>
-    </author>
-    <link href="https://msfjarvis.dev/posts/migrating-my-website-s-analytics-from-plausible-to-umami/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-09T19:10:00+00:00</published>
   </entry>
   <entry>
     <id>https://vaxitas.xyz/snippets/vaxitas-2k26</id>
@@ -2230,17 +2087,6 @@
     <published>2026-01-03T10:55:00+00:00</published>
   </entry>
   <entry>
-    <id>https://msfjarvis.dev/posts/weeknotes-week-1-2026/</id>
-    <title>Weeknotes: Week #1 (2026)</title>
-    <updated>2026-01-03T10:50:58+00:00</updated>
-    <author>
-      <name>Harsh Shandilya</name>
-      <uri>https://msfjarvis.dev/index.xml</uri>
-    </author>
-    <link href="https://msfjarvis.dev/posts/weeknotes-week-1-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-03T10:50:58+00:00</published>
-  </entry>
-  <entry>
     <id>https://akashbhat.com/best-fountain-pens-india-under-5000-rupees/</id>
     <title>A guide to buying fountian pens in India</title>
     <updated>2026-01-03T10:32:00+00:00</updated>
@@ -2285,17 +2131,6 @@
     <published>2026-01-03T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://kartikkwatra.com/blog/weeknote-2026-w1/</id>
-    <title>Weeknote 2026-W1 | '12 grapes under the table'</title>
-    <updated>2026-01-03T00:00:00+00:00</updated>
-    <author>
-      <name>Kartik Kwatra</name>
-      <uri>https://kartikkwatra.com/rss.xml</uri>
-    </author>
-    <link href="https://kartikkwatra.com/blog/weeknote-2026-w1/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-03T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://azan-n.com/notes/20260103-a-weeknote-because-tanvi-is-scary</id>
     <title>A weeknote because Tanvi is scary</title>
     <updated>2026-01-03T00:00:00+00:00</updated>
@@ -2315,17 +2150,6 @@
       <uri>https://tanvibhakta.in/feed.xml</uri>
     </author>
     <link href="https://tanvibhakta.in/blog/define-partner/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-02T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/posts/infinite-fun-space/</id>
-    <title>Infinite fun machine</title>
-    <updated>2026-01-02T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/posts/infinite-fun-space/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-02T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2954,50 +2778,6 @@
     </author>
     <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwncUnjE1LRJGiMp2mPD_8Mq&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2025-12-08T07:25:46+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/</id>
-    <title>Self help as communicating metaphors</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/note-2025-12-8/</id>
-    <title>Heavy is the head</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/note-2025-12-8/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/note-2025-08-20/</id>
-    <title>Better angels of our nature</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/note-2025-08-20/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/civilizations-live-and-die-by-what-is-cool/</id>
-    <title>Civilizations live and die by what is cool</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/civilizations-live-and-die-by-what-is-cool/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2025-48/</id>
