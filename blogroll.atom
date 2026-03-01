@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-01T19:18:48.140530+00:00</updated>
+  <updated>2026-03-01T20:19:11.137906+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -188,17 +188,6 @@
     <link href="https://jatan.space/moon-monday-issue-263/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <category term="Moon Monday"/>
     <published>2026-02-23T12:06:28+00:00</published>
-  </entry>
-  <entry>
-    <id>https://kdqed.com/bmrcl-ridership-revenue-analysis</id>
-    <title>Bengaluru Metro: Ridership Data For Revenue Optimization</title>
-    <updated>2026-02-23T00:00:00+00:00</updated>
-    <author>
-      <name>Karthik Devan</name>
-      <uri>https://kdqed.com/feed.xml</uri>
-    </author>
-    <link href="https://kdqed.com/bmrcl-ridership-revenue-analysis?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-23T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://msfjarvis.dev/posts/weeknotes-week-8-2026/</id>
@@ -675,17 +664,6 @@
     <link href="https://jatan.space/indian-space-issue-35/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <category term="Indian Space"/>
     <published>2026-02-11T11:55:03+00:00</published>
-  </entry>
-  <entry>
-    <id>https://kdqed.com/linkin-park-bengaluru-personal-account</id>
-    <title>Linkin Park in Bengaluru 2026 - A Very Personal Account</title>
-    <updated>2026-02-10T00:00:00+00:00</updated>
-    <author>
-      <name>Karthik Devan</name>
-      <uri>https://kdqed.com/feed.xml</uri>
-    </author>
-    <link href="https://kdqed.com/linkin-park-bengaluru-personal-account?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-10T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://itihas.review/20260208163910-gutcraft_a_prospective.html</id>
@@ -1621,17 +1599,6 @@
     <published>2026-01-20T03:07:43.982000+00:00</published>
   </entry>
   <entry>
-    <id>https://kartikkwatra.com/blog/weeknote-2026-w3/</id>
-    <title>Weeknote 2026-W3 | IQ vs AQI</title>
-    <updated>2026-01-20T00:00:00+00:00</updated>
-    <author>
-      <name>Kartik Kwatra</name>
-      <uri>https://kartikkwatra.com/rss.xml</uri>
-    </author>
-    <link href="https://kartikkwatra.com/blog/weeknote-2026-w3/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-20T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://blog.anikthink.com/blog/weeknote-16-w2603/</id>
     <title>Weeknote #16 [W26.03] - Curating films, and chasing reading goals</title>
     <updated>2026-01-20T00:00:00+00:00</updated>
@@ -1868,17 +1835,6 @@
       <uri>https://slatechalkings.mataroa.blog/rss/</uri>
     </author>
     <link href="https://slatechalkings.mataroa.blog/blog/the-memory-trail/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-17T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://kartikkwatra.com/blog/my-ai-development-workflow/</id>
-    <title>My AI developemt workflow</title>
-    <updated>2026-01-17T00:00:00+00:00</updated>
-    <author>
-      <name>Kartik Kwatra</name>
-      <uri>https://kartikkwatra.com/rss.xml</uri>
-    </author>
-    <link href="https://kartikkwatra.com/blog/my-ai-development-workflow/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-17T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2263,17 +2219,6 @@
     <published>2026-01-03T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://kartikkwatra.com/blog/weeknote-2026-w1/</id>
-    <title>Weeknote 2026-W1 | '12 grapes under the table'</title>
-    <updated>2026-01-03T00:00:00+00:00</updated>
-    <author>
-      <name>Kartik Kwatra</name>
-      <uri>https://kartikkwatra.com/rss.xml</uri>
-    </author>
-    <link href="https://kartikkwatra.com/blog/weeknote-2026-w1/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-03T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://azan-n.com/notes/20260103-a-weeknote-because-tanvi-is-scary</id>
     <title>A weeknote because Tanvi is scary</title>
     <updated>2026-01-03T00:00:00+00:00</updated>
@@ -2558,6 +2503,17 @@
     <category term="personal"/>
     <category term="indieweb"/>
     <published>2025-12-20T19:45:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://flavorfulsuffering.xyz/posts/writing/present-in-kitchen/</id>
+    <title>What's the deal with being in a kitchen?</title>
+    <updated>2025-12-20T14:57:59+00:00</updated>
+    <author>
+      <name>Shubham</name>
+      <uri>https://flavorfulsuffering.xyz/rss.xml</uri>
+    </author>
+    <link href="https://flavorfulsuffering.xyz/posts/writing/present-in-kitchen/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2025-12-20T14:57:59+00:00</published>
   </entry>
   <entry>
     <id>https://sagrika27.wordpress.com/2025/12/20/year-notes-2025/</id>
