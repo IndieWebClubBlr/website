@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-01T22:17:35.980849+00:00</updated>
+  <updated>2026-03-01T23:17:47.094028+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -142,6 +142,17 @@
     <published>2026-02-24T20:25:00+00:00</published>
   </entry>
   <entry>
+    <id>https://navendu.me/posts/code-mode/</id>
+    <title>Code Mode with Skills</title>
+    <updated>2026-02-24T17:45:05+00:00</updated>
+    <author>
+      <name>Navendu Pottekkat</name>
+      <uri>https://navendu.me/index.xml</uri>
+    </author>
+    <link href="https://navendu.me/posts/code-mode/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-24T17:45:05+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.kashyapsuhas.com/blog/secret-ingredient-behind-kolkatas-fuchka</id>
     <title>Secret ingredient behind Kolkata's Fuchka</title>
     <updated>2026-02-23T19:23:00+00:00</updated>
@@ -256,6 +267,17 @@
     </author>
     <link href="https://santacandesign.github.io/portfoliosite/nagatakabi.html?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-21T15:48:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://navendu.me/posts/airlines-hate-this-trick/</id>
+    <title>The Fastest Way to Board an Airplane</title>
+    <updated>2026-02-21T04:59:50+00:00</updated>
+    <author>
+      <name>Navendu Pottekkat</name>
+      <uri>https://navendu.me/index.xml</uri>
+    </author>
+    <link href="https://navendu.me/posts/airlines-hate-this-trick/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-21T04:59:50+00:00</published>
   </entry>
   <entry>
     <id>https://promethean.mataroa.blog/blog/different-schools-of-philosophy-in-eastern-and-western-schools/</id>
@@ -946,17 +968,6 @@
     <published>2026-02-08T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://forwhatitsworth.netlify.app/posts/good-old-neon/</id>
-    <title>Book review - Good Old Neon by David Foster Wallace</title>
-    <updated>2026-02-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/posts/good-old-neon/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-02-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://flyingsymphony.mataroa.blog/blog/first-time-at-the-indie-web-club/</id>
     <title>First time at the Indie Web Club</title>
     <updated>2026-02-08T00:00:00+00:00</updated>
@@ -1305,6 +1316,17 @@
     <published>2026-01-30T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://navendu.me/posts/clawdbot/</id>
+    <title>Clawdbot Got Agent UX Right</title>
+    <updated>2026-01-29T15:04:04+00:00</updated>
+    <author>
+      <name>Navendu Pottekkat</name>
+      <uri>https://navendu.me/index.xml</uri>
+    </author>
+    <link href="https://navendu.me/posts/clawdbot/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-29T15:04:04+00:00</published>
+  </entry>
+  <entry>
     <id>https://akhilunnikrishnan.com/2026/01/unhinged-rants-are-my-sole-jam/</id>
     <title>Unhinged rants are my sole jam</title>
     <updated>2026-01-29T02:30:00+00:00</updated>
@@ -1394,6 +1416,17 @@
     </author>
     <link href="https://abhinavsarkar.net/photography/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll#photo-115959756910965384"/>
     <published>2026-01-26T05:31:10.444000+00:00</published>
+  </entry>
+  <entry>
+    <id>https://navendu.me/posts/live-and-let-live/</id>
+    <title>Live and Let Live</title>
+    <updated>2026-01-26T05:01:32+00:00</updated>
+    <author>
+      <name>Navendu Pottekkat</name>
+      <uri>https://navendu.me/index.xml</uri>
+    </author>
+    <link href="https://navendu.me/posts/live-and-let-live/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-26T05:01:32+00:00</published>
   </entry>
   <entry>
     <id>https://blog.anikthink.com/blog/weeknote-17-w2604/</id>
@@ -1703,6 +1736,17 @@
     <published>2026-01-18T17:09:01+00:00</published>
   </entry>
   <entry>
+    <id>https://navendu.me/posts/ladybug-clock-puzzle/</id>
+    <title>The Ladybug Clock Puzzle</title>
+    <updated>2026-01-18T07:22:59+00:00</updated>
+    <author>
+      <name>Navendu Pottekkat</name>
+      <uri>https://navendu.me/index.xml</uri>
+    </author>
+    <link href="https://navendu.me/posts/ladybug-clock-puzzle/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-18T07:22:59+00:00</published>
+  </entry>
+  <entry>
     <id>https://msfjarvis.dev/posts/weeknotes-week-3-2026/</id>
     <title>Weeknotes: Week #3 (2026)</title>
     <updated>2026-01-18T06:50:00+00:00</updated>
@@ -1862,17 +1906,6 @@
     <category term="ai"/>
     <category term="intelligence_augmentation"/>
     <category term="tools_for_thought"/>
-    <published>2026-01-16T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/on-subjectivity-of-art/</id>
-    <title>Art as a race to the bottom</title>
-    <updated>2026-01-16T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/on-subjectivity-of-art/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-16T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2260,17 +2293,6 @@
       <uri>https://tanvibhakta.in/feed.xml</uri>
     </author>
     <link href="https://tanvibhakta.in/blog/define-partner/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-02T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/posts/infinite-fun-space/</id>
-    <title>Infinite fun machine</title>
-    <updated>2026-01-02T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/posts/infinite-fun-space/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-02T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2885,50 +2907,6 @@
     </author>
     <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwncUnjE1LRJGiMp2mPD_8Mq&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2025-12-08T07:25:46+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/</id>
-    <title>Self help as communicating metaphors</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/self-help-as-a-metaphors/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/note-2025-12-8/</id>
-    <title>Heavy is the head</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/note-2025-12-8/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/note-2025-08-20/</id>
-    <title>Better angels of our nature</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/note-2025-08-20/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://forwhatitsworth.netlify.app/notes/civilizations-live-and-die-by-what-is-cool/</id>
-    <title>Civilizations live and die by what is cool</title>
-    <updated>2025-12-08T00:00:00+00:00</updated>
-    <author>
-      <name>forwhatitsworth</name>
-      <uri>https://forwhatitsworth.netlify.app/index.xml</uri>
-    </author>
-    <link href="https://forwhatitsworth.netlify.app/notes/civilizations-live-and-die-by-what-is-cool/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-08T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://a-believable-fiction.pages.dev//posts/weeknotes/2025-48/</id>
