@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-01T14:07:00+00:00</updated>
+  <updated>2026-03-02T16:13:18+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,6 +10,29 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://jatan.space/moon-monday-issue-264/</id>
+    <title>Everything you should know and track about NASA’s Apollo-style Artemis rejig in its chase of China to the Moon</title>
+    <updated>2026-03-02T16:13:18+00:00</updated>
+    <author>
+      <name>Jatan</name>
+      <uri>https://jatan.space/rss</uri>
+    </author>
+    <link href="https://jatan.space/moon-monday-issue-264/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <category term="Moon Monday"/>
+    <published>2026-03-02T16:13:18+00:00</published>
+  </entry>
+  <entry>
+    <id>https://santacandesign.github.io/portfoliosite/daynotesmarch.html</id>
+    <title>Day notes March 2026</title>
+    <updated>2026-03-02T16:04:00+00:00</updated>
+    <author>
+      <name>Santrupti P</name>
+      <uri>https://santacandesign.github.io/portfoliosite/feed.xml</uri>
+    </author>
+    <link href="https://santacandesign.github.io/portfoliosite/daynotesmarch.html?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-03-02T16:04:00+00:00</published>
+  </entry>
   <entry>
     <id>https://msfjarvis.dev/posts/weeknotes-week-9-2026/</id>
     <title>Weeknotes: Week #9 (2026)</title>
@@ -2021,18 +2044,6 @@
     <category term="struggle"/>
     <category term="writing"/>
     <published>2026-01-12T18:14:07+00:00</published>
-  </entry>
-  <entry>
-    <id>https://jatan.space/moon-monday-issue-257/</id>
-    <title>Moon Monday #257: NASA preps to send astronauts to Luna</title>
-    <updated>2026-01-12T12:38:48+00:00</updated>
-    <author>
-      <name>Jatan</name>
-      <uri>https://jatan.space/rss</uri>
-    </author>
-    <link href="https://jatan.space/moon-monday-issue-257/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <category term="Moon Monday"/>
-    <published>2026-01-12T12:38:48+00:00</published>
   </entry>
   <entry>
     <id>https://msfjarvis.dev/posts/weeknotes-week-2-2026/</id>
