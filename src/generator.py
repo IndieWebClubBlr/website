@@ -78,7 +78,7 @@ def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
     res_entries: list[FeedEntry] = []
     for feed_title in feed_groups.keys():
         group_entries = feed_groups[feed_title]
-        group_entries.sort(key=lambda x: x.published, reverse=True)
+        group_entries.sort(key=lambda x: (x.published, x.link), reverse=True)
         group_entries = [
             deepcopy(entry) for entry in group_entries[: config.MAX_SHOWN_ENTRIES]
         ]
@@ -89,7 +89,7 @@ def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
         res_entries.extend(group_entries)
 
     # Sort result entries globally by publication date for overall stats
-    res_entries.sort(key=lambda x: x.published, reverse=True)
+    res_entries.sort(key=lambda x: (x.published, x.link), reverse=True)
     return res_entries
 
 
