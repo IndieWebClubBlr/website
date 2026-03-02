@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-02T16:13:18+00:00</updated>
+  <updated>2026-03-02T20:00:00+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,6 +10,20 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://blog.skaup.co/the-3-ps.html</id>
+    <title>The 3 P's</title>
+    <updated>2026-03-02T20:00:00+00:00</updated>
+    <author>
+      <name>skaup</name>
+      <uri>https://blog.skaup.co/feeds/all.atom.xml</uri>
+    </author>
+    <link href="https://blog.skaup.co/the-3-ps.html?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <category term="Personal"/>
+    <category term="books"/>
+    <category term="review"/>
+    <published>2026-03-02T20:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://jatan.space/moon-monday-issue-264/</id>
     <title>Everything you should know and track about NASA’s Apollo-style Artemis rejig in its chase of China to the Moon</title>
