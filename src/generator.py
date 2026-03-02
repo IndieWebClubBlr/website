@@ -236,6 +236,7 @@ def generate_events_feed(events: list[Event], output_dir: Path):
     fg.link(href=config.SITE_URL, rel="alternate")
     fg.subtitle("Events by IndieWebClub Bangalore.")
 
+    feed_updated = None
     for event in events:
         fe = fg.add_entry(order="append")
 
@@ -246,6 +247,10 @@ def generate_events_feed(events: list[Event], output_dir: Path):
         fe.updated(event.created_at)
         fe.content(event.details)
 
+        if feed_updated is None or feed_updated < event.created_at:
+            feed_updated = event.created_at
+
+    fg.updated(feed_updated or datetime.now())
     fg.atom_file(output_path, pretty=True)
     logger.info(f"Events feed written to: {output_path}")
 

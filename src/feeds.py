@@ -164,6 +164,7 @@ def generate_feed(
     if feed_subtitle is not None:
         fg.subtitle(feed_subtitle)
 
+    feed_updated = None
     for entry in sorted(
         entries, key=lambda entry: (entry.published, entry.link), reverse=True
     ):
@@ -182,6 +183,10 @@ def generate_feed(
             for tag in entry.tags:
                 fe.category(term=tag)
 
+            if feed_updated is None or feed_updated < entry.published:
+                feed_updated = entry.published
+
+    fg.updated(feed_updated or datetime.now())
     fg.atom_file(output_path, pretty=True)
 
 
