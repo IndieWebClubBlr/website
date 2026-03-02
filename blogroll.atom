@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-02T04:07:27.537115+00:00</updated>
+  <updated>2026-03-02T05:47:58.705315+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -142,6 +142,17 @@
     <published>2026-02-24T20:25:00+00:00</published>
   </entry>
   <entry>
+    <id>https://navendu.me/posts/code-mode/</id>
+    <title>Code Mode with Skills</title>
+    <updated>2026-02-24T17:45:05+00:00</updated>
+    <author>
+      <name>Navendu Pottekkat</name>
+      <uri>https://navendu.me/index.xml</uri>
+    </author>
+    <link href="https://navendu.me/posts/code-mode/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-24T17:45:05+00:00</published>
+  </entry>
+  <entry>
     <id>https://www.kashyapsuhas.com/blog/secret-ingredient-behind-kolkatas-fuchka</id>
     <title>Secret ingredient behind Kolkata's Fuchka</title>
     <updated>2026-02-23T19:23:00+00:00</updated>
@@ -245,6 +256,17 @@
     </author>
     <link href="https://santacandesign.github.io/portfoliosite/nagatakabi.html?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-21T15:48:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://navendu.me/posts/airlines-hate-this-trick/</id>
+    <title>The Fastest Way to Board an Airplane</title>
+    <updated>2026-02-21T04:59:50+00:00</updated>
+    <author>
+      <name>Navendu Pottekkat</name>
+      <uri>https://navendu.me/index.xml</uri>
+    </author>
+    <link href="https://navendu.me/posts/airlines-hate-this-trick/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-02-21T04:59:50+00:00</published>
   </entry>
   <entry>
     <id>https://promethean.mataroa.blog/blog/different-schools-of-philosophy-in-eastern-and-western-schools/</id>
@@ -1283,6 +1305,17 @@
     <published>2026-01-30T00:00:00+00:00</published>
   </entry>
   <entry>
+    <id>https://navendu.me/posts/clawdbot/</id>
+    <title>Clawdbot Got Agent UX Right</title>
+    <updated>2026-01-29T15:04:04+00:00</updated>
+    <author>
+      <name>Navendu Pottekkat</name>
+      <uri>https://navendu.me/index.xml</uri>
+    </author>
+    <link href="https://navendu.me/posts/clawdbot/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-29T15:04:04+00:00</published>
+  </entry>
+  <entry>
     <id>https://akhilunnikrishnan.com/2026/01/unhinged-rants-are-my-sole-jam/</id>
     <title>Unhinged rants are my sole jam</title>
     <updated>2026-01-29T02:30:00+00:00</updated>
@@ -1372,6 +1405,17 @@
     </author>
     <link href="https://abhinavsarkar.net/photography/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll#photo-115959756910965384"/>
     <published>2026-01-26T05:31:10.444000+00:00</published>
+  </entry>
+  <entry>
+    <id>https://navendu.me/posts/live-and-let-live/</id>
+    <title>Live and Let Live</title>
+    <updated>2026-01-26T05:01:32+00:00</updated>
+    <author>
+      <name>Navendu Pottekkat</name>
+      <uri>https://navendu.me/index.xml</uri>
+    </author>
+    <link href="https://navendu.me/posts/live-and-let-live/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-26T05:01:32+00:00</published>
   </entry>
   <entry>
     <id>https://blog.anikthink.com/blog/weeknote-17-w2604/</id>
@@ -1566,17 +1610,6 @@
     <published>2026-01-20T03:07:43.982000+00:00</published>
   </entry>
   <entry>
-    <id>https://kartikkwatra.com/blog/weeknote-2026-w3/</id>
-    <title>Weeknote 2026-W3 | IQ vs AQI</title>
-    <updated>2026-01-20T00:00:00+00:00</updated>
-    <author>
-      <name>Kartik Kwatra</name>
-      <uri>https://kartikkwatra.com/rss.xml</uri>
-    </author>
-    <link href="https://kartikkwatra.com/blog/weeknote-2026-w3/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-20T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://blog.anikthink.com/blog/weeknote-16-w2603/</id>
     <title>Weeknote #16 [W26.03] - Curating films, and chasing reading goals</title>
     <updated>2026-01-20T00:00:00+00:00</updated>
@@ -1679,6 +1712,17 @@
     </author>
     <link href="https://atharvaraykar.com/lobsters/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-18T17:09:01+00:00</published>
+  </entry>
+  <entry>
+    <id>https://navendu.me/posts/ladybug-clock-puzzle/</id>
+    <title>The Ladybug Clock Puzzle</title>
+    <updated>2026-01-18T07:22:59+00:00</updated>
+    <author>
+      <name>Navendu Pottekkat</name>
+      <uri>https://navendu.me/index.xml</uri>
+    </author>
+    <link href="https://navendu.me/posts/ladybug-clock-puzzle/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-01-18T07:22:59+00:00</published>
   </entry>
   <entry>
     <id>https://msfjarvis.dev/posts/weeknotes-week-3-2026/</id>
@@ -1802,17 +1846,6 @@
       <uri>https://slatechalkings.mataroa.blog/rss/</uri>
     </author>
     <link href="https://slatechalkings.mataroa.blog/blog/the-memory-trail/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-17T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://kartikkwatra.com/blog/my-ai-development-workflow/</id>
-    <title>My AI developemt workflow</title>
-    <updated>2026-01-17T00:00:00+00:00</updated>
-    <author>
-      <name>Kartik Kwatra</name>
-      <uri>https://kartikkwatra.com/rss.xml</uri>
-    </author>
-    <link href="https://kartikkwatra.com/blog/my-ai-development-workflow/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-17T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -2205,17 +2238,6 @@
       <uri>https://slatechalkings.mataroa.blog/rss/</uri>
     </author>
     <link href="https://slatechalkings.mataroa.blog/blog/blog-intent/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-03T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://kartikkwatra.com/blog/weeknote-2026-w1/</id>
-    <title>Weeknote 2026-W1 | '12 grapes under the table'</title>
-    <updated>2026-01-03T00:00:00+00:00</updated>
-    <author>
-      <name>Kartik Kwatra</name>
-      <uri>https://kartikkwatra.com/rss.xml</uri>
-    </author>
-    <link href="https://kartikkwatra.com/blog/weeknote-2026-w1/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-03T00:00:00+00:00</published>
   </entry>
   <entry>
