@@ -18,7 +18,7 @@ help:
 	@echo "Available commands:"
 	@echo "  make setup          - Set up virtual environment and install dependencies"
 	@echo "  make install        - Install dependencies (assumes venv exists)"
-	@echo "  make build          - Build the website (add CACHE=true to enable caching)"
+	@echo "  make build          - Build the website (add CACHE=true to read from cache only)"
 	@echo "  make assets         - Copy assets to the build directory"
 	@echo "  make clean          - Remove generated files"
 	@echo "  make clean_venv     - Remove the virtual environment"
@@ -54,7 +54,7 @@ install:
 build: setup blogroll.opml
 	@echo "Building website..."
 	mkdir -p _site/
-	$(VENV_PYTHON) src/generator.py blogroll.opml _site $(if $(VERBOSE),--verbose) $(if $(CACHE),--cache)
+	$(VENV_PYTHON) src/generator.py blogroll.opml _site $(if $(VERBOSE),--verbose) $(if $(CACHE),--cache) $(if $(CACHE_FALLBACK),--cache-fallback)
 	@echo "Generated website"
 
 # Copy the assets

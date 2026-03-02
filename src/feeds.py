@@ -396,14 +396,16 @@ def parse_feed(
 
 
 def process_single_feed(
-    feed_info: FeedInfo, use_cache: bool
+    feed_info: FeedInfo, use_cache: bool, cache_fallback: bool
 ) -> tuple[list[FeedEntry], FailureReason | None]:
     """
     Process a single feed: fetch and parse it.
 
     Args:
         feed_info: FeedInfo object containing feed metadata.
-        use_cache: Whether to use cached content.
+        use_cache: Whether to use cached content instead of fetching.
+        cache_fallback: Whether to fall back to cached content on fetch failure
+            and update the cache on success.
 
     Returns:
         Tuple of (entries list, failure_reason). failure_reason is None if successful.
@@ -421,8 +423,14 @@ def process_single_feed(
     else:
         # Fetch feed content
         content = fetch_feed_content(feed_url)
+        if content and cache_fallback:
+            cache_file.write_text(content, encoding="utf-8")
         if not content:
-            return [], FailureReason.ERROR
+            if cache_fallback and cache_file.exists():
+                logger.info(f"Using cached content as fallback for: {feed_url}")
+                content = cache_file.read_text(encoding="utf-8")
+            else:
+                return [], FailureReason.ERROR
 
     # Parse feed content
     (entries, has_entries) = parse_feed(feed_title, feed_url, content)
@@ -455,14 +463,15 @@ def process_single_feed(
 
 
 def fetch_all_feeds(
-    feeds: list[FeedInfo], use_cache: bool
+    feeds: list[FeedInfo], use_cache: bool, cache_fallback: bool
 ) -> tuple[list[FeedEntry], list[FailedFeedInfo]]:
     """
     Fetch and parse all feeds concurrently.
 
     Args:
         feeds: List of FeedInfo objects.
-        use_cache: Whether to use cached content.
+        use_cache: Whether to use cached content instead of fetching.
+        cache_fallback: Whether to fall back to cached content on fetch failure.
 
     Returns:
         A tuple containing:
@@ -482,7 +491,9 @@ def fetch_all_feeds(
     ) as executor:
         # Submit all feed processing tasks
         future_to_feed = {
-            executor.submit(process_single_feed, feed_info, use_cache): feed_info
+            executor.submit(
+                process_single_feed, feed_info, use_cache, cache_fallback
+            ): feed_info
             for feed_info in feeds
         }
 

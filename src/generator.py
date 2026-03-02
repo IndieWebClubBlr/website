@@ -374,7 +374,9 @@ class BuildCache:
     events: list[Event] = field(default_factory=list)
 
 
-def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
+def generate_website(
+    opml_path: Path, output_dir: Path, use_cache: bool, cache_fallback: bool
+):
     """
     Generate the complete website from OPML feeds, events, and static pages.
 
@@ -382,6 +384,7 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
         opml_path: Path to the OPML file containing feed URLs.
         output_dir: Path where generated artifacts should be written.
         use_cache: Whether to use cached feeds.
+        cache_fallback: Whether to fall back to cached feeds on fetch failure.
     """
     cache = BuildCache()
     build = Build()
@@ -417,7 +420,9 @@ def generate_website(opml_path: Path, output_dir: Path, use_cache: bool):
     def _(_target: str):
         build.need("parse_opml")
         cache.entries, cache.failed_feeds = fetch_all_feeds(
-            cache.feeds, use_cache=use_cache
+            cache.feeds,
+            use_cache=use_cache,
+            cache_fallback=cache_fallback,
         )
         cache.failed_feeds.sort(key=lambda f: f.feed_info.title.lower())
 
@@ -499,6 +504,11 @@ def main():
     _ = parser.add_argument(
         "--cache", action="store_true", help="Enable caching of fetched feeds"
     )
+    _ = parser.add_argument(
+        "--cache-fallback",
+        action="store_true",
+        help="Fall back to cached feeds on fetch failure and update cache on success",
+    )
 
     args = parser.parse_args()
 
@@ -514,12 +524,17 @@ def main():
 
     output_dir.mkdir(exist_ok=True)
 
+    if args.cache and args.cache_fallback:
+        logger.error("--use-cache and --cache-fallback options cannot be used together")
+        sys.exit(1)
     if args.cache:
         logger.info("Caching enabled")
+    if args.cache_fallback:
+        logger.info("Cache fallback enabled")
     config.CACHE_DIR.mkdir(exist_ok=True)
 
     try:
-        generate_website(opml_path, output_dir, args.cache)
+        generate_website(opml_path, output_dir, args.cache, args.cache_fallback)
     except KeyboardInterrupt:
         logger.info("Process interrupted by user")
         sys.exit(130)

@@ -13,13 +13,13 @@ jobs:
         uses: actions/checkout@master
         with:
           ref: main
-      - name: Cache favicons
+      - name: Cache data
         uses: actions/cache@v4
         with:
-          path: .cache/favicons.json
-          key: favicons-${{ github.run_id }}
+          path: .cache/
+          key: cache-${{ github.run_id }}
           restore-keys: |
-            favicons-
+            cache-
       - name: python setup
         uses: actions/setup-python@v5
         with:
@@ -30,7 +30,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: run
-        run: mkdir -p _site/ && python src/generator.py blogroll.opml _site
+        run: mkdir -p _site/ && python src/generator.py blogroll.opml _site --cache-fallback
       - name: publish
         uses: crazy-max/ghaction-github-pages@v3
         with:
