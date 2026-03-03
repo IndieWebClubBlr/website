@@ -3084,15 +3084,4 @@
     <category term="scala"/>
     <published>2025-12-04T19:22:00+00:00</published>
   </entry>
-  <entry>
-    <id>https://ankursethi.com/blog/using-llms-for-web-search/</id>
-    <title>Using LLMs for web search</title>
-    <updated>2025-12-03T14:04:10+00:00</updated>
-    <author>
-      <name>Ankur Sethi</name>
-      <uri>https://ankursethi.com/feeds/index.xml</uri>
-    </author>
-    <link href="https://ankursethi.com/blog/using-llms-for-web-search/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-03T14:04:10+00:00</published>
-  </entry>
 </feed>
