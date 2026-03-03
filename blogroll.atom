@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-02T20:00:00+00:00</updated>
+  <updated>2026-03-03T06:20:44+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,6 +10,18 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://himanshikalra.com/soldering-fort-kochi/</id>
+    <title>Soldering Fort Kochi</title>
+    <updated>2026-03-03T06:20:44+00:00</updated>
+    <author>
+      <name>Himanshi Kalra</name>
+      <uri>https://himanshikalra.com/feed/</uri>
+    </author>
+    <link href="https://himanshikalra.com/soldering-fort-kochi/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <category term="travel"/>
+    <published>2026-03-03T06:20:44+00:00</published>
+  </entry>
   <entry>
     <id>https://blog.skaup.co/the-3-ps.html</id>
     <title>The 3 P's</title>
