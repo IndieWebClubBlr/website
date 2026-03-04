@@ -3088,19 +3088,4 @@
     <category term="personal"/>
     <published>2025-12-06T18:30:00+00:00</published>
   </entry>
-  <entry>
-    <id>https://blog.skaup.co/functional-ribbon-revised.html</id>
-    <title>Functional Ribbon Revised</title>
-    <updated>2025-12-04T19:22:00+00:00</updated>
-    <author>
-      <name>skaup</name>
-      <uri>https://blog.skaup.co/feeds/all.atom.xml</uri>
-    </author>
-    <link href="https://blog.skaup.co/functional-ribbon-revised.html?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <category term="Technical"/>
-    <category term="functional-languages"/>
-    <category term="haskell"/>
-    <category term="scala"/>
-    <published>2025-12-04T19:22:00+00:00</published>
-  </entry>
 </feed>
