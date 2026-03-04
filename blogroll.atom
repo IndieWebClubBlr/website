@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-03T06:20:44+00:00</updated>
+  <updated>2026-03-04T16:25:14+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,6 +10,18 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://thejeshgn.com/2026/03/04/anyamatiya/</id>
+    <title>ಅನ್ಯಮತೀಯ</title>
+    <updated>2026-03-04T16:25:14+00:00</updated>
+    <author>
+      <name>Thejesh GN</name>
+      <uri>https://feeds.thejeshgn.com/thejeshgn</uri>
+    </author>
+    <link href="https://thejeshgn.com/2026/03/04/anyamatiya/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <category term="ಕನ್ನಡ"/>
+    <published>2026-03-04T16:25:14+00:00</published>
+  </entry>
   <entry>
     <id>https://himanshikalra.com/soldering-fort-kochi/</id>
     <title>Soldering Fort Kochi</title>
@@ -1348,21 +1360,6 @@
     </author>
     <link href="https://tanvibhakta.in/blog/update-on-my-llm-usage-patterns-jan-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-31T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://thejeshgn.com/2026/01/30/weekly-notes-05-2026/</id>
-    <title>Weekly Notes 05/2026</title>
-    <updated>2026-01-30T17:29:09+00:00</updated>
-    <author>
-      <name>Thejesh GN</name>
-      <uri>https://feeds.thejeshgn.com/thejeshgn</uri>
-    </author>
-    <link href="https://thejeshgn.com/2026/01/30/weekly-notes-05-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <category term="Weekly Notes"/>
-    <category term="Pickleball"/>
-    <category term="WN-05"/>
-    <category term="Workouts"/>
-    <published>2026-01-30T17:29:09+00:00</published>
   </entry>
   <entry>
     <id>https://ankursethi.com/blog/genai-gatekeeping/</id>
