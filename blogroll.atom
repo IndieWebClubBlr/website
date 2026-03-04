@@ -23,6 +23,28 @@
     <published>2026-03-03T06:20:44+00:00</published>
   </entry>
   <entry>
+    <id>https://akils.mataroa.blog/blog/hello-world/</id>
+    <title>hello world</title>
+    <updated>2026-03-03T00:00:00+00:00</updated>
+    <author>
+      <name>akils</name>
+      <uri>https://akils.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://akils.mataroa.blog/blog/hello-world/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-03-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://akils.mataroa.blog/blog/25-rejections/</id>
+    <title>25 rejections</title>
+    <updated>2026-03-03T00:00:00+00:00</updated>
+    <author>
+      <name>akils</name>
+      <uri>https://akils.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://akils.mataroa.blog/blog/25-rejections/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-03-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
     <id>https://blog.skaup.co/the-3-ps.html</id>
     <title>The 3 P's</title>
     <updated>2026-03-02T20:00:00+00:00</updated>
