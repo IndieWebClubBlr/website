@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-04T16:25:14+00:00</updated>
+  <updated>2026-03-05T00:00:00+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,6 +10,17 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://halfthere.mataroa.blog/blog/kavz-doodz-march-2026/</id>
+    <title>Kavz Doodz March 2026</title>
+    <updated>2026-03-05T00:00:00+00:00</updated>
+    <author>
+      <name>halfthere</name>
+      <uri>https://halfthere.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://halfthere.mataroa.blog/blog/kavz-doodz-march-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-03-05T00:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://thejeshgn.com/2026/03/04/anyamatiya/</id>
     <title>ಅನ್ಯಮತೀಯ</title>
@@ -1620,17 +1631,6 @@
       <uri>https://tanvibhakta.in/feed.xml</uri>
     </author>
     <link href="https://tanvibhakta.in/weeknotes/week-of-jan-23rd-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-23T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://halfthere.mataroa.blog/blog/pasta-and-a-letter-from-far-far-away/</id>
-    <title>Pasta and a Letter from Far Far Away</title>
-    <updated>2026-01-23T00:00:00+00:00</updated>
-    <author>
-      <name>halfthere</name>
-      <uri>https://halfthere.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://halfthere.mataroa.blog/blog/pasta-and-a-letter-from-far-far-away/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-23T00:00:00+00:00</published>
   </entry>
   <entry>
