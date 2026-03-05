@@ -419,7 +419,7 @@ def generate_website(
 
     @build.rule("fetch_events")
     def _(_target: str):
-        cache.events = fetch_events(use_cache=use_cache)
+        cache.events = fetch_events(use_cache=use_cache, cache_fallback=cache_fallback)
 
     @build.rule("fetch_feeds")
     def _(_target: str):

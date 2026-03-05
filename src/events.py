@@ -113,7 +113,11 @@ def make_event(base_url: str, topic: DiscourseTopic, post: DiscoursePost) -> Eve
 
 
 def fetch_event_detail(
-    session: requests.Session, base_url: str, topic: DiscourseTopic, use_cache: bool
+    session: requests.Session,
+    base_url: str,
+    topic: DiscourseTopic,
+    use_cache: bool,
+    cache_fallback: bool,
 ) -> Event | None:
     """Fetch details of IWCB event.
 
@@ -121,7 +125,9 @@ def fetch_event_detail(
       session: requests.Session object.
       base_url: URL of Underline Center Discourse. Default: https://underline.center/.
       topic: topic JSON returned from Discourse Search API.
-      use_cache: Whether to use cached content.
+      use_cache: Whether to use cached content instead of fetching.
+      cache_fallback: Whether to fall back to cached content on fetch failure
+          and update the cache on success.
 
     Returns:
       IWCB Event, None if fetch failed.
@@ -142,7 +148,7 @@ def fetch_event_detail(
 
         topic_posts = cast(DiscourseTopicPosts, response.json())
         post = topic_posts["post_stream"]["posts"][0]
-        if use_cache:
+        if use_cache or cache_fallback:
             _ = cache_file.write_text(json.dumps(post), encoding="utf-8")
             logger.debug(f"Cached content for: {url}")
 
@@ -156,19 +162,27 @@ def fetch_event_detail(
     except Exception as e:
         logger.error(f"Unexpected error fetching event details {url}: {e}")
 
+    if cache_fallback and cache_file.exists():
+        logger.debug(f"Using cached content as fallback for: {url}")
+        post = cast(DiscoursePost, json.loads(cache_file.read_text(encoding="utf-8")))
+        return make_event(base_url, topic, post)
+
     return None
 
 
 def fetch_events(
     base_url: str = "https://underline.center",
     use_cache: bool = False,
+    cache_fallback: bool = False,
 ) -> list[Event]:
     """
     Fetch IWCB events from Underline Center Discourse API.
 
     Args:
-      use_cache: Whether to use cached content.
       base_url: URL of Underline Center Discourse. Default: https://underline.center/.
+      use_cache: Whether to use cached content instead of fetching.
+      cache_fallback: Whether to fall back to cached content on fetch failure
+          and update the cache on success.
 
     Returns:
       IWCB Event as a list, empty if fetch failed.
@@ -198,7 +212,7 @@ def fetch_events(
 
                 response_json = cast(DiscoureSearchResults, response.json())
 
-                if use_cache:
+                if use_cache or cache_fallback:
                     cache_key = hashlib.sha256(url.encode()).hexdigest()
                     cache_file = config.CACHE_DIR / cache_key
                     _ = cache_file.write_text(
@@ -215,12 +229,19 @@ def fetch_events(
                 logger.error(f"Unexpected error fetching events {url}: {e}")
 
     if response_json is None:
-        return []
+        if cache_fallback and cache_file.exists():
+            logger.debug(f"Using cached content as fallback for: {url}")
+            response_json = cast(
+                DiscoureSearchResults,
+                json.loads(cache_file.read_text(encoding="utf-8")),
+            )
+        else:
+            return []
 
     events: list[Event] = []
     previous_count = 0
     for topic in response_json["topics"]:
-        event = fetch_event_detail(session, base_url, topic, use_cache)
+        event = fetch_event_detail(session, base_url, topic, use_cache, cache_fallback)
         if event is None:
             continue
         if event.start_at <= now:
