@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-05T00:00:00+00:00</updated>
+  <updated>2026-03-05T15:01:42+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,6 +10,17 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://thoughts.jatan.space/posts/for-long-time-rss-subscribers-of-my-space-blog</id>
+    <title>📢 For long-time RSS subscribers of my space blog</title>
+    <updated>2026-03-05T15:01:42+00:00</updated>
+    <author>
+      <name>Jatan</name>
+      <uri>https://thoughts.jatan.space/posts_feed.rss</uri>
+    </author>
+    <link href="https://thoughts.jatan.space/posts/for-long-time-rss-subscribers-of-my-space-blog?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-03-05T15:01:42+00:00</published>
+  </entry>
   <entry>
     <id>https://halfthere.mataroa.blog/blog/kavz-doodz-march-2026/</id>
     <title>Kavz Doodz March 2026</title>
@@ -2038,17 +2049,6 @@
     <published>2026-01-15T15:59:25+00:00</published>
   </entry>
   <entry>
-    <id>https://thoughts.jatan.space/posts/spacex-starship-test-flights-have-endangered-airplane-passengers</id>
-    <title>SpaceX Starship test flights have endangered airplane passengers</title>
-    <updated>2026-01-14T16:10:57+00:00</updated>
-    <author>
-      <name>Jatan</name>
-      <uri>https://thoughts.jatan.space/posts_feed.rss</uri>
-    </author>
-    <link href="https://thoughts.jatan.space/posts/spacex-starship-test-flights-have-endangered-airplane-passengers?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-14T16:10:57+00:00</published>
-  </entry>
-  <entry>
     <id>https://www.kashyapsuhas.com/blog/breakfast-dishes-of-karnataka-beyond-idli-dosa-vada</id>
     <title>Breakfast dishes of Karnataka beyond Idli Vada Dosa</title>
     <updated>2026-01-14T15:30:29+00:00</updated>
@@ -2058,17 +2058,6 @@
     </author>
     <link href="https://www.kashyapsuhas.com/blog/breakfast-dishes-of-karnataka-beyond-idli-dosa-vada?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-01-14T15:30:29+00:00</published>
-  </entry>
-  <entry>
-    <id>https://thoughts.jatan.space/posts/the-post-american-internet</id>
-    <title>The Post-American Internet?</title>
-    <updated>2026-01-14T07:52:30+00:00</updated>
-    <author>
-      <name>Jatan</name>
-      <uri>https://thoughts.jatan.space/posts_feed.rss</uri>
-    </author>
-    <link href="https://thoughts.jatan.space/posts/the-post-american-internet?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-14T07:52:30+00:00</published>
   </entry>
   <entry>
     <id>https://purposewithpals.wordpress.com/2026/01/12/waiting-for-light/</id>
