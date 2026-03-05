@@ -173,7 +173,7 @@ def fetch_events(
     Returns:
       IWCB Event as a list, empty if fetch failed.
     """
-    url = f"{base_url}/search?q=indieweb%20%23calendar%20order%3Alatest_topic&page=1"
+    url = f"{base_url}/search/query?term=indieweb%20%23calendar%20order%3Alatest_topic&page=1"
     cache_key = hashlib.sha256(url.encode()).hexdigest()
     cache_file = config.CACHE_DIR / cache_key
 
