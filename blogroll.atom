@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-05T15:01:42+00:00</updated>
+  <updated>2026-03-06T17:36:18+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,6 +10,18 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://thejeshgn.com/2026/03/06/weekly-notes-10-2026/</id>
+    <title>Weekly Notes 10/2026</title>
+    <updated>2026-03-06T17:36:18+00:00</updated>
+    <author>
+      <name>Thejesh GN</name>
+      <uri>https://feeds.thejeshgn.com/thejeshgn</uri>
+    </author>
+    <link href="https://thejeshgn.com/2026/03/06/weekly-notes-10-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <category term="Weekly Notes"/>
+    <published>2026-03-06T17:36:18+00:00</published>
+  </entry>
   <entry>
     <id>https://thoughts.jatan.space/posts/for-long-time-rss-subscribers-of-my-space-blog</id>
     <title>📢 For long-time RSS subscribers of my space blog</title>
@@ -1172,20 +1184,6 @@
     </author>
     <link href="https://abhi.now/blog/the-right-place/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2026-02-07T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://thejeshgn.com/2026/02/06/weekly-notes-06-2026/</id>
-    <title>Weekly Notes 06/2026</title>
-    <updated>2026-02-06T16:13:48+00:00</updated>
-    <author>
-      <name>Thejesh GN</name>
-      <uri>https://feeds.thejeshgn.com/thejeshgn</uri>
-    </author>
-    <link href="https://thejeshgn.com/2026/02/06/weekly-notes-06-2026/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <category term="Weekly Notes"/>
-    <category term="WN-06"/>
-    <category term="Workouts"/>
-    <published>2026-02-06T16:13:48+00:00</published>
   </entry>
   <entry>
     <id>https://thoughts.jatan.space/posts/hear-less-but-better-from-me</id>
@@ -3062,30 +3060,5 @@
     </author>
     <link href="https://holistictravellers.com/posts/seville-spain/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2025-12-07T00:00:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://vishalr.dev/blog/Open-Source-India-2025</id>
-    <title>Open Source India 2025</title>
-    <updated>2025-12-06T18:30:00+00:00</updated>
-    <author>
-      <name>Vishal R</name>
-      <uri>https://vishalr.dev/rss.xml</uri>
-    </author>
-    <link href="https://vishalr.dev/blog/Open-Source-India-2025?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <category term="Blog"/>
-    <published>2025-12-06T18:30:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://lepisma.xyz/journal/2025/12/07/my-humble-wrapped/index.html</id>
-    <title>My Humble Wrapped</title>
-    <updated>2025-12-06T18:30:00+00:00</updated>
-    <author>
-      <name>Abhinav Tushar</name>
-      <uri>https://lepisma.xyz/journal/atom.xml</uri>
-    </author>
-    <link href="https://lepisma.xyz/journal/2025/12/07/my-humble-wrapped/index.html?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <category term="music"/>
-    <category term="personal"/>
-    <published>2025-12-06T18:30:00+00:00</published>
   </entry>
 </feed>
