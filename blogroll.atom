@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-07T11:40:00+00:00</updated>
+  <updated>2026-03-07T16:31:40+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,6 +10,17 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://thoughts.jatan.space/posts/farther-than-the-stars</id>
+    <title>Farther than the stars 🎸</title>
+    <updated>2026-03-07T16:31:40+00:00</updated>
+    <author>
+      <name>Jatan</name>
+      <uri>https://thoughts.jatan.space/posts_feed.rss</uri>
+    </author>
+    <link href="https://thoughts.jatan.space/posts/farther-than-the-stars?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-03-07T16:31:40+00:00</published>
+  </entry>
   <entry>
     <id>https://santacandesign.github.io/portfoliosite/loneliness.html</id>
     <title>Types of loneliness</title>
