@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blr.indiewebclub.org/blogroll.atom</id>
   <title>IndieWebClub Bangalore Blogroll</title>
-  <updated>2026-03-06T17:36:18+00:00</updated>
+  <updated>2026-03-07T11:40:00+00:00</updated>
   <author>
     <name>IndieWebClub Bangalore</name>
   </author>
@@ -10,6 +10,61 @@
   <link href="https://blr.indiewebclub.org/" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <subtitle>Recent posts by IndieWebClub Bangalore folks.</subtitle>
+  <entry>
+    <id>https://santacandesign.github.io/portfoliosite/loneliness.html</id>
+    <title>Types of loneliness</title>
+    <updated>2026-03-07T11:40:00+00:00</updated>
+    <author>
+      <name>Santrupti P</name>
+      <uri>https://santacandesign.github.io/portfoliosite/feed.xml</uri>
+    </author>
+    <link href="https://santacandesign.github.io/portfoliosite/loneliness.html?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-03-07T11:40:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://thoughts.jatan.space/posts/the-museum-of-possibilities</id>
+    <title>The Museum of Possibilities</title>
+    <updated>2026-03-07T11:39:09+00:00</updated>
+    <author>
+      <name>Jatan</name>
+      <uri>https://thoughts.jatan.space/posts_feed.rss</uri>
+    </author>
+    <link href="https://thoughts.jatan.space/posts/the-museum-of-possibilities?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-03-07T11:39:09+00:00</published>
+  </entry>
+  <entry>
+    <id>https://xn--ri8hp8b.ws/blog/the-200-year-old-roti-maker/</id>
+    <title>The 200 year old roti-maker</title>
+    <updated>2026-03-07T00:00:00+00:00</updated>
+    <author>
+      <name>twitu</name>
+      <uri>https://xn--ri8hp8b.ws/rss/</uri>
+    </author>
+    <link href="https://xn--ri8hp8b.ws/blog/the-200-year-old-roti-maker/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-03-07T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/blog/liquid-food-log/</id>
+    <title>[Blog] Liquid Food Log</title>
+    <updated>2026-03-07T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/blog/liquid-food-log/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-03-07T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://halfthere.mataroa.blog/blog/if-i-was-born-and-brought-up-in-the-time-of-modern-social-media-would-i-even-blog/</id>
+    <title>"If I was born and brought up in the time of modern social media, would I even blog?"</title>
+    <updated>2026-03-07T00:00:00+00:00</updated>
+    <author>
+      <name>halfthere</name>
+      <uri>https://halfthere.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://halfthere.mataroa.blog/blog/if-i-was-born-and-brought-up-in-the-time-of-modern-social-media-would-i-even-blog/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
+    <published>2026-03-07T00:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://thejeshgn.com/2026/03/06/weekly-notes-10-2026/</id>
     <title>Weekly Notes 10/2026</title>
@@ -1494,17 +1549,6 @@
     <published>2026-01-28T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://halfthere.mataroa.blog/blog/416-55-05c/</id>
-    <title>-</title>
-    <updated>2026-01-27T00:00:00+00:00</updated>
-    <author>
-      <name>halfthere</name>
-      <uri>https://halfthere.mataroa.blog/rss/</uri>
-    </author>
-    <link href="https://halfthere.mataroa.blog/blog/416-55-05c/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-27T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://akashbhat.com/do-you-know-what-your-toothpaste-costs/</id>
     <title>Do you know what your toothpaste costs?</title>
     <updated>2026-01-26T16:48:00+00:00</updated>
@@ -1935,17 +1979,6 @@
     <link href="https://vishalr.dev/weeknote/16-Theater-1-restaurant-0?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <category term="WeekNote"/>
     <published>2026-01-17T18:30:00+00:00</published>
-  </entry>
-  <entry>
-    <id>https://thoughts.jatan.space/posts/speak-bol</id>
-    <title>Speak / बोल</title>
-    <updated>2026-01-17T11:52:57+00:00</updated>
-    <author>
-      <name>Jatan</name>
-      <uri>https://thoughts.jatan.space/posts_feed.rss</uri>
-    </author>
-    <link href="https://thoughts.jatan.space/posts/speak-bol?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2026-01-17T11:52:57+00:00</published>
   </entry>
   <entry>
     <id>https://ankursethi.com/blog/smallest-possible-change/</id>
@@ -2551,17 +2584,6 @@
     </author>
     <link href="https://youtube.com/playlist?list=PLxlIzqc0aEwm4AlvW3PQaEkaoTmNy9FBW&amp;utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
     <published>2025-12-27T11:08:13+00:00</published>
-  </entry>
-  <entry>
-    <id>https://tanvibhakta.in/weeknotes/week-of-dec-27th-2025/</id>
-    <title>[Weeknotes] Week of Dec 27th, 2025</title>
-    <updated>2025-12-27T00:00:00+00:00</updated>
-    <author>
-      <name>Tanvi Bhakta</name>
-      <uri>https://tanvibhakta.in/feed.xml</uri>
-    </author>
-    <link href="https://tanvibhakta.in/weeknotes/week-of-dec-27th-2025/?utm_source=blr.indiewebclub.org&amp;utm_medium=feed&amp;utm_campaign=blogroll"/>
-    <published>2025-12-27T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://journal.jatan.space/newsletter-for-friends-08/</id>
