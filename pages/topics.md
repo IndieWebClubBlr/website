@@ -2,6 +2,18 @@
 
 [TOC]
 
+## March 7, 2026
+
+Using your website as a social space:
+
+- Do you look at your website as a space for individual expression, or do you consider it a social space that connects you to other parts of the IndieWeb?
+- What are your feelings around comments on personal websites? Have you enabled them on your own blog? Do you leave comments on other blogs?
+- Have you reached out to your favorite bloggers over email? Have people reached out to you? How are these interactions fundamentally different from public comments?
+- Have you experimented with social features like WebMentions, social media integration, or ActivityPub?
+- Have you ever participated in a blogchain — a series of posts spread across multiple personal websites, where writers respond to and build on each other’s ideas? What do you think of the form?
+- Have you ever participated in an IndieWeb Carnival? What do you think of the form?
+
+
 ## February 8, 2026
 
 Do you enjoy reading or writing reviews for the media you engage with (books/movies/games) on your blog? Why or why not? What makes for a good review? What do you accomplish by writing one? What are you looking for when you read a review of something? How do reviews work differently on the web vs. in print? Do they still have value in a world of abundance? Do they increase your enjoyment of the art you’re engaging with?
