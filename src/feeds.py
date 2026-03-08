@@ -264,7 +264,9 @@ def normalize_link(link: str, feed_url: str) -> str:
     parsed = urlparse(feed_url)
     link_parts = urlsplit(link)
     absolute_url = link_parts._replace(
-        scheme=parsed.scheme, netloc=parsed.netloc
+        scheme=parsed.scheme,
+        netloc=parsed.netloc,
+        path=link_parts.path.removeprefix(parsed.netloc),
     ).geturl()
     return quote(absolute_url, safe=":/?#[]@!$&'()*+,;=").strip()
 
