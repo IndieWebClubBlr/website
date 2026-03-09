@@ -22,6 +22,7 @@ from src.utils import (
     add_utm_params,
     read_template,
     render_and_save_html,
+    make_renderer,
 )
 
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -351,7 +352,7 @@ def generate_members_page(
         for (feed, icon_url, features) in members
     ]
     try:
-        renderer = pystache.Renderer()
+        renderer = make_renderer()
         render_and_save_html(
             html_content=renderer.render(members_template, {"members": ctx}),
             output_dir=output_dir / "members",

@@ -79,6 +79,15 @@ def save_html(content: str, output_file: str, output_dir: Path):
     logger.info(f"HTML file written to: {output_path}")
 
 
+def make_renderer():
+    templates_dir = (Path(__file__).resolve().parent.parent / "templates").resolve()
+    return pystache.Renderer(
+        search_dirs=[str(templates_dir)],
+        file_extension=False,
+        missing_tags="strict",
+    )
+
+
 def render_and_save_html(html_content: str, output_dir: Path):
     """
     Render HTML content with default template and save to file.
@@ -97,7 +106,7 @@ def render_and_save_html(html_content: str, output_dir: Path):
             "content": html_content,
         }
         default_template = read_template("default.html")
-        renderer = pystache.Renderer()
+        renderer = make_renderer()
         content = renderer.render(default_template, template_data)
         save_html(content, "index.html", output_dir)
 

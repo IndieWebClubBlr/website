@@ -52,6 +52,7 @@ from src.utils import (
     read_template,
     render_and_save_html,
     save_html,
+    make_renderer,
 )
 
 # Configure logging
@@ -160,6 +161,7 @@ def generate_homepage(
 
     # Prepare template data
     template_data = {
+        "site_url": config.SITE_URL,
         "webcal_url": config.WEBCAL_URL,
         "upcoming_events": upcoming_events,
         "has_upcoming_events": len(upcoming_events) > 0,
@@ -175,7 +177,7 @@ def generate_homepage(
 
     index_template = read_template("index.html")
     try:
-        renderer = pystache.Renderer()
+        renderer = make_renderer()
         # Generate index.html
         render_and_save_html(
             html_content=renderer.render(index_template, template_data),
@@ -329,7 +331,7 @@ def generate_webring(feeds_with_entries: list[FeedInfo], output_dir: Path):
     [prev_link, next_link] = random.sample(list(feeds_with_entries), 2)
 
     template_content = read_template("webring-redirect.html")
-    renderer = pystache.Renderer()
+    renderer = make_renderer()
 
     save_html(
         renderer.render(
@@ -361,7 +363,7 @@ def generate_webring(feeds_with_entries: list[FeedInfo], output_dir: Path):
 
 
 def generate_newsletter_subscribe_page(output_dir: Path):
-    renderer = pystache.Renderer()
+    renderer = make_renderer()
 
     render_and_save_html(
         html_content=renderer.render(read_template("nl-subsribe.html"), {}),
