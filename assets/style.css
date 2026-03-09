@@ -550,19 +550,19 @@ pre { line-height: 125%; }
   display: flex;
 }
 
-#newsletter form input[type="email"] {
+form.newsletter-form input[type="email"] {
   width: 100%;
   max-width: 20rem;
   height: 2em;
   font-size: 1em;
 }
 
-#newsletter input[type="submit"] {
+form.newsletter-form input[type="submit"] {
   font-size: 1em;
   padding: 0.25em 0.5em;
 }
 
-#newsletter form {
+form.newsletter-form {
   display: flex;
   flex-direction: row;
   gap: 0.25em;
@@ -570,7 +570,7 @@ pre { line-height: 125%; }
 }
 
 @media screen and (max-width: 500px) {
-  #newsletter form {
+  form.newsletter-form {
     flex-direction: column;
     gap: 0.25em;
     align-items: flex-start;
