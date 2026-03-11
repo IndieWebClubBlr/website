@@ -70,6 +70,7 @@
     <outline type="rss" text="Simar" xmlUrl="https://laguna-dream.github.io/rss.xml" htmlUrl="https://laguna-dream.github.io/" />
     <outline type="rss" text="skaup" xmlUrl="https://blog.skaup.co/feeds/all.atom.xml" htmlUrl="https://blog.skaup.co/" />
     <outline type="rss" text="slatechalkings" xmlUrl="https://slatechalkings.mataroa.blog/rss/" htmlUrl="https://slatechalkings.mataroa.blog/" />
+    <outline type="rss" text="State of Delirium" xmlUrl="https://state-of-delirium.github.io/feed.xml" htmlUrl="https://state-of-delirium.github.io/" />
     <outline type="rss" text="Suhas Kashyap" xmlUrl="https://www.kashyapsuhas.com/blog/feed.xml" htmlUrl="https://www.kashyapsuhas.com/" />
     <outline type="rss" text="Suneela &amp; Yeswanth" xmlUrl="https://holistictravellers.com/rss.xml" htmlUrl="https://holistictravellers.com/" />
     <outline type="rss" text="Tanvi Bhakta" xmlUrl="https://tanvibhakta.in/feed.xml" htmlUrl="https://tanvibhakta.in/" />
@@ -78,7 +79,6 @@
     <outline type="rss" text="twitu" xmlUrl="https://xn--ri8hp8b.ws/rss/" htmlUrl="https://xn--ri8hp8b.ws/" />
     <outline type="rss" text="Uvaise Nazir" xmlUrl="https://uvaisenazir.substack.com/feed" htmlUrl="https://uvaisenazir.substack.com/" />
     <outline type="rss" text="Vishal R" xmlUrl="https://vishalr.dev/rss.xml" htmlUrl="https://vishalr.dev/" />
-    <outline type="rss" text="Vishnu and Pratham" xmlUrl="https://state-of-delirium.github.io/feed.xml" htmlUrl="https://state-of-delirium.github.io/" />
     <outline type="rss" text="wrld" xmlUrl="https://wrld.mataroa.blog/rss/" htmlUrl="https://wrld.mataroa.blog/" />
     <outline type="rss" text="xypnox" xmlUrl="https://www.xypnox.com/rss.xml" htmlUrl="https://www.xypnox.com/" />
     <!-- Keep sorted alphabetically, case-insensitive, main blog first -->
