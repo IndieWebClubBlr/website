@@ -32,7 +32,9 @@
     <outline type="rss" text="forwhatitsworth" xmlUrl="https://forwhatitsworth.netlify.app/index.xml" htmlUrl="https://forwhatitsworth.netlify.app/" />
     <outline type="rss" text="George Supreeth" xmlUrl="https://georgesupreeth.com/web/blog/index.xml" htmlUrl="https://georgesupreeth.com/" />
     <outline type="rss" text="halfthere" xmlUrl="https://halfthere.mataroa.blog/rss/" htmlUrl="https://halfthere.mataroa.blog/" />
+    <!--
     <outline type="rss" text="Haripriya" xmlUrl="https://blog.haripriya.org/api/blog-feed.xml" htmlUrl="https://blog.haripriya.org/" />
+    -->
     <outline type="rss" text="Harsh Shandilya" xmlUrl="https://msfjarvis.dev/index.xml" htmlUrl="https://msfjarvis.dev/" />
     <outline type="rss" text="heftymouse" xmlUrl="https://heftymouse.me/blog/rss.xml" htmlUrl="https://heftymouse.me/" />
     <outline type="rss" text="Himanshi Kalra" xmlUrl="https://himanshikalra.com/feed/" htmlUrl="https://himanshikalra.com/" />
