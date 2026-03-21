@@ -72,6 +72,12 @@ class Event:
     def end_at_machine(self) -> str:
         return self.end_at.isoformat()
 
+    def created_at_human(self) -> str:
+        return self.created_at.strftime("%d %b %Y")
+
+    def created_at_machine(self) -> str:
+        return self.created_at.isoformat()
+
 
 DiscourseTopic = TypedDict(
     "DiscourseTopic", {"id": int, "created_at": str, "title": str, "slug": str}
