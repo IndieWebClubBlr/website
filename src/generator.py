@@ -48,11 +48,11 @@ from src.feeds import (
 from src.member_dir import generate_members_page
 from src.utils import (
     add_utm_params,
+    make_renderer,
     markdown_to_html,
     read_template,
     render_and_save_html,
     save_html,
-    make_renderer,
 )
 
 # Configure logging
@@ -81,7 +81,8 @@ def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
         group_entries = feed_groups[feed_title]
         group_entries.sort(key=lambda x: (x.published, x.link), reverse=True)
         group_entries = [
-            deepcopy(entry) for entry in group_entries[: config.MAX_SHOWN_ENTRIES]
+            deepcopy(entry)
+            for entry in group_entries[: config.MAX_SHOWN_POSTS_PER_FEED]
         ]
 
         for entry in group_entries:
@@ -166,7 +167,10 @@ def generate_homepage(
         "upcoming_events": upcoming_events,
         "has_upcoming_events": len(upcoming_events) > 0,
         "previous_events": previous_events[: config.MAX_SHOWN_EVENTS],
-        "entries": [entry_ctx(e) for e in group_feed_entries(other_entries)],
+        "entries": [
+            entry_ctx(e)
+            for e in group_feed_entries(other_entries)[: config.MAX_SHOWN_POSTS]
+        ],
         "week_notes": [
             entry_ctx(e)
             for e in group_feed_entries(week_notes)[: config.MAX_SHOWN_WEEK_NOTES]
