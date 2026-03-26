@@ -22,12 +22,12 @@ import sys
 from collections import defaultdict
 from copy import deepcopy
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
-import pystache
 from feedgen.feed import FeedGenerator
-from icalendar import Calendar
+from icalendar import Calendar, Timezone, TimezoneStandard
 from icalendar import Event as CalEvent
 
 # Add parent directory to path so we can import src modules
@@ -272,13 +272,28 @@ def generate_events_calendar(events: list[Event], output_dir: Path):
     logger.info(f"Generating events calendar with {len(events)} events")
 
     cal = Calendar()
+    cal.add("prodid", "-//IndieWebClub Bangalore//Events//EN")
+    cal.add("version", "2.0")
     cal.calendar_name = "IndieWebClub Bangalore Events"
     cal.description = "Events by IndieWebClub Bangalore"
+
+    tz = Timezone()
+    tz.add("tzid", "Asia/Kolkata")
+    tz_standard = TimezoneStandard()
+    tz_standard.add("dtstart", datetime(1970, 1, 1))
+    tz_standard.add("tzoffsetfrom", timedelta(hours=5, minutes=30))
+    tz_standard.add("tzoffsetto", timedelta(hours=5, minutes=30))
+    tz_standard.add("tzname", "IST")
+    tz.add_component(tz_standard)
+    cal.add_component(tz)
+
+    now = datetime.now(tz=ZoneInfo("Asia/Kolkata"))
 
     for event_data in events:
         event = CalEvent()
         event.add("summary", event_data.title)
         event.add("url", event_data.underline_url)
+        event.add("dtstamp", now)
         event.start = event_data.start_at
         event.end = event_data.end_at
         event.uid = f"indiewebclubblr-event-{event_data.id}"
