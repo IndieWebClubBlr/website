@@ -50,12 +50,15 @@
 <section id="week-notes">
   <h2>Week Notes by Members</h2>
   {{#week_notes}}
-  <article class="entry">
-    <h3><a href="{{link_utm}}" target="_blank">{{title}}</a></h3>
-    <ul class="meta no-marker">
-      <li class="title">by <a href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
-      <li class="pub-time"><time datetime="{{published_machine}}">{{published_human}}</time></li>
+  <article class="entry h-entry">
+    <h3 class="p-name"><a class="u-url u-uid u-repost-of" href="{{link_utm}}" target="_blank">{{title}}</a></h3>
+    <ul class="meta no-marker h-cite">
+      <li class="title">by <a class="p-author h-card" href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
+      <li class="pub-time"><time class="dt-published" datetime="{{published_machine}}">{{published_human}}</time></li>
     </ul>
+    <a class="u-bridgy-fed" href="https://fed.brid.gy/" hidden="from-humans"></a>
+    <a href="https://indieweb.social/tags/indieweb" class="p-category" style="display: none;">#indieweb</a>
+    <a href="https://indieweb.social/tags/weeknotes" class="p-category" style="display: none;">#weeknotes</a>
   </article>
   {{/week_notes}}
 </section>
