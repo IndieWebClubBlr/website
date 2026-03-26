@@ -15,6 +15,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import logging
 import random
 import shutil
@@ -149,7 +150,9 @@ def generate_homepage(
     upcoming_events.reverse()
 
     def entry_ctx(entry: FeedEntry) -> dict[str, str]:
+        entry_id = hashlib.sha256(entry.link.encode()).hexdigest()[:16]
         return {
+            "entry_id": entry_id,
             "title": entry.title,
             "link_utm": add_utm_params(entry.link, "website", "blogroll"),
             "feed_title": entry.feed_title,

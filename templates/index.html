@@ -50,7 +50,7 @@
 <section id="week-notes">
   <h2>Week Notes by Members</h2>
   {{#week_notes}}
-  <article class="entry h-entry">
+  <article class="entry h-entry" id="wn-{{entry_id}}">
     <h3 class="p-name"><a class="u-url u-uid u-repost-of" href="{{link_utm}}" target="_blank">{{title}}</a></h3>
     <ul class="meta no-marker h-cite">
       <li class="title">by <a class="p-author h-card" href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
@@ -72,7 +72,7 @@
     <li><a href="{{site_url}}members/">See the Member Directory</a>.</li>
   </ul>
   {{#entries}}
-  <article class="entry h-entry">
+  <article class="entry h-entry" id="post-{{entry_id}}">
     <h3 class="p-name"><a class="u-url u-uid u-repost-of" href="{{link_utm}}" target="_blank">{{title}}</a></h3>
     <ul class="meta no-marker h-cite">
       <li class="title">by <a class="p-author h-card" href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
