@@ -16,7 +16,7 @@ UA = "blr.indiewebclub.org generator"
 MAX_CONTENT_LENGTH = 10 * 1024 * 1024
 
 # Maximum age in days of recent entries to fetch from each feed.
-MAX_FEED_ENTRY_AGE = 150
+MAX_FEED_ENTRY_AGE = 180
 
 # Maximum number of recent entries to fetch from each feed.
 MAX_FEED_ENTRIES = 100
