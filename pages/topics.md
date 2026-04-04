@@ -2,6 +2,21 @@
 
 [TOC]
 
+## April 4, 2026
+
+**Writing tools**
+
+* What’s your favorite writing app? Why do you like it? Do you use different apps for different writing tasks or the same app for everything? Why?
+* Do you use style checkers like LanguageTool, Grammarly, or ProWritingAid? How do they affect your writing?
+* Do you use LLMs to proofread your work? Why or why not? How do they affect your writing?
+* What’s your editing process? Do you edit your work at all, or do you hit publish the moment you type that final line?
+* Do you ask your friends or colleagues to proofread your writing before publishing? Do you have a specific editing workflow when you work with other people?
+* Are you an outliner or do you write by the seat of your pants? Do you use specific outlining tools?
+* Do you write and publish quickly? Or do you accumulate words and ideas in your drafts over weeks and months before you begin writing?
+* Do you use voice transcription to write? How does it affect your writing?
+* How do you quickly capture writing ideas as you’re going about your day?
+* Whatever else you can think of! Have a favorite keyboard to type on? A writing playlist? A desk setup tailor-made for you? A favorite beverage? Presence of a cat?
+
 ## March 7, 2026
 
 Using your website as a social space:
