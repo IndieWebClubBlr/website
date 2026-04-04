@@ -88,6 +88,8 @@
     <outline type="rss" text="Vishal R" xmlUrl="https://vishalr.dev/rss.xml" htmlUrl="https://vishalr.dev/" />
     <outline type="rss" text="wrld" xmlUrl="https://wrld.mataroa.blog/rss/" htmlUrl="https://wrld.mataroa.blog/" />
     <outline type="rss" text="xypnox" xmlUrl="https://www.xypnox.com/rss.xml" htmlUrl="https://www.xypnox.com/" />
+    <outline type="rss" text="Yash Garg" xmlUrl="https://yashgarg.dev/posts/index.xml" htmlUrl="https://yashgarg.dev/" />
+    <outline type="rss" text="Yash Garg" xmlUrl="https://yashgarg.dev/weekly-notes/index.xml" htmlUrl="https://yashgarg.dev/" />
     <!-- Keep sorted alphabetically, case-insensitive, main blog first -->
   </body>
 </opml>
