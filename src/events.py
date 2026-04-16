@@ -85,9 +85,7 @@ DiscourseTopic = TypedDict(
 DiscoureSearchResults = TypedDict(
     "DiscoureSearchResults", {"topics": list[DiscourseTopic]}
 )
-DiscoursePostEvent = TypedDict(
-    "DiscoursePostEvent", {"starts_at": str, "ends_at": str}
-)
+DiscoursePostEvent = TypedDict("DiscoursePostEvent", {"starts_at": str, "ends_at": str})
 DiscoursePost = TypedDict("DiscoursePost", {"cooked": str, "event": DiscoursePostEvent})
 DiscoursePostStream = TypedDict("DiscoursePostStream", {"posts": list[DiscoursePost]})
 DiscourseTopicPosts = TypedDict(

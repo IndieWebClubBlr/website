@@ -14,6 +14,7 @@ let
       markdown
       pygments
       favicon
+      pyyaml
     ];
   pythonEnv = pkgs.python3.withPackages pythonPackages;
   run = pkgs.writeShellScriptBin "run" ''

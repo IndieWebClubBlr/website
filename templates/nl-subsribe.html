@@ -2,3 +2,14 @@
   <h1>Blogroll Newsletter</h1>
   {{> nl-form.html }}
 </section>
+
+{{#has_archive}}
+<section id="archive">
+  <h2>Past Issues</h2>
+  <ol>
+    {{#archive}}
+    <li><a href="{{url}}">{{date}}</a></li>
+    {{/archive}}
+  </ol>
+</section>
+{{/has_archive}}
