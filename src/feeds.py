@@ -13,6 +13,7 @@ from urllib.parse import quote, urlparse, urlsplit
 
 import feedparser
 import requests
+from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
@@ -69,6 +70,7 @@ class FeedEntry:
         feed_url: str,
         feed_home_url: str,
         tags: list[str],
+        summary: str,
     ):
         self.title = title
         self.link = link
@@ -77,12 +79,20 @@ class FeedEntry:
         self.feed_url = feed_url
         self.feed_home_url = feed_home_url
         self.tags = tags
+        self.summary = summary
 
     def published_human(self) -> str:
         return self.published.strftime("%d %b %Y")
 
     def published_machine(self) -> str:
         return self.published.isoformat()
+
+    def __repr__(self) -> str:
+        return f"""FeedEntry(title={self.title!r},
+          link={self.link!r},
+          published={self.published!r},
+          feed_title={self.feed_title!r},
+          summary={self.summary!r})"""
 
 
 def parse_opml_file(opml_path: Path) -> list[FeedInfo]:
@@ -179,6 +189,7 @@ def generate_feed(
             fe.published(entry.published)
             fe.updated(entry.published)
             fe.author(name=entry.feed_title, uri=entry.feed_url)
+            fe.summary(summary=entry.summary, type="text")
 
             for tag in entry.tags:
                 fe.category(term=tag)
@@ -301,6 +312,66 @@ def parse_feed_date(date_string: str) -> datetime | None:
         return None
 
 
+def strip_html(text: str) -> str:
+    """Remove HTML tags from text."""
+    if not text:
+        return ""
+    return BeautifulSoup(text, "html.parser").get_text().strip()
+
+
+def get_first_para_text(html: str) -> str:
+    """Extract text from the first paragraph in HTML, or first para if plain text."""
+    if not html:
+        return ""
+    soup = BeautifulSoup(html, "html.parser")
+    paragraphs = soup.find_all("p")
+    for p in paragraphs:
+        text = p.get_text().strip()
+        if text:
+            return text
+
+    paragraphs = html.strip().split("\n\n")
+    first_para = paragraphs[0] if paragraphs else html
+    return strip_html(first_para)
+
+
+def truncate_at_word(text: str, max_length: int) -> str:
+    """Truncate text at word boundary, adding ellipsis if truncated."""
+    if len(text) <= max_length:
+        return text
+    truncated = text[:max_length]
+    last_space = truncated.rfind(" ")
+    if last_space > 0:
+        truncated = truncated[:last_space]
+    return truncated + "…"
+
+
+def extract_summary(entry, feed_title: str, title: str, link: str) -> str:
+    """Extract and normalize summary from a feed entry."""
+    html_content = None
+
+    if hasattr(entry, "summary"):
+        html_content = entry.summary
+
+    if not html_content and hasattr(entry, "content") and entry.content:
+        content = entry.content[0]
+        if hasattr(content, "value"):
+            html_content = content.value
+
+    if not html_content:
+        return f"{title} by {feed_title}: {link}"
+
+    plain = get_first_para_text(html_content)
+
+    if not plain:
+        return f"{title} by {feed_title}: {link}"
+
+    if len(plain) > config.MAX_SUMMARY_LENGTH:
+        plain = truncate_at_word(plain, config.MAX_SUMMARY_LENGTH)
+
+    return plain
+
+
 def parse_feed(
     feed_title: str, feed_url: str, feed_content: str
 ) -> tuple[list[FeedEntry], bool | None]:
@@ -378,6 +449,8 @@ def parse_feed(
                 for tag in getattr(entry, "tags", [])
             ]
 
+            summary = extract_summary(entry, feed_title, title, link)
+
             entries.append(
                 FeedEntry(
                     title=title,
@@ -387,6 +460,7 @@ def parse_feed(
                     feed_url=feed_url,
                     feed_home_url=parsed_feed.feed.link,
                     tags=[tag for tag in tags if tag is not None],
+                    summary=summary,
                 )
             )
 

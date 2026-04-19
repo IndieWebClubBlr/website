@@ -24,8 +24,8 @@ from collections import defaultdict
 from copy import deepcopy
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
-from zoneinfo import ZoneInfo
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from feedgen.feed import FeedGenerator
 from icalendar import Calendar, Timezone, TimezoneStandard
@@ -161,6 +161,7 @@ def generate_homepage(
             ),
             "published_machine": entry.published_machine(),
             "published_human": entry.published_human(),
+            "summary": entry.summary,
         }
 
     # Prepare template data

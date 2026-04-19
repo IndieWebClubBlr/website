@@ -30,6 +30,9 @@ MAX_SHOWN_POSTS = 40
 # Maximum number of tags to show for each entry.
 MAX_SHOWN_TAGS = 5
 
+# Maximum length of summary to show for each entry.
+MAX_SUMMARY_LENGTH = 200
+
 # Maximum number of previous events to show.
 MAX_SHOWN_EVENTS = 10
 

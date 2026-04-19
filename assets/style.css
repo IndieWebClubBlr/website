@@ -251,6 +251,10 @@ ul.meta li.pub-time {
   margin-bottom: 1rem;
 }
 
+.entry .p-summary {
+  display: none;
+}
+
 .codehilite pre {
   padding: 0.5em;
   font-size: 0.9em;
