@@ -47,6 +47,7 @@ from src.feeds import (
     parse_opml_file,
 )
 from src.member_dir import generate_members_page
+from src.newsletter import generate_newsletter_subscribe_page
 from src.utils import (
     add_utm_params,
     make_renderer,
@@ -394,36 +395,6 @@ def generate_webring(feeds_with_entries: list[FeedInfo], output_dir: Path):
         output_dir,
     )
     logger.info(f"Generated webring previous link: {next_link.html_url}")
-
-
-def load_newsletter_archive() -> list[dict[str, str]]:
-    """Load newsletter archive URLs from YAML data file."""
-    archive_path = Path("data/newsletter-archive.yaml")
-    if not archive_path.exists():
-        return []
-    import yaml
-
-    data = yaml.safe_load(archive_path.read_text(encoding="utf-8"))
-    if not data:
-        return []
-    data.sort(key=lambda item: item["date"], reverse=True)
-    return [
-        {"url": item["url"], "date": item["date"].strftime("%d %b %Y")} for item in data
-    ]
-
-
-def generate_newsletter_subscribe_page(output_dir: Path):
-    renderer = make_renderer()
-    archive = load_newsletter_archive()
-
-    render_and_save_html(
-        html_content=renderer.render(
-            read_template("nl-subsribe.html"),
-            {"archive": archive, "has_archive": len(archive) > 0},
-        ),
-        output_dir=output_dir / "newsletter",
-    )
-    logger.info("Generated newsletter subscription page")
 
 
 @dataclass

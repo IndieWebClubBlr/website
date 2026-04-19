@@ -63,6 +63,12 @@ EVENTS_CAL_FILE = "events.ics"
 # Directory for caching fetched data.
 CACHE_DIR = Path(".cache")
 
+# Newsletter archive RSS feed URL.
+NEWSLETTER_ARCHIVE_URL = "https://epi.stic.earth/archive.xml"
+
+# Cache expiry for newsletter archive in days.
+NEWSLETTER_CACHE_EXPIRY = 1
+
 # List of static assets to be copied to the output directory.
 ASSETS = [
     "assets/style.css",
