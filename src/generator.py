@@ -96,27 +96,11 @@ def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
     return res_entries
 
 
-def generate_homepage(
+def separate_weeknote_entries(
     entries: list[FeedEntry],
-    events: list[Event],
-    failed_feeds: list[FailedFeedInfo],
-    output_dir: Path,
-):
-    """
-    Generate homepage from feed entries using Mustache templating.
-
-    Args:
-        entries: List of FeedEntry objects to include.
-        events: List of Event objects to include.
-        failed_feeds: List of FailedFeedInfo objects for failed feeds.
-        output_dir: Path where homepage file should be written.
-    """
-    logger.info(
-        f"Generating the homepage with {len(entries)} entries, {len(events)} events, and {len(failed_feeds)} failed feeds"
-    )
-
+) -> tuple[list[FeedEntry], list[FeedEntry]]:
     # Separate week notes from other entries
-    week_notes: list[FeedEntry] = []
+    weeknote_entries: list[FeedEntry] = []
     other_entries: list[FeedEntry] = []
 
     for entry in entries:
@@ -140,9 +124,33 @@ def generate_homepage(
             )
             or any("weeknote" in tag.lower() for tag in entry.tags)
         ):
-            week_notes.append(entry)
+            weeknote_entries.append(entry)
         else:
             other_entries.append(entry)
+
+    return (weeknote_entries, other_entries)
+
+
+def generate_homepage(
+    weeknote_entries: list[FeedEntry],
+    other_entries: list[FeedEntry],
+    events: list[Event],
+    failed_feeds: list[FailedFeedInfo],
+    output_dir: Path,
+):
+    """
+    Generate homepage from feed entries using Mustache templating.
+
+    Args:
+        weeknote_entries: List of FeedEntry objects to include, which are week notes.
+        other_entries: List of FeedEntry objects to include, which are not week notes.
+        events: List of Event objects to include.
+        failed_feeds: List of FailedFeedInfo objects for failed feeds.
+        output_dir: Path where homepage file should be written.
+    """
+    logger.info(
+        f"Generating the homepage with {len(weeknote_entries) + len(other_entries)} entries, {len(events)} events, and {len(failed_feeds)} failed feeds"
+    )
 
     now = datetime.now(timezone.utc)
     previous_events = [event for event in events if event.start_at <= now]
@@ -177,7 +185,7 @@ def generate_homepage(
         ],
         "week_notes": [
             entry_ctx(e)
-            for e in group_feed_entries(week_notes)[: config.MAX_SHOWN_WEEK_NOTES]
+            for e in group_feed_entries(weeknote_entries)[: config.MAX_SHOWN_WEEK_NOTES]
         ],
         "failed_feeds": failed_feeds,
         "has_failed_feeds": len(failed_feeds) != 0,
@@ -196,20 +204,23 @@ def generate_homepage(
         raise
 
 
-def generate_blogroll_feed(entries: list[FeedEntry], output_dir: Path):
+def generate_blogroll_feed(
+    entries: list[FeedEntry], feed_name: str, feed_subtitle: str, output_path: Path
+):
     """
     Creates an Atom feed from a list of FeedEntry objects.
 
     Args:
         entries: A list of FeedEntry objects to include in the feed.
-        output_dir: Directory where Atom file should be written.
+        feed_name: Name of generator feed.
+        feed_subtitle: Subtitle of the generated feed.
+        output_path: The path of the Atom file to be written.
     """
-    logger.info(f"Generating blogroll feed with {len(entries)} entries")
-    output_path = output_dir.joinpath(config.BLOGROLL_FEED_FILE)
+    logger.info(f"Generating {feed_name} feed with {len(entries)} entries")
     feed_url = config.SITE_URL + output_path.name
 
     feed_info = FeedInfo(
-        title="IndieWebClub Bangalore Blogroll",
+        title=f"IndieWebClub Bangalore {feed_name}",
         xml_url=feed_url,
         html_url=config.SITE_URL,
     )
@@ -217,12 +228,12 @@ def generate_blogroll_feed(entries: list[FeedEntry], output_dir: Path):
     generate_feed(
         feed_info=feed_info,
         author_name="IndieWebClub Bangalore",
-        feed_subtitle="Recent posts by IndieWebClub Bangalore folks.",
+        feed_subtitle=feed_subtitle,
         entries=entries,
         output_path=output_path,
     )
 
-    logger.info(f"Blogroll feed written to: {output_path}")
+    logger.info(f"{feed_name} feed written to: {output_path}")
 
 
 def generate_events_feed(events: list[Event], output_dir: Path):
@@ -419,6 +430,8 @@ def generate_newsletter_subscribe_page(output_dir: Path):
 class BuildCache:
     feeds: list[FeedInfo] = field(default_factory=list)
     entries: list[FeedEntry] = field(default_factory=list)
+    weeknote_entries: list[FeedEntry] = field(default_factory=list)
+    other_entries: list[FeedEntry] = field(default_factory=list)
     failed_feeds: list[FailedFeedInfo] = field(default_factory=list)
     feeds_with_entries: list[FeedInfo] = field(default_factory=list)
     events: list[Event] = field(default_factory=list)
@@ -475,6 +488,9 @@ def generate_website(
             cache_fallback=cache_fallback,
         )
         cache.failed_feeds.sort(key=lambda f: f.feed_info.title.lower())
+        (cache.weeknote_entries, cache.other_entries) = separate_weeknote_entries(
+            cache.entries
+        )
 
     @build.rule("generate_events_feed")
     def _(_target: str):
@@ -489,7 +505,22 @@ def generate_website(
     @build.rule("generate_blogroll")
     def _(_target: str):
         build.need("fetch_feeds")
-        generate_blogroll_feed(cache.entries, output_dir)
+        generate_blogroll_feed(
+            entries=cache.entries,
+            feed_name="Blogroll",
+            feed_subtitle="Recent posts by IndieWebClub Bangalore folks",
+            output_path=output_dir.joinpath(config.BLOGROLL_FEED_FILE),
+        )
+
+    @build.rule("generate_weeknotes_blogroll")
+    def _(_target: str):
+        build.need("fetch_feeds")
+        generate_blogroll_feed(
+            entries=cache.weeknote_entries,
+            feed_name="Week Notes Blogroll",
+            feed_subtitle="Week Notes by IndieWebClub Bangalore folks",
+            output_path=output_dir.joinpath(config.WEEKNOTE_BLOGROLL_FEED_FILE),
+        )
 
     @build.rule("get_feeds_with_entries")
     def _(_target: str):
@@ -515,7 +546,13 @@ def generate_website(
     @build.rule("generate_homepage")
     def _(_target: str):
         build.need("fetch_feeds", "fetch_events")
-        generate_homepage(cache.entries, cache.events, cache.failed_feeds, output_dir)
+        generate_homepage(
+            cache.weeknote_entries,
+            cache.other_entries,
+            cache.events,
+            cache.failed_feeds,
+            output_dir,
+        )
 
     @build.rule("website")
     def _(_target: str):
@@ -528,6 +565,7 @@ def generate_website(
             "generate_events_feed",
             "generate_events_calendar",
             "generate_blogroll",
+            "generate_weeknotes_blogroll",
             "generate_webring",
             "generate_newsletter_subscribe_page",
             "generate_homepage",

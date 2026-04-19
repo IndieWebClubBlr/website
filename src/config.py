@@ -51,6 +51,9 @@ EVENTS_TZ = ZoneInfo("Asia/Kolkata")
 # Filename for the generated blogroll Atom feed.
 BLOGROLL_FEED_FILE = "blogroll.atom"
 
+# Filename for the generated weeknote blogroll Atom feed.
+WEEKNOTE_BLOGROLL_FEED_FILE = "blogroll-weeknotes.atom"
+
 # Filename for the generated events Atom feed.
 EVENTS_FEED_FILE = "events.atom"
 
