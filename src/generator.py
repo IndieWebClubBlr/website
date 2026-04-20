@@ -49,7 +49,7 @@ from src.feeds import (
 from src.member_dir import generate_members_page
 from src.newsletter import generate_newsletter_subscribe_page
 from src.utils import (
-    add_utm_params,
+    add_ref_param,
     make_renderer,
     markdown_to_html,
     read_template,
@@ -163,11 +163,9 @@ def generate_homepage(
         return {
             "entry_id": entry_id,
             "title": entry.title,
-            "link_utm": add_utm_params(entry.link, "website", "blogroll"),
+            "link_utm": add_ref_param(entry.link),
             "feed_title": entry.feed_title,
-            "feed_home_url_utm": add_utm_params(
-                entry.feed_home_url, "website", "blogroll"
-            ),
+            "feed_home_url_utm": add_ref_param(entry.feed_home_url),
             "published_machine": entry.published_machine(),
             "published_human": entry.published_human(),
             "summary": entry.summary,
@@ -374,7 +372,7 @@ def generate_webring(feeds_with_entries: list[FeedInfo], output_dir: Path):
             {
                 "title": prev_link.title,
                 "url": prev_link.html_url,
-                "url_utm": add_utm_params(prev_link.html_url, "website", "webring"),
+                "url_utm": add_ref_param(prev_link.html_url),
             },
         ),
         "webring/previous.html",
@@ -388,7 +386,7 @@ def generate_webring(feeds_with_entries: list[FeedInfo], output_dir: Path):
             {
                 "title": next_link.title,
                 "url": next_link.html_url,
-                "url_utm": add_utm_params(next_link.html_url, "website", "webring"),
+                "url_utm": add_ref_param(next_link.html_url),
             },
         ),
         "webring/next.html",

@@ -19,10 +19,10 @@ from src import config
 from src.feeds import FeedInfo
 from src.utils import (
     SessionManager,
-    add_utm_params,
+    add_ref_param,
+    make_renderer,
     read_template,
     render_and_save_html,
-    make_renderer,
 )
 
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -341,7 +341,7 @@ def generate_members_page(
         {
             "feed": feed,
             "icon_url": icon_url,
-            "html_url_utm": add_utm_params(feed.html_url, "website", "members"),
+            "html_url_utm": add_ref_param(feed.html_url),
             "has_personal_domain": features.personal_domain,
             "has_h_card": features.h_card,
             "has_webmention": features.webmention,

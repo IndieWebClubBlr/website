@@ -115,20 +115,17 @@ def render_and_save_html(html_content: str, output_dir: Path):
         raise
 
 
-def add_utm_params(url: str, medium: str, campaign: str) -> str:
+def add_ref_param(url: str) -> str:
     """
-    Add UTM parameters to a URL, replacing any existing UTM parameters.
+    Add ref parameter to a URL, replacing any existing ref param.
 
     Properly handles URLs that already have query parameters.
     """
+    from src import config
+
     parsed = urlparse(url)
     params = parse_qs(parsed.query)
-    # Remove existing utm_ params
-    params = {k: v for k, v in params.items() if not k.startswith("utm_")}
-    # Add new utm params
-    params["utm_source"] = ["blr.indiewebclub.org"]
-    params["utm_medium"] = [medium]
-    params["utm_campaign"] = [campaign]
+    params["ref"] = [config.SITE_DOMAIN]
     new_query = urlencode(params, doseq=True)
     return urlunparse(parsed._replace(query=new_query))
 

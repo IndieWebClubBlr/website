@@ -3,6 +3,9 @@ from zoneinfo import ZoneInfo
 
 # Configuration constants
 
+# Domain name of the site
+SITE_DOMAIN = "blr.indiewebclub.org"
+
 # Timeout for network requests in seconds.
 REQUEST_TIMEOUT = 60
 
@@ -10,7 +13,7 @@ REQUEST_TIMEOUT = 60
 MAX_WORKERS = 12
 
 # User-Agent string for feed fetching.
-UA = "blr.indiewebclub.org generator"
+UA = f"{SITE_DOMAIN} generator"
 
 # Maximum content length for fetched feeds in bytes.
 MAX_CONTENT_LENGTH = 10 * 1024 * 1024
@@ -40,7 +43,7 @@ MAX_SHOWN_EVENTS = 10
 MAX_SHOWN_WEEK_NOTES = 10
 
 # Base URL of the website.
-SITE_URL = "https://blr.indiewebclub.org/"
+SITE_URL = f"https://{SITE_DOMAIN}/"
 
 # Webcal URL derived from the site URL.
 WEBCAL_URL = SITE_URL.replace("https", "webcal")
