@@ -19,7 +19,7 @@ UA = f"{SITE_DOMAIN} generator"
 MAX_CONTENT_LENGTH = 10 * 1024 * 1024
 
 # Maximum age in days of recent entries to fetch from each feed.
-MAX_FEED_ENTRY_AGE = 300
+MAX_FEED_ENTRY_AGE = 330
 
 # Maximum number of recent entries to fetch from each feed.
 MAX_FEED_ENTRIES = 1000
