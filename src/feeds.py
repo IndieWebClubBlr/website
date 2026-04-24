@@ -187,7 +187,8 @@ def generate_feed(
             fe.published(entry.published)
             fe.updated(entry.published)
             fe.author(name=entry.feed_title, uri=entry.feed_url)
-            fe.summary(summary=entry.summary, type="text")
+            if entry.summary:
+                fe.summary(summary=entry.summary, type="text")
 
             for tag in entry.tags:
                 fe.category(term=tag)
@@ -357,12 +358,12 @@ def extract_summary(entry, feed_title: str, title: str, link: str) -> str:
             html_content = content.value
 
     if not html_content:
-        return f"{title} by {feed_title}: {link}"
+        return ""
 
     plain = get_first_para_text(html_content)
 
     if not plain:
-        return f"{title} by {feed_title}: {link}"
+        return ""
 
     if len(plain) > config.MAX_SUMMARY_LENGTH:
         plain = truncate_at_word(plain, config.MAX_SUMMARY_LENGTH)

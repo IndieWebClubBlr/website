@@ -59,7 +59,7 @@
       <li class="title">by <a class="p-author h-card" href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
       <li class="pub-time"><time class="dt-published" datetime="{{published_machine}}">{{published_human}}</time></li>
     </ul>
-    <p class="p-summary">{{{summary}}}</p>
+    {{#summary}}<p class="p-summary">{{{summary}}}</p>{{/summary}}
     <a class="u-bridgy-fed" href="https://fed.brid.gy/" hidden="from-humans"></a>
     <a href="https://indieweb.social/tags/indieweb" class="p-category" style="display: none;">#indieweb</a>
     <a href="https://indieweb.social/tags/weeknotes" class="p-category" style="display: none;">#weeknotes</a>
@@ -82,7 +82,7 @@
       <li class="title">by <a class="p-author h-card" href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
       <li class="pub-time"><time class="dt-published" datetime="{{published_machine}}">{{published_human}}</time></li>
     </ul>
-    <p class="p-summary">{{{summary}}}</p>
+    {{#summary}}<p class="p-summary">{{{summary}}}</p>{{/summary}}
     <a class="u-bridgy-fed" href="https://fed.brid.gy/" hidden="from-humans"></a>
     <a href="https://indieweb.social/tags/indieweb" class="p-category" style="display: none;">#indieweb</a>
     <a href="https://indieweb.social/tags/blog" class="p-category" style="display: none;">#blog</a>
