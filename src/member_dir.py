@@ -12,6 +12,7 @@ import re
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict, dataclass
 from pathlib import Path
+from typing import cast
 
 import pystache
 
@@ -43,6 +44,7 @@ class IndieWebFeatures:
     indieauth: bool = False
     rel_me: bool = False
     opengraph: bool = False
+    fediverse: str = ""
 
 
 def _has_personal_domain(url: str) -> bool:
@@ -111,6 +113,18 @@ def _has_opengraph(soup: object) -> bool:
     return result is not None
 
 
+def _has_fediverse(soup: object) -> str | None:
+    from bs4 import BeautifulSoup
+
+    assert isinstance(soup, BeautifulSoup)
+    result = soup.find("meta", attrs={"name": "fediverse:creator"})
+    if result:
+        content = result.get("content")
+        if content:
+            return str(content)
+    return None
+
+
 def check_indieweb_features(
     soup: object, url: str, headers: dict[str, str]
 ) -> IndieWebFeatures:
@@ -121,6 +135,7 @@ def check_indieweb_features(
         indieauth=_has_indieauth(soup, headers),
         rel_me=_has_rel_me(soup),
         opengraph=_has_opengraph(soup),
+        fediverse=_has_fediverse(soup) or "",
     )
 
 
@@ -215,7 +230,7 @@ def get_name_key(feed: FeedInfo) -> str:
 
 def generate_members_page(
     entry_feeds: list[FeedInfo], opml_feeds: list[FeedInfo], output_dir: Path
-):
+) -> dict[str, str]:
     """
     Generate the members directory page.
 
@@ -224,6 +239,9 @@ def generate_members_page(
         opml_feeds: Original ordered list of FeedInfo from the OPML file,
             used to determine the preferred URL for members with multiple feeds.
         output_dir: Path where HTML file should be written.
+
+    Returns:
+        Dict mapping home_url to fediverse:creator value.
     """
     logger.info(f"Generating members page with {len(entry_feeds)} feeds")
 
@@ -254,7 +272,7 @@ def generate_members_page(
             favicon_cache = json.load(file)
 
     indieweb_cache_file = config.CACHE_DIR / "indieweb.json"
-    indieweb_cache: dict[str, dict[str, bool]] = {}
+    indieweb_cache: dict[str, IndieWebFeatures] = {}
     if indieweb_cache_file.exists():
         logger.debug("Using cache for indieweb features")
         with indieweb_cache_file.open() as file:
@@ -272,7 +290,11 @@ def generate_members_page(
 
         # IndieWeb features
         if has_indieweb:
-            features = IndieWebFeatures(**indieweb_cache[name_key])
+            cached = indieweb_cache[name_key]
+            if isinstance(cached, dict):
+                features = IndieWebFeatures(**cached)
+            else:
+                features = cached
         elif site_result:
             from bs4 import BeautifulSoup
 
@@ -348,9 +370,11 @@ def generate_members_page(
             "has_indieauth": features.indieauth,
             "has_rel_me": features.rel_me,
             "has_opengraph": features.opengraph,
+            "has_fediverse": features.fediverse,
         }
         for (feed, icon_url, features) in members
     ]
+
     try:
         renderer = make_renderer()
         render_and_save_html(
@@ -360,3 +384,10 @@ def generate_members_page(
     except Exception as e:
         logger.error(f"Failed to generate members page: {e}")
         raise
+
+    fediverse_creators: dict[str, str] = {}
+    for feed, icon_url, features in members:
+        if features.fediverse:
+            fediverse_creators[feed.html_url] = features.fediverse
+
+    return fediverse_creators

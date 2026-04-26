@@ -248,7 +248,16 @@ def fetch_feed_content(url: str) -> str | None:
     except Exception as e:
         logger.error(f"Unexpected error fetching feed {url}: {e}")
 
-    return None
+
+def prepend_fediverse_creator(
+    entries: list[FeedEntry], fediverse_creators: dict[str, str]
+) -> list[FeedEntry]:
+    """Prepend fediverse creator to entry summaries if available."""
+    for entry in entries:
+        creator = fediverse_creators.get(entry.feed_home_url)
+        if creator and not entry.summary.startswith(creator):
+            entry.summary = f"{creator}: {entry.summary}"
+    return entries
 
 
 def normalize_link(link: str, feed_url: str) -> str:
@@ -459,7 +468,9 @@ def parse_feed(
                     feed_url=feed_url,
                     feed_home_url=parsed_feed.feed.link,
                     tags=[tag for tag in tags if tag is not None],
-                    summary=summary,
+                    summary=f"«{summary}»"
+                    if summary and not summary.startswith("«")
+                    else summary,
                 )
             )
 

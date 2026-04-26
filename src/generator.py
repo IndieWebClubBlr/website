@@ -45,6 +45,7 @@ from src.feeds import (
     fetch_all_feeds,
     generate_feed,
     parse_opml_file,
+    prepend_fediverse_creator,
 )
 from src.member_dir import generate_members_page
 from src.newsletter import generate_newsletter_subscribe_page
@@ -404,6 +405,7 @@ class BuildCache:
     failed_feeds: list[FailedFeedInfo] = field(default_factory=list)
     feeds_with_entries: list[FeedInfo] = field(default_factory=list)
     events: list[Event] = field(default_factory=list)
+    fediverse_creators: dict[str, str] = field(default_factory=dict)
 
 
 def generate_website(
@@ -473,9 +475,10 @@ def generate_website(
 
     @build.rule("generate_blogroll")
     def _(_target: str):
-        build.need("fetch_feeds")
+        build.need("fetch_feeds", "generate_members")
+        entries = prepend_fediverse_creator(cache.entries, cache.fediverse_creators)
         generate_blogroll_feed(
-            entries=cache.entries,
+            entries=entries,
             feed_name="Blogroll",
             feed_subtitle="Recent posts by IndieWebClub Bangalore folks",
             output_path=output_dir.joinpath(config.BLOGROLL_FEED_FILE),
@@ -483,9 +486,12 @@ def generate_website(
 
     @build.rule("generate_weeknotes_blogroll")
     def _(_target: str):
-        build.need("fetch_feeds")
+        build.need("fetch_feeds", "generate_members")
+        entries = prepend_fediverse_creator(
+            cache.weeknote_entries, cache.fediverse_creators
+        )
         generate_blogroll_feed(
-            entries=cache.weeknote_entries,
+            entries=entries,
             feed_name="Week Notes Blogroll",
             feed_subtitle="Week Notes by IndieWebClub Bangalore folks",
             output_path=output_dir.joinpath(config.WEEKNOTE_BLOGROLL_FEED_FILE),
@@ -501,7 +507,9 @@ def generate_website(
     @build.rule("generate_members")
     def _(_target: str):
         build.need("get_feeds_with_entries")
-        generate_members_page(cache.feeds_with_entries, cache.feeds, output_dir)
+        cache.fediverse_creators = generate_members_page(
+            cache.feeds_with_entries, cache.feeds, output_dir
+        )
 
     @build.rule("generate_webring")
     def _(_target: str):
