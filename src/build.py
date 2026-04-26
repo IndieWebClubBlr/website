@@ -86,6 +86,8 @@ class Build:
         futures: dict[str, Future[None]] = {}
 
         for target in targets:
+            logger.debug(f"Needing: {target}")
+
             future: Future[None] | None = None
             with self._lock:
                 if target in self._failed:

@@ -1,7 +1,7 @@
 # IndiewebClubBlr website generator
 # Provides convenient commands for development and usage
 
-.PHONY: help setup install clean run build assets serve watch clean_venv clean_cache clean_all
+.PHONY: help setup install clean run build assets serve watch clean_venv clean_cache clean_all graph
 .DEFAULT_GOAL := help
 
 # Variables
@@ -19,6 +19,7 @@ help:
 	@echo "  make setup          - Set up virtual environment and install dependencies"
 	@echo "  make install        - Install dependencies (assumes venv exists)"
 	@echo "  make build          - Build the website (add CACHE=true to read from cache only)"
+	@echo "  make graph          - Generate build dependency graph (outputs build_deps.dot and .svg)"
 	@echo "  make assets         - Copy assets to the build directory"
 	@echo "  make clean          - Remove generated files"
 	@echo "  make clean_venv     - Remove the virtual environment"
@@ -96,3 +97,7 @@ serve:
 watch:
 	make build CACHE=true
 	git ls-files | entr -p -r ./watch.sh /_
+
+# Generate build dependency graph
+graph:
+	make build CACHE=true VERBOSE=true 2>&1 | python3 scripts/gen_build_graph.py
