@@ -1,0 +1,16 @@
+name: Clear all GitHub actions caches
+on:
+  schedule:
+    - cron: "0 4 * * 0" # run automatically each Sunday 4:00 UTC
+  workflow_dispatch: # allow to run manually
+
+jobs:
+  clear-github-caches:
+    name: Clear all GitHub action caches
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clear all caches
+        run: gh cache delete --all --repo IndieWebClubBlr/website
+        env:
+          # This token requires the "repo" scope.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
