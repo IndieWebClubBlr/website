@@ -406,7 +406,8 @@ def parse_feed(
 
         # Calculate cutoff date
         now = datetime.now(timezone.utc)
-        cutoff_date = now - timedelta(days=config.MAX_FEED_ENTRY_AGE)
+        early_cutoff_time = now - timedelta(hours=config.MIN_FEED_ENTRY_AGE_HOURS)
+        late_cutoff_time = now - timedelta(days=config.MAX_FEED_ENTRY_AGE_DAYS)
 
         entries: list[FeedEntry] = []
 
@@ -449,7 +450,11 @@ def parse_feed(
                 )
 
             # Skip entries without valid dates or too old
-            if not published or published < cutoff_date or published > now:
+            if (
+                not published
+                or published < late_cutoff_time
+                or published > early_cutoff_time
+            ):
                 continue
 
             tags = [
