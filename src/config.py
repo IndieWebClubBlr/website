@@ -22,7 +22,7 @@ MAX_CONTENT_LENGTH = 10 * 1024 * 1024
 MIN_FEED_ENTRY_AGE_HOURS = 2
 
 # Maximum age in days of recent entries to fetch from each feed.
-MAX_FEED_ENTRY_AGE_DAYS = 330
+MAX_FEED_ENTRY_AGE_DAYS = 365
 
 # Maximum number of recent entries to fetch from each feed.
 MAX_FEED_ENTRIES = 1000
