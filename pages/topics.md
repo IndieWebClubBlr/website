@@ -2,6 +2,12 @@
 
 [TOC]
 
+## May 2, 2026
+
+- It will soon be a year since we’ve started regularly doing Indie Web Club! What impact has blogging had for you? What struggles have you dealt with as you try to be more active bloggers?
+- Since joining this community, how has your relationship with the web and the internet in general changed? Have there been major changes or has it remained the same? If this is your first time at IWCB, how would you like your relationship to the web to change? What would you like this community to help you with?
+- What defines the IndieWeb at all? Where are the boundaries defined? Does the IndieWeb need to respond to the threat of commercial platforms like Substack? Or is it fine as a niche area of the internet?
+
 ## April 4, 2026
 
 **Writing tools**
