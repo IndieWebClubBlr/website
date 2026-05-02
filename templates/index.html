@@ -91,6 +91,26 @@
   {{> nl-form.html }}
 </section>
 
+{{#has_on_this_day}}
+<section id="on-this-day">
+  <h2>On This Day in Previous Years</h2>
+  {{#on_this_day}}
+  <article class="entry h-entry" id="post-{{entry_id}}">
+    <span class="year-badge">{{years_text}} ago</span>
+    <h3 class="p-name"><a class="u-url u-uid" href="{{link_utm}}" target="_blank">{{title}}</a></h3>
+    <ul class="meta no-marker">
+      <li class="title">by <a class="p-author h-card" href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
+      <li class="pub-time"><time class="dt-published" datetime="{{published_machine}}">{{published_human}}</time></li>
+    </ul>
+    {{#summary}}<p class="p-summary">{{{summary}}}</p>{{/summary}}
+    <a class="u-bridgy-fed" href="https://fed.brid.gy/" hidden="from-humans"></a>
+    <a href="https://indieweb.social/tags/indieweb" class="p-category" style="display: none;">#indieweb</a>
+    <a href="https://indieweb.social/tags/blog" class="p-category" style="display: none;">#blog</a>
+  </article>
+  {{/on_this_day}}
+</section>
+{{/has_on_this_day}}
+
 <section id="previous-events">
   <h2>Previous Events</h2>
   <ul class="no-marker pointed-hand">

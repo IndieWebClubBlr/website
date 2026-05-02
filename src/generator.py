@@ -136,6 +136,7 @@ def separate_weeknote_entries(
 def generate_homepage(
     weeknote_entries: list[FeedEntry],
     other_entries: list[FeedEntry],
+    on_this_day_entries: list[FeedEntry],
     events: list[Event],
     failed_feeds: list[FailedFeedInfo],
     output_dir: Path,
@@ -146,12 +147,13 @@ def generate_homepage(
     Args:
         weeknote_entries: List of FeedEntry objects to include, which are week notes.
         other_entries: List of FeedEntry objects to include, which are not week notes.
+        on_this_day_entries: List of FeedEntry objects from same day in previous years.
         events: List of Event objects to include.
         failed_feeds: List of FailedFeedInfo objects for failed feeds.
         output_dir: Path where homepage file should be written.
     """
     logger.info(
-        f"Generating the homepage with {len(weeknote_entries) + len(other_entries)} entries, {len(events)} events, and {len(failed_feeds)} failed feeds"
+        f"Generating the homepage with {len(weeknote_entries) + len(other_entries)} entries, {len(on_this_day_entries)} on this day entries, {len(events)} events, and {len(failed_feeds)} failed feeds"
     )
 
     now = datetime.now(timezone.utc)
@@ -172,6 +174,21 @@ def generate_homepage(
             "summary": entry.summary,
         }
 
+    current_year = datetime.now(config.EVENTS_TZ).year
+
+    def past_entry_ctx(entry: FeedEntry) -> dict[str, str]:
+        ctx = entry_ctx(entry)
+        years_ago = current_year - entry.published.year
+        ctx.update(
+            {
+                "years_ago": f"{years_ago}",
+                "years_text": (
+                    f"{years_ago} year" if years_ago == 1 else f"{years_ago} years"
+                ),
+            }
+        )
+        return ctx
+
     # Prepare template data
     template_data = {
         "site_url": config.SITE_URL,
@@ -187,6 +204,8 @@ def generate_homepage(
             entry_ctx(e)
             for e in group_feed_entries(weeknote_entries)[: config.MAX_SHOWN_WEEK_NOTES]
         ],
+        "on_this_day": [past_entry_ctx(e) for e in on_this_day_entries],
+        "has_on_this_day": len(on_this_day_entries) > 0,
         "failed_feeds": failed_feeds,
         "has_failed_feeds": len(failed_feeds) != 0,
     }
@@ -402,6 +421,7 @@ class BuildCache:
     entries: list[FeedEntry] = field(default_factory=list)
     weeknote_entries: list[FeedEntry] = field(default_factory=list)
     other_entries: list[FeedEntry] = field(default_factory=list)
+    on_this_day_entries: list[FeedEntry] = field(default_factory=list)
     failed_feeds: list[FailedFeedInfo] = field(default_factory=list)
     feeds_with_entries: list[FeedInfo] = field(default_factory=list)
     events: list[Event] = field(default_factory=list)
@@ -462,6 +482,17 @@ def generate_website(
         (cache.weeknote_entries, cache.other_entries) = separate_weeknote_entries(
             cache.entries
         )
+
+        now = datetime.now(config.EVENTS_TZ)
+        current_month, current_day = now.month, now.day
+        cache.on_this_day_entries = [
+            e
+            for e in cache.entries
+            if e.published.month == current_month
+            and e.published.day == current_day
+            and e.published.year != now.year
+        ]
+        cache.on_this_day_entries.sort(key=lambda e: e.published, reverse=True)
 
     @build.rule("generate_events_feed")
     def _(_target: str):
@@ -526,6 +557,7 @@ def generate_website(
         generate_homepage(
             cache.weeknote_entries,
             cache.other_entries,
+            cache.on_this_day_entries,
             cache.events,
             cache.failed_feeds,
             output_dir,

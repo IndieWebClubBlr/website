@@ -473,9 +473,11 @@ def parse_feed(
                     feed_url=feed_url,
                     feed_home_url=parsed_feed.feed.link,
                     tags=[tag for tag in tags if tag is not None],
-                    summary=f"«{summary}»"
-                    if summary and not summary.startswith("«")
-                    else summary,
+                    summary=(
+                        f"«{summary}»"
+                        if summary and not summary.startswith("«")
+                        else summary
+                    ),
                 )
             )
 
