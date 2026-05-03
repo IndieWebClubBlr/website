@@ -40,17 +40,17 @@
   {{/upcoming_events}}
   <ul class="no-marker pointed-hand">
     <li><a href="#previous-events">See previous events.</a></li>
-    <li><a href="{{site_url}}topics/">See events topics.</a></li>
-    <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
+    <li><a href="/topics/">See events topics.</a></li>
+    <li><a href="/events.atom">Subscribe as a feed.</a></li>
     <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
-    <li><a href="{{site_url}}events.ics">Download as a calendar.</a></li>
+    <li><a href="/events.ics">Download as a calendar.</a></li>
   </ul>
 </section>
 
 <section id="week-notes">
   <h2>Week Notes by Members</h2>
   <ul class="no-marker pointed-hand">
-    <li><a href="{{site_url}}blogroll-weeknotes.atom">Subscribe as a feed.</a></li>
+    <li><a href="/blogroll-weeknotes.atom">Subscribe as a feed.</a></li>
   </ul>
   {{#week_notes}}
   <article class="entry h-entry" id="wn-{{entry_id}}">
@@ -60,9 +60,6 @@
       <li class="pub-time"><time class="dt-published" datetime="{{published_machine}}">{{published_human}}</time></li>
     </ul>
     {{#summary}}<p class="p-summary">{{{summary}}}</p>{{/summary}}
-    <a class="u-bridgy-fed" href="https://fed.brid.gy/" hidden="from-humans"></a>
-    <a href="https://indieweb.social/tags/indieweb" class="p-category" style="display: none;">#indieweb</a>
-    <a href="https://indieweb.social/tags/weeknotes" class="p-category" style="display: none;">#weeknotes</a>
   </article>
   {{/week_notes}}
 </section>
@@ -70,10 +67,11 @@
 <section id="recent-posts">
   <h2>Recent Posts by Members</h2>
   <ul class="no-marker pointed-hand">
-    <li><a href="{{site_url}}blogroll.atom">Subscribe as a feed.</a></li>
-    <li><a href="{{site_url}}newsletter/">Subscribe as a newsletter.</a></li>
-    <li><a href="{{site_url}}blogroll.opml">Download as an OPML file.</a></li>
-    <li><a href="{{site_url}}members/">See the Member Directory</a>.</li>
+    <li><a href="/blogroll.atom">Subscribe as a feed.</a></li>
+    <li><a href="/newsletter/">Subscribe as a newsletter.</a></li>
+    <li><a href="/blogroll.opml">Download as an OPML file.</a></li>
+    <li><a href="/archive/">Browse the archive.</a></li>
+    <li><a href="/members/">See the member directory</a>.</li>
   </ul>
   {{#entries}}
   <article class="entry h-entry" id="post-{{entry_id}}">
@@ -83,9 +81,6 @@
       <li class="pub-time"><time class="dt-published" datetime="{{published_machine}}">{{published_human}}</time></li>
     </ul>
     {{#summary}}<p class="p-summary">{{{summary}}}</p>{{/summary}}
-    <a class="u-bridgy-fed" href="https://fed.brid.gy/" hidden="from-humans"></a>
-    <a href="https://indieweb.social/tags/indieweb" class="p-category" style="display: none;">#indieweb</a>
-    <a href="https://indieweb.social/tags/blog" class="p-category" style="display: none;">#blog</a>
   </article>
   {{/entries}}
   {{> nl-form.html }}
@@ -103,9 +98,6 @@
       <li class="pub-time"><time class="dt-published" datetime="{{published_machine}}">{{published_human}}</time></li>
     </ul>
     {{#summary}}<p class="p-summary">{{{summary}}}</p>{{/summary}}
-    <a class="u-bridgy-fed" href="https://fed.brid.gy/" hidden="from-humans"></a>
-    <a href="https://indieweb.social/tags/indieweb" class="p-category" style="display: none;">#indieweb</a>
-    <a href="https://indieweb.social/tags/blog" class="p-category" style="display: none;">#blog</a>
   </article>
   {{/on_this_day}}
 </section>
@@ -115,10 +107,10 @@
   <h2>Previous Events</h2>
   <ul class="no-marker pointed-hand">
     <li><a href="#upcoming-events">See upcoming events.</a></li>
-    <li><a href="{{site_url}}topics/">See events topics.</a></li>
-    <li><a href="{{site_url}}events.atom">Subscribe as a feed.</a></li>
+    <li><a href="/topics/">See events topics.</a></li>
+    <li><a href="/events.atom">Subscribe as a feed.</a></li>
     <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
-    <li><a href="{{site_url}}events.ics">Download as a calendar.</a></li>
+    <li><a href="/events.ics">Download as a calendar.</a></li>
   </ul>
   {{#previous_events}}
   <div class="event" id="event-{{{id}}}">
@@ -130,11 +122,11 @@
 
 <section>
   <h2>Webring</h2>
-  <p>If you are member of IWCB, please consider joining our <a href="{{site_url}}webring/">webring</a> to encourage discovery within our community.</p>
+  <p>If you are member of IWCB, please consider joining our <a href="/webring/">webring</a> to encourage discovery within our community.</p>
 </section>
 
 <section>
   <h2>Code of Conduct</h2>
-  <p>We have a <a href="{{site_url}}coc/">Code of Conduct</a> that we expect our club members to follow.</p>
+  <p>We have a <a href="/coc/">Code of Conduct</a> that we expect our club members to follow.</p>
   <p>The contents of this website are lightly moderated by <a href="https://ankursethi.com/">Ankur</a> and <a href="https://tanvibhakta.in/">Tanvi</a>. Please <a href="mailto:blr+mod@indiewebclub.org">email</a> us if you find any objectionable content on this website.</p>
 </section>

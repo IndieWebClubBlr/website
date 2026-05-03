@@ -1,0 +1,35 @@
+<section id="archive">
+  <h2>{{year}} Archive</h2>
+  <p>{{total_posts}} posts · {{member_count}} members</p>
+  <ul class="no-marker pointed-hand">
+    <li><a href="/archive/">Archive</a></li>
+  </ul>
+
+  <noscript><p>Enable JavaScript to search posts.</p></noscript>
+  <div class="archive-search-box">
+    <input id="archive-search" type="search" placeholder="Search posts by title, author, tag, or keyword">
+    <p id="archive-result-count"></p>
+  </div>
+
+  {{#months}}
+  <details name="archive-{{year}}" id="archive-{{year}}-{{month}}">
+    <summary>{{month_name}} (<span class="month-count" data-total="{{count}}">{{count}}</span> posts)</summary>
+    {{#entries}}
+    <article class="entry h-entry" id="post-{{entry_id}}" data-search="{{search_text}}">
+      <h3 class="p-name"><a class="u-url u-uid" href="{{link_utm}}" target="_blank">{{title}}</a></h3>
+      <ul class="meta no-marker">
+        <li class="title">by <a class="p-author h-card" href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
+        <li class="pub-time"><time class="dt-published" datetime="{{published_machine}}">{{published_human}}</time></li>
+      </ul>
+      {{#summary}}<p class="p-summary">{{{summary}}}</p>{{/summary}}
+    </article>
+    {{/entries}}
+  </details>
+  {{/months}}
+
+  <nav class="archive-year-nav">
+    {{#prev_year}}<a href="/archive/{{prev_year}}/">← {{prev_year}}</a>{{/prev_year}}
+    {{#next_year}}<a href="/archive/{{next_year}}/">{{next_year}} →</a>{{/next_year}}
+  </nav>
+</section>
+<script src="/archive.js"></script>

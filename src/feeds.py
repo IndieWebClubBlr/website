@@ -95,6 +95,21 @@ class FeedEntry:
           summary={self.summary!r})"""
 
 
+def entry_ctx(entry: FeedEntry) -> dict[str, str | bool]:
+    """Build a template context dict for a FeedEntry."""
+    entry_id = hashlib.sha256(entry.link.encode()).hexdigest()[:16]
+    return {
+        "entry_id": entry_id,
+        "title": entry.title,
+        "link_utm": add_ref_param(entry.link),
+        "feed_title": entry.feed_title,
+        "feed_home_url_utm": add_ref_param(entry.feed_home_url),
+        "published_machine": entry.published_machine(),
+        "published_human": entry.published_human(),
+        "summary": entry.summary,
+    }
+
+
 def parse_opml_file(opml_path: Path) -> list[FeedInfo]:
     """
     Parse OPML file and extract feed URLs with their titles and home page URLs.

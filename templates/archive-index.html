@@ -1,0 +1,20 @@
+<section id="archive">
+  <h2>Archive</h2>
+  <p>{{total_posts}} posts · {{member_count}} members · {{date_range}}</p>
+  <ul class="no-marker pointed-hand">
+    <li><a href="/blogroll.atom">Subscribe as a feed.</a></li>
+    <li><a href="/newsletter/">Subscribe as a newsletter.</a></li>
+    <li><a href="/blogroll.opml">Download as an OPML file.</a></li>
+    <li><a href="/members/">See the Member Directory</a>.</li>
+  </ul>
+  {{#years}}
+  <div class="entry">
+    <h3>
+      <a href="/archive/{{year}}/">{{year}}</a>
+      <span style="font-size: smaller; font-weight: normal">
+        {{count}} posts
+      </span>
+    </h3>
+  </div>
+  {{/years}}
+</section>

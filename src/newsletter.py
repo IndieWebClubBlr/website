@@ -82,7 +82,7 @@ def load_newsletter_archive() -> list[dict[str, str]]:
     ]
 
 
-def generate_newsletter_subscribe_page(output_dir: Path):
+def generate_newsletter_page(output_dir: Path):
     """Generate the newsletter subscription page."""
     renderer = make_renderer()
     archive = load_newsletter_archive()

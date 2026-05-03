@@ -447,6 +447,49 @@ pre { line-height: 125%; }
 }
 /* Lovelace theme */
 
+/* Archive */
+#archive-search {
+  width: 100%;
+  max-width: 30rem;
+  height: 2em;
+  font-size: 1em;
+  margin-bottom: 0.5em;
+}
+
+#archive-result-count {
+  font-size: 0.85em;
+  margin-top: 0;
+}
+
+#archive details summary {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+}
+
+#archive details {
+  margin-bottom: 1em;
+}
+
+#archive details:not(:has(> article)) {
+  display: none;
+}
+
+#archive details:not(:has(article:not([hidden]))) {
+  display: none;
+}
+
+.archive-year-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+}
+
+.archive-search-box {
+  margin-bottom: 1em;
+}
+
 .webring {
   border: 1px solid #ccc;
   border-radius: 4px;

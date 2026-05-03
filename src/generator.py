@@ -15,7 +15,6 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import hashlib
 import logging
 import random
 import shutil
@@ -35,6 +34,11 @@ from icalendar import Event as CalEvent
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src import config
+from src.archive import (
+    generate_archive_index,
+    generate_archive_year,
+    group_entries_by_year,
+)
 from src.build import Build
 from src.events import Event, fetch_events
 from src.feeds import (
@@ -42,13 +46,14 @@ from src.feeds import (
     FailureReason,
     FeedEntry,
     FeedInfo,
+    entry_ctx,
     fetch_all_feeds,
     generate_feed,
     parse_opml_file,
     prepend_fediverse_creator,
 )
 from src.member_dir import generate_members_page
-from src.newsletter import generate_newsletter_subscribe_page
+from src.newsletter import generate_newsletter_page
 from src.utils import (
     add_ref_param,
     make_renderer,
@@ -161,22 +166,9 @@ def generate_homepage(
     upcoming_events = [event for event in events if event.start_at > now]
     upcoming_events.reverse()
 
-    def entry_ctx(entry: FeedEntry) -> dict[str, str]:
-        entry_id = hashlib.sha256(entry.link.encode()).hexdigest()[:16]
-        return {
-            "entry_id": entry_id,
-            "title": entry.title,
-            "link_utm": add_ref_param(entry.link),
-            "feed_title": entry.feed_title,
-            "feed_home_url_utm": add_ref_param(entry.feed_home_url),
-            "published_machine": entry.published_machine(),
-            "published_human": entry.published_human(),
-            "summary": entry.summary,
-        }
-
     current_year = datetime.now(config.EVENTS_TZ).year
 
-    def past_entry_ctx(entry: FeedEntry) -> dict[str, str]:
+    def past_entry_ctx(entry: FeedEntry) -> dict[str, str | bool]:
         ctx = entry_ctx(entry)
         years_ago = current_year - entry.published.year
         ctx.update(
@@ -426,6 +418,7 @@ class BuildCache:
     feeds_with_entries: list[FeedInfo] = field(default_factory=list)
     events: list[Event] = field(default_factory=list)
     fediverse_creators: dict[str, str] = field(default_factory=dict)
+    entries_by_year: dict[int, list[FeedEntry]] = field(default_factory=dict)
 
 
 def generate_website(
@@ -494,6 +487,8 @@ def generate_website(
         ]
         cache.on_this_day_entries.sort(key=lambda e: e.published, reverse=True)
 
+        cache.entries_by_year = group_entries_by_year(cache.entries)
+
     @build.rule("generate_events_feed")
     def _(_target: str):
         build.need("fetch_events")
@@ -547,9 +542,30 @@ def generate_website(
         build.need("get_feeds_with_entries")
         generate_webring(cache.feeds_with_entries, output_dir)
 
-    @build.rule("generate_newsletter_subscribe_page")
+    @build.rule("generate_newsletter_page")
     def _(_target: str):
-        generate_newsletter_subscribe_page(output_dir)
+        generate_newsletter_page(output_dir)
+
+    @build.rule("generate_archive")
+    def _(_target: str):
+        build.need("fetch_feeds")
+        archive_year_targets = [
+            f"generate_archive_year:{year}" for year in cache.entries_by_year.keys()
+        ]
+        build.need("generate_archive_index", *archive_year_targets)
+
+    @build.rule("generate_archive_index")
+    def _(_target: str):
+        build.need("fetch_feeds")
+        years = sorted(cache.entries_by_year.keys(), reverse=True)
+        generate_archive_index(cache.entries, years, output_dir)
+
+    @build.rule("generate_archive_year:*")
+    def _(target: str):
+        build.need("fetch_feeds")
+        year = int(target.split(":", 1)[1])
+        years = sorted(cache.entries_by_year.keys(), reverse=True)
+        generate_archive_year(year, cache.entries_by_year[year], years, output_dir)
 
     @build.rule("generate_homepage")
     def _(_target: str):
@@ -576,7 +592,8 @@ def generate_website(
             "generate_blogroll",
             "generate_weeknotes_blogroll",
             "generate_webring",
-            "generate_newsletter_subscribe_page",
+            "generate_newsletter_page",
+            "generate_archive",
             "generate_homepage",
             *asset_targets,
             *page_targets,

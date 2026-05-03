@@ -81,6 +81,7 @@ ASSETS = [
     "assets/indiewebcamp-button.svg",
     "assets/preview.png",
     "assets/favicon.svg",
+    "assets/archive.js",
     "CNAME",
 ]
 
