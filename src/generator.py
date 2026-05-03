@@ -579,6 +579,23 @@ def generate_website(
             output_dir,
         )
 
+    @build.rule("generate_sitemap")
+    def _(_target: str):
+        pages = sorted(output_dir.rglob("index.html"))
+        lines = [
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+        ]
+        for page in pages:
+            path = page.relative_to(output_dir).parent.as_posix()
+            url = config.SITE_URL if path == "." else f"{config.SITE_URL}{path}/"
+            lines.append(f"  <url><loc>{url}</loc></url>")
+        lines.append("</urlset>")
+
+        sitemap_path = output_dir / "sitemap.xml"
+        sitemap_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        logger.info(f"Generated sitemap with {len(pages)} URLs")
+
     @build.rule("website")
     def _(_target: str):
         asset_targets = [f"copy_assets:{asset}" for asset in config.ASSETS]
@@ -598,6 +615,7 @@ def generate_website(
             *asset_targets,
             *page_targets,
         )
+        build.need("generate_sitemap")
         logger.info("Website generation completed successfully")
 
     build.run("website")
