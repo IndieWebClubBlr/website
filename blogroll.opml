@@ -6,7 +6,7 @@
   <body>
     <!-- Keep sorted alphabetically, case-insensitive, main blog first -->
     <outline type="rss" text="9porcupine" xmlUrl="https://9porcupine.mataroa.blog/rss/" htmlUrl="https://9porcupine.mataroa.blog/" />
-    <outline type="rss" text="A Believable Fiction" xmlUrl="https://a-believable-fiction.pages.dev/feed.xml" htmlUrl="https://a-believable-fiction.pages.dev/" />
+    <outline type="rss" text="A Believable Fiction" xmlUrl="https://abelievablefiction.net/feed.xml" htmlUrl="https://abelievablefiction.net/" />
     <outline type="rss" text="Abhigyan Trips" xmlUrl="https://abhi.now/indieweb.xml" htmlUrl="https://abhi.now/" />
     <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/all.atom" htmlUrl="https://abhinavsarkar.net/" />
     <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/photography/feed.atom" htmlUrl="https://abhinavsarkar.net/photography/" />
