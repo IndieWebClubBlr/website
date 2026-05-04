@@ -435,12 +435,13 @@ def generate_website(
     """
     cache = BuildCache()
     build = Build()
+    page_targets = [f"page:{f.stem}" for f in Path("./pages/").glob("*.md")]
 
-    @build.rule("copy_opml")
+    @build.rule("blogroll_opml")
     def _(_target: str):
         _ = shutil.copyfile(opml_path, output_dir / opml_path.name)
 
-    @build.rule("copy_assets:*")
+    @build.rule("asset:*")
     def _(target: str):
         asset = target.split(":", 1)[1]
         src = Path(asset)
@@ -449,23 +450,23 @@ def generate_website(
             _ = shutil.copyfile(src, dst)
             logger.debug(f"Copied asset: {src} -> {dst}")
 
-    @build.rule("render_page:*")
+    @build.rule("page:*")
     def _(target: str):
         page_name = target.split(":", 1)[1]
         md_file = Path(f"./pages/{page_name}.md")
         render_and_save_html(markdown_to_html(md_file), output_dir / page_name)
 
-    @build.rule("parse_opml")
+    @build.rule("parsed_opml")
     def _(_target: str):
         cache.feeds = parse_opml_file(opml_path)
 
-    @build.rule("fetch_events")
+    @build.rule("events")
     def _(_target: str):
         cache.events = fetch_events(use_cache=use_cache, cache_fallback=cache_fallback)
 
-    @build.rule("fetch_feeds")
+    @build.rule("feeds")
     def _(_target: str):
-        build.need("parse_opml")
+        build.need("parsed_opml")
         cache.entries, cache.failed_feeds = fetch_all_feeds(
             cache.feeds,
             use_cache=use_cache,
@@ -474,6 +475,9 @@ def generate_website(
         cache.failed_feeds.sort(key=lambda f: f.feed_info.title.lower())
         (cache.weeknote_entries, cache.other_entries) = separate_weeknote_entries(
             cache.entries
+        )
+        cache.feeds_with_entries = get_feeds_with_entries(
+            cache.entries, cache.failed_feeds
         )
 
         now = datetime.now(config.EVENTS_TZ)
@@ -489,19 +493,19 @@ def generate_website(
 
         cache.entries_by_year = group_entries_by_year(cache.entries)
 
-    @build.rule("generate_events_feed")
+    @build.rule("events_feed")
     def _(_target: str):
-        build.need("fetch_events")
+        build.need("events")
         generate_events_feed(cache.events, output_dir)
 
-    @build.rule("generate_events_calendar")
+    @build.rule("events_calendar")
     def _(_target: str):
-        build.need("fetch_events")
+        build.need("events")
         generate_events_calendar(cache.events, output_dir)
 
-    @build.rule("generate_blogroll")
+    @build.rule("blogroll_feed")
     def _(_target: str):
-        build.need("fetch_feeds", "generate_members")
+        build.need("feeds", "members_dir")
         entries = prepend_fediverse_creator(cache.entries, cache.fediverse_creators)
         generate_blogroll_feed(
             entries=entries,
@@ -510,9 +514,9 @@ def generate_website(
             output_path=output_dir.joinpath(config.BLOGROLL_FEED_FILE),
         )
 
-    @build.rule("generate_weeknotes_blogroll")
+    @build.rule("weeknotes_blogroll_feed")
     def _(_target: str):
-        build.need("fetch_feeds", "generate_members")
+        build.need("feeds", "members_dir")
         entries = prepend_fediverse_creator(
             cache.weeknote_entries, cache.fediverse_creators
         )
@@ -523,53 +527,46 @@ def generate_website(
             output_path=output_dir.joinpath(config.WEEKNOTE_BLOGROLL_FEED_FILE),
         )
 
-    @build.rule("get_feeds_with_entries")
+    @build.rule("members_dir")
     def _(_target: str):
-        build.need("fetch_feeds")
-        cache.feeds_with_entries = get_feeds_with_entries(
-            cache.entries, cache.failed_feeds
-        )
-
-    @build.rule("generate_members")
-    def _(_target: str):
-        build.need("get_feeds_with_entries")
+        build.need("feeds", "parsed_opml")
         cache.fediverse_creators = generate_members_page(
             cache.feeds_with_entries, cache.feeds, output_dir
         )
 
-    @build.rule("generate_webring")
+    @build.rule("webring")
     def _(_target: str):
-        build.need("get_feeds_with_entries")
+        build.need("feeds")
         generate_webring(cache.feeds_with_entries, output_dir)
 
-    @build.rule("generate_newsletter_page")
+    @build.rule("newsletter")
     def _(_target: str):
         generate_newsletter_page(output_dir)
 
-    @build.rule("generate_archive")
+    @build.rule("archive")
     def _(_target: str):
-        build.need("fetch_feeds")
+        build.need("feeds")
         archive_year_targets = [
-            f"generate_archive_year:{year}" for year in cache.entries_by_year.keys()
+            f"archive_year:{year}" for year in cache.entries_by_year.keys()
         ]
-        build.need("generate_archive_index", *archive_year_targets)
+        build.need("archive_index", *archive_year_targets)
 
-    @build.rule("generate_archive_index")
+    @build.rule("archive_index")
     def _(_target: str):
-        build.need("fetch_feeds")
+        build.need("feeds")
         years = sorted(cache.entries_by_year.keys(), reverse=True)
         generate_archive_index(cache.entries, years, output_dir)
 
-    @build.rule("generate_archive_year:*")
+    @build.rule("archive_year:*")
     def _(target: str):
-        build.need("fetch_feeds")
+        build.need("feeds")
         year = int(target.split(":", 1)[1])
         years = sorted(cache.entries_by_year.keys(), reverse=True)
         generate_archive_year(year, cache.entries_by_year[year], years, output_dir)
 
-    @build.rule("generate_homepage")
+    @build.rule("homepage")
     def _(_target: str):
-        build.need("fetch_feeds", "fetch_events")
+        build.need("feeds", "events")
         generate_homepage(
             cache.weeknote_entries,
             cache.other_entries,
@@ -579,8 +576,17 @@ def generate_website(
             output_dir,
         )
 
-    @build.rule("generate_sitemap")
+    @build.rule("sitemap")
     def _(_target: str):
+        build.need(
+            "members_dir",
+            "webring",
+            "newsletter",
+            "archive",
+            "homepage",
+            *page_targets,
+        )
+
         pages = sorted(output_dir.rglob("index.html"))
         lines = [
             '<?xml version="1.0" encoding="UTF-8"?>',
@@ -598,24 +604,21 @@ def generate_website(
 
     @build.rule("website")
     def _(_target: str):
-        asset_targets = [f"copy_assets:{asset}" for asset in config.ASSETS]
-        page_targets = [f"render_page:{f.stem}" for f in Path("./pages/").glob("*.md")]
-
         build.need(
-            "copy_opml",
-            "generate_members",
-            "generate_events_feed",
-            "generate_events_calendar",
-            "generate_blogroll",
-            "generate_weeknotes_blogroll",
-            "generate_webring",
-            "generate_newsletter_page",
-            "generate_archive",
-            "generate_homepage",
-            *asset_targets,
+            "blogroll_opml",
+            "members_dir",
+            "events_feed",
+            "events_calendar",
+            "blogroll_feed",
+            "weeknotes_blogroll_feed",
+            "webring",
+            "newsletter",
+            "archive",
+            "homepage",
+            "sitemap",
+            *[f"asset:{asset}" for asset in config.ASSETS],
             *page_targets,
         )
-        build.need("generate_sitemap")
         logger.info("Website generation completed successfully")
 
     build.run("website")
