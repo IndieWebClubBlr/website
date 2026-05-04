@@ -1,0 +1,1882 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://blr.indiewebclub.org/blogroll-weeknotes.atom</id>
+  <title>IndieWebClub Bangalore Week Notes Blogroll</title>
+  <updated>2026-05-03T11:26:00+00:00</updated>
+  <author>
+    <name>IndieWebClub Bangalore</name>
+  </author>
+  <link href="https://blr.indiewebclub.org/blogroll-weeknotes.atom" rel="self"/>
+  <link href="https://blr.indiewebclub.org/" rel="alternate"/>
+  <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
+  <subtitle>Week Notes by IndieWebClub Bangalore folks</subtitle>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-18-2026/</id>
+    <title>Week 18/2026</title>
+    <updated>2026-05-03T11:26:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-18-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «The rain gods finally blessed us.»</summary>
+    <category term="weekly-notes"/>
+    <category term="meetups"/>
+    <category term="gaming"/>
+    <category term="indieweb"/>
+    <published>2026-05-03T11:26:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/month-of-april/</id>
+    <title>[Weeknotes] Month of April</title>
+    <updated>2026-05-03T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/month-of-april/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Month note again»</summary>
+    <published>2026-05-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/weeknotes/week-18-2026/</id>
+    <title>Weeknotes: Week #18 (2026)</title>
+    <updated>2026-05-02T21:02:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/weeknotes/week-18-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «A brand new website, powered by Astro and Cloudflare! And a lot of other things...»</summary>
+    <published>2026-05-02T21:02:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://nim.mataroa.blog/blog/1-week-of-april-26th-2026/</id>
+    <title>1. Week of April 26th, 2026</title>
+    <updated>2026-05-02T00:00:00+00:00</updated>
+    <author>
+      <name>nim</name>
+      <uri>https://nim.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://nim.mataroa.blog/blog/1-week-of-april-26th-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Hello, welcome to my first weeknote. I feel tired in a good way and I have been working so much that I never even had the chance to sit in melancholy by the window and watch the first pre-monsoon…»</summary>
+    <published>2026-05-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-29-w2617-18-cops-poems-and-housewarming-parties/</id>
+    <title>Weeknote #29 [W26.17–18] - cops, poems, and housewarming parties</title>
+    <updated>2026-05-02T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-29-w2617-18-cops-poems-and-housewarming-parties/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I have missed another weeknote — second one in three weeks.»</summary>
+    <published>2026-05-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://thejeshgn.com/2026/05/01/weekly-notes-18-2026/</id>
+    <title>Weekly Notes 18/2026</title>
+    <updated>2026-05-01T13:48:50+00:00</updated>
+    <author>
+      <name>Thejesh GN</name>
+      <uri>https://feeds.thejeshgn.com/thejeshgn</uri>
+    </author>
+    <link href="https://thejeshgn.com/2026/05/01/weekly-notes-18-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@thej@social.thej.in: «It’s been a busy week, both at work and at home. I think the heat also made the week much more tiring, but thankfully, it rained a bit yesterday. Hopefully we will get more rains. I spent a bit of…»</summary>
+    <category term="Weekly Notes"/>
+    <category term="WN-18"/>
+    <published>2026-05-01T13:48:50+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-17-2026/</id>
+    <title>Week 17/2026</title>
+    <updated>2026-04-26T14:26:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-17-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «A low-key week with high-key heat.»</summary>
+    <category term="weekly-notes"/>
+    <category term="books"/>
+    <category term="3d-printing"/>
+    <category term="kindle"/>
+    <category term="food"/>
+    <published>2026-04-26T14:26:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-17-2026/</id>
+    <title>Weeknotes: Week #17 (2026)</title>
+    <updated>2026-04-26T10:00:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-17-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «Adapting to changes at work and doing a bunch of gaming»</summary>
+    <published>2026-04-26T10:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-04-26/?mtm_campaign=feed</id>
+    <title>Notes for the Week #17 (2026)</title>
+    <updated>2026-04-26T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-04-26/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 20th–26th April.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-04-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhi.now/weeknotes/2026/17/</id>
+    <title>(#2026-W17) poems, flowers and romanticized nights</title>
+    <updated>2026-04-25T00:00:00+00:00</updated>
+    <author>
+      <name>Abhigyan Trips</name>
+      <uri>https://abhi.now/indieweb.xml</uri>
+    </author>
+    <link href="https://abhi.now/weeknotes/2026/17/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«This weeknote covers the week of April 19, 2026 – April 25, 2026.»</summary>
+    <category term="weeknotes"/>
+    <published>2026-04-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://thejeshgn.com/2026/04/24/weekly-notes-17-2026/</id>
+    <title>Weekly Notes 17/2026</title>
+    <updated>2026-04-24T17:27:28+00:00</updated>
+    <author>
+      <name>Thejesh GN</name>
+      <uri>https://feeds.thejeshgn.com/thejeshgn</uri>
+    </author>
+    <link href="https://thejeshgn.com/2026/04/24/weekly-notes-17-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@thej@social.thej.in: «NMG 2026 results are out. If you are a grantee, congratulations. This is the 9th edition of 2026 and the biggest both in terms of total grant and the number of grantees. Initial emails have been…»</summary>
+    <category term="Weekly Notes"/>
+    <category term="WN-17"/>
+    <published>2026-04-24T17:27:28+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-28-w2616/</id>
+    <title>Weeknote #28 [W26.16] - Weekly AI rant &amp; curation for CND</title>
+    <updated>2026-04-23T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-28-w2616/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«At work, we planned a product roadmap for FY26-27. I have zero faith in what we have planned.»</summary>
+    <published>2026-04-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-16-2026/</id>
+    <title>Week 16/2026</title>
+    <updated>2026-04-19T13:55:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-16-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «A lot of catching up happened over food.»</summary>
+    <category term="weekly-notes"/>
+    <category term="3d-printing"/>
+    <category term="cloudflare"/>
+    <category term="food"/>
+    <published>2026-04-19T13:55:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-16-2026/</id>
+    <title>Weeknotes: Week #16 (2026)</title>
+    <updated>2026-04-19T13:42:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-16-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «Big week for watching movies and being outdoors!»</summary>
+    <published>2026-04-19T13:42:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-04-19/?mtm_campaign=feed</id>
+    <title>Notes for the Week #16 (2026)</title>
+    <updated>2026-04-19T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-04-19/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 13th–19th April.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-04-19T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vishalr.dev/archive/29-Will-We-Ever-Get-Used-To-This</id>
+    <title>Will We Ever Get Used To This?</title>
+    <updated>2026-04-18T18:30:00+00:00</updated>
+    <author>
+      <name>Vishal R</name>
+      <uri>https://vishalr.dev/rss.xml</uri>
+    </author>
+    <link href="https://vishalr.dev/archive/29-Will-We-Ever-Get-Used-To-This?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Yo!»</summary>
+    <category term="WeekNote"/>
+    <published>2026-04-18T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://musings.thedataareclean.com/notes/2026-04-18-hafta-1/</id>
+    <title>Hafta #1</title>
+    <updated>2026-04-18T11:21:31+00:00</updated>
+    <author>
+      <name>Arpit</name>
+      <uri>https://musings.thedataareclean.com/feed.xml</uri>
+    </author>
+    <link href="https://musings.thedataareclean.com/notes/2026-04-18-hafta-1/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Trying out a new format.»</summary>
+    <category term="notes"/>
+    <category term="weeknote"/>
+    <published>2026-04-18T11:21:31+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhi.now/weeknotes/2026/16/</id>
+    <title>(#2026-W16) COLOR COLOR COLOR</title>
+    <updated>2026-04-18T00:00:00+00:00</updated>
+    <author>
+      <name>Abhigyan Trips</name>
+      <uri>https://abhi.now/indieweb.xml</uri>
+    </author>
+    <link href="https://abhi.now/weeknotes/2026/16/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«This weeknote covers the week of April 12, 2026 – April 18, 2026.»</summary>
+    <category term="weeknotes"/>
+    <published>2026-04-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://thejeshgn.com/2026/04/18/weekly-notes-16-2026/</id>
+    <title>Weekly Notes 16/2026</title>
+    <updated>2026-04-17T18:50:44+00:00</updated>
+    <author>
+      <name>Thejesh GN</name>
+      <uri>https://feeds.thejeshgn.com/thejeshgn</uri>
+    </author>
+    <link href="https://thejeshgn.com/2026/04/18/weekly-notes-16-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@thej@social.thej.in: «It feels like a long, tiring week because it’s been a busy one, or most probably because of getting back to regular life after vacation, or because Bengaluru has been hot this week. Anyway, its been…»</summary>
+    <category term="Weekly Notes"/>
+    <category term="WN-16"/>
+    <published>2026-04-17T18:50:44+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-27-w2514-15/</id>
+    <title>Weeknote #27 [W26.14–15] - Amaira’s first week, coversations with friends, and bullshit jobs</title>
+    <updated>2026-04-15T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-27-w2514-15/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I missed posting a weeknote for the first time in 27 weeks. This one is going to be a combination of the last two weeks.»</summary>
+    <published>2026-04-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-04-13/?mtm_campaign=feed</id>
+    <title>Notes for the Week #15 (2026)</title>
+    <updated>2026-04-13T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-04-13/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 6th–12th April.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-04-13T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-15-2026/</id>
+    <title>Weeknotes: Week #15 (2026)</title>
+    <updated>2026-04-12T15:59:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-15-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «A shockingly eventful week that I was not quite prepared for»</summary>
+    <published>2026-04-12T15:59:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-15-2026/</id>
+    <title>Week 15/2026</title>
+    <updated>2026-04-12T15:23:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-15-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «On the verge of becoming a Brott regular.»</summary>
+    <category term="weekly-notes"/>
+    <category term="3d-printing"/>
+    <category term="tailscale"/>
+    <category term="food"/>
+    <published>2026-04-12T15:23:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vishalr.dev/archive/28-First-app-launch</id>
+    <title>First App Launch</title>
+    <updated>2026-04-11T18:30:00+00:00</updated>
+    <author>
+      <name>Vishal R</name>
+      <uri>https://vishalr.dev/rss.xml</uri>
+    </author>
+    <link href="https://vishalr.dev/archive/28-First-app-launch?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Yo!»</summary>
+    <category term="WeekNote"/>
+    <published>2026-04-11T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-apr-11th--2026/</id>
+    <title>[Weeknotes] Week of Apr 11th, 2026</title>
+    <updated>2026-04-11T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-apr-11th--2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Once again, something that was supposed to take two days to do took a whole week. Reasons?»</summary>
+    <published>2026-04-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhi.now/weeknotes/2026/15/</id>
+    <title>(#2026-W15) smart crows and car shows</title>
+    <updated>2026-04-11T00:00:00+00:00</updated>
+    <author>
+      <name>Abhigyan Trips</name>
+      <uri>https://abhi.now/indieweb.xml</uri>
+    </author>
+    <link href="https://abhi.now/weeknotes/2026/15/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«This weeknote covers the week of April 5, 2026 – April 11, 2026.»</summary>
+    <category term="weeknotes"/>
+    <published>2026-04-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://thejeshgn.com/2026/04/10/weekly-notes-15-2026/</id>
+    <title>Weekly Notes 15/2026</title>
+    <updated>2026-04-10T16:10:12+00:00</updated>
+    <author>
+      <name>Thejesh GN</name>
+      <uri>https://feeds.thejeshgn.com/thejeshgn</uri>
+    </author>
+    <link href="https://thejeshgn.com/2026/04/10/weekly-notes-15-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@thej@social.thej.in: «I am back in Bengaluru. Slept and rested a bit. I watched One Battle After Another on the way to Sydney and Naked Gun 2 on the way back. I really liked how One Battle After Another is told,…»</summary>
+    <category term="Weekly Notes"/>
+    <category term="WN-15"/>
+    <published>2026-04-10T16:10:12+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-14-2026/</id>
+    <title>Weeknotes: Week #14 (2026)</title>
+    <updated>2026-04-05T18:06:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-14-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «Finally over my sickness!»</summary>
+    <published>2026-04-05T18:06:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-14-2026/</id>
+    <title>Week 14/2026</title>
+    <updated>2026-04-05T14:47:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-14-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «The bacterial infection saga ends.»</summary>
+    <category term="weekly-notes"/>
+    <category term="meetups"/>
+    <category term="3d-printing"/>
+    <category term="food"/>
+    <category term="health"/>
+    <category term="indieweb"/>
+    <published>2026-04-05T14:47:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-5th-arpril-2026/</id>
+    <title>[Weeknotes] Week of 5th April, 2026</title>
+    <updated>2026-04-05T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-5th-arpril-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«7 weeks since a weeknote. Life updates will come at the end. First, this week:»</summary>
+    <published>2026-04-05T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-04-05/?mtm_campaign=feed</id>
+    <title>Notes for the Week #14 (2026)</title>
+    <updated>2026-04-05T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-04-05/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 30th March–5th April.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-04-05T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhi.now/weeknotes/2026/14/</id>
+    <title>(#2026-W14) birthdays, breweries and blr metro</title>
+    <updated>2026-04-04T00:00:00+00:00</updated>
+    <author>
+      <name>Abhigyan Trips</name>
+      <uri>https://abhi.now/indieweb.xml</uri>
+    </author>
+    <link href="https://abhi.now/weeknotes/2026/14/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«This weeknote covers the week of March 29, 2026 – April 4, 2026.»</summary>
+    <category term="weeknotes"/>
+    <published>2026-04-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-26-w2613/</id>
+    <title>Weeknote #26 [W26.13] - Second housewarming party, Claude Code, cat-sitting</title>
+    <updated>2026-04-01T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-26-w2613/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I had a much better grip on the menu this time.»</summary>
+    <published>2026-04-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-03-30/?mtm_campaign=feed</id>
+    <title>Notes for the Week #13 (2026)</title>
+    <updated>2026-03-30T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-03-30/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 23rd–29th March.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-03-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-13-2026/</id>
+    <title>Weeknotes: Week #13 (2026)</title>
+    <updated>2026-03-29T14:42:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-13-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «A Flu is no joke...»</summary>
+    <published>2026-03-29T14:42:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-13-2026/</id>
+    <title>Week 13/2026</title>
+    <updated>2026-03-29T13:16:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-13-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «My immune system is cooked.»</summary>
+    <category term="weekly-notes"/>
+    <category term="ai"/>
+    <category term="gaming"/>
+    <category term="health"/>
+    <published>2026-03-29T13:16:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhi.now/weeknotes/2026/13/</id>
+    <title>(#2026-W13) labubus and ryan gosling</title>
+    <updated>2026-03-28T00:00:00+00:00</updated>
+    <author>
+      <name>Abhigyan Trips</name>
+      <uri>https://abhi.now/indieweb.xml</uri>
+    </author>
+    <link href="https://abhi.now/weeknotes/2026/13/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«This weeknote covers the week of March 22, 2026 – March 28, 2026.»</summary>
+    <category term="weeknotes"/>
+    <published>2026-03-28T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-25-w2612/</id>
+    <title>Weeknote #25 [W26.12] - First housewarming party, fake deadline, and an incoherent menu</title>
+    <updated>2026-03-26T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-25-w2612/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I hosted my first house warming party on the 22nd.»</summary>
+    <published>2026-03-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-12-2026/</id>
+    <title>Week 12/2026</title>
+    <updated>2026-03-22T13:08:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-12-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «Flew back to Bengaluru and my homelab threw a tantrum.»</summary>
+    <category term="weekly-notes"/>
+    <category term="personal"/>
+    <category term="writing"/>
+    <published>2026-03-22T13:08:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-12-2026/</id>
+    <title>Weeknotes: Week #12 (2026)</title>
+    <updated>2026-03-22T10:32:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-12-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «Movies, food, rain, and an early birthday present to myself!»</summary>
+    <published>2026-03-22T10:32:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-03-22/?mtm_campaign=feed</id>
+    <title>Notes for the Weeks #11–12 (2026)</title>
+    <updated>2026-03-22T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-03-22/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the weeks of 9th–22nd March.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-03-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vishalr.dev/archive/25-my-first-hotwheel-trade</id>
+    <title>My First Hotwheel Trade</title>
+    <updated>2026-03-21T18:30:00+00:00</updated>
+    <author>
+      <name>Vishal R</name>
+      <uri>https://vishalr.dev/rss.xml</uri>
+    </author>
+    <link href="https://vishalr.dev/archive/25-my-first-hotwheel-trade?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Yo!»</summary>
+    <category term="WeekNote"/>
+    <published>2026-03-21T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhi.now/weeknotes/2026/12/</id>
+    <title>(#2026-W12) bombay and poha</title>
+    <updated>2026-03-21T00:00:00+00:00</updated>
+    <author>
+      <name>Abhigyan Trips</name>
+      <uri>https://abhi.now/indieweb.xml</uri>
+    </author>
+    <link href="https://abhi.now/weeknotes/2026/12/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«This weeknote covers the week of March 15, 2026 – March 21, 2026.»</summary>
+    <category term="weeknotes"/>
+    <published>2026-03-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-24-w2611/</id>
+    <title>Weeknote #24 [W26.11] - Moving in, the kids downstairs, and the loss of privacy</title>
+    <updated>2026-03-20T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-24-w2611/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«On Sunday (March 8), I moved to my new place in Bandepalya.»</summary>
+    <published>2026-03-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-11-2026/</id>
+    <title>Weeknotes: Week #11 (2026)</title>
+    <updated>2026-03-15T14:07:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-11-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «Would you believe it, even more travel!»</summary>
+    <published>2026-03-15T14:07:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-11-2026/</id>
+    <title>Week 11/2026</title>
+    <updated>2026-03-15T12:21:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-11-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «The fever left but took my energy with it.»</summary>
+    <category term="weekly-notes"/>
+    <category term="homelab"/>
+    <category term="personal"/>
+    <category term="health"/>
+    <published>2026-03-15T12:21:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhi.now/weeknotes/2026/11/</id>
+    <title>(#2026-W11) dog bites and conspiracies</title>
+    <updated>2026-03-14T00:00:00+00:00</updated>
+    <author>
+      <name>Abhigyan Trips</name>
+      <uri>https://abhi.now/indieweb.xml</uri>
+    </author>
+    <link href="https://abhi.now/weeknotes/2026/11/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«This weeknote covers the week of March 8, 2026 – March 14, 2026.»</summary>
+    <category term="weeknotes"/>
+    <published>2026-03-14T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-23-w2610/</id>
+    <title>Weeknote #23 [W26.10] - Moving houses is a bittersweet experience</title>
+    <updated>2026-03-12T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-23-w2610/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I finally moved out of Electronic City this week.»</summary>
+    <published>2026-03-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-03-09/?mtm_campaign=feed</id>
+    <title>Notes for the Week #10 (2026)</title>
+    <updated>2026-03-09T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-03-09/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 2nd–8th March.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-03-09T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-10-2026/</id>
+    <title>Weeknotes: Week #10 (2026)</title>
+    <updated>2026-03-08T16:37:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-10-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «The most boring week I've had this year»</summary>
+    <published>2026-03-08T16:37:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-10-2026/</id>
+    <title>Week 10/2026</title>
+    <updated>2026-03-08T06:00:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-10-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «I'm back from Vietnam. The souvenir? Fever»</summary>
+    <category term="weekly-notes"/>
+    <category term="travel"/>
+    <category term="homelab"/>
+    <category term="vietnam"/>
+    <category term="health"/>
+    <published>2026-03-08T06:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhi.now/weeknotes/2026/10/</id>
+    <title>(#2026-W10) holi and 'rang barse'</title>
+    <updated>2026-03-07T00:00:00+00:00</updated>
+    <author>
+      <name>Abhigyan Trips</name>
+      <uri>https://abhi.now/indieweb.xml</uri>
+    </author>
+    <link href="https://abhi.now/weeknotes/2026/10/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«This weeknote covers the week of March 1, 2026 – March 7, 2026.»</summary>
+    <category term="weeknotes"/>
+    <published>2026-03-07T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-22-w2609/</id>
+    <title>Weeknote #22 [W26.09] - My mental map of Bangalore, and AI hype ruining my week</title>
+    <updated>2026-03-04T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-22-w2609/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I had been planning to move out of Electronic City ever since I changed jobs in October.»</summary>
+    <published>2026-03-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-9-2026/</id>
+    <title>Weeknotes: Week #9 (2026)</title>
+    <updated>2026-03-01T14:07:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-9-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «Getting a little honest about my mental health»</summary>
+    <published>2026-03-01T14:07:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-9-2026/</id>
+    <title>Week 9/2026</title>
+    <updated>2026-03-01T13:01:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-9-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «Broke the network so many times I lost count.»</summary>
+    <category term="weekly-notes"/>
+    <category term="homelab"/>
+    <category term="networking"/>
+    <published>2026-03-01T13:01:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-03-01/?mtm_campaign=feed</id>
+    <title>Notes for the Week #9 (2026)</title>
+    <updated>2026-03-01T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-03-01/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 23rd February–1st March.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-03-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-21-w2608/</id>
+    <title>Weeknote #21 [W26.08] - A few nice conversations</title>
+    <updated>2026-02-26T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-21-w2608/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I had quite a few nice conversations this week.»</summary>
+    <published>2026-02-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://halfthere.mataroa.blog/blog/week-note-5/</id>
+    <title>Week Note 5</title>
+    <updated>2026-02-25T00:00:00+00:00</updated>
+    <author>
+      <name>halfthere</name>
+      <uri>https://halfthere.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://halfthere.mataroa.blog/blog/week-note-5/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«This week note is a month late. It’s fine. Time is made up and I am certainly not one to keep track of it.»</summary>
+    <published>2026-02-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-8-2026/</id>
+    <title>Weeknotes: Week #8 (2026)</title>
+    <updated>2026-02-22T15:26:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-8-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «The kitchen is my new comfort space»</summary>
+    <published>2026-02-22T15:26:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-8-2026/</id>
+    <title>Week 8/2026</title>
+    <updated>2026-02-22T13:35:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-8-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «Bengaluru power cuts are getting ridiculous.»</summary>
+    <category term="weekly-notes"/>
+    <category term="nixos"/>
+    <category term="networking"/>
+    <published>2026-02-22T13:35:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-02-22/?mtm_campaign=feed</id>
+    <title>Notes for the Week #8 (2026)</title>
+    <updated>2026-02-22T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-02-22/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 16th–22nd February.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-02-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii</id>
+    <title>A weeknote because Tanvi is scary - II</title>
+    <updated>2026-02-21T00:00:00+00:00</updated>
+    <author>
+      <name>Azan</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20260221-a-weeknote-because-tanvi-is-scary---ii?ref=blr.indiewebclub.org"/>
+    <published>2026-02-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-20-w2607/</id>
+    <title>Weeknote #20 [W26.07] - Rest &amp; recuperate</title>
+    <updated>2026-02-18T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-20-w2607/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I spent more time working on the sales pitch which I talked about last week. Which meant that this week was as hectic as the one before, work wise.»</summary>
+    <published>2026-02-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-02-16/?mtm_campaign=feed</id>
+    <title>Notes for the Week #7 (2026)</title>
+    <updated>2026-02-16T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-02-16/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 9th–15th February.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-02-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-7-2026/</id>
+    <title>Weeknotes: Week #7 (2026)</title>
+    <updated>2026-02-15T14:52:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-7-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «Back to work and getting really into burritos»</summary>
+    <published>2026-02-15T14:52:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-7-2026/</id>
+    <title>Week 7/2026</title>
+    <updated>2026-02-15T13:06:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-7-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «Maybe I'm buying too many games.»</summary>
+    <category term="weekly-notes"/>
+    <category term="networking"/>
+    <category term="gaming"/>
+    <category term="food"/>
+    <published>2026-02-15T13:06:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-feb-14th-2026/</id>
+    <title>[Weeknotes] Week of Feb 14th, 2026</title>
+    <updated>2026-02-14T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-feb-14th-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«My voice felt better, but my body was clearly still fighting something off. I felt lethargic and annoyed. I spent three separate days rotting, which is a lot, and goes way beyond my once-a-month…»</summary>
+    <published>2026-02-14T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-19-w2606/</id>
+    <title>Weeknote #19 [W26.06] - Growing Cinema Next Door, chaotic sales pitches and the positive addition bias</title>
+    <updated>2026-02-12T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-19-w2606/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I am very late with this weeknote. Both last week and this week have been very chaotic.»</summary>
+    <published>2026-02-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-6-2026/</id>
+    <title>Weeknotes: Week #6 (2026)</title>
+    <updated>2026-02-08T14:09:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-6-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «Finally back in Bengaluru!»</summary>
+    <published>2026-02-08T14:09:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-feb-8th-2026/</id>
+    <title>[Weeknotes] Week of Feb 8th, 2026</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-feb-8th-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«The three days I did spend this week on work were very interesting, because at some point I gave up on feature/product work and focused on RICEing my setup. This felt good, and like selfcare, and…»</summary>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-feb-1st-2026/</id>
+    <title>[Weeknotes] Week of Feb 1st, 2026</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-feb-1st-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I spent last weekend at Lollapalooza, and I wrote about the experience.»</summary>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-02-08/?mtm_campaign=feed</id>
+    <title>Notes for the Week #6 (2026)</title>
+    <updated>2026-02-08T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-02-08/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 2nd–8th February.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-02-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-18-w2605/</id>
+    <title>Weeknote #18 [W26.05] - Attending another film festival, on interviews, and small talk</title>
+    <updated>2026-02-03T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-18-w2605/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I went to BIFFes on the weekend.»</summary>
+    <published>2026-02-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-5-2026/</id>
+    <title>Weeknotes: Week #5 (2026)</title>
+    <updated>2026-02-01T15:09:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-5-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «I swear all this travel is against my will»</summary>
+    <published>2026-02-01T15:09:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-02-01/?mtm_campaign=feed</id>
+    <title>Notes for the Week #5 (2026)</title>
+    <updated>2026-02-01T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-02-01/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 26th January–1st February.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-02-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://halfthere.mataroa.blog/blog/week-note-4/</id>
+    <title>Week note 4</title>
+    <updated>2026-01-28T00:00:00+00:00</updated>
+    <author>
+      <name>halfthere</name>
+      <uri>https://halfthere.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://halfthere.mataroa.blog/blog/week-note-4/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«No journal entries so far. Yikes.
+Many big cries. Also, many big laughs. 
+Bad brain days, doable brain days.
+Immense envy of people who have interests and motivations for worldly things. I wish I…»</summary>
+    <published>2026-01-28T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-17-w2604/</id>
+    <title>Weeknote #17 [W26.04] - Recruiting user research participants, involving more people in Cinema Next Door, and a recovering Malcolm</title>
+    <updated>2026-01-26T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-17-w2604/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Recruiting participants for a consumer-facing app has turned out to be more difficult than it was for the internal apps that I’ve worked on previously.»</summary>
+    <published>2026-01-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-4-2026/</id>
+    <title>Weeknotes: Week #4 (2026)</title>
+    <updated>2026-01-25T10:16:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-4-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «A slow week back at home»</summary>
+    <published>2026-01-25T10:16:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-01-25/?mtm_campaign=feed</id>
+    <title>Notes for the Week #4 (2026)</title>
+    <updated>2026-01-25T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-01-25/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 19th–25th January.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-01-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-jan-23rd-2026/</id>
+    <title>[Weeknotes] Week of Jan 23rd, 2026</title>
+    <updated>2026-01-23T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-jan-23rd-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Woah! I knew I’d skipped two weeknotes but I didn’t realise my last one was from last year. Yes, I was dying and it was a cause for alarm, but the chaos was planned for (as much as one is able to,…»</summary>
+    <published>2026-01-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://kartikkwatra.com/blog/weeknote-2026-w3/</id>
+    <title>Weeknote 2026-W3 | IQ vs AQI</title>
+    <updated>2026-01-20T00:00:00+00:00</updated>
+    <author>
+      <name>Kartik Kwatra</name>
+      <uri>https://kartikkwatra.com/rss.xml</uri>
+    </author>
+    <link href="https://kartikkwatra.com/blog/weeknote-2026-w3/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I missed writing the previous weeknote so this for both Week 2 and Week 3.
+I realised that most of the time I’m in ‘doing’ mode and the weeknotes seem to be giving me the time to pause and reflect on…»</summary>
+    <published>2026-01-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://halfthere.mataroa.blog/blog/week-note-3/</id>
+    <title>Week Note 3</title>
+    <updated>2026-01-20T00:00:00+00:00</updated>
+    <author>
+      <name>halfthere</name>
+      <uri>https://halfthere.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://halfthere.mataroa.blog/blog/week-note-3/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Ah another week blurred right past me. 
+A rather emotionally exhausting one.»</summary>
+    <published>2026-01-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-16-w2603/</id>
+    <title>Weeknote #16 [W26.03] - Curating films, and chasing reading goals</title>
+    <updated>2026-01-20T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-16-w2603/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Next month’s curation theme for Cinema Next Door is going to be “What we talk about when we talk about love”.»</summary>
+    <published>2026-01-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-3-2026/</id>
+    <title>Weeknotes: Week #3 (2026)</title>
+    <updated>2026-01-18T06:50:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-3-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «A relatively quiet week mostly spent traveling and reading»</summary>
+    <published>2026-01-18T06:50:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-01-18/?mtm_campaign=feed</id>
+    <title>Notes for the Week #3 (2026)</title>
+    <updated>2026-01-18T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-01-18/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 12th–18th January.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-01-18T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://vishalr.dev/archive/16-Theater-1-restaurant-0</id>
+    <title>Theater 1 restaurant 0</title>
+    <updated>2026-01-17T18:30:00+00:00</updated>
+    <author>
+      <name>Vishal R</name>
+      <uri>https://vishalr.dev/rss.xml</uri>
+    </author>
+    <link href="https://vishalr.dev/archive/16-Theater-1-restaurant-0?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Yo!»</summary>
+    <category term="WeekNote"/>
+    <published>2026-01-17T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://akashbhat.com/from-bhat-to-bradbury/</id>
+    <title>Weekly Notes - Week 2 - From Bhat to Bradbury</title>
+    <updated>2026-01-15T16:31:00+00:00</updated>
+    <author>
+      <name>Akash Bhat</name>
+      <uri>https://akashbhat.com/feed/</uri>
+    </author>
+    <link href="https://akashbhat.com/from-bhat-to-bradbury/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Travel is great but being back home is greater.»</summary>
+    <published>2026-01-15T16:31:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-15-w2602/</id>
+    <title>Weeknote #15 [W26.02] - Malcolm, the cat, returns; and setting up likes, comments &amp; notifications</title>
+    <updated>2026-01-13T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-15-w2602/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Malcolm had left around a month ago, right before I went to Trivandrum for the film festival.»</summary>
+    <published>2026-01-13T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://halfthere.mataroa.blog/blog/week-note-2/</id>
+    <title>Week Note 2</title>
+    <updated>2026-01-12T00:00:00+00:00</updated>
+    <author>
+      <name>halfthere</name>
+      <uri>https://halfthere.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://halfthere.mataroa.blog/blog/week-note-2/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«It's definitely been longer than a week, but even the 7-day week felt like a year. Things happen so fast and it all gets so foggy and muddled. I don't know if I have it in me to write a day-wise…»</summary>
+    <published>2026-01-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-2-2026/</id>
+    <title>Weeknotes: Week #2 (2026)</title>
+    <updated>2026-01-11T14:08:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-2-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «Rounding up a rather depressing week»</summary>
+    <published>2026-01-11T14:08:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-01-11/?mtm_campaign=feed</id>
+    <title>Notes for the Week #2 (2026)</title>
+    <updated>2026-01-11T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-01-11/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 5th–11th January.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-01-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2026-weeknotes-01-04/?mtm_campaign=feed</id>
+    <title>Notes for the Week #1 (2026)</title>
+    <updated>2026-01-04T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2026-weeknotes-01-04/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 29th December 2025–4th January 2026.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2026-01-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-1-2026/</id>
+    <title>Weeknotes: Week #1 (2026)</title>
+    <updated>2026-01-03T10:50:58+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-1-2026/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «Starting off the year being VERY lazy»</summary>
+    <published>2026-01-03T10:50:58+00:00</published>
+  </entry>
+  <entry>
+    <id>https://kartikkwatra.com/blog/weeknote-2026-w1/</id>
+    <title>Weeknote 2026-W1 | '12 grapes under the table'</title>
+    <updated>2026-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>Kartik Kwatra</name>
+      <uri>https://kartikkwatra.com/rss.xml</uri>
+    </author>
+    <link href="https://kartikkwatra.com/blog/weeknote-2026-w1/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I’m not a new year resolutions person, but there have been some resolutions that I had which have nicely rolled over to 2026 and life just happens to be in the right spot for me to act on them. One…»</summary>
+    <published>2026-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://halfthere.mataroa.blog/blog/week-note-1/</id>
+    <title>Week Note 1</title>
+    <updated>2026-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>halfthere</name>
+      <uri>https://halfthere.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://halfthere.mataroa.blog/blog/week-note-1/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«First time writing a week note. Don't know how this differs from a journal entry. I guess in the sense that it is 'supposed' to be more a description of events of the week as opposed to an amorphous…»</summary>
+    <published>2026-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-14-w2601/</id>
+    <title>Weeknote #14 [W26.01] - Blocking people, moral questions, and coconut water coffee</title>
+    <updated>2026-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-14-w2601/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I’ve lately been getting unprompted barrages of abusive messages from someone I used to (and still do) care about. I have no idea why they are doing this, nor do I know how to respond.»</summary>
+    <published>2026-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://azan-n.com/notes/20260103-a-weeknote-because-tanvi-is-scary</id>
+    <title>A weeknote because Tanvi is scary</title>
+    <updated>2026-01-03T00:00:00+00:00</updated>
+    <author>
+      <name>Azan</name>
+      <uri>https://azan-n.com/notes/rss.xml</uri>
+    </author>
+    <link href="https://azan-n.com/notes/20260103-a-weeknote-because-tanvi-is-scary?ref=blr.indiewebclub.org"/>
+    <published>2026-01-03T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-13-w2552/</id>
+    <title>Weeknote #13 [W25.52] - Recipes, parties, orange cake, and completing yearly goals</title>
+    <updated>2025-12-29T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-13-w2552/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I began the week by adding a recipe section to the blog and published the first recipe: onion &amp; tomato uttapam.»</summary>
+    <published>2025-12-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-52-2025/</id>
+    <title>Weeknotes: Week #52 (2025)</title>
+    <updated>2025-12-28T14:35:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-52-2025/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «The final edition of the 2025 weeknotes»</summary>
+    <published>2025-12-28T14:35:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-12-28/?mtm_campaign=feed</id>
+    <title>Notes for the Week #52 (2025)</title>
+    <updated>2025-12-28T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-12-28/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 22nd–28th December.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-12-28T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-dec-27th-2025/</id>
+    <title>[Weeknotes] Week of Dec 27th, 2025</title>
+    <updated>2025-12-27T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-dec-27th-2025/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I am in the enviable position where I’m building a game for work! The goal is to make the conversational experience we’re creating feel more engaging, so the idea was to build a memory palace of the…»</summary>
+    <published>2025-12-27T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-12-w2551/</id>
+    <title>Weeknote #12 [W25.51] - A week of watching films in Trivandrum</title>
+    <updated>2025-12-24T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-12-w2551/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I spent most of last week in Trivandrum, watching films, and having dinner with Manu afterwards. I also met my friend and ex-colleague Arjun a few times, who was attending the festival too.»</summary>
+    <published>2025-12-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-12-21/?mtm_campaign=feed</id>
+    <title>Notes for the Weeks #50–51 (2025)</title>
+    <updated>2025-12-21T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-12-21/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the weeks of 8th–21st December.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-12-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://msfjarvis.dev/posts/weeknotes-week-51-2025/</id>
+    <title>Weeknotes: Week #51 (2025)</title>
+    <updated>2025-12-20T10:55:00+00:00</updated>
+    <author>
+      <name>Harsh Shandilya</name>
+      <uri>https://msfjarvis.dev/index.xml</uri>
+    </author>
+    <link href="https://msfjarvis.dev/posts/weeknotes-week-51-2025/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@msfjarvis@androiddev.social: «My very first weeknotes, ironically for the second last week of the year :D»</summary>
+    <published>2025-12-20T10:55:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-11-w2550/</id>
+    <title>Weeknote #11 [W25.50] - A new home for the blog, and arriving at Trivandrum for IFFK</title>
+    <updated>2025-12-17T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-11-w2550/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I have a new home for my blog at blog.anikthink.com»</summary>
+    <published>2025-12-17T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-dec-13th-2025/</id>
+    <title>[Weeknotes] Week of Dec 13th, 2025</title>
+    <updated>2025-12-13T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-dec-13th-2025/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Video generation is expensive! What is the stack people typically work with, how do they prompt their models, how do they store and access memories for those models, and how do they not burn hundreds…»</summary>
+    <published>2025-12-13T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-10-w2549/</id>
+    <title>Weeknote #10 [W25.49] - First screening of Cinema Next Door, and why I should stop drinking coffee</title>
+    <updated>2025-12-08T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-10-w2549/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«We finally had our first screening of Cinema Next Door last Tuesday on Dec 2. We screened Satyajit Ray’s Pather Panchali.»</summary>
+    <published>2025-12-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-12-07/?mtm_campaign=feed</id>
+    <title>Notes for the Week #49 (2025)</title>
+    <updated>2025-12-07T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-12-07/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 24th November–7th December.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-12-07T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/week-of-dec-6th-2025/</id>
+    <title>[Weeknotes] Week of Dec 6th, 2025</title>
+    <updated>2025-12-06T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/week-of-dec-6th-2025/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I integrated a text-to-speech(tts) model into a chat interface for work this week. The challenge was not in working with voice, it was in the infrastructure that connects the llm(s) to the chat…»</summary>
+    <published>2025-12-06T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-9-w2548/</id>
+    <title>Weeknote #9 [W25.48] - Malcolm the cat leaves, and registering for IFFK</title>
+    <updated>2025-12-02T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-9-w2548/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«This is going to be a shorter note than usual because I spent most of the week recovering from cold.»</summary>
+    <published>2025-12-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-11-30/?mtm_campaign=feed</id>
+    <title>Notes for the Week #48 (2025)</title>
+    <updated>2025-11-30T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-11-30/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 24th–30th November.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-11-30T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://tanvibhakta.in/weeknotes/month-of-nov-2025/</id>
+    <title>[Weeknotes] Month of November, 2025</title>
+    <updated>2025-11-29T00:00:00+00:00</updated>
+    <author>
+      <name>Tanvi Bhakta</name>
+      <uri>https://tanvibhakta.in/feed.xml</uri>
+    </author>
+    <link href="https://tanvibhakta.in/weeknotes/month-of-nov-2025/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«It’s time for a month note!»</summary>
+    <published>2025-11-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-8-w2547/</id>
+    <title>Weeknote #8 [W25.47] - Sickness, design tokens, pad thai, and screening schedule</title>
+    <updated>2025-11-27T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-8-w2547/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I am late with my weeknote again, this time because I had a bad fever over the weekend.»</summary>
+    <published>2025-11-27T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-11-23/?mtm_campaign=feed</id>
+    <title>Notes for the Week #47 (2025)</title>
+    <updated>2025-11-23T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-11-23/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 17th–23rd November.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-11-23T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-11-16/?mtm_campaign=feed</id>
+    <title>Notes for the Week #46 (2025)</title>
+    <updated>2025-11-16T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-11-16/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 10th–16th November.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-11-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-7-w2546/</id>
+    <title>Weeknote #7 [W25.46] - Selecting films for Cinema Next Door, the joy of rediscovering something familiar, and building design systems</title>
+    <updated>2025-11-15T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-7-w2546/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«The new film club finally has a name â€” Cinema Next Door.»</summary>
+    <published>2025-11-15T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-6-w2545/</id>
+    <title>Weeknote #6 [W25.45] - On film clubs and feeding friends</title>
+    <updated>2025-11-12T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-6-w2545/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«A couple of weeks ago I wrote about starting a new film club. That idea began to take shape this week.»</summary>
+    <published>2025-11-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-11-09/?mtm_campaign=feed</id>
+    <title>Notes for the Week #45 (2025)</title>
+    <updated>2025-11-09T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-11-09/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 3rd–9th November.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-11-09T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-5-w2544/</id>
+    <title>Weeknote #5 [W25.44] - In the Mood for Love</title>
+    <updated>2025-11-02T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-5-w2544/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I don’t know what I did this week, but it felt unusually busy.»</summary>
+    <published>2025-11-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-11-02/?mtm_campaign=feed</id>
+    <title>Notes for the Week #44 (2025)</title>
+    <updated>2025-11-02T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-11-02/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 27th Oct–2nd November.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-11-02T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-4-w2543/</id>
+    <title>Weeknote #4 [W25.43] - A new job, dating apps, and film clubs</title>
+    <updated>2025-10-31T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-4-w2543/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«This weeknote is for last week, Iâ€™m almost a week late with it.»</summary>
+    <published>2025-10-31T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-10-26/?mtm_campaign=feed</id>
+    <title>Notes for the Week #43 (2025)</title>
+    <updated>2025-10-26T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-10-26/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 20th–26th October.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-10-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-3-w2542/</id>
+    <title>Weeknote #3 [W25.42] - Shooting a film, leaving my job, and how to read 60 books a year</title>
+    <updated>2025-10-21T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-3-w2542/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«My friend Siddharth, who I had first met at TPCC a bit more than a couple of years, had been planning to make a short film for a while.»</summary>
+    <published>2025-10-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-10-19/?mtm_campaign=feed</id>
+    <title>Notes for the Week #42 (2025)</title>
+    <updated>2025-10-19T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-10-19/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 13th–19th October.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-10-19T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-10-12/?mtm_campaign=feed</id>
+    <title>Notes for the Week #41 (2025)</title>
+    <updated>2025-10-12T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-10-12/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «This week note covers the week of 5th–12th October.»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-10-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-2-w2541/</id>
+    <title>Weeknote #2 [W25.41] - Howling cat, lemon spray, and the lack of critical thinking in Indian education</title>
+    <updated>2025-10-11T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-2-w2541/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Malcolm had his second episode of uncontrollable howling today. Like the first one, it was brought on by the neighbourhood stray female cat. She is probably in heat. I had gone out to throw the…»</summary>
+    <published>2025-10-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://journal.jatan.space/week-notes-inception/</id>
+    <title>Week notes inception</title>
+    <updated>2025-10-04T14:49:19+00:00</updated>
+    <author>
+      <name>Jatan</name>
+      <uri>https://journal.jatan.space/rss/</uri>
+    </author>
+    <link href="https://journal.jatan.space/week-notes-inception/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@moonmehta@mastodon.social: «This week has been nice. A list of notable events below; some photos follow.»</summary>
+    <published>2025-10-04T14:49:19+00:00</published>
+  </entry>
+  <entry>
+    <id>https://akashbhat.com/week-1-zero-banana-liking-dogs-found/</id>
+    <title>Weekly Notes - Week 1 - Zero banana-liking dogs found</title>
+    <updated>2025-10-04T14:27:00+00:00</updated>
+    <author>
+      <name>Akash Bhat</name>
+      <uri>https://akashbhat.com/feed/</uri>
+    </author>
+    <link href="https://akashbhat.com/week-1-zero-banana-liking-dogs-found/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I’ve started writing weekly notes after being inspired by Ankur, Tanvi, and Abhinav at my first-ever IndieWeb Club meetup in Bangalore a few weeks ago. While I won’t be able to share updates about my…»</summary>
+    <published>2025-10-04T14:27:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://himanshikalra.com/weeknotes-week-1-post-retreat-life/</id>
+    <title>Weeknotes: Week 1 Post-retreat life</title>
+    <updated>2025-10-04T11:58:33+00:00</updated>
+    <author>
+      <name>Himanshi Kalra</name>
+      <uri>https://himanshikalra.com/feed/</uri>
+    </author>
+    <link href="https://himanshikalra.com/weeknotes-week-1-post-retreat-life/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I am writing Weeknotes as part of the Indiewebclub #11 prompt. The week was full of learnings : ) [Friday] We celebrated a friend’s birthday, one of the gifts was a printed tee, and I was happy using…»</summary>
+    <category term="diary-logs"/>
+    <category term="travel"/>
+    <published>2025-10-04T11:58:33+00:00</published>
+  </entry>
+  <entry>
+    <id>https://kaustubh.page/posts/weeknote-04-october-2025/</id>
+    <title>Weeknote: 04 October 2025</title>
+    <updated>2025-10-04T11:53:44+00:00</updated>
+    <author>
+      <name>Kaustubh M.</name>
+      <uri>https://kaustubh.page/rss.xml</uri>
+    </author>
+    <link href="https://kaustubh.page/posts/weeknote-04-october-2025/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«My personal celebration this week is that I did released
+the OCaml handlebars templating library
+that I was working on. I felt happy when I read the "Thanks"
+and "Your PR ... has been merged" emails…»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <published>2025-10-04T11:53:44+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.anikthink.com/blog/weeknote-1-w2540/</id>
+    <title>Weeknote #1 [W25.40]: Writing in public, reflections on breaking up, and thoughts on structures</title>
+    <updated>2025-10-04T00:00:00+00:00</updated>
+    <author>
+      <name>Anik</name>
+      <uri>https://blog.anikthink.com/rss.xml</uri>
+    </author>
+    <link href="https://blog.anikthink.com/blog/weeknote-1-w2540/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«I’m writing this post at a meeting of the Indie Web Club at Underline Center. The last time I had a public blog was around 12 years ago. I have written things then â€” journals, essays, and the like…»</summary>
+    <published>2025-10-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://abhinavsarkar.net/notes/2025-weeknotes-10-04/?mtm_campaign=feed</id>
+    <title>Notes for the Week #40 (2025)</title>
+    <updated>2025-10-04T00:00:00+00:00</updated>
+    <author>
+      <name>Abhinav Sarkar</name>
+      <uri>https://abhinavsarkar.net/all.atom</uri>
+    </author>
+    <link href="https://abhinavsarkar.net/notes/2025-weeknotes-10-04/?mtm_campaign=feed&amp;ref=blr.indiewebclub.org"/>
+    <summary type="text">@abnv@fantastic.earth: «Inspired by a session at my local IndieWebClub meeting, I’m restarting my practice of writing week notes. Let’s see how it goes. This note covers the week of 28th Sep–4th October, and a few days…»</summary>
+    <category term="weeknotes"/>
+    <category term="personal"/>
+    <category term="iwcb"/>
+    <published>2025-10-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://lepisma.xyz/journal/2025/09/27/lurking-on-weeknotes/index.html</id>
+    <title>Lurking on Weeknotes</title>
+    <updated>2025-09-26T18:30:00+00:00</updated>
+    <author>
+      <name>Abhinav Tushar</name>
+      <uri>https://lepisma.xyz/journal/atom.xml</uri>
+    </author>
+    <link href="https://lepisma.xyz/journal/2025/09/27/lurking-on-weeknotes/index.html?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Full post on the site»</summary>
+    <category term="personal"/>
+    <category term="indieweb"/>
+    <published>2025-09-26T18:30:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://akhilunnikrishnan.com/2025/09/week-of-september-14-2025/</id>
+    <title>Week of September 14, 2025</title>
+    <updated>2025-09-14T00:00:00+00:00</updated>
+    <author>
+      <name>Akhil Unnikrishnan</name>
+      <uri>https://akhilunnikrishnan.com/feed/blog/</uri>
+    </author>
+    <link href="https://akhilunnikrishnan.com/2025/09/week-of-september-14-2025/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@akhiluk@mastodon.social: «Looks like the weeknotes are a regular fixture. For now.»</summary>
+    <published>2025-09-14T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://akhilunnikrishnan.com/2025/09/week-of-september-7-2025/</id>
+    <title>Week of September 7, 2025</title>
+    <updated>2025-09-07T00:00:00+00:00</updated>
+    <author>
+      <name>Akhil Unnikrishnan</name>
+      <uri>https://akhilunnikrishnan.com/feed/blog/</uri>
+    </author>
+    <link href="https://akhilunnikrishnan.com/2025/09/week-of-september-7-2025/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@akhiluk@mastodon.social: «I guess we’re doing weeknotes now. Let’s chalk it up to a recent dearth in ideas, shall we?»</summary>
+    <published>2025-09-07T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shubham.mataroa.blog/blog/weeknote-2-week-of-28th-june/</id>
+    <title>Weeknote #2: Week of 28th June 2025</title>
+    <updated>2025-06-29T00:00:00+00:00</updated>
+    <author>
+      <name>Shubham</name>
+      <uri>https://shubham.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://shubham.mataroa.blog/blog/weeknote-2-week-of-28th-june/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Another very very early morning, and another kinda late weeknote.»</summary>
+    <published>2025-06-29T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://flavorfulsuffering.xyz/posts/weeknotes/weeknote-2/</id>
+    <title>Weeknote #2: Week of 28th June 2025</title>
+    <updated>2025-06-28T16:52:45+00:00</updated>
+    <author>
+      <name>Shubham</name>
+      <uri>https://flavorfulsuffering.xyz/rss.xml</uri>
+    </author>
+    <link href="https://flavorfulsuffering.xyz/posts/weeknotes/weeknote-2/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Weeknote #2»</summary>
+    <published>2025-06-28T16:52:45+00:00</published>
+  </entry>
+  <entry>
+    <id>https://flavorfulsuffering.xyz/posts/weeknotes/weeknote-1/</id>
+    <title>Weeknote #1: Week of 21st June 2025</title>
+    <updated>2025-06-21T16:52:45+00:00</updated>
+    <author>
+      <name>Shubham</name>
+      <uri>https://flavorfulsuffering.xyz/rss.xml</uri>
+    </author>
+    <link href="https://flavorfulsuffering.xyz/posts/weeknotes/weeknote-1/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Weeknote #1»</summary>
+    <published>2025-06-21T16:52:45+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shubham.mataroa.blog/blog/weeknote-1-week-of-21st-june-2025/</id>
+    <title>Weeknote #1: Week of 21st June 2025</title>
+    <updated>2025-06-21T00:00:00+00:00</updated>
+    <author>
+      <name>Shubham</name>
+      <uri>https://shubham.mataroa.blog/rss/</uri>
+    </author>
+    <link href="https://shubham.mataroa.blog/blog/weeknote-1-week-of-21st-june-2025/?ref=blr.indiewebclub.org"/>
+    <summary type="text">«Okay, here we go. This is going to be the first weeknote that I'm ever going to post on the internet. Over the past few years, I guess I've already written quite a few weeknotes without me realizing…»</summary>
+    <published>2025-06-21T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-20-2025/</id>
+    <title>Week 20/2025</title>
+    <updated>2025-05-19T00:00:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-20-2025/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «Week 20 Summary - flat hunting, books and movies!»</summary>
+    <category term="weekly-notes"/>
+    <category term="books"/>
+    <category term="personal"/>
+    <category term="food"/>
+    <published>2025-05-19T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://blog.haripriya.org/post/weekly-notes-16-17-18-19-2025</id>
+    <title>Weekly Notes (16/17/18/19) - 2025</title>
+    <updated>2025-05-12T06:05:57+00:00</updated>
+    <author>
+      <name>Haripriya</name>
+      <uri>https://blog.haripriya.org/api/blog-feed.xml</uri>
+    </author>
+    <link href="https://blog.haripriya.org/post/weekly-notes-16-17-18-19-2025?ref=blr.indiewebclub.org"/>
+    <summary type="text">«It's been a while since I wrote any notes, work has been hectic, and I just didn’t make the time to post although I did collate them. I...»</summary>
+    <category term="Life"/>
+    <published>2025-05-12T06:05:57+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-19-2025/</id>
+    <title>Week 19/2025</title>
+    <updated>2025-05-12T00:00:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-19-2025/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «Week 19 Summary - travelling, pizza and a lot of rest.»</summary>
+    <category term="weekly-notes"/>
+    <category term="food"/>
+    <category term="homelab"/>
+    <category term="bangalore"/>
+    <category term="health"/>
+    <published>2025-05-12T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://yashgarg.dev/weekly-notes-18-2025/</id>
+    <title>Week 18/2025</title>
+    <updated>2025-05-04T00:00:00+00:00</updated>
+    <author>
+      <name>Yash Garg</name>
+      <uri>https://yashgarg.dev/weekly-notes/index.xml</uri>
+    </author>
+    <link href="https://yashgarg.dev/weekly-notes-18-2025/?ref=blr.indiewebclub.org"/>
+    <summary type="text">@yashgarg@androiddev.social: «Week 18 Summary - tailscale insiders, work and shenanigans.»</summary>
+    <category term="weekly-notes"/>
+    <category term="homelab"/>
+    <category term="tailscale"/>
+    <published>2025-05-04T00:00:00+00:00</published>
+  </entry>
+</feed>
