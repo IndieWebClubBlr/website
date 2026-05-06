@@ -627,3 +627,11 @@ form.newsletter-form {
     align-items: flex-start;
   }
 }
+
+.noscript p {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: red;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.1em;
+}

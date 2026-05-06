@@ -366,14 +366,14 @@ def generate_website(
     @build.rule("archive_index")
     def _(_target: str):
         build.need("feeds")
-        years = sorted(cache.entries_by_year.keys(), reverse=True)
+        years = sorted(cache.entries_by_year.keys())
         generate_archive_index(cache.entries, years, output_dir)
 
     @build.rule("archive_year:*")
     def _(target: str):
         build.need("feeds")
         year = int(target.split(":", 1)[1])
-        years = sorted(cache.entries_by_year.keys(), reverse=True)
+        years = sorted(cache.entries_by_year.keys())
         generate_archive_year(year, cache.entries_by_year[year], years, output_dir)
 
     @build.rule("homepage")

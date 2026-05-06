@@ -99,9 +99,9 @@ def generate_archive_year(
         by_month[entry.published.month].append(entry)
 
     months_ctx = []
-    for month in sorted(by_month.keys(), reverse=True):
+    for month in sorted(by_month.keys()):
         month_entries = by_month[month]
-        month_entries.sort(key=lambda e: e.published, reverse=True)
+        month_entries.sort(key=lambda e: e.published)
         months_ctx.append(
             {
                 "month": month,
@@ -114,8 +114,8 @@ def generate_archive_year(
     year_member_count = len({e.feed_title for e in year_entries})
 
     i = years.index(year)
-    prev_year = str(years[i + 1]) if i + 1 < len(years) else ""
-    next_year = str(years[i - 1]) if i > 0 else ""
+    next_year = str(years[i + 1]) if i + 1 < len(years) else ""
+    prev_year = str(years[i - 1]) if i > 0 else ""
 
     renderer = make_renderer()
     year_template = read_template("archive-year.html")
