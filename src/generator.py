@@ -19,16 +19,9 @@ import logging
 import random
 import shutil
 import sys
-from collections import defaultdict
-from copy import deepcopy
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from pathlib import Path
-from zoneinfo import ZoneInfo
-
-from feedgen.feed import FeedGenerator
-from icalendar import Calendar, Timezone, TimezoneStandard
-from icalendar import Event as CalEvent
 
 # Add parent directory to path so we can import src modules
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -40,7 +33,12 @@ from src.archive import (
     group_entries_by_year,
 )
 from src.build import Build
-from src.events import Event, fetch_events
+from src.events import (
+    Event,
+    fetch_events,
+    generate_events_calendar,
+    generate_events_feed,
+)
 from src.feeds import (
     FailedFeedInfo,
     FailureReason,
@@ -48,9 +46,11 @@ from src.feeds import (
     FeedInfo,
     entry_ctx,
     fetch_all_feeds,
-    generate_feed,
+    generate_blogroll_feed,
+    group_feed_entries,
     parse_opml_file,
     prepend_fediverse_creator,
+    separate_weeknote_entries,
 )
 from src.member_dir import generate_members_page
 from src.newsletter import generate_newsletter_page
@@ -66,76 +66,6 @@ from src.utils import (
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
-
-
-def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
-    """
-    Group and sort feed entries by feed title, keeping only the most recent entries per feed.
-
-    Args:
-        entries: List of FeedEntry objects to group.
-
-    Returns:
-        List of FeedEntry objects grouped by feed title and sorted by publication date.
-    """
-    # Group entries by OPML feed title
-    feed_groups: defaultdict[str, list[FeedEntry]] = defaultdict(list)
-
-    for entry in entries:
-        feed_groups[entry.feed_title].append(entry)
-
-    res_entries: list[FeedEntry] = []
-    for feed_title in feed_groups.keys():
-        group_entries = feed_groups[feed_title]
-        group_entries.sort(key=lambda x: (x.published, x.link), reverse=True)
-        group_entries = [
-            deepcopy(entry)
-            for entry in group_entries[: config.MAX_SHOWN_POSTS_PER_FEED]
-        ]
-
-        for entry in group_entries:
-            entry.tags = entry.tags[: config.MAX_SHOWN_TAGS]
-
-        res_entries.extend(group_entries)
-
-    # Sort result entries globally by publication date for overall stats
-    res_entries.sort(key=lambda x: (x.published, x.link), reverse=True)
-    return res_entries
-
-
-def separate_weeknote_entries(
-    entries: list[FeedEntry],
-) -> tuple[list[FeedEntry], list[FeedEntry]]:
-    # Separate week notes from other entries
-    weeknote_entries: list[FeedEntry] = []
-    other_entries: list[FeedEntry] = []
-
-    for entry in entries:
-        title = entry.title.lower()
-        if (
-            "weeknote" in title
-            or (
-                "week" in title
-                and all(
-                    w not in title
-                    for w in [
-                        "week's",
-                        "week’s",
-                        "weekend",
-                        "biweek",
-                        "midweek",
-                        "semiweek",
-                        "yesterweek",
-                    ]
-                )
-            )
-            or any("weeknote" in tag.lower() for tag in entry.tags)
-        ):
-            weeknote_entries.append(entry)
-        else:
-            other_entries.append(entry)
-
-    return (weeknote_entries, other_entries)
 
 
 def generate_homepage(
@@ -213,124 +143,6 @@ def generate_homepage(
     except Exception as e:
         logger.error(f"Failed to generate the homepage: {e}")
         raise
-
-
-def generate_blogroll_feed(
-    entries: list[FeedEntry], feed_name: str, feed_subtitle: str, output_path: Path
-):
-    """
-    Creates an Atom feed from a list of FeedEntry objects.
-
-    Args:
-        entries: A list of FeedEntry objects to include in the feed.
-        feed_name: Name of generator feed.
-        feed_subtitle: Subtitle of the generated feed.
-        output_path: The path of the Atom file to be written.
-    """
-    logger.info(f"Generating {feed_name} feed with {len(entries)} entries")
-    feed_url = config.SITE_URL + output_path.name
-
-    feed_info = FeedInfo(
-        title=f"IndieWebClub Bangalore {feed_name}",
-        xml_url=feed_url,
-        html_url=config.SITE_URL,
-    )
-
-    generate_feed(
-        feed_info=feed_info,
-        author_name="IndieWebClub Bangalore",
-        feed_subtitle=feed_subtitle,
-        entries=entries,
-        output_path=output_path,
-    )
-
-    logger.info(f"{feed_name} feed written to: {output_path}")
-
-
-def generate_events_feed(events: list[Event], output_dir: Path):
-    """
-    Creates an Atom feed from a list of Event objects.
-
-    Args:
-        events: A list of Event objects to include in the feed.
-        output_dir: Path where Atom file should be written.
-    """
-    logger.info(f"Generating events feed with {len(events)} events")
-    output_path = output_dir.joinpath(config.EVENTS_FEED_FILE)
-
-    feed_url = config.SITE_URL + output_path.name
-    fg = FeedGenerator()
-
-    fg.id(feed_url)
-    fg.title("IndieWebClub Bangalore Events")
-    fg.author(name="IndieWebClub Bangalore")
-    fg.link(href=feed_url, rel="self")
-    fg.link(href=config.SITE_URL, rel="alternate")
-    fg.subtitle("Events by IndieWebClub Bangalore.")
-
-    feed_updated = None
-    for event in events:
-        fe = fg.add_entry(order="append")
-
-        fe.id(event.underline_url)
-        fe.title(event.title)
-        fe.link(href=event.underline_url, rel="alternate")
-        fe.published(event.created_at)
-        fe.updated(event.created_at)
-        fe.content(event.details)
-
-        if feed_updated is None or feed_updated < event.created_at:
-            feed_updated = event.created_at
-
-    fg.updated(feed_updated or datetime.now())
-    fg.atom_file(output_path, pretty=True)
-    logger.info(f"Events feed written to: {output_path}")
-
-
-def generate_events_calendar(events: list[Event], output_dir: Path):
-    """
-    Creates a Calendar from a list of Event objects.
-
-    Args:
-        events: A list of Event objects to include in the calendar.
-        output_dir: Path where Calendar file should be written.
-    """
-    logger.info(f"Generating events calendar with {len(events)} events")
-
-    cal = Calendar()
-    cal.add("prodid", "-//IndieWebClub Bangalore//Events//EN")
-    cal.add("version", "2.0")
-    cal.calendar_name = "IndieWebClub Bangalore Events"
-    cal.description = "Events by IndieWebClub Bangalore"
-
-    tz = Timezone()
-    tz.add("tzid", "Asia/Kolkata")
-    tz_standard = TimezoneStandard()
-    tz_standard.add("dtstart", datetime(1970, 1, 1))
-    tz_standard.add("tzoffsetfrom", timedelta(hours=5, minutes=30))
-    tz_standard.add("tzoffsetto", timedelta(hours=5, minutes=30))
-    tz_standard.add("tzname", "IST")
-    tz.add_component(tz_standard)
-    cal.add_component(tz)
-
-    now = datetime.now(tz=ZoneInfo("Asia/Kolkata"))
-
-    for event_data in events:
-        event = CalEvent()
-        event.add("summary", event_data.title)
-        event.add("url", event_data.underline_url)
-        event.add("dtstamp", now)
-        event.start = event_data.start_at
-        event.end = event_data.end_at
-        event.uid = f"indiewebclubblr-event-{event_data.id}"
-
-        cal.add_component(event)
-
-    output_path = output_dir.joinpath(config.EVENTS_CAL_FILE)
-    with open(output_path, "wb") as f:
-        _ = f.write(cal.to_ical())
-
-    logger.info(f"Events calendar written to: {output_path}")
 
 
 def get_feeds_with_entries(

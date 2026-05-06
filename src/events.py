@@ -3,13 +3,17 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from typing import TypedDict, cast, final
-from urllib.parse import urlparse
+from zoneinfo import ZoneInfo
 
 import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
+from feedgen.feed import FeedGenerator
+from icalendar import Calendar, Timezone, TimezoneStandard
+from icalendar import Event as CalEvent
 
 from src import config
 
@@ -257,3 +261,89 @@ def fetch_events(
     events.sort(key=lambda x: x.start_at, reverse=True)
     logger.info(f"Extracted {len(events)} events")
     return events
+
+
+def generate_events_feed(events: list[Event], output_dir: Path):
+    """
+    Creates an Atom feed from a list of Event objects.
+
+    Args:
+        events: A list of Event objects to include in the feed.
+        output_dir: Path where Atom file should be written.
+    """
+    logger.info(f"Generating events feed with {len(events)} events")
+    output_path = output_dir.joinpath(config.EVENTS_FEED_FILE)
+
+    feed_url = config.SITE_URL + output_path.name
+    fg = FeedGenerator()
+
+    fg.id(feed_url)
+    fg.title("IndieWebClub Bangalore Events")
+    fg.author(name="IndieWebClub Bangalore")
+    fg.link(href=feed_url, rel="self")
+    fg.link(href=config.SITE_URL, rel="alternate")
+    fg.subtitle("Events by IndieWebClub Bangalore.")
+
+    feed_updated = None
+    for event in events:
+        fe = fg.add_entry(order="append")
+
+        fe.id(event.underline_url)
+        fe.title(event.title)
+        fe.link(href=event.underline_url, rel="alternate")
+        fe.published(event.created_at)
+        fe.updated(event.created_at)
+        fe.content(event.details)
+
+        if feed_updated is None or feed_updated < event.created_at:
+            feed_updated = event.created_at
+
+    fg.updated(feed_updated or datetime.now())
+    fg.atom_file(output_path, pretty=True)
+    logger.info(f"Events feed written to: {output_path}")
+
+
+def generate_events_calendar(events: list[Event], output_dir: Path):
+    """
+    Creates a Calendar from a list of Event objects.
+
+    Args:
+        events: A list of Event objects to include in the calendar.
+        output_dir: Path where Calendar file should be written.
+    """
+    logger.info(f"Generating events calendar with {len(events)} events")
+
+    cal = Calendar()
+    cal.add("prodid", "-//IndieWebClub Bangalore//Events//EN")
+    cal.add("version", "2.0")
+    cal.calendar_name = "IndieWebClub Bangalore Events"
+    cal.description = "Events by IndieWebClub Bangalore"
+
+    tz = Timezone()
+    tz.add("tzid", "Asia/Kolkata")
+    tz_standard = TimezoneStandard()
+    tz_standard.add("dtstart", datetime(1970, 1, 1))
+    tz_standard.add("tzoffsetfrom", timedelta(hours=5, minutes=30))
+    tz_standard.add("tzoffsetto", timedelta(hours=5, minutes=30))
+    tz_standard.add("tzname", "IST")
+    tz.add_component(tz_standard)
+    cal.add_component(tz)
+
+    now = datetime.now(tz=ZoneInfo("Asia/Kolkata"))
+
+    for event_data in events:
+        event = CalEvent()
+        event.add("summary", event_data.title)
+        event.add("url", event_data.underline_url)
+        event.add("dtstamp", now)
+        event.start = event_data.start_at
+        event.end = event_data.end_at
+        event.uid = f"indiewebclubblr-event-{event_data.id}"
+
+        cal.add_component(event)
+
+    output_path = output_dir.joinpath(config.EVENTS_CAL_FILE)
+    with open(output_path, "wb") as f:
+        _ = f.write(cal.to_ical())
+
+    logger.info(f"Events calendar written to: {output_path}")

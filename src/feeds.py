@@ -3,7 +3,9 @@ from __future__ import annotations
 import hashlib
 import logging
 import xml.etree.ElementTree as ET
+from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from copy import deepcopy
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -631,3 +633,105 @@ def fetch_all_feeds(
 
     session_manager.close_all()
     return all_entries, failed_feeds
+
+
+def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
+    """
+    Group and sort feed entries by feed title, keeping only the most recent entries per feed.
+
+    Args:
+        entries: List of FeedEntry objects to group.
+
+    Returns:
+        List of FeedEntry objects grouped by feed title and sorted by publication date.
+    """
+    # Group entries by OPML feed title
+    feed_groups: defaultdict[str, list[FeedEntry]] = defaultdict(list)
+
+    for entry in entries:
+        feed_groups[entry.feed_title].append(entry)
+
+    res_entries: list[FeedEntry] = []
+    for feed_title in feed_groups.keys():
+        group_entries = feed_groups[feed_title]
+        group_entries.sort(key=lambda x: (x.published, x.link), reverse=True)
+        group_entries = [
+            deepcopy(entry)
+            for entry in group_entries[: config.MAX_SHOWN_POSTS_PER_FEED]
+        ]
+
+        for entry in group_entries:
+            entry.tags = entry.tags[: config.MAX_SHOWN_TAGS]
+
+        res_entries.extend(group_entries)
+
+    # Sort result entries globally by publication date for overall stats
+    res_entries.sort(key=lambda x: (x.published, x.link), reverse=True)
+    return res_entries
+
+
+def separate_weeknote_entries(
+    entries: list[FeedEntry],
+) -> tuple[list[FeedEntry], list[FeedEntry]]:
+    # Separate week notes from other entries
+    weeknote_entries: list[FeedEntry] = []
+    other_entries: list[FeedEntry] = []
+
+    for entry in entries:
+        title = entry.title.lower()
+        if (
+            "weeknote" in title
+            or (
+                "week" in title
+                and all(
+                    w not in title
+                    for w in [
+                        "week's",
+                        "week’s",
+                        "weekend",
+                        "biweek",
+                        "midweek",
+                        "semiweek",
+                        "yesterweek",
+                    ]
+                )
+            )
+            or any("weeknote" in tag.lower() for tag in entry.tags)
+        ):
+            weeknote_entries.append(entry)
+        else:
+            other_entries.append(entry)
+
+    return (weeknote_entries, other_entries)
+
+
+def generate_blogroll_feed(
+    entries: list[FeedEntry], feed_name: str, feed_subtitle: str, output_path: Path
+):
+    """
+    Creates an Atom feed from a list of FeedEntry objects.
+
+    Args:
+        entries: A list of FeedEntry objects to include in the feed.
+        feed_name: Name of generator feed.
+        feed_subtitle: Subtitle of the generated feed.
+        output_path: The path of the Atom file to be written.
+    """
+    logger.info(f"Generating {feed_name} feed with {len(entries)} entries")
+    feed_url = config.SITE_URL + output_path.name
+
+    feed_info = FeedInfo(
+        title=f"IndieWebClub Bangalore {feed_name}",
+        xml_url=feed_url,
+        html_url=config.SITE_URL,
+    )
+
+    generate_feed(
+        feed_info=feed_info,
+        author_name="IndieWebClub Bangalore",
+        feed_subtitle=feed_subtitle,
+        entries=entries,
+        output_path=output_path,
+    )
+
+    logger.info(f"{feed_name} feed written to: {output_path}")
