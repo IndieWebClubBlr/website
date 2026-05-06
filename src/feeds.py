@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import logging
+import re
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -670,33 +671,47 @@ def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
     return res_entries
 
 
+WEEKNOTE_PATTERN = re.compile(
+    r"\b(?:week|month|quarter|year)(?:ly|'s|’s)?[-_ ]?notes?\b",
+    re.IGNORECASE,
+)
+
+WEEK_EXCLUSIONS = frozenset(
+    [
+        "week's",
+        "week’s",
+        "weekend",
+        "weekday",
+        "biweek",
+        "midweek",
+        "mid week",
+        "mid-week",
+        "semiweek",
+        "semi-week",
+        "yesterweek",
+    ]
+)
+
+
 def separate_weeknote_entries(
     entries: list[FeedEntry],
 ) -> tuple[list[FeedEntry], list[FeedEntry]]:
-    # Separate week notes from other entries
+    """Split entries into weeknote-like posts and everything else.
+
+    A post is treated as a weeknote if any of:
+      - a tag matches WEEKNOTE_PATTERN (week/month/quarter/year + "note")
+      - the title matches WEEKNOTE_PATTERN
+      - the title contains "week" and none of WEEK_EXCLUSIONS
+    """
     weeknote_entries: list[FeedEntry] = []
     other_entries: list[FeedEntry] = []
 
     for entry in entries:
         title = entry.title.lower()
         if (
-            "weeknote" in title
-            or (
-                "week" in title
-                and all(
-                    w not in title
-                    for w in [
-                        "week's",
-                        "week’s",
-                        "weekend",
-                        "biweek",
-                        "midweek",
-                        "semiweek",
-                        "yesterweek",
-                    ]
-                )
-            )
-            or any("weeknote" in tag.lower() for tag in entry.tags)
+            any(WEEKNOTE_PATTERN.search(tag) for tag in entry.tags)
+            or WEEKNOTE_PATTERN.search(title)
+            or ("week" in title and all(w not in title for w in WEEK_EXCLUSIONS))
         ):
             weeknote_entries.append(entry)
         else:
