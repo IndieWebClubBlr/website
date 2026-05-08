@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IndieWebClub Bangalore — Special Edition Meetup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #000;
+      --color-text: #e0e0e0;
+      --color-text-dim: #b0b0b0;
+      --color-pink: #ef8af9;
+      --color-orange: #e5803a;
+      --color-purple: #9747ff;
+      --color-cyan: #a6cdee;
+      --color-white: #fff;
+      --font-display: "Passion One", "Impact", sans-serif;
+      --font-mono: "Space Mono", "Roboto Mono", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-mono);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--color-pink);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    a:hover {
+      color: var(--color-orange);
+    }
+
+    /* === HERO === */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      overflow: hidden;
+    }
+
+    .hero-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-canvas canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero-overline {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      color: var(--color-cyan);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 900;
+      line-height: 0.95;
+      color: var(--color-white);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title .accent {
+      background: linear-gradient(135deg, var(--color-pink), var(--color-orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: var(--color-text-dim);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-date {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: var(--color-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-venue {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--color-text-dim);
+      margin-top: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* === SECTIONS === */
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--color-pink);
+      margin-bottom: 2rem;
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--color-white);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .section-text {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--color-text);
+      max-width: 650px;
+    }
+
+    .section-text + .section-text {
+      margin-top: 1.2rem;
+    }
+
+    /* === DIVIDER === */
+    .divider {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .divider hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(239,138,249,0.3), rgba(229,128,58,0.3), transparent);
+    }
+
+    /* === DETAILS GRID === */
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 3rem;
+    }
+
+    .detail-item {
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 2rem 1.8rem;
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    .detail-item:hover {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .detail-item .detail-label {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .detail-item:nth-child(1) .detail-label { color: var(--color-pink); }
+    .detail-item:nth-child(2) .detail-label { color: var(--color-orange); }
+    .detail-item:nth-child(3) .detail-label { color: var(--color-purple); }
+    .detail-item:nth-child(4) .detail-label { color: var(--color-cyan); }
+
+    .detail-item .detail-value {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--color-text-dim);
+    }
+
+    /* === CALLOUT === */
+    .callout {
+      margin-top: 3rem;
+      padding: 2.5rem 3rem;
+      border: 1px solid rgba(239,138,249,0.2);
+      background: linear-gradient(135deg, rgba(151,71,255,0.06), rgba(239,138,249,0.06));
+      position: relative;
+    }
+
+    .callout::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-purple), var(--color-pink));
+    }
+
+    .callout p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-text);
+    }
+
+    .callout strong {
+      color: var(--color-pink);
+    }
+
+    /* === TIMELINE === */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 3rem;
+    }
+
+    .timeline-cell {
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    .timeline-cell:hover {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .timeline-cell .tl-date {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+
+    .timeline-cell:nth-child(1) .tl-date { color: var(--color-orange); }
+    .timeline-cell:nth-child(2) .tl-date { color: var(--color-cyan); }
+    .timeline-cell:nth-child(3) .tl-date { color: var(--color-purple); }
+    .timeline-cell:nth-child(4) .tl-date { color: var(--color-pink); }
+
+    .timeline-cell .tl-desc {
+      font-size: 0.85rem;
+      color: var(--color-text-dim);
+      line-height: 1.5;
+    }
+
+    /* === CTA === */
+    .cta-section {
+      text-align: center;
+      padding: 8rem 2rem;
+      position: relative;
+    }
+
+    .cta-section .section-heading {
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-text {
+      font-size: 1rem;
+      color: var(--color-text-dim);
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+
+    .cta-button {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 1.2rem 3.5rem;
+      color: var(--color-white);
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--color-pink), var(--color-orange));
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .cta-button:hover {
+      color: var(--color-white);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 40px rgba(239,138,249,0.3), 0 4px 20px rgba(229,128,58,0.2);
+    }
+
+    /* === CONTACT SECTION === */
+    .contact-section {
+      text-align: center;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .contact-section .section-text {
+      margin: 0 auto;
+      text-align: center;
+      max-width: 500px;
+    }
+
+    .contact-section a {
+      color: var(--color-orange);
+    }
+
+    .contact-section a:hover {
+      color: var(--color-pink);
+    }
+
+    /* === FOOTER === */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.75rem;
+      color: var(--color-text-dim);
+    }
+
+    footer a {
+      color: var(--color-text-dim);
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: var(--color-pink);
+    }
+
+    /* === SCROLL ANIMATIONS === */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .details-grid,
+      .timeline-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section {
+        padding: 4rem 1.5rem;
+      }
+
+      .callout {
+        padding: 1.8rem 1.5rem;
+      }
+
+      .cta-section {
+        padding: 5rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .details-grid,
+      .timeline-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 90vh;
+        padding: 3rem 1.5rem;
+      }
+
+      .cta-button {
+        padding: 1rem 2.5rem;
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .hero-canvas {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-canvas" id="hero-canvas"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-content">
+    <p class="hero-overline">IndieWebClub Bangalore</p>
+    <h1 class="hero-title"><span class="accent">Special Edition</span><br>Meetup</h1>
+    <p class="hero-subtitle">
+      Celebrating one year of IndieWebClub Bangalore.
+      Lightning talks, demos, and showcases from the community.
+    </p>
+    <p class="hero-date">May 30, 2026</p>
+    <p class="hero-venue">Underline Center, Indiranagar, Bengaluru</p>
+    
+    <noscript>Please enable JavaScript to see the rest of the page.</noscript>
+  </div>
+</section>
+
+<!-- DETAILS -->
+<div class="divider"><hr></div>
+<section class="section">
+  <p class="section-label fade-in">Event Details</p>
+  <h2 class="section-heading fade-in stagger-1">Everything you<br>need to know</h2>
+  <p class="section-text fade-in stagger-2">
+    We're organizing a Special Edition meetup where we invite <strong>you</strong>, the community,
+    to present, demo, and showcase lightning talks!
+  </p>
+  <div class="details-grid fade-in stagger-3">
+    <div class="detail-item">
+      <div class="detail-label">When</div>
+      <div class="detail-value">Saturday<br>May 30th 2026<br>2&ndash;5 PM</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">Where</div>
+      <div class="detail-value">Underline Center<br>1st Main Rd<br>Indiranagar, Bengaluru</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">Format</div>
+      <div class="detail-value">Lightning talks<br>8 minutes each<br>15 talks total</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">Contact</div>
+      <div class="detail-value"><a href="mailto:blr+se@indiewebclub.org">blr+se@indiewebclub.org</a><br>or DM an organiser</div>
+    </div>
+  </div>
+</section>
+
+<!-- CFP -->
+<div class="divider"><hr></div>
+<section class="section">
+  <p class="section-label fade-in">Call for Proposals</p>
+  <h2 class="section-heading fade-in stagger-1">We want to<br>hear from you</h2>
+  <p class="section-text fade-in stagger-2">
+    Feel free to submit as many talks as you have ideas, and we'll work together
+    to pick something exciting.
+  </p>
+  <p class="section-text fade-in stagger-3">
+    If your talk is selected, we will get in touch and ask you to do a pre-meetup
+    rehearsal with us over a video call. We do this to make sure talks meet our
+    community standards and our speakers are ready to present on the day of the meetup.
+  </p>
+  <div class="callout fade-in stagger-4">
+    <p>
+      We would especially love to hear from you if you're a <strong>non-technical user</strong>
+      of the IndieWeb. We would also love to hear from you if you're part of a
+      <strong>marginalized community</strong>, a <strong>student</strong>, or if you
+      <strong>haven't spoken at a conference or meetup before</strong>.
+    </p>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<div class="divider"><hr></div>
+<section class="section">
+  <p class="section-label fade-in">Timeline</p>
+  <h2 class="section-heading fade-in stagger-1">Key dates</h2>
+  <div class="timeline-grid fade-in stagger-2">
+    <div class="timeline-cell">
+      <div class="tl-date">May 16</div>
+      <div class="tl-desc">CFP closes at midnight</div>
+    </div>
+    <div class="timeline-cell">
+      <div class="tl-date">Rolling</div>
+      <div class="tl-desc">Selected talks announced</div>
+    </div>
+    <div class="timeline-cell">
+      <div class="tl-date">May 22</div>
+      <div class="tl-desc">Final schedule released</div>
+    </div>
+    <div class="timeline-cell">
+      <div class="tl-date">May 30</div>
+      <div class="tl-desc">Meetup day!</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="divider"><hr></div>
+<section class="cta-section">
+  <p class="section-label fade-in">Submit a Talk</p>
+  <h2 class="section-heading fade-in stagger-1">Ready to<br>take the stage?</h2>
+  <p class="cta-text fade-in stagger-2">
+    Fill out our submission form and we'll get back to you.
+  </p>
+  <div class="fade-in stagger-3">
+    <a href="https://forms.gle/rjzUojdtJro2GXnC8" class="cta-button" target="_blank" rel="noopener">Submit Your Talk</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="divider"><hr></div>
+<section class="contact-section">
+  <p class="section-label fade-in">Questions?</p>
+  <p class="section-text fade-in stagger-1">
+    Reach out to us at
+    <a href="mailto:blr+se@indiewebclub.org">blr+se@indiewebclub.org</a>
+    or DM one of the organisers. We're happy to help you shape your talk idea.
+  </p>
+</section>
+
+<footer>
+  <p><a href="https://blr.indiewebclub.org">IndieWebClub Bangalore</a></p>
+</footer>
+
+<script>
+// --- Animated gradient blob background ---
+(function() {
+  const container = document.getElementById('hero-canvas');
+  if (!container || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const canvas = document.createElement('canvas');
+  container.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  let w, h, mx = 0.5, my = 0.5;
+  const blobs = [
+    { x: 0.3, y: 0.4, r: 0.25, vx: 0.002, vy: 0.001, color: [239, 138, 249] },
+    { x: 0.7, y: 0.3, r: 0.2, vx: -0.0015, vy: 0.002, color: [229, 128, 58] },
+    { x: 0.5, y: 0.7, r: 0.22, vx: 0.001, vy: -0.0018, color: [151, 71, 255] },
+    { x: 0.4, y: 0.5, r: 0.18, vx: -0.001, vy: -0.001, color: [166, 205, 238] },
+  ];
+
+  function resize() {
+    w = canvas.width = container.offsetWidth;
+    h = canvas.height = container.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX / window.innerWidth;
+    my = e.clientY / window.innerHeight;
+  });
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+
+    for (const b of blobs) {
+      b.x += b.vx + (mx - 0.5) * 0.0005;
+      b.y += b.vy + (my - 0.5) * 0.0005;
+      if (b.x < 0 || b.x > 1) b.vx *= -1;
+      if (b.y < 0 || b.y > 1) b.vy *= -1;
+      b.x = Math.max(0, Math.min(1, b.x));
+      b.y = Math.max(0, Math.min(1, b.y));
+
+      const grad = ctx.createRadialGradient(
+        b.x * w, b.y * h, 0,
+        b.x * w, b.y * h, b.r * Math.max(w, h)
+      );
+      grad.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.35)`);
+      grad.addColorStop(0.5, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.1)`);
+      grad.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// --- Scroll-triggered fade-in ---
+(function() {
+  const els = document.querySelectorAll('.fade-in');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach(el => el.classList.add('visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  els.forEach(function(el) { observer.observe(el); });
+})();
+</script>
+
+</body>
+</html>
