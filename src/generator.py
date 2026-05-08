@@ -247,24 +247,34 @@ def generate_website(
     """
     cache = BuildCache()
     build = Build()
-    page_targets = [f"page:{f.stem}" for f in Path("./pages/").glob("*.md")]
+    pages_path = Path("./pages/")
+    page_targets = [f"page:{f.stem}" for f in pages_path.glob("*.md")] + [
+        f"page:{f.relative_to(pages_path)}" for f in pages_path.glob("*/index.html")
+    ]
 
     @build.rule("blogroll_opml")
     def _(_target: str):
         _ = shutil.copyfile(opml_path, output_dir / opml_path.name)
 
     @build.rule("asset:*")
-    def _(target: str):
-        asset = target.split(":", 1)[1]
+    def _(asset: str):
         src = Path(asset)
         if src.exists():
             dst = output_dir / src.name
             _ = shutil.copyfile(src, dst)
             logger.debug(f"Copied asset: {src} -> {dst}")
 
+    @build.rule("page:*/index.html")
+    def _(page_name: str):
+        src = Path(f"./pages/{page_name}")
+        if src.exists():
+            dst = output_dir / page_name
+            dst.parent.mkdir(exist_ok=True)
+            _ = shutil.copyfile(src, dst)
+            logger.debug(f"Copied page: {src} -> {dst}")
+
     @build.rule("page:*")
-    def _(target: str):
-        page_name = target.split(":", 1)[1]
+    def _(page_name: str):
         md_file = Path(f"./pages/{page_name}.md")
         render_and_save_html(markdown_to_html(md_file), output_dir / page_name)
 
@@ -372,7 +382,7 @@ def generate_website(
     @build.rule("archive_year:*")
     def _(target: str):
         build.need("feeds")
-        year = int(target.split(":", 1)[1])
+        year = int(target)
         years = sorted(cache.entries_by_year.keys())
         generate_archive_year(year, cache.entries_by_year[year], years, output_dir)
 

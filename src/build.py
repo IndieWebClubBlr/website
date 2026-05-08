@@ -128,7 +128,7 @@ class Build:
             if rule_fn is None:
                 raise ValueError(f"No rule matches target: {target}")
             else:
-                rule_fn(target)
+                rule_fn(target.split(":", 1)[1] if ":" in target else "")
         except BaseException as e:
             exc = e
             raise
