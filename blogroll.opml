@@ -29,6 +29,7 @@
     <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/projects/rss.xml" htmlUrl="https://azan-n.com/" />
     <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/playlists/rss.xml" htmlUrl="https://azan-n.com/" />
     <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/photos/rss.xml" htmlUrl="https://azan-n.com/" />
+    <outline type="rss" text="dmart" xmlUrl="https://dmart.mataroa.blog/rss/" htmlUrl="https://dmart.mataroa.blog/" />
     <outline type="rss" text="flyingsymphony" xmlUrl="https://flyingsymphony.mataroa.blog/rss/" htmlUrl="https://flyingsymphony.mataroa.blog/" />
     <outline type="rss" text="forwhatitsworth" xmlUrl="https://forwhatitsworth.netlify.app/index.xml" htmlUrl="https://forwhatitsworth.netlify.app/" />
     <outline type="rss" text="George Supreeth" xmlUrl="https://georgesupreeth.com/web/blog/index.xml" htmlUrl="https://georgesupreeth.com/" />
