@@ -490,6 +490,53 @@ pre { line-height: 125%; }
   margin-bottom: 1em;
 }
 
+.archive-chart-figure {
+  margin: 1em 0 1.5em;
+  overflow-x: auto;
+}
+
+.archive-chart-figure figcaption {
+  font-size: 0.85em;
+  margin-top: 0.25em;
+  opacity: 0.75;
+  text-align: center;
+}
+
+.archive-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+}
+
+.archive-chart-bars rect {
+  fill: var(--color-border-accent);
+}
+
+.archive-chart-bars a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.archive-chart-bars a:hover rect:not(.archive-chart-bar-hit) {
+  fill: var(--color-link);
+}
+
+.archive-chart-bars .archive-chart-bar-hit {
+  fill: transparent;
+}
+
+.archive-chart-count {
+  fill: var(--color-bg);
+  font-family: inherit;
+  pointer-events: none;
+}
+
+.archive-chart-labels text {
+  fill: var(--color-text);
+  font-family: inherit;
+}
+
 .webring {
   border: 1px solid #ccc;
   border-radius: 4px;

@@ -1,6 +1,12 @@
 <section id="archive">
   <h2>Archive</h2>
   <p>{{total_posts}} posts · {{member_count}} members · {{date_range}}</p>
+  {{#has_chart}}
+  <figure class="archive-chart-figure">
+    {{{chart_svg}}}
+    <figcaption>Posts per month</figcaption>
+  </figure>
+  {{/has_chart}}
   <ul class="no-marker pointed-hand">
     <li><a href="/blogroll.atom">Subscribe as a feed.</a></li>
     <li><a href="/newsletter/">Subscribe as a newsletter.</a></li>

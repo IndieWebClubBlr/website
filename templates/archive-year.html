@@ -13,7 +13,7 @@
 
   {{#months}}
   <details name="archive-{{year}}" id="archive-{{year}}-{{month}}">
-    <summary>{{month_name}} (<span class="month-count" data-total="{{count}}">{{count}}</span> posts)</summary>
+    <summary id="m-{{year}}-{{month}}">{{month_name}} (<span class="month-count" data-total="{{count}}">{{count}}</span> posts)</summary>
     {{#entries}}
     <article class="entry h-entry" id="post-{{entry_id}}" data-search="{{search_text}}">
       <h3 class="p-name"><a class="u-url u-uid" href="{{link_utm}}" target="_blank">{{title}}</a></h3>

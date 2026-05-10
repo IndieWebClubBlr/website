@@ -1,0 +1,24 @@
+<svg class="archive-chart" viewBox="0 0 {{chart_w}} {{total_h}}"
+     preserveAspectRatio="xMinYMid meet"
+     xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-label="{{aria_label}}">
+  <g class="archive-chart-bars">
+    {{#bars}}
+    <a href="{{href}}">
+      <rect x="{{x}}" y="0" width="{{w}}" height="{{chart_h}}" class="archive-chart-bar-hit" />
+      <rect x="{{x}}" y="{{y}}" width="{{w}}" height="{{h}}" rx="1"><title>{{title}}</title></rect>
+      {{#show_count}}<text class="archive-chart-count" x="{{count_x}}" y="{{count_y}}" font-size="2.5" text-anchor="middle">{{count}}</text>{{/show_count}}
+    </a>
+    {{/bars}}
+  </g>
+  <g class="archive-chart-labels archive-chart-months">
+    {{#month_labels}}
+    <text x="{{x}}" y="{{y}}" font-size="2.5" text-anchor="middle">{{label}}</text>
+    {{/month_labels}}
+  </g>
+  <g class="archive-chart-labels archive-chart-years">
+    {{#year_labels}}
+    <text x="{{x}}" y="{{y}}" font-size="3">{{year}}</text>
+    {{/year_labels}}
+  </g>
+</svg>

@@ -44,6 +44,98 @@ def group_entries_by_year(
     return dict(by_year)
 
 
+def _build_monthly_chart_svg(entries: list[FeedEntry]) -> str:
+    """Build an inline SVG bar chart of posts per month over all time."""
+    counts: defaultdict[tuple[int, int], int] = defaultdict(int)
+    for entry in entries:
+        counts[(entry.published.year, entry.published.month)] += 1
+
+    if not counts:
+        return ""
+
+    first_year, first_month = min(counts.keys())
+    last_year, last_month = max(counts.keys())
+
+    months: list[tuple[int, int]] = []
+    y, m = first_year, first_month
+    while (y, m) <= (last_year, last_month):
+        months.append((y, m))
+        m += 1
+        if m > 12:
+            m = 1
+            y += 1
+
+    max_count = max(counts.values())
+
+    bar_w = 8
+    gap = 2
+    chart_h = 30
+    year_label_font_size = 1
+    count_label_font_size = 2.5
+    month_label_padding = 3
+    year_label_padding = 7
+    month_label_y = chart_h + month_label_padding
+    year_label_y = chart_h + year_label_padding
+    chart_w = max(len(months) * (bar_w + gap) - gap, 1)
+    total_h = year_label_y + year_label_font_size
+
+    bars: list[dict[str, str | bool]] = []
+    month_labels: list[dict[str, str]] = []
+    year_labels: list[dict[str, str]] = []
+    seen_years: set[int] = set()
+    for i, (year, month) in enumerate(months):
+        count = counts.get((year, month), 0)
+        h = (count / max_count) * chart_h if max_count else 0
+        x = i * (bar_w + gap)
+        plural = "s" if count != 1 else ""
+        # Only render count label when bar is tall enough to fit the text
+        show_count = count > 0 and h >= count_label_font_size + 1
+        bars.append(
+            {
+                "x": f"{x}",
+                "y": f"{chart_h - h:.2f}",
+                "w": f"{bar_w}",
+                "h": f"{h:.2f}",
+                "chart_h": f"{chart_h}",
+                "href": f"/archive/{year}/#m-{year}-{month}",
+                "title": f"{MONTH_NAMES[month]} {year}: {count} post{plural}",
+                "show_count": show_count,
+                "count": str(count),
+                "count_x": f"{x + bar_w / 2}",
+                "count_y": f"{chart_h - 1}",
+            }
+        )
+        month_labels.append(
+            {
+                "x": f"{x + bar_w / 2}",
+                "y": f"{month_label_y}",
+                "label": MONTH_NAMES[month][0:3],
+            }
+        )
+        if year not in seen_years:
+            year_labels.append({"x": f"{x}", "y": f"{year_label_y}", "year": str(year)})
+            seen_years.add(year)
+
+    aria_label = (
+        f"Posts per month from {MONTH_NAMES[first_month]} {first_year} "
+        f"to {MONTH_NAMES[last_month]} {last_year}, "
+        f"peak of {max_count} posts in a month"
+    )
+    renderer = make_renderer()
+    template = read_template("archive-chart.svg")
+    return renderer.render(
+        template,
+        {
+            "chart_w": str(chart_w),
+            "total_h": str(total_h),
+            "aria_label": aria_label,
+            "bars": bars,
+            "month_labels": month_labels,
+            "year_labels": year_labels,
+        },
+    )
+
+
 def generate_archive_index(
     entries: list[FeedEntry],
     years: list[int],
@@ -60,6 +152,8 @@ def generate_archive_index(
     first_entry = entries_sorted[0].published
     last_entry = entries_sorted[-1].published
     date_range = f"{MONTH_NAMES[last_entry.month]} {last_entry.year}–{MONTH_NAMES[first_entry.month]} {first_entry.year}"
+
+    chart_svg = _build_monthly_chart_svg(entries_sorted)
 
     renderer = make_renderer()
     index_template = read_template("archive-index.html")
@@ -79,6 +173,8 @@ def generate_archive_index(
                 "member_count": str(member_count),
                 "date_range": date_range,
                 "years": years_ctx,
+                "chart_svg": chart_svg,
+                "has_chart": bool(chart_svg),
             },
         ),
         output_dir=output_dir / "archive",
