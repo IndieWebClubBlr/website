@@ -6,6 +6,7 @@ import logging
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import TypedDict, cast, final
+from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 
 import requests
@@ -89,7 +90,9 @@ DiscourseTopic = TypedDict(
 DiscoureSearchResults = TypedDict(
     "DiscoureSearchResults", {"topics": list[DiscourseTopic]}
 )
-DiscoursePostEvent = TypedDict("DiscoursePostEvent", {"starts_at": str, "ends_at": str})
+DiscoursePostEvent = TypedDict(
+    "DiscoursePostEvent", {"starts_at": str, "ends_at": str, "location": str}
+)
 DiscoursePost = TypedDict("DiscoursePost", {"cooked": str, "event": DiscoursePostEvent})
 DiscoursePostStream = TypedDict("DiscoursePostStream", {"posts": list[DiscoursePost]})
 DiscourseTopicPosts = TypedDict(
@@ -100,12 +103,11 @@ DiscourseTopicPosts = TypedDict(
 def make_event(base_url: str, topic: DiscourseTopic, post: DiscoursePost) -> Event:
     event = post["event"]
 
-    # url = event["url"]
-    # parsed_url = urlparse(url)
-    # if not parsed_url.scheme or not parsed_url.netloc:
-    #     district_url = None
-    # else:
-    #     district_url = url
+    district_url = None
+    url = event["location"]
+    parsed_url = urlparse(url)
+    if parsed_url.scheme and parsed_url.netloc:
+        district_url = url
 
     return Event(
         id=topic["id"],
@@ -116,7 +118,7 @@ def make_event(base_url: str, topic: DiscourseTopic, post: DiscoursePost) -> Eve
         end_at=date_parser.parse(event["ends_at"]),
         details=post["cooked"],
         underline_url=f"{base_url}/t/{topic['slug']}",
-        district_url="https://district.in/indiewebclub-meetup/event",
+        district_url=district_url,
     )
 
 
