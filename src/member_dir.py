@@ -379,6 +379,7 @@ def generate_members_page(
         renderer = make_renderer()
         render_and_save_html(
             html_content=renderer.render(members_template, {"members": ctx}),
+            page_url="members/",
             output_dir=output_dir / "members",
         )
     except Exception as e:

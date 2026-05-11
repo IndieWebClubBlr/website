@@ -177,6 +177,7 @@ def generate_archive_index(
                 "has_chart": bool(chart_svg),
             },
         ),
+        page_url="archive/",
         output_dir=output_dir / "archive",
     )
     logger.info("Generated archive index page")
@@ -228,6 +229,7 @@ def generate_archive_year(
                 "next_year": next_year,
             },
         ),
+        page_url=f"archive/{year}/",
         output_dir=output_dir / "archive" / str(year),
     )
     logger.info(f"Generated archive page for {year}")

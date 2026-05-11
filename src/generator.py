@@ -138,6 +138,7 @@ def generate_homepage(
         # Generate index.html
         render_and_save_html(
             html_content=renderer.render(index_template, template_data),
+            page_url="",
             output_dir=output_dir,
         )
     except Exception as e:
@@ -276,7 +277,11 @@ def generate_website(
     @build.rule("page:*")
     def _(page_name: str):
         md_file = Path(f"./pages/{page_name}.md")
-        render_and_save_html(markdown_to_html(md_file), output_dir / page_name)
+        render_and_save_html(
+            html_content=markdown_to_html(md_file),
+            page_url=f"{page_name}/",
+            output_dir=output_dir / page_name,
+        )
 
     @build.rule("parsed_opml")
     def _(_target: str):

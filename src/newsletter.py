@@ -92,6 +92,7 @@ def generate_newsletter_page(output_dir: Path):
             read_template("nl-subsribe.html"),
             {"archive": archive, "has_archive": len(archive) > 0},
         ),
+        page_url="newsletter/",
         output_dir=output_dir / "newsletter",
     )
     logger.info("Generated newsletter subscription page")

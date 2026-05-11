@@ -88,18 +88,20 @@ def make_renderer():
     )
 
 
-def render_and_save_html(html_content: str, output_dir: Path):
+def render_and_save_html(html_content: str, page_url: str, output_dir: Path):
     """
     Render HTML content with default template and save to file.
 
     Args:
         html_content: The HTML content to render.
+        page_url: The relative URL of the page without the initial slash.
         output_dir: Path where HTML file should be written.
     """
     try:
         now = datetime.now(timezone.utc)
         template_data = {
             "site_url": config.SITE_URL,
+            "page_url": f"{config.SITE_URL}{page_url}",
             "generated_date": now.astimezone(config.EVENTS_TZ).strftime(
                 "%d %b %Y, %I:%M %p IST"
             ),
