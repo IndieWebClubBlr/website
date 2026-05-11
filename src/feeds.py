@@ -711,6 +711,7 @@ def separate_weeknote_entries(
         if (
             any(WEEKNOTE_PATTERN.search(tag) for tag in entry.tags)
             or WEEKNOTE_PATTERN.search(title)
+            or WEEKNOTE_PATTERN.search(entry.summary.lower())
             or ("week" in title and all(w not in title for w in WEEK_EXCLUSIONS))
         ):
             weeknote_entries.append(entry)
