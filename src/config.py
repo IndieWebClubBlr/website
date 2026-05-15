@@ -31,7 +31,7 @@ MAX_FEED_ENTRIES = 1000
 MAX_SHOWN_POSTS_PER_FEED = 1
 
 # Maximum number of recent entries to show overall.
-MAX_SHOWN_POSTS = 40
+MAX_SHOWN_POSTS = 20
 
 # Maximum number of tags to show for each entry.
 MAX_SHOWN_TAGS = 5
@@ -44,6 +44,9 @@ MAX_SHOWN_EVENTS = 10
 
 # Maximum number of week notes to show.
 MAX_SHOWN_WEEK_NOTES = 10
+
+# Maximum number of random posts to show.
+MAX_SHOWN_RANDOM_POSTS = 5
 
 # Base URL of the website.
 SITE_URL = f"https://{SITE_DOMAIN}/"

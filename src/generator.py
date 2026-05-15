@@ -69,6 +69,7 @@ logger = logging.getLogger(__name__)
 
 
 def generate_homepage(
+    all_entries: list[FeedEntry],
     weeknote_entries: list[FeedEntry],
     other_entries: list[FeedEntry],
     on_this_day_entries: list[FeedEntry],
@@ -80,6 +81,7 @@ def generate_homepage(
     Generate homepage from feed entries using Mustache templating.
 
     Args:
+        all_entries: List of all FeedEntry objects fetched from feeds.
         weeknote_entries: List of FeedEntry objects to include, which are week notes.
         other_entries: List of FeedEntry objects to include, which are not week notes.
         on_this_day_entries: List of FeedEntry objects from same day in previous years.
@@ -112,22 +114,41 @@ def generate_homepage(
         return ctx
 
     # Prepare template data
+    shown_entries = group_feed_entries(other_entries)[: config.MAX_SHOWN_POSTS]
+    shown_weeknotes = group_feed_entries(weeknote_entries)[: config.MAX_SHOWN_WEEK_NOTES]
+    shown_on_this_day = on_this_day_entries
+
+    all_shown = shown_entries + shown_weeknotes + shown_on_this_day
+    shown_links = {e.link for e in all_shown}
+
+    available_for_random = [
+        e for e in all_entries if e.link not in shown_links
+    ]
+
+    feeds_seen: set[str] = set()
+    unique_feed_posts: list[FeedEntry] = []
+    random.shuffle(available_for_random)
+    for entry in available_for_random:
+        if entry.feed_home_url not in feeds_seen:
+            feeds_seen.add(entry.feed_home_url)
+            unique_feed_posts.append(entry)
+            if len(unique_feed_posts) >= config.MAX_SHOWN_RANDOM_POSTS:
+                break
+
+    random_posts = unique_feed_posts
+
     template_data = {
         "site_url": config.SITE_URL,
         "webcal_url": config.WEBCAL_URL,
         "upcoming_events": upcoming_events,
         "has_upcoming_events": len(upcoming_events) > 0,
         "previous_events": previous_events[: config.MAX_SHOWN_EVENTS],
-        "entries": [
-            entry_ctx(e)
-            for e in group_feed_entries(other_entries)[: config.MAX_SHOWN_POSTS]
-        ],
-        "week_notes": [
-            entry_ctx(e)
-            for e in group_feed_entries(weeknote_entries)[: config.MAX_SHOWN_WEEK_NOTES]
-        ],
-        "on_this_day": [past_entry_ctx(e) for e in on_this_day_entries],
-        "has_on_this_day": len(on_this_day_entries) > 0,
+        "entries": [entry_ctx(e) for e in shown_entries],
+        "week_notes": [entry_ctx(e) for e in shown_weeknotes],
+        "random_posts": [entry_ctx(e) for e in random_posts],
+        "has_random_posts": len(random_posts) > 0,
+        "on_this_day": [past_entry_ctx(e) for e in shown_on_this_day],
+        "has_on_this_day": len(shown_on_this_day) > 0,
         "failed_feeds": failed_feeds,
         "has_failed_feeds": len(failed_feeds) != 0,
     }
@@ -395,6 +416,7 @@ def generate_website(
     def _(_target: str):
         build.need("feeds", "events")
         generate_homepage(
+            cache.entries,
             cache.weeknote_entries,
             cache.other_entries,
             cache.on_this_day_entries,
