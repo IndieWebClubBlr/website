@@ -69,7 +69,7 @@ def _build_monthly_chart_svg(entries: list[FeedEntry]) -> str:
 
     bar_w = 8
     gap = 2
-    chart_h = 30
+    chart_h = 50
     year_label_font_size = 1
     count_label_font_size = 2.5
     month_label_padding = 3
