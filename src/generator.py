@@ -115,15 +115,15 @@ def generate_homepage(
 
     # Prepare template data
     shown_entries = group_feed_entries(other_entries)[: config.MAX_SHOWN_POSTS]
-    shown_weeknotes = group_feed_entries(weeknote_entries)[: config.MAX_SHOWN_WEEK_NOTES]
+    shown_weeknotes = group_feed_entries(weeknote_entries)[
+        : config.MAX_SHOWN_WEEK_NOTES
+    ]
     shown_on_this_day = on_this_day_entries
 
     all_shown = shown_entries + shown_weeknotes + shown_on_this_day
     shown_links = {e.link for e in all_shown}
 
-    available_for_random = [
-        e for e in all_entries if e.link not in shown_links
-    ]
+    available_for_random = [e for e in all_entries if e.link not in shown_links]
 
     feeds_seen: set[str] = set()
     unique_feed_posts: list[FeedEntry] = []
@@ -391,26 +391,44 @@ def generate_website(
     def _(_target: str):
         generate_newsletter_page(output_dir)
 
+    def get_archive_years(entries_by_year: dict[int, list[FeedEntry]]) -> list[int]:
+        return [
+            year
+            for year in sorted(entries_by_year.keys())
+            if year >= config.ARCHIVE_MIN_YEAR
+        ]
+
     @build.rule("archive")
     def _(_target: str):
         build.need("feeds")
         archive_year_targets = [
-            f"archive_year:{year}" for year in cache.entries_by_year.keys()
+            f"archive_year:{year}" for year in get_archive_years(cache.entries_by_year)
         ]
         build.need("archive_index", *archive_year_targets)
 
     @build.rule("archive_index")
     def _(_target: str):
         build.need("feeds")
-        years = sorted(cache.entries_by_year.keys())
-        generate_archive_index(cache.entries, years, output_dir)
+        generate_archive_index(
+            [
+                entry
+                for entry in cache.entries
+                if entry.published.year >= config.ARCHIVE_MIN_YEAR
+            ],
+            get_archive_years(cache.entries_by_year),
+            output_dir,
+        )
 
     @build.rule("archive_year:*")
     def _(target: str):
         build.need("feeds")
         year = int(target)
-        years = sorted(cache.entries_by_year.keys())
-        generate_archive_year(year, cache.entries_by_year[year], years, output_dir)
+        generate_archive_year(
+            year,
+            cache.entries_by_year[year],
+            get_archive_years(cache.entries_by_year),
+            output_dir,
+        )
 
     @build.rule("homepage")
     def _(_target: str):

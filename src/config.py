@@ -48,6 +48,9 @@ MAX_SHOWN_WEEK_NOTES = 10
 # Maximum number of random posts to show.
 MAX_SHOWN_RANDOM_POSTS = 5
 
+# Year from which the archive starts
+ARCHIVE_MIN_YEAR = 2025
+
 # Base URL of the website.
 SITE_URL = f"https://{SITE_DOMAIN}/"
 
