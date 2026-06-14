@@ -1,0 +1,57 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//IndieWebClub Bangalore//Events//EN
+DESCRIPTION:Events by IndieWebClub Bangalore
+X-WR-CALDESC:Events by IndieWebClub Bangalore
+NAME:IndieWebClub Bangalore Events
+X-WR-CALNAME:IndieWebClub Bangalore Events
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZNAME:IST
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #28
+DTSTART;TZID=Asia/Kolkata:20260620T140000
+DTEND;TZID=Asia/Kolkata:20260620T170000
+DTSTAMP:20260614T092107Z
+UID:indiewebclubblr-event-817
+URL:https://underline.center/t/indiewebclub-28
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #27 - Special Anniversary Edition!
+DTSTART;TZID=Asia/Kolkata:20260530T140000
+DTEND;TZID=Asia/Kolkata:20260530T170000
+DTSTAMP:20260614T092107Z
+UID:indiewebclubblr-event-788
+URL:https://underline.center/t/indiewebclub-27-special-anniversary-edition
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #26
+DTSTART;TZID=Asia/Kolkata:20260516T140000
+DTEND;TZID=Asia/Kolkata:20260516T170000
+DTSTAMP:20260614T092107Z
+UID:indiewebclubblr-event-787
+URL:https://underline.center/t/indiewebclub-26
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #25
+DTSTART;TZID=Asia/Kolkata:20260502T140000
+DTEND;TZID=Asia/Kolkata:20260502T170000
+DTSTAMP:20260614T092107Z
+UID:indiewebclubblr-event-774
+URL:https://underline.center/t/indiewebclub-25
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #24
+DTSTART;TZID=Asia/Kolkata:20260418T140000
+DTEND;TZID=Asia/Kolkata:20260418T170000
+DTSTAMP:20260614T092107Z
+UID:indiewebclubblr-event-758
+URL:https://underline.center/t/indiewebclub-24
+END:VEVENT
+END:VCALENDAR
