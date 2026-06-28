@@ -2,6 +2,15 @@
 
 [TOC]
 
+## June 20, 2026
+
+Why it’s okay to never have a domain name, a non-technical perspective on:
+
+- What makes a blog a blog for everyone.
+- What non-techies struggle with or desire but which techies don’t see.
+- How writing on the Web stuck around for me despite not having a domain name for years.
+- Why most feed reader suggestions techies provide are the wrong choice for the general public.
+
 ## May 2, 2026
 
 - It will soon be a year since we’ve started regularly doing Indie Web Club! What impact has blogging had for you? What struggles have you dealt with as you try to be more active bloggers?
