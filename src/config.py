@@ -88,6 +88,7 @@ ASSETS = [
     "assets/preview.png",
     "assets/favicon.svg",
     "assets/archive.js",
+    "assets/.nojekyll",
     "CNAME",
 ]
 

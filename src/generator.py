@@ -285,6 +285,8 @@ def generate_website(
             dst = output_dir / src.name
             _ = shutil.copyfile(src, dst)
             logger.debug(f"Copied asset: {src} -> {dst}")
+        else:
+            logger.warn(f"Asset does not exist: {src}")
 
     @build.rule("page:*/index.html")
     def _(page_name: str):
