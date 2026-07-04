@@ -2,6 +2,18 @@
 
 [TOC]
 
+## July 4, 2006
+
+What’s the point of publishing anonymously, what effect that has on our work, and how can we accomplish that on the IndieWeb?
+
+- What’s the purpose of being anonymous when you publish online? What are the costs to being anonymous?
+- Why publish anonymously at all? After all, you might not gain anything by doing so.
+- What is the effect of writing under a pseudonym on writing quality or audience trust?
+- If a pseudonym is popular enough, is it same as a real name?
+- How can we be truly anonymous on the IndieWeb when so many services have our private data? When LLMs can unmask us by analyzing our writing? Is it even possible? In light of that, can the IndieWeb be a safe space for dissent?
+- What’s the difference between anonymity and privacy?
+- Are there different levels to anonymity? Can you be sort-of-anonymous without completely hiding your identity?
+
 ## June 20, 2026
 
 Why it’s okay to never have a domain name, a non-technical perspective on:
