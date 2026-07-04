@@ -7,6 +7,7 @@
     <!-- Keep sorted alphabetically, case-insensitive, main blog first -->
     <outline type="rss" text="9porcupine" xmlUrl="https://9porcupine.mataroa.blog/rss/" htmlUrl="https://9porcupine.mataroa.blog/" />
     <outline type="rss" text="A Believable Fiction" xmlUrl="https://abelievablefiction.net/feed.xml" htmlUrl="https://abelievablefiction.net/" />
+    <outline type="rss" text="Aakrit" xmlUrl="https://aakritwrites.com/feed/" htmlUrl="https://aakritwrites.com/" />
     <outline type="rss" text="Abhigyan Trips" xmlUrl="https://abhi.now/indieweb.xml" htmlUrl="https://abhi.now/" />
     <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/all.atom" htmlUrl="https://abhinavsarkar.net/" />
     <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/photography/feed.atom" htmlUrl="https://abhinavsarkar.net/photography/" />
@@ -18,6 +19,8 @@
     <outline type="rss" text="adityan" xmlUrl="https://adityan.bearblog.dev/feed/" htmlUrl="https://adityan.bearblog.dev/" />
     <outline type="rss" text="Akash Bhat" xmlUrl="https://akashbhat.com/feed/" htmlUrl="https://akashbhat.com/" />
     <outline type="rss" text="akils" xmlUrl="https://akils.mataroa.blog/rss/" htmlUrl="https://akils.mataroa.blog/" />
+    <outline type="rss" text="Akshay S Dinesh" xmlUrl="https://asd.learnlearn.in/feed.atom" htmlUrl="https://asd.learnlearn.in/" />
+    <outline type="rss" text="Akshay S Dinesh" xmlUrl="https://blog.learnlearn.in/feed/" htmlUrl="https://blog.learnlearn.in/" />
     <outline type="rss" text="Anik" xmlUrl="https://blog.anikthink.com/rss.xml" htmlUrl="https://blog.anikthink.com/" />
     <outline type="rss" text="Ankit Gadiya" xmlUrl="https://ankit.earth/atom.xml" htmlUrl="https://ankit.earth/" />
     <outline type="rss" text="Ankur Sethi" xmlUrl="https://ankursethi.com/feeds/index.xml" htmlUrl="https://ankursethi.com/" />
@@ -35,6 +38,7 @@
     <outline type="rss" text="Chaitanya Hegde" xmlUrl="https://hegde.me/feed/" htmlUrl="https://hegde.me/" />
     <outline type="rss" text="Chitin" xmlUrl="https://theoptout.xyz/rss.xml" htmlUrl="https://theoptout.xyz/" />
     <outline type="rss" text="dmart" xmlUrl="https://dmart.mataroa.blog/rss/" htmlUrl="https://dmart.mataroa.blog/" />
+    <outline type="rss" text="Drew" xmlUrl="https://drewsh.com/feeds/all.atom.xml" htmlUrl="https://drewsh.com/" />
     <outline type="rss" text="Fenil Jain" xmlUrl="https://fknil.com/rss.xml" htmlUrl="https://fknil.com/" />
     <outline type="rss" text="forwhatitsworth" xmlUrl="https://forwhatitsworth.netlify.app/index.xml" htmlUrl="https://forwhatitsworth.netlify.app/" />
     <outline type="rss" text="George Supreeth" xmlUrl="https://georgesupreeth.com/web/blog/index.xml" htmlUrl="https://georgesupreeth.com/" />
@@ -72,7 +76,7 @@
     <outline type="rss" text="Prasanna Bhogale" xmlUrl="https://theclarkeorbit.github.io/feeds/blog.atom.xml" htmlUrl="https://theclarkeorbit.github.io/" />
     <outline type="rss" text="promethean" xmlUrl="https://promethean.mataroa.blog/rss/" htmlUrl="https://promethean.mataroa.blog/" />
     <outline type="rss" text="qareebi" xmlUrl="https://qareebi.mataroa.blog/rss/" htmlUrl="https://qareebi.mataroa.blog" />
-	<outline type="rss" text="readwithmitch" xmlUrl="https://readwithmitch.com/feed/" htmlUrl="https://readwithmitch.com/" />
+    <outline type="rss" text="readwithmitch" xmlUrl="https://readwithmitch.com/feed/" htmlUrl="https://readwithmitch.com/" />
     <outline type="rss" text="Rallrajveer" xmlUrl="https://medium.com/feed/@rallrajveer" htmlUrl="https://medium.com/@rallrajveer" />
     <outline type="rss" text="Rasagy Sharma" xmlUrl="https://rasagy.in/index.xml" htmlUrl="https://rasagy.in/" />
     <outline type="rss" text="Rohith RG" xmlUrl="https://undrafter.in/feed/" htmlUrl="https://undrafter.in/" />
