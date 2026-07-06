@@ -295,7 +295,7 @@ def generate_events_feed(events: list[Event], output_dir: Path):
         fe.link(href=event.underline_url, rel="alternate")
         fe.published(event.created_at)
         fe.updated(event.created_at)
-        fe.content(event.details)
+        fe.content(event.details, type="html")
 
         if feed_updated is None or feed_updated < event.created_at:
             feed_updated = event.created_at
