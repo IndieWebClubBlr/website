@@ -35,6 +35,7 @@ class FeedInfo:
     title: str
     xml_url: str
     html_url: str
+    webring: bool = False
 
 
 class FailureReason(Enum):
@@ -150,7 +151,12 @@ def parse_opml_file(opml_path: Path) -> list[FeedInfo]:
                     )
                     parsed_url = urlparse(xml_url)
                     html_url = f"{parsed_url.scheme}://{parsed_url.netloc}/"
-                feeds.append(FeedInfo(title=title, xml_url=xml_url, html_url=html_url))
+                webring = outline.get("webring", "").lower() == "true"
+                feeds.append(
+                    FeedInfo(
+                        title=title, xml_url=xml_url, html_url=html_url, webring=webring
+                    )
+                )
                 logger.debug(f"Found feed: {title} -> {xml_url} -> {html_url}")
 
         logger.info(f"Found {len(feeds)} feeds in OPML file")

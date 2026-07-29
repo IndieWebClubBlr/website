@@ -54,9 +54,11 @@ It will look something like this:
 
 ## Requirements
 
-First, you must participate in the IndieWebClub Bangalore [meetups](/#upcoming-events) and join our online community. Then, you must add your blog's feed to the [`blogroll.opml`](/blogroll.opml) file with a `htmlUrl` pointing to your website. Also, your feed must contain at least one post.
+First, you must participate in the IndieWebClub Bangalore [meetups](/#upcoming-events) and join our online community. Then, you must add your blog's feed to the [`blogroll.opml`](/blogroll.opml) file with a `htmlUrl` attribute pointing to your website and a `webring` attribute set to `"true"`. Also, your feed must contain at least one post.
 
 Please [raise a pull request](https://github.com/IndieWebClubBlr/website/pulls) to add your blog, or contact an admin in the community space.
+
+After your pull request is accepted, please do add the links to your website. If you do not add the links, your website will be removed from the webring (but not from the blogroll) after some time.
 
 ## Disclaimer
 

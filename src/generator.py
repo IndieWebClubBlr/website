@@ -168,15 +168,20 @@ def generate_homepage(
 
 
 def get_feeds_with_entries(
-    entries: list[FeedEntry], failed_feeds: list[FailedFeedInfo]
+    entries: list[FeedEntry],
+    failed_feeds: list[FailedFeedInfo],
+    feeds: list[FeedInfo],
 ) -> list[FeedInfo]:
     # Collect all feeds with entries
+    webring_lookup = {f.html_url: f.webring for f in feeds}
+
     feeds_with_entries: dict[str, FeedInfo] = {}
     for entry in entries:
         feeds_with_entries[entry.feed_home_url] = FeedInfo(
             title=entry.feed_title,
             xml_url=entry.feed_url,
             html_url=entry.feed_home_url,
+            webring=webring_lookup.get(entry.feed_home_url, False),
         )
 
     # Add failed feeds that were filtered (had entries but all filtered out)
@@ -205,6 +210,9 @@ def generate_webring(feeds_with_entries: list[FeedInfo], output_dir: Path):
             f"Not enough feeds for webring (need 2, have {len(feeds_with_entries)})"
         )
         return
+
+    # Filter to only webring-enabled feeds
+    feeds_with_entries = [f for f in feeds_with_entries if f.webring]
 
     # Select 2 random feeds
     [prev_link, next_link] = random.sample(list(feeds_with_entries), 2)
@@ -327,7 +335,7 @@ def generate_website(
             cache.entries
         )
         cache.feeds_with_entries = get_feeds_with_entries(
-            cache.entries, cache.failed_feeds
+            cache.entries, cache.failed_feeds, cache.feeds
         )
 
         now = datetime.now(config.EVENTS_TZ)

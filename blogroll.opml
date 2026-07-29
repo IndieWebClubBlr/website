@@ -6,15 +6,15 @@
   <body>
     <!-- Keep sorted alphabetically, case-insensitive, main blog first -->
     <outline type="rss" text="9porcupine" xmlUrl="https://9porcupine.mataroa.blog/rss/" htmlUrl="https://9porcupine.mataroa.blog/" />
-    <outline type="rss" text="A Believable Fiction" xmlUrl="https://abelievablefiction.net/feed.xml" htmlUrl="https://abelievablefiction.net/" />
+    <outline type="rss" text="A Believable Fiction" xmlUrl="https://abelievablefiction.net/feed.xml" htmlUrl="https://abelievablefiction.net/" webring="true" />
     <outline type="rss" text="Aakrit" xmlUrl="https://aakritwrites.com/feed/" htmlUrl="https://aakritwrites.com/" />
-    <outline type="rss" text="Abhigyan Trips" xmlUrl="https://abhi.now/indieweb.xml" htmlUrl="https://abhi.now/" />
-    <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/all.atom" htmlUrl="https://abhinavsarkar.net/" />
-    <outline type="rss" text="Abhinav Sarkar" xmlUrl="https://abhinavsarkar.net/photography/feed.atom" htmlUrl="https://abhinavsarkar.net/photography/" />
-    <outline type="rss" text="Abhinav Tushar" xmlUrl="https://lepisma.xyz/atom.xml" htmlUrl="https://lepisma.xyz/" />
-    <outline type="rss" text="Abhinav Tushar" xmlUrl="https://lepisma.xyz/journal/atom.xml" htmlUrl="https://lepisma.xyz/journal/" />
+    <outline type="rss" text="Abhigyan Trips" xmlUrl="https://abhi.now/indieweb.xml" htmlUrl="https://abhi.now/" webring="true" />
+    <outline type="rss" text="Abhinav Sarkar" webring="true" xmlUrl="https://abhinavsarkar.net/all.atom" htmlUrl="https://abhinavsarkar.net/" />
+    <outline type="rss" text="Abhinav Sarkar" webring="true" xmlUrl="https://abhinavsarkar.net/photography/feed.atom" htmlUrl="https://abhinavsarkar.net/photography/" />
+    <outline type="rss" text="Abhinav Tushar" xmlUrl="https://lepisma.xyz/atom.xml" htmlUrl="https://lepisma.xyz/" webring="true" />
+    <outline type="rss" text="Abhinav Tushar" xmlUrl="https://lepisma.xyz/journal/atom.xml" htmlUrl="https://lepisma.xyz/journal/" webring="true" />
     <outline type="rss" text="Abhiram" xmlUrl="https://vaxitas.xyz/feed.atom" htmlUrl="https://vaxitas.xyz/" />
-    <outline type="rss" text="Adithya Nair" xmlUrl="https://adithyanair.com/rss.xml" htmlUrl="https://adithyanair.com/" />
+    <outline type="rss" text="Adithya Nair" xmlUrl="https://adithyanair.com/rss.xml" htmlUrl="https://adithyanair.com/" webring="true" />
     <outline type="rss" text="Aditya Athalye" xmlUrl="https://www.evalapply.org/index.xml" htmlUrl="https://www.evalapply.org/" />
     <outline type="rss" text="adityan" xmlUrl="https://adityan.bearblog.dev/feed/" htmlUrl="https://adityan.bearblog.dev/" />
     <outline type="rss" text="Aeish" xmlUrl="https://aeish-world.neocities.org/feed.txt" htmlUrl="https://aeish-world.neocities.org/" />
@@ -22,7 +22,7 @@
     <outline type="rss" text="akils" xmlUrl="https://akils.mataroa.blog/rss/" htmlUrl="https://akils.mataroa.blog/" />
     <outline type="rss" text="Akshay S Dinesh" xmlUrl="https://asd.learnlearn.in/feed.atom" htmlUrl="https://asd.learnlearn.in/" />
     <outline type="rss" text="Akshay S Dinesh" xmlUrl="https://blog.learnlearn.in/feed/" htmlUrl="https://blog.learnlearn.in/" />
-    <outline type="rss" text="Anik" xmlUrl="https://blog.anikthink.com/rss.xml" htmlUrl="https://blog.anikthink.com/" />
+    <outline type="rss" text="Anik" xmlUrl="https://blog.anikthink.com/rss.xml" htmlUrl="https://blog.anikthink.com/" webring="true" />
     <outline type="rss" text="Ankit Gadiya" xmlUrl="https://ankit.earth/atom.xml" htmlUrl="https://ankit.earth/" />
     <outline type="rss" text="Ankur Sethi" xmlUrl="https://ankursethi.com/feeds/index.xml" htmlUrl="https://ankursethi.com/" />
     <outline type="rss" text="Ankur Sethi" xmlUrl="https://archive.ankursethi.com/feed/index.xml" htmlUrl="https://archive.ankursethi.com/" />
@@ -36,7 +36,7 @@
     <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/playlists/rss.xml" htmlUrl="https://azan-n.com/" />
     <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/photos/rss.xml" htmlUrl="https://azan-n.com/" />
     <outline type="rss" text="barsinger" xmlUrl="https://barsinger.mataroa.blog/rss/" htmlUrl="https://barsinger.mataroa.blog/" />
-    <outline type="rss" text="Chaitanya Hegde" xmlUrl="https://hegde.me/feed/" htmlUrl="https://hegde.me/" />
+    <outline type="rss" text="Chaitanya Hegde" xmlUrl="https://hegde.me/feed/" htmlUrl="https://hegde.me/" webring="true" />
     <outline type="rss" text="Chitin" xmlUrl="https://theoptout.xyz/rss.xml" htmlUrl="https://theoptout.xyz/" />
     <outline type="rss" text="dmart" xmlUrl="https://dmart.mataroa.blog/rss/" htmlUrl="https://dmart.mataroa.blog/" />
     <outline type="rss" text="Divjot Singh" xmlUrl="https://bogas04.github.io/blog.atom" htmlUrl="https://bogas04.github.io/" />
@@ -46,7 +46,7 @@
     <outline type="rss" text="George Supreeth" xmlUrl="https://georgesupreeth.com/web/blog/index.xml" htmlUrl="https://georgesupreeth.com/" />
     <outline type="rss" text="Gunwant Jain" xmlUrl="https://wantguns.dev/atom.xml" htmlUrl="https://wantguns.dev/" />
     <outline type="rss" text="halfthere" xmlUrl="https://halfthere.mataroa.blog/rss/" htmlUrl="https://halfthere.mataroa.blog/" />
-    <outline type="rss" text="Haripriya" xmlUrl="https://blog.haripriya.org/api/blog-feed.xml" htmlUrl="https://blog.haripriya.org/" />
+    <outline type="rss" text="Haripriya" xmlUrl="https://blog.haripriya.org/api/blog-feed.xml" htmlUrl="https://blog.haripriya.org/" webring="true" />
     <outline type="rss" text="Harsh Shandilya" xmlUrl="https://msfjarvis.dev/index.xml" htmlUrl="https://msfjarvis.dev/" />
     <outline type="rss" text="heftymouse" xmlUrl="https://heftymouse.me/blog/rss.xml" htmlUrl="https://heftymouse.me/" />
     <outline type="rss" text="Himanshi Kalra" xmlUrl="https://himanshikalra.com/feed/" htmlUrl="https://himanshikalra.com/" />
@@ -65,11 +65,11 @@
     <outline type="rss" text="mariammwrites" xmlUrl="https://mariammwrites.mataroa.blog/rss/" htmlUrl="https://mariammwrites.mataroa.blog/" />
     <outline type="rss" text="Moments in Time" xmlUrl="https://nimisha.pika.page/posts_feed" htmlUrl="https://nimisha.pika.page/" />
     <outline type="rss" text="naazeam" xmlUrl="https://naazeam.mataroa.blog/rss/" htmlUrl="https://naazeam.mataroa.blog/" />
-    <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/index.xml" htmlUrl="https://navendu.me/" />
-    <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/books/index.xml" htmlUrl="https://navendu.me/books/" />
+    <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/index.xml" htmlUrl="https://navendu.me/" webring="true" />
+    <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/books/index.xml" htmlUrl="https://navendu.me/books/" webring="true" />
     <outline type="rss" text="Nihal Sahu" xmlUrl="https://nihalsahu.net/index.xml" htmlUrl="https://nihalsahu.net/" />
     <outline type="rss" text="nim" xmlUrl="https://nim.mataroa.blog/rss/" htmlUrl="https://nim.mataroa.blog/" />
-    <outline type="rss" text="Nithitsuki" xmlUrl="https://nithitsuki.com/index.xml" htmlUrl="https://nithitsuki.com/" />
+    <outline type="rss" text="Nithitsuki" xmlUrl="https://nithitsuki.com/index.xml" htmlUrl="https://nithitsuki.com/" webring="true" />
     <outline type="rss" text="nopoint" xmlUrl="https://nopoint.bearblog.dev/feed/" htmlUrl="https://nopoint.bearblog.dev/blog/" />
     <outline type="rss" text="Palak Malik" xmlUrl="https://purposewithpals.wordpress.com/feed/" htmlUrl="https://purposewithpals.wordpress.com/" />
     <outline type="rss" text="pcr1339" xmlUrl="https://pcr1339.mataroa.blog/rss/" htmlUrl="https://pcr1339.mataroa.blog/" />
@@ -100,21 +100,21 @@
     <outline type="rss" text="sobagirl" xmlUrl="https://sobagirl.mataroa.blog/rss/" htmlUrl="https://sobagirl.mataroa.blog/" />
     <outline type="rss" text="Sooraj Rajmohan" xmlUrl="https://soorajrajmohan.com/index.xml" htmlUrl="https://soorajrajmohan.com/" />
     <outline type="rss" text="Souhrud" xmlUrl="https://sounddrill31.github.io/blog/post/index.xml" htmlUrl="https://sounddrill31.github.io/blog/" />
-    <outline type="rss" text="State of Delirium" xmlUrl="https://state-of-delirium.github.io/feed.xml" htmlUrl="https://state-of-delirium.github.io/" />
+    <outline type="rss" text="State of Delirium" xmlUrl="https://state-of-delirium.github.io/feed.xml" htmlUrl="https://state-of-delirium.github.io/" webring="true" />
     <outline type="rss" text="Suhas Kashyap" xmlUrl="https://www.kashyapsuhas.com/blog/feed.xml" htmlUrl="https://www.kashyapsuhas.com/" />
     <outline type="rss" text="Suneela &amp; Yeswanth" xmlUrl="https://holistictravellers.com/rss.xml" htmlUrl="https://holistictravellers.com/" />
     <outline type="rss" text="Tanvi Bhakta" xmlUrl="https://tanvibhakta.in/feed.xml" htmlUrl="https://tanvibhakta.in/" />
     <outline type="rss" text="that-hyperactive-sardar" xmlUrl="https://that-hyperactive-sardar.mataroa.blog/rss/" htmlUrl="https://that-hyperactive-sardar.mataroa.blog/" />
     <outline type="rss" text="Thejesh GN" xmlUrl="https://feeds.thejeshgn.com/thejeshgn" htmlUrl="https://thejeshgn.com/" />
-    <outline type="rss" text="thinkbacteria" xmlUrl="https://thinkbacteria.pages.dev/index.xml" htmlUrl="https://thinkbacteria.pages.dev/" />
+    <outline type="rss" text="thinkbacteria" xmlUrl="https://thinkbacteria.pages.dev/index.xml" htmlUrl="https://thinkbacteria.pages.dev/" webring="true" />
     <outline type="rss" text="twitu" xmlUrl="https://xn--ri8hp8b.ws/rss/" htmlUrl="https://xn--ri8hp8b.ws/" />
     <outline type="rss" text="Uvaise Nazir" xmlUrl="https://uvaisenazir.substack.com/feed" htmlUrl="https://uvaisenazir.substack.com/" />
     <outline type="rss" text="vindo" xmlUrl="https://arsam.space/feed.xml" htmlUrl="https://arsam.space/" />
     <outline type="rss" text="Vishal R" xmlUrl="https://vishalr.dev/rss.xml" htmlUrl="https://vishalr.dev/" />
     <outline type="rss" text="wrld" xmlUrl="https://wrld.mataroa.blog/rss/" htmlUrl="https://wrld.mataroa.blog/" />
     <outline type="rss" text="xypnox" xmlUrl="https://www.xypnox.com/rss.xml" htmlUrl="https://www.xypnox.com/" />
-    <outline type="rss" text="Yash Garg" xmlUrl="https://yashgarg.dev/feed.atom" htmlUrl="https://yashgarg.dev/" />
-    <outline type="rss" text="Yash Garg" xmlUrl="https://yashgarg.dev/weekly-notes/feed.atom" htmlUrl="https://yashgarg.dev/" />
+    <outline type="rss" text="Yash Garg" xmlUrl="https://yashgarg.dev/feed.atom" htmlUrl="https://yashgarg.dev/" webring="true" />
+    <outline type="rss" text="Yash Garg" xmlUrl="https://yashgarg.dev/weekly-notes/feed.atom" htmlUrl="https://yashgarg.dev/" webring="true" />
     <!-- Keep sorted alphabetically, case-insensitive, main blog first -->
   </body>
 </opml>
