@@ -369,7 +369,15 @@ def generate_website(
             )
             return
 
-        random.shuffle(feeds)
+        seen_slugs: set[str] = set()
+        unique_feeds: list[FeedInfo] = []
+        for feed in feeds:
+            slug = urlparse(feed.html_url).netloc.replace(".", "-")
+            if slug not in seen_slugs:
+                seen_slugs.add(slug)
+                unique_feeds.append(feed)
+        random.shuffle(unique_feeds)
+        feeds = unique_feeds
         n = len(feeds)
         targets = []
         for i, feed in enumerate(feeds):
