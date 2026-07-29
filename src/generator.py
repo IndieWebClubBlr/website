@@ -20,6 +20,7 @@ import random
 import shutil
 import sys
 from dataclasses import dataclass, field
+from urllib.parse import urlparse
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -27,6 +28,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src import config
+from pygments import highlight
+from pygments.lexers import HtmlLexer
+from pygments.formatters import HtmlFormatter
+
 from src.archive import (
     generate_archive_index,
     generate_archive_year,
@@ -192,63 +197,6 @@ def get_feeds_with_entries(
     return list(feeds_with_entries.values())
 
 
-def generate_webring(feeds_with_entries: list[FeedInfo], output_dir: Path):
-    """
-    Generate webring redirect files.
-
-    Selects two random feeds from those with entries or filtered entries.
-
-    Args:
-        entries: List of FeedEntry objects.
-        failed_feeds: List of FailedFeedInfo objects.
-        output_dir: Path where HTML files should be written.
-    """
-
-    # Need at least 2 feeds for webring
-    if len(feeds_with_entries) < 2:
-        logger.warning(
-            f"Not enough feeds for webring (need 2, have {len(feeds_with_entries)})"
-        )
-        return
-
-    # Filter to only webring-enabled feeds
-    feeds_with_entries = [f for f in feeds_with_entries if f.webring]
-
-    # Select 2 random feeds
-    [prev_link, next_link] = random.sample(list(feeds_with_entries), 2)
-
-    template_content = read_template("webring-redirect.html")
-    renderer = make_renderer()
-
-    save_html(
-        renderer.render(
-            template_content,
-            {
-                "title": prev_link.title,
-                "url": prev_link.html_url,
-                "url_utm": add_ref_param(prev_link.html_url),
-            },
-        ),
-        "webring/previous.html",
-        output_dir,
-    )
-    logger.info(f"Generated webring previous link: {prev_link.html_url}")
-
-    save_html(
-        renderer.render(
-            template_content,
-            {
-                "title": next_link.title,
-                "url": next_link.html_url,
-                "url_utm": add_ref_param(next_link.html_url),
-            },
-        ),
-        "webring/next.html",
-        output_dir,
-    )
-    logger.info(f"Generated webring previous link: {next_link.html_url}")
-
-
 @dataclass
 class BuildCache:
     feeds: list[FeedInfo] = field(default_factory=list)
@@ -261,6 +209,10 @@ class BuildCache:
     events: list[Event] = field(default_factory=list)
     fediverse_creators: dict[str, str] = field(default_factory=dict)
     entries_by_year: dict[int, list[FeedEntry]] = field(default_factory=dict)
+    webring_prev_next: dict[str, tuple[FeedInfo, FeedInfo]] = field(
+        default_factory=dict
+    )
+    webring_legacy: dict[str, FeedInfo] = field(default_factory=dict)
 
 
 def generate_website(
@@ -314,6 +266,18 @@ def generate_website(
             output_dir=output_dir / page_name,
         )
 
+    @build.rule("webring_page")
+    def _(_target: str):
+        webring_template = read_template("webring.html")
+        webring_content = webring_renderer.render(
+            webring_template, {"site_url": config.SITE_URL}
+        )
+        render_and_save_html(
+            html_content=webring_content,
+            page_url="webring/",
+            output_dir=output_dir / "webring",
+        )
+
     @build.rule("parsed_opml")
     def _(_target: str):
         cache.feeds = parse_opml_file(opml_path)
@@ -331,7 +295,7 @@ def generate_website(
             cache_fallback=cache_fallback,
         )
         cache.failed_feeds.sort(key=lambda f: f.feed_info.title.lower())
-        (cache.weeknote_entries, cache.other_entries) = separate_weeknote_entries(
+        cache.weeknote_entries, cache.other_entries = separate_weeknote_entries(
             cache.entries
         )
         cache.feeds_with_entries = get_feeds_with_entries(
@@ -392,10 +356,87 @@ def generate_website(
             cache.feeds_with_entries, cache.feeds, output_dir
         )
 
+    webring_template = read_template("webring-redirect.html")
+    webring_renderer = make_renderer()
+
     @build.rule("webring")
     def _(_target: str):
         build.need("feeds")
-        generate_webring(cache.feeds_with_entries, output_dir)
+        feeds = [f for f in cache.feeds_with_entries if f.webring]
+        if len(feeds) < 2:
+            logger.warning(
+                f"Not enough webring-enabled feeds (need 2, have {len(feeds)})"
+            )
+            return
+
+        random.shuffle(feeds)
+        n = len(feeds)
+        targets = []
+        for i, feed in enumerate(feeds):
+            prev_feed = feeds[(i - 1) % n]
+            next_feed = feeds[(i + 1) % n]
+            slug = urlparse(feed.html_url).netloc.replace(".", "-")
+            cache.webring_prev_next[slug] = (prev_feed, next_feed)
+            targets.append(f"webring_member:{slug}")
+            targets.append(f"webring_embed:{slug}")
+
+        prev_link, next_link = random.sample(feeds, 2)
+        cache.webring_legacy["previous"] = prev_link
+        cache.webring_legacy["next"] = next_link
+        targets.append("webring_legacy:previous")
+        targets.append("webring_legacy:next")
+
+        build.need(*targets)
+
+    @build.rule("webring_member:*")
+    def _(slug: str):
+        prev_feed, next_feed = cache.webring_prev_next[slug]
+        for feed, name in [(prev_feed, "previous"), (next_feed, "next")]:
+            save_html(
+                webring_renderer.render(
+                    webring_template,
+                    {
+                        "title": feed.title,
+                        "url": feed.html_url,
+                        "url_utm": add_ref_param(feed.html_url),
+                    },
+                ),
+                f"webring/{slug}/{name}.html",
+                output_dir,
+            )
+
+    @build.rule("webring_embed:*")
+    def _(slug: str):
+        prev_feed, next_feed = cache.webring_prev_next[slug]
+        prev_url = f"{config.SITE_URL}webring/{slug}/previous.html"
+        next_url = f"{config.SITE_URL}webring/{slug}/next.html"
+        embed_html = (
+            '<div class="webring">\n'
+            f'  <a href="{prev_url}">← Previous</a>\n'
+            f'  | <a href="{config.SITE_URL}">IndieWebClub Bangalore</a> |\n'
+            f'  <a href="{next_url}">Next →</a>\n'
+            "</div>"
+        )
+        highlighted = highlight(embed_html, HtmlLexer(), HtmlFormatter())
+        highlighted = highlighted.replace('class="highlight"', 'class="codehilite"')
+        save_html(highlighted, f"webring/{slug}/links_embed.html", output_dir)
+
+    @build.rule("webring_legacy:*")
+    def _(kind: str):
+        feed = cache.webring_legacy[kind]
+        save_html(
+            webring_renderer.render(
+                webring_template,
+                {
+                    "title": feed.title,
+                    "url": feed.html_url,
+                    "url_utm": add_ref_param(feed.html_url),
+                },
+            ),
+            f"webring/{kind}.html",
+            output_dir,
+        )
+        logger.info(f"Generated webring {kind} link: {feed.html_url}")
 
     @build.rule("newsletter")
     def _(_target: str):
@@ -458,6 +499,7 @@ def generate_website(
         build.need(
             "members_dir",
             "webring",
+            "webring_page",
             "newsletter",
             "archive",
             "homepage",
@@ -489,6 +531,7 @@ def generate_website(
             "blogroll_feed",
             "weeknotes_blogroll_feed",
             "webring",
+            "webring_page",
             "newsletter",
             "archive",
             "homepage",

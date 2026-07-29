@@ -5,6 +5,7 @@
   --color-card-bg: azure;
   --color-border-accent: #3aa88f;
   --color-hr: #c4a67a;
+  --color-error: red;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -15,6 +16,7 @@
     --color-card-bg: #f0f0f010;
     --color-border-accent: aquamarine;
     --color-hr: bisque;
+    --color-error: #faa;
   }
 }
 
@@ -648,31 +650,49 @@ pre { line-height: 125%; }
   display: flex;
 }
 
-form.newsletter-form input[type="email"] {
-  width: 100%;
-  max-width: 20rem;
-  height: 2em;
-  font-size: 1em;
-}
-
-form.newsletter-form input[type="submit"] {
-  font-size: 1em;
-  padding: 0.25em 0.5em;
-}
-
-form.newsletter-form {
+form.newsletter-form,
+#webring-tool form {
   display: flex;
   flex-direction: row;
   gap: 0.25em;
   align-items: center;
 }
 
+form.newsletter-form input[type="email"],
+#webring-tool input[type="url"] {
+  width: 100%;
+  max-width: 20rem;
+  height: 2em;
+  font-size: 1em;
+}
+
+form.newsletter-form input[type="submit"],
+#webring-tool button {
+  font-size: 1em;
+  padding: 0.25em 0.5em;
+}
+
 @media screen and (max-width: 500px) {
-  form.newsletter-form {
+  form.newsletter-form,
+  #webring-tool form {
     flex-direction: column;
     gap: 0.25em;
     align-items: flex-start;
   }
+}
+
+#webring-tool {
+  margin: 1rem 0;
+}
+
+#webring-result {
+  display: none;
+  margin-top: 1rem;
+}
+
+#webring-result .webring-error {
+  color: var(--color-error);
+  font-weight: bold;
 }
 
 .noscript p {

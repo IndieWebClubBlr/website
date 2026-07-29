@@ -555,7 +555,7 @@ def process_single_feed(
                 return [], FailureReason.ERROR
 
     # Parse feed content
-    (entries, has_entries) = parse_feed(feed_title, feed_url, content)
+    entries, has_entries = parse_feed(feed_title, feed_url, content)
 
     if len(entries) == 0:
         logger.info(f"Processed {feed_title}: 0 entries")
