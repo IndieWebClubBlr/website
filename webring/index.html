@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="language" content="EN">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>IndieWebClub Bangalore</title>
+
+  <meta name="title" content="IndieWebClub Bangalore">
+  <meta name="description" content="Website of the IndieWebClub Bangalore community">
+
+  <link rel="icon" href="https://blr.indiewebclub.org/favicon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://blr.indiewebclub.org/webring/">
+  <meta property="og:site_name" content="IndieWebClub Bangalore">
+  <meta property="og:title" content="IndieWebClub Bangalore">
+  <meta property="og:description" content="Website of the IndieWebClub Bangalore community">
+  <meta property="og:image" content="https://blr.indiewebclub.org/preview.png" />
+
+  <meta name="google-site-verification" content="W9zo_09H7si4AyfH3mhx1dUCwhNjdI_QsT58UoybSqk" />
+
+  <link rel="canonical" href="https://blr.indiewebclub.org/webring/">
+  <link rel="alternate" type="application/atom+xml" title="Blogroll" href="https://blr.indiewebclub.org/blogroll.atom">
+  <link rel="alternate" type="application/atom+xml" title="Week Note Blogroll" href="https://blr.indiewebclub.org/blogroll-weeknotes.atom">
+  <link rel="alternate" type="application/atom+xml" title="Events" href="https://blr.indiewebclub.org/events.atom">
+  <link rel="stylesheet" href="/style.css">
+  <script defer data-domain="blr.indiewebclub.org" src="https://stati.stic.earth/js/script.file-downloads.outbound-links.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1 class="logo"><a href="/">IndieWebClub<br>Bangalore</a></h1>
+  </header>
+
+  <main>
+    <h1 id="webring">Webring</h1>
+<p>The IndieWebClub Bangalore <a href="https://indieweb.org/webring">Webring</a> is a way to connect the websites of its members and encourage discovery within our community. If you're a member, please consider adding the webring navigation to your website.</p>
+<h2 id="adding-the-webring-to-your-site">Adding the Webring to Your Site</h2>
+<p>The webring forms a circular chain of member websites. Each member has a unique <em>Previous</em> link (pointing to the member before them in the ring) and a unique <em>Next</em> link (pointing to the member after them). The ring order is randomized on each rebuild, so links change periodically.</p>
+
+<ol>
+<li>Follow the instructions in the <a href="#how-to-join">How to Join</a> section to join our blogroll.</li>
+<li>After your pull request is merged and the site rebuilds, enter your URL below to get your embed code.</li>
+<li>Add the embed code to your website.</li>
+</ol>
+<div id="webring-tool">
+  <form id="webring-form" onsubmit="return getWebringLinks(event)">
+    <input type="url" id="site-url" placeholder="https://yoursite.example.com/" required />
+    <button type="submit">Get my links</button>
+  </form>
+  <noscript class="noscript"><p>Enable JavaScript to get your webring links.</p></noscript>
+  <div id="webring-result"></div>
+</div>
+
+<p>You can customize the appearance of the links with CSS:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">.</span><span class="nc">webring</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#ccc</span><span class="p">;</span>
+<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">webring</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">text-decoration</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="w">  </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">webring</span><span class="w"> </span><span class="nt">a</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">text-decoration</span><span class="p">:</span><span class="w"> </span><span class="kc">underline</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="how-to-join">How to Join</h2>
+<ol>
+<li>Participate in the IndieWebClub Bangalore <a href="/#upcoming-events">meetups</a> and join our online community.</li>
+<li>Add your blog's feed to the <a href="/blogroll.opml"><code>blogroll.opml</code></a> file with a <code>htmlUrl</code> pointing to your website and <code>webring="true"</code>. Your feed must contain at least one post.</li>
+<li><a href="https://github.com/IndieWebClubBlr/website/pulls">Raise a pull request</a>, or contact an admin in the community space.</li>
+<li>After your pull request is merged and the site rebuilds, come back to this page, <a href="#adding-the-webring-to-your-site">enter your URL</a>, and add the embed code to your website.</li>
+</ol>
+<p>You must add the links to your site within a reasonable time, otherwise your website will be removed from the webring (but not from the blogroll).</p>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>The webring connects member websites but does not endorse their content. Members are responsible for their own sites. If you have concerns about a member's website, please contact the admins via <a href="mailto:blr+mod@indiewebclub.org">email</a>.</p>
+
+<script>
+function getWebringLinks(event) {
+  event.preventDefault();
+  var url = document.getElementById("site-url").value.trim();
+  var result = document.getElementById("webring-result");
+  try {
+    var host = new URL(url).hostname;
+    if (!url.includes("://") || !host.includes(".")) throw Error();
+  } catch(e) {
+    result.style.display = "block";
+    result.innerHTML = '<p class="webring-error">Invalid URL. Please enter a full URL like <code>https://example.com/</code> with a proper domain.</p>';
+    return false;
+  }
+  var slug = host.replace(/\./g, "-");
+  var prevUrl = "https://blr.indiewebclub.org/webring/" + slug + "/previous.html";
+  var nextUrl = "https://blr.indiewebclub.org/webring/" + slug + "/next.html";
+  var linksHtml =
+    '<p><strong>Your slug:</strong> <code>' + slug + '</code></p>' +
+    '<p><strong>Previous link:</strong> <a href="' + prevUrl + '"><code>' + prevUrl + '</code></a></p>' +
+    '<p><strong>Next link:</strong> <a href="' + nextUrl + '"><code>' + nextUrl + '</code></a></p>';
+  result.style.display = "block";
+  result.innerHTML = '<p>Loading…</p>';
+  fetch("/webring/" + slug + "/links_embed.html")
+    .then(function(r) { if (!r.ok) throw Error(); return r.text(); })
+    .then(function(html) { result.innerHTML = linksHtml + '<p><strong>Copy this HTML into your website:</strong></p>' + html; })
+    .catch(function() {
+      result.innerHTML =
+        linksHtml +
+        '<p class="webring-error">Your website is not yet in the webring. ' +
+        'Follow the <a href="#how-to-join">steps below</a> to add it. ' +
+        'These links will start working after your pull request is merged and the site rebuilds.</p>';
+    });
+  return false;
+}
+</script>
+
+  </main>
+
+  <footer>
+    <div><a href="https://indieweb.org/"><img src="https://blr.indiewebclub.org/indiewebcamp-button.svg" style="image-rendering:pixelated;"></a></div>
+    <div>Last generated at: <time datetime="08 Aug 2026, 10:52 PM IST">08 Aug 2026, 10:52 PM IST</time></div>
+    <div><a href="https://github.com/IndieWebClubBlr/website/">Source</a></div>
+  </footer>
+</body>
+
+</html>
