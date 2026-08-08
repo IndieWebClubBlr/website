@@ -110,7 +110,7 @@
     <outline type="rss" text="Thejesh GN" xmlUrl="https://feeds.thejeshgn.com/thejeshgn" htmlUrl="https://thejeshgn.com/" />
     <outline type="rss" text="thinkbacteria" xmlUrl="https://thinkbacteria.pages.dev/index.xml" htmlUrl="https://thinkbacteria.pages.dev/" webring="true" />
     <outline type="rss" text="Uvaise Nazir" xmlUrl="https://uvaisenazir.substack.com/feed" htmlUrl="https://uvaisenazir.substack.com/" />
-    <outline type="rss" text="vindo" xmlUrl="https://arsam.space/feed.xml" htmlUrl="https://arsam.space/" />
+    <outline type="rss" text="vindo" xmlUrl="https://arsam.space/feed.xml" htmlUrl="https://arsam.space/" webring="true" />
     <outline type="rss" text="Vishal R" xmlUrl="https://vishalr.dev/rss.xml" htmlUrl="https://vishalr.dev/" />
     <outline type="rss" text="wrld" xmlUrl="https://wrld.mataroa.blog/rss/" htmlUrl="https://wrld.mataroa.blog/" />
     <outline type="rss" text="xypnox" xmlUrl="https://www.xypnox.com/rss.xml" htmlUrl="https://www.xypnox.com/" />
