@@ -31,10 +31,8 @@
     <outline type="rss" text="aspizu" xmlUrl="https://aspiz.uk/blog/rss.xml" htmlUrl="https://aspiz.uk/" />
     <outline type="rss" text="asthabugs" xmlUrl="https://asthabugs.mataroa.blog/rss/" htmlUrl="https://asthabugs.mataroa.blog/" />
     <outline type="rss" text="Atharva Raykar" xmlUrl="https://atharvaraykar.com/rss/" htmlUrl="https://atharvaraykar.com/" />
-    <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/notes/rss.xml" htmlUrl="https://azan-n.com/" />
-    <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/projects/rss.xml" htmlUrl="https://azan-n.com/" />
-    <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/playlists/rss.xml" htmlUrl="https://azan-n.com/" />
-    <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/photos/rss.xml" htmlUrl="https://azan-n.com/" />
+    <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/rss.xml" htmlUrl="https://azan-n.com/" />
+    <outline type="rss" text="Azan" xmlUrl="https://blog.azan-n.com/rss.xml" htmlUrl="https://blog.azan-n.com/" />
     <outline type="rss" text="barsinger" xmlUrl="https://barsinger.mataroa.blog/rss/" htmlUrl="https://barsinger.mataroa.blog/" />
     <outline type="rss" text="Chaitanya Hegde" xmlUrl="https://hegde.me/feed/" htmlUrl="https://hegde.me/" webring="true" />
     <outline type="rss" text="Chitin" xmlUrl="https://theoptout.xyz/rss.xml" htmlUrl="https://theoptout.xyz/" />
