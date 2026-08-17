@@ -2,7 +2,16 @@
 
 [TOC]
 
-## July 4, 2006
+## August 2, 2026
+
+Understanding the media on the IndieWeb beyond text.
+
+- Why does the IndieWeb feel primarily like a place for words? Why doesn’t the IndieWeb seem to have space for other types of media? Why do most of us choose to write words instead of posting pictures?
+- What would need to change to see more types of media on independent websites? At an ecosystem level? For you personally? What would need to change to have a diversity of media on the IndieWeb?
+- How many people are visual thinkers? How does (or can) that translate to your work on the IndieWeb?
+- Why are we okay sharing memes on social media and chat apps, but not on our websites? Same with GIFs. Do we have higher standards for images and other media compared to text?
+
+## July 4, 2026
 
 What’s the point of publishing anonymously, what effect that has on our work, and how can we accomplish that on the IndieWeb?
 
