@@ -584,6 +584,32 @@ def process_single_feed(
     return entries, None
 
 
+def deduplicate_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
+    """Deduplicate entries by link, preferring entries from the linked hostname.
+
+    When duplicate entries have equal hostname priority, retain the first one.
+    """
+    entries_by_link: dict[str, FeedEntry] = {}
+
+    for entry in entries:
+        existing_entry = entries_by_link.get(entry.link)
+        if existing_entry is None:
+            entries_by_link[entry.link] = entry
+            continue
+
+        link_hostname = urlparse(entry.link).hostname
+        entry_hostname = urlparse(entry.feed_home_url).hostname
+        existing_hostname = urlparse(existing_entry.feed_home_url).hostname
+        if (
+            link_hostname is not None
+            and entry_hostname == link_hostname
+            and existing_hostname != link_hostname
+        ):
+            entries_by_link[entry.link] = entry
+
+    return list(entries_by_link.values())
+
+
 def fetch_all_feeds(
     feeds: list[FeedInfo], use_cache: bool, cache_fallback: bool
 ) -> tuple[list[FeedEntry], list[FailedFeedInfo]]:
@@ -597,7 +623,7 @@ def fetch_all_feeds(
 
     Returns:
         A tuple containing:
-        - Combined list of all feed entries.
+        - Combined, link-deduplicated list of all feed entries.
         - List of feeds that failed to be fetched.
     """
     if len(feeds) == 0:
@@ -605,7 +631,8 @@ def fetch_all_feeds(
 
     logger.info(f"Processing {len(feeds)} feeds with {config.MAX_WORKERS} workers")
 
-    all_entries: list[FeedEntry] = []
+    # Preserve OPML order for deterministic duplicate fallback selection.
+    entries_by_feed: list[list[FeedEntry]] = [[] for _ in feeds]
     failed_feeds: list[FailedFeedInfo] = []
 
     with ThreadPoolExecutor(
@@ -615,13 +642,13 @@ def fetch_all_feeds(
         future_to_feed = {
             executor.submit(
                 process_single_feed, feed_info, use_cache, cache_fallback
-            ): feed_info
-            for feed_info in feeds
+            ): (index, feed_info)
+            for index, feed_info in enumerate(feeds)
         }
 
         # Collect results as they complete
         for future in as_completed(future_to_feed):
-            feed_info = future_to_feed[future]
+            feed_index, feed_info = future_to_feed[future]
 
             try:
                 entries, failure_reason = future.result()
@@ -630,7 +657,7 @@ def fetch_all_feeds(
                         FailedFeedInfo(feed_info=feed_info, reason=failure_reason)
                     )
                 else:
-                    all_entries.extend(entries)
+                    entries_by_feed[feed_index] = entries
 
             except Exception as e:
                 logger.error(f"Failed to process {feed_info.title}: {e}")
@@ -639,7 +666,8 @@ def fetch_all_feeds(
                 )
 
     session_manager.close_all()
-    return all_entries, failed_feeds
+    all_entries = [entry for feed_entries in entries_by_feed for entry in feed_entries]
+    return deduplicate_feed_entries(all_entries), failed_feeds
 
 
 def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
