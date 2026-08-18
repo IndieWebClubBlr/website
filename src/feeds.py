@@ -706,7 +706,7 @@ def group_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
 
 
 WEEKNOTE_PATTERN = re.compile(
-    r"\b(?:week|month|quarter|year)(?:ly|'s|’s)?[-_ ]?notes?\b",
+    r"(\b(?:day|week|month|quarter|year)(?:ly|'s|’s)?[-_ ]?notes?\b)|(notes\s+\(?\d+(-|-)\d+\)?\s*-?\s*\d+)",
     re.IGNORECASE,
 )
 
