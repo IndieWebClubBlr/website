@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://blr.indiewebclub.org/events.atom</id>
+  <title>IndieWebClub Bangalore Events</title>
+  <updated>2026-08-03T18:09:11.089000+00:00</updated>
+  <author>
+    <name>IndieWebClub Bangalore</name>
+  </author>
+  <link href="https://blr.indiewebclub.org/events.atom" rel="self"/>
+  <link href="https://blr.indiewebclub.org/" rel="alternate"/>
+  <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
+  <subtitle>Events by IndieWebClub Bangalore.</subtitle>
+  <entry>
+    <id>https://underline.center/t/indiewebclub-32</id>
+    <title>IndieWebClub #32</title>
+    <updated>2026-08-03T18:09:11.089000+00:00</updated>
+    <content type="html">&lt;div class="discourse-post-event" data-start="2026-08-15 14:00" data-end="2026-08-15 17:00" data-location="https://www.district.in/indiewebclub-meetup/event" data-status="standalone" data-timezone="Asia/Calcutta" data-image="upload://cU2boz5yAYvOlNGN25VJnCARpLv.png"&gt;&lt;/div&gt;
+&lt;h2&gt;&lt;a name="p-1000-agenda-1" class="anchor" href="#p-1000-agenda-1" aria-label="Heading link"&gt;&lt;/a&gt;Agenda&lt;/h2&gt;
+&lt;p&gt;This will be a co-working and writing session. We’ll work on our personal websites, try new designs, build new features, squash bugs, polish old drafts, or do some long-neglected digital housekeeping.&lt;/p&gt;
+&lt;p&gt;If you don’t have any programming or design experience, don’t worry! We’ll help you with any questions you might have participating on the IndieWeb, no matter your level of technical experience. If possible, we’ll pair you up with a buddy who can help you out with the technical and design side of web development.&lt;/p&gt;
+&lt;h2&gt;&lt;a name="p-1000-what-is-indiewebclub-2" class="anchor" href="#p-1000-what-is-indiewebclub-2" aria-label="Heading link"&gt;&lt;/a&gt;What is IndieWebClub?&lt;/h2&gt;
+&lt;p&gt;IndieWebClub is part of a growing &lt;a href="https://indieweb.org/Homebrew_Website_Club"&gt;world-wide network of meetups&lt;/a&gt; for everyone who wants to take back their web experience from social media &lt;a href="https://indieweb.org/silos"&gt;silos&lt;/a&gt;, and own their online identities &amp;amp; content, or just want support with blogging!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Want to blog more and looking for: ideas, momentum, and a supportive community?&lt;/li&gt;
+&lt;li&gt;Join a gathering of like-minded people and get friendly support with writing, creating, and anything related to using and improving your own website!&lt;/li&gt;
+&lt;li&gt;You &lt;strong&gt;do not&lt;/strong&gt; need to have any tech background or experience in having your own website. You can even start with a Google Doc or your local notes app!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a name="p-1000-about-indiewebclub-bangalore-3" class="anchor" href="#p-1000-about-indiewebclub-bangalore-3" aria-label="Heading link"&gt;&lt;/a&gt;About IndieWebClub Bangalore&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;We have a WhatsApp community where we post announcements and share work done by our members. Please join &lt;a href="https://at.underline.center/indiewebclub-whatsapp"&gt;by clicking here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;See &lt;a href="https://blr.indiewebclub.org"&gt;https://blr.indiewebclub.org&lt;/a&gt; for a regularly updated feed of blog posts by our members.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://underline.center/t/indiewebclub-32"/>
+    <published>2026-08-03T18:09:11.089000+00:00</published>
+  </entry>
+  <entry>
+    <id>https://underline.center/t/indiewebclub-31</id>
+    <title>IndieWebClub #31</title>
+    <updated>2026-07-28T17:30:12.484000+00:00</updated>
+    <content type="html">&lt;div class="discourse-post-event" data-start="2026-08-02 11:30" data-end="2026-08-02 14:30" data-location="https://www.district.in/indiewebclub-meetup/event" data-status="standalone" data-timezone="Asia/Calcutta" data-image="upload://cU2boz5yAYvOlNGN25VJnCARpLv.png"&gt;&lt;/div&gt;
+&lt;h2&gt;&lt;a name="p-995-agenda-1" class="anchor" href="#p-995-agenda-1" aria-label="Heading link"&gt;&lt;/a&gt;Agenda&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Why does the IndieWeb feel primarily like a place for words? Why doesn’t the IndieWeb seem to have space for other types of media? Why do most of us choose to write words instead of posting pictures?&lt;/li&gt;
+&lt;li&gt;What would need to change to see more types of media on independent websites? At an ecosystem level? For you personally? What would need to change to have a diversity of media on the IndieWeb?&lt;/li&gt;
+&lt;li&gt;How many people here are visual thinkers? How does (or can) that translate to your work on the IndieWeb?&lt;/li&gt;
+&lt;li&gt;Why are we okay sharing memes on social media and chat apps, but not on our websites? Same with GIFs. Do we have higher standards for images and other media compared to text?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;a name="p-995-what-is-indiewebclub-2" class="anchor" href="#p-995-what-is-indiewebclub-2" aria-label="Heading link"&gt;&lt;/a&gt;What is IndieWebClub?&lt;/h2&gt;
+&lt;p&gt;IndieWebClub is part of a growing &lt;a href="https://indieweb.org/Homebrew_Website_Club"&gt;world-wide network of meetups&lt;/a&gt; for everyone who wants to take back their web experience from social media &lt;a href="https://indieweb.org/silos"&gt;silos&lt;/a&gt;, and own their online identities &amp;amp; content, or just want support with blogging!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Want to blog more and looking for: ideas, momentum, and a supportive community?&lt;/li&gt;
+&lt;li&gt;Join a gathering of like-minded people and get friendly support with writing, creating, and anything related to using and improving your own website!&lt;/li&gt;
+&lt;li&gt;You &lt;strong&gt;do not&lt;/strong&gt; need to have any tech background or experience in having your own website. You can even start with a Google Doc or your local notes app!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a name="p-995-about-indiewebclub-bangalore-3" class="anchor" href="#p-995-about-indiewebclub-bangalore-3" aria-label="Heading link"&gt;&lt;/a&gt;About IndieWebClub Bangalore&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;We have a WhatsApp community where we post announcements and share work done by our members. Please join &lt;a href="https://at.underline.center/indiewebclub-whatsapp"&gt;by clicking here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;See &lt;a href="https://blr.indiewebclub.org"&gt;https://blr.indiewebclub.org&lt;/a&gt; for a regularly updated feed of blog posts by our members.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://underline.center/t/indiewebclub-31"/>
+    <published>2026-07-28T17:30:12.484000+00:00</published>
+  </entry>
+  <entry>
+    <id>https://underline.center/t/indiewebclub-30</id>
+    <title>IndieWebClub #30</title>
+    <updated>2026-07-12T09:23:55.503000+00:00</updated>
+    <content type="html">&lt;div class="discourse-post-event" data-start="2026-07-18 14:00" data-end="2026-07-18 17:00" data-location="https://www.district.in/indiewebclub-meetup/event" data-status="standalone" data-timezone="Asia/Calcutta" data-image="upload://cU2boz5yAYvOlNGN25VJnCARpLv.png"&gt;&lt;/div&gt;
+&lt;h2&gt;&lt;a name="p-981-agenda-1" class="anchor" href="#p-981-agenda-1" aria-label="Heading link"&gt;&lt;/a&gt;Agenda&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TBA&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;&lt;a name="p-981-what-is-indiewebclub-2" class="anchor" href="#p-981-what-is-indiewebclub-2" aria-label="Heading link"&gt;&lt;/a&gt;What is IndieWebClub?&lt;/h2&gt;
+&lt;p&gt;IndieWebClub is part of a growing &lt;a href="https://indieweb.org/Homebrew_Website_Club"&gt;world-wide network of meetups&lt;/a&gt; for everyone who wants to take back their web experience from social media &lt;a href="https://indieweb.org/silos"&gt;silos&lt;/a&gt;, and own their online identities &amp;amp; content, or just want support with blogging!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Want to blog more and looking for: ideas, momentum, and a supportive community?&lt;/li&gt;
+&lt;li&gt;Join a gathering of like-minded people and get friendly support with writing, creating, and anything related to using and improving your own website!&lt;/li&gt;
+&lt;li&gt;You &lt;strong&gt;do not&lt;/strong&gt; need to have any tech background or experience in having your own website. You can even start with a Google Doc or your local notes app!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a name="p-981-about-indiewebclub-bangalore-3" class="anchor" href="#p-981-about-indiewebclub-bangalore-3" aria-label="Heading link"&gt;&lt;/a&gt;About IndieWebClub Bangalore&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;We have a WhatsApp community where we post announcements and share work done by our members. Please join &lt;a href="https://at.underline.center/indiewebclub-whatsapp"&gt;by clicking here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;See &lt;a href="https://blr.indiewebclub.org"&gt;https://blr.indiewebclub.org&lt;/a&gt; for a regularly updated feed of blog posts by our members.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://underline.center/t/indiewebclub-30"/>
+    <published>2026-07-12T09:23:55.503000+00:00</published>
+  </entry>
+  <entry>
+    <id>https://underline.center/t/indiewebclub-29</id>
+    <title>IndieWebClub #29</title>
+    <updated>2026-06-30T09:24:00.064000+00:00</updated>
+    <content type="html">&lt;div class="discourse-post-event" data-start="2026-07-04 14:00" data-end="2026-07-04 17:00" data-location="https://www.district.in/indiewebclub-meetup/event" data-status="standalone" data-timezone="Asia/Calcutta" data-image="upload://cU2boz5yAYvOlNGN25VJnCARpLv.png"&gt;&lt;/div&gt;
+&lt;h2&gt;&lt;a name="p-972-agenda-1" class="anchor" href="#p-972-agenda-1" aria-label="Heading link"&gt;&lt;/a&gt;Agenda&lt;/h2&gt;
+&lt;p&gt;Our agenda this time is anonymity. What’s the point of publishing anonymously, what effect that has on our work, and how can we accomplish that on the IndieWeb?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What’s the purpose of being anonymous when you publish online? What are the costs to being anonymous?&lt;/li&gt;
+&lt;li&gt;Why publish anonymously at all? After all, you might not gain anything by doing so.&lt;/li&gt;
+&lt;li&gt;What is the effect of writing under a pseudonym on writing quality or audience trust?&lt;/li&gt;
+&lt;li&gt;If a pseudonym is popular enough, is it same as a real name?&lt;/li&gt;
+&lt;li&gt;How can we be truly anonymous on the IndieWeb when so many services have our private data? When LLMs can unmask us by analyzing our writing? Is it even possible? In light of that, can the IndieWeb be a safe space for dissent?&lt;/li&gt;
+&lt;li&gt;What’s the difference between anonymity and privacy?&lt;/li&gt;
+&lt;li&gt;Are there different levels to anonymity? Can you be sort-of-anonymous without completely hiding your identity?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We’ll spend the last hour of the meetup writing and publishing a piece on our personal websites. We’ll provide writing prompts to get you started.&lt;/p&gt;
+&lt;p&gt;Remember to bring a device you can use to write and post to your blog!&lt;/p&gt;
+&lt;h2&gt;&lt;a name="p-972-what-is-indiewebclub-2" class="anchor" href="#p-972-what-is-indiewebclub-2" aria-label="Heading link"&gt;&lt;/a&gt;What is IndieWebClub?&lt;/h2&gt;
+&lt;p&gt;IndieWebClub is part of a growing &lt;a href="https://indieweb.org/Homebrew_Website_Club"&gt;world-wide network of meetups&lt;/a&gt; for everyone who wants to take back their web experience from social media &lt;a href="https://indieweb.org/silos"&gt;silos&lt;/a&gt;, and own their online identities &amp;amp; content, or just want support with blogging!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Want to blog more and looking for: ideas, momentum, and a supportive community?&lt;/li&gt;
+&lt;li&gt;Join a gathering of like-minded people and get friendly support with writing, creating, and anything related to using and improving your own website!&lt;/li&gt;
+&lt;li&gt;You &lt;strong&gt;do not&lt;/strong&gt; need to have any tech background or experience in having your own website. You can even start with a Google Doc or your local notes app!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a name="p-972-about-indiewebclub-bangalore-3" class="anchor" href="#p-972-about-indiewebclub-bangalore-3" aria-label="Heading link"&gt;&lt;/a&gt;About IndieWebClub Bangalore&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;We have a WhatsApp community where we post announcements and share work done by our members. Please join &lt;a href="https://at.underline.center/indiewebclub-whatsapp"&gt;by clicking here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;See &lt;a href="https://blr.indiewebclub.org"&gt;https://blr.indiewebclub.org&lt;/a&gt; for a regularly updated feed of blog posts by our members.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://underline.center/t/indiewebclub-29"/>
+    <published>2026-06-30T09:24:00.064000+00:00</published>
+  </entry>
+  <entry>
+    <id>https://underline.center/t/indiewebclub-28</id>
+    <title>IndieWebClub #28</title>
+    <updated>2026-06-06T17:30:52.604000+00:00</updated>
+    <content type="html">&lt;p&gt;&lt;div class="lightbox-wrapper"&gt;&lt;a class="lightbox" href="https://underline.center/uploads/default/original/1X/5a6fa6b1471b6bab70195b402af6e0bcd8e813fd.png" data-download-href="https://underline.center/uploads/default/5a6fa6b1471b6bab70195b402af6e0bcd8e813fd" title=""&gt;&lt;img src="https://underline.center/uploads/default/optimized/1X/5a6fa6b1471b6bab70195b402af6e0bcd8e813fd_2_690x388.png" alt="" data-base62-sha1="cU2boz5yAYvOlNGN25VJnCARpLv" width="690" height="388" role="presentation" srcset="https://underline.center/uploads/default/optimized/1X/5a6fa6b1471b6bab70195b402af6e0bcd8e813fd_2_690x388.png, https://underline.center/uploads/default/optimized/1X/5a6fa6b1471b6bab70195b402af6e0bcd8e813fd_2_1035x582.png 1.5x, https://underline.center/uploads/default/optimized/1X/5a6fa6b1471b6bab70195b402af6e0bcd8e813fd_2_1380x776.png 2x" data-dominant-color="258585"&gt;&lt;div class="meta"&gt;&lt;svg class="fa d-icon d-icon-far-image svg-icon" aria-hidden="true"&gt;&lt;use href="#far-image"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;span class="filename"&gt;&lt;/span&gt;&lt;span class="informations"&gt;1600×900 46.6 KB&lt;/span&gt;&lt;svg class="fa d-icon d-icon-discourse-expand svg-icon" aria-hidden="true"&gt;&lt;use href="#discourse-expand"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;div class="discourse-post-event" data-start="2026-06-20 14:00" data-end="2026-06-20 17:00" data-location="https://www.district.in/indiewebclub-meetup/event" data-status="standalone" data-timezone="Asia/Calcutta"&gt;&lt;/div&gt;
+&lt;h2&gt;&lt;a name="p-966-agenda-1" class="anchor" href="#p-966-agenda-1" aria-label="Heading link"&gt;&lt;/a&gt;Agenda&lt;/h2&gt;
+&lt;p&gt;This will be a discussion session. &lt;a href="https://jatan.space"&gt;Jatan&lt;/a&gt; will lead the session and talk about why it’s okay to never have a domain name:&lt;/p&gt;
+&lt;p&gt;A non-technical perspective on:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;What makes a blog a blog for everyone.&lt;/li&gt;
+&lt;li&gt;What non-techies struggle with or desire but which techies don’t see.&lt;/li&gt;
+&lt;li&gt;How writing on the Web stuck around for me despite not having a domain name for years.&lt;/li&gt;
+&lt;li&gt;Why most feed reader suggestions techies provide are the wrong choice for the general public.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We’ll spend the last hour of the meetup writing and publishing a piece on our personal websites. We’ll provide writing prompts to get you started.&lt;/p&gt;
+&lt;h2&gt;&lt;a name="p-966-what-is-indiewebclub-2" class="anchor" href="#p-966-what-is-indiewebclub-2" aria-label="Heading link"&gt;&lt;/a&gt;What is IndieWebClub?&lt;/h2&gt;
+&lt;p&gt;IndieWebClub is part of a growing &lt;a href="https://indieweb.org/Homebrew_Website_Club"&gt;world-wide network of meetups&lt;/a&gt; for everyone who wants to take back their web experience from social media &lt;a href="https://indieweb.org/silos"&gt;silos&lt;/a&gt;, and own their online identities &amp;amp; content, or just want support with blogging!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Want to blog more and looking for: ideas, momentum, and a supportive community?&lt;/li&gt;
+&lt;li&gt;Join a gathering of like-minded people and get friendly support with writing, creating, and anything related to using and improving your own website!&lt;/li&gt;
+&lt;li&gt;You &lt;strong&gt;do not&lt;/strong&gt; need to have any tech background or experience in having your own website. You can even start with a Google Doc or your local notes app!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a name="p-966-about-indiewebclub-bangalore-3" class="anchor" href="#p-966-about-indiewebclub-bangalore-3" aria-label="Heading link"&gt;&lt;/a&gt;About IndieWebClub Bangalore&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;We have a WhatsApp community where we post announcements and share work done by our members. Please join &lt;a href="https://at.underline.center/indiewebclub-whatsapp"&gt;by clicking here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;See &lt;a href="https://blr.indiewebclub.org"&gt;https://blr.indiewebclub.org&lt;/a&gt; for a regularly updated feed of blog posts by our members.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://underline.center/t/indiewebclub-28"/>
+    <published>2026-06-06T17:30:52.604000+00:00</published>
+  </entry>
+</feed>
