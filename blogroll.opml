@@ -37,7 +37,7 @@
     <outline type="rss" text="Chaitanya Hegde" xmlUrl="https://hegde.me/feed/" htmlUrl="https://hegde.me/" webring="true" />
     <outline type="rss" text="Chitin" xmlUrl="https://theoptout.xyz/rss.xml" htmlUrl="https://theoptout.xyz/" />
     <outline type="rss" text="dmart" xmlUrl="https://dmart.mataroa.blog/rss/" htmlUrl="https://dmart.mataroa.blog/" />
-    <outline type="rss" text="Dilip" xmlUrl="https://idlip.in/rss.xml" htmlUrl="https://idlip.in/" />
+    <outline type="rss" text="Dilip" xmlUrl="https://idlip.in/rss.xml" htmlUrl="https://idlip.in/" webring="true" />
     <outline type="rss" text="Divjot Singh" xmlUrl="https://bogas04.fyi/blog.atom" htmlUrl="https://bogas04.fyi/" />
     <outline type="rss" text="Drew" xmlUrl="https://drewsh.com/feeds/all.atom.xml" htmlUrl="https://drewsh.com/" />
     <outline type="rss" text="Fenil Jain" xmlUrl="https://fknil.com/rss.xml" htmlUrl="https://fknil.com/" />
