@@ -332,11 +332,11 @@ def generate_website(
         generate_blogroll_feed(
             entries=entries,
             feed_name="Blogroll",
-            feed_subtitle="Recent posts by IndieWebClub Bangalore folks",
+            feed_subtitle="All posts by IndieWebClub Bangalore folks",
             output_path=output_dir.joinpath(config.BLOGROLL_FEED_FILE),
         )
 
-    @build.rule("blogroll_full_feed")
+    @build.rule("blogroll_latest_feed")
     def _(_target: str):
         build.need("feeds", "members_dir")
         entries = prepend_fediverse_creator(cache.entries, cache.fediverse_creators)
@@ -345,9 +345,9 @@ def generate_website(
         ]
         generate_blogroll_feed(
             entries=entries,
-            feed_name="Blogroll (Full Content)",
-            feed_subtitle="Recent posts by IndieWebClub Bangalore folks, with full content",
-            output_path=output_dir.joinpath(config.BLOGROLL_FULL_FEED_FILE),
+            feed_name="Blogroll (Latest Content)",
+            feed_subtitle="All posts by IndieWebClub Bangalore folks, with full content",
+            output_path=output_dir.joinpath(config.BLOGROLL_LATEST_FEED_FILE),
             full_content=True,
         )
 
@@ -552,7 +552,7 @@ def generate_website(
             "events_feed",
             "events_calendar",
             "blogroll_feed",
-            "blogroll_full_feed",
+            "blogroll_latest_feed",
             "weeknotes_blogroll_feed",
             "webring",
             "webring_page",
