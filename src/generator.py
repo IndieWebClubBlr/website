@@ -345,8 +345,8 @@ def generate_website(
         ]
         generate_blogroll_feed(
             entries=entries,
-            feed_name="Blogroll (Latest Content)",
-            feed_subtitle="All posts by IndieWebClub Bangalore folks, with full content",
+            feed_name="Blogroll",
+            feed_subtitle="All posts by IndieWebClub Bangalore folks",
             output_path=output_dir.joinpath(config.BLOGROLL_LATEST_FEED_FILE),
             full_content=True,
         )
