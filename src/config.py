@@ -67,7 +67,7 @@ BLOGROLL_FEED_FILE = "blogroll.atom"
 WEEKNOTE_BLOGROLL_FEED_FILE = "blogroll-weeknotes.atom"
 
 # Filename for the generated full-content blogroll Atom feed.
-BLOGROLL_FULL_FEED_FILE = "blogroll-full.atom"
+BLOGROLL_FULL_FEED_FILE = "blogroll-latest.atom"
 
 # Maximum number of entries in the full-content blogroll feed.
 MAX_FULL_FEED_ENTRIES = 200

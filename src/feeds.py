@@ -178,7 +178,7 @@ def generate_feed(
     feed_subtitle: str | None,
     entries: list[FeedEntry],
     output_path: Path,
-    full_content: bool = False,
+    add_content: bool = False,
 ):
     """
     Creates an Atom feed from a list of FeedEntry objects.
@@ -189,7 +189,7 @@ def generate_feed(
         feed_subtitle: Feed subtitle (optional).
         entries: A list of FeedEntry objects to include in the feed.
         output_path: Path where Atom file should be written.
-        full_content: If True, include each entry's full HTML content instead of a summary.
+        add_content: If True, include each entry's full HTML content instead of a summary.
     """
     fg = FeedGenerator()
 
@@ -215,7 +215,7 @@ def generate_feed(
             fe.published(entry.published)
             fe.updated(entry.published)
             fe.author(name=entry.feed_title, uri=entry.feed_url)
-            if full_content and entry.content:
+            if add_content and entry.content:
                 fe.content(content=entry.content, type="html")
             elif entry.summary:
                 fe.summary(summary=entry.summary, type="text")
@@ -410,7 +410,7 @@ def extract_summary(entry, feed_title: str, title: str, link: str) -> str:
     return plain
 
 
-def extract_full_content(entry) -> str:
+def extract_content(entry) -> str:
     """Extract full HTML content from a feed entry, preferring content over summary."""
     if hasattr(entry, "content") and entry.content:
         content = entry.content[0]
@@ -503,7 +503,7 @@ def parse_feed(
             ]
 
             summary = extract_summary(entry, feed_title, title, link)
-            content = extract_full_content(entry)
+            content = extract_content(entry)
 
             entries.append(
                 FeedEntry(
@@ -778,7 +778,7 @@ def generate_blogroll_feed(
     feed_name: str,
     feed_subtitle: str,
     output_path: Path,
-    full_content: bool = False,
+    add_content: bool = False,
 ):
     """
     Creates an Atom feed from a list of FeedEntry objects.
@@ -788,7 +788,7 @@ def generate_blogroll_feed(
         feed_name: Name of generator feed.
         feed_subtitle: Subtitle of the generated feed.
         output_path: The path of the Atom file to be written.
-        full_content: If True, include each entry's full HTML content instead of a summary.
+        add_content: If True, include each entry's full HTML content instead of a summary.
     """
     logger.info(f"Generating {feed_name} feed with {len(entries)} entries")
     feed_url = config.SITE_URL + output_path.name
@@ -805,7 +805,7 @@ def generate_blogroll_feed(
         feed_subtitle=feed_subtitle,
         entries=entries,
         output_path=output_path,
-        full_content=full_content,
+        add_content=add_content,
     )
 
     logger.info(f"{feed_name} feed written to: {output_path}")
