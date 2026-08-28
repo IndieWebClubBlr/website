@@ -339,10 +339,10 @@ def generate_website(
     @build.rule("blogroll_latest_feed")
     def _(_target: str):
         build.need("feeds", "members_dir")
-        entries = prepend_fediverse_creator(cache.entries, cache.fediverse_creators)
-        entries = sorted(entries, key=lambda e: e.published, reverse=True)[
+        entries = sorted(cache.entries, key=lambda e: e.published, reverse=True)[
             : config.MAX_FULL_FEED_ENTRIES
         ]
+        entries = prepend_fediverse_creator(entries, cache.fediverse_creators)
         generate_blogroll_feed(
             entries=entries,
             feed_name="Blogroll",
