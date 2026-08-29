@@ -417,6 +417,9 @@ def extract_content(entry) -> str:
         if hasattr(content, "value") and content.value:
             return content.value
 
+    if hasattr(entry, "summary"):
+        return entry.summary
+
     return ""
 
 
