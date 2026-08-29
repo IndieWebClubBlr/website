@@ -340,7 +340,7 @@ def generate_website(
     def _(_target: str):
         build.need("feeds", "members_dir")
         entries = sorted(cache.entries, key=lambda e: e.published, reverse=True)[
-            : config.MAX_FULL_FEED_ENTRIES
+            : config.MAX_LATEST_FEED_ENTRIES
         ]
         entries = prepend_fediverse_creator(entries, cache.fediverse_creators)
         generate_blogroll_feed(
@@ -348,7 +348,7 @@ def generate_website(
             feed_name="Blogroll",
             feed_subtitle="Recent posts by IndieWebClub Bangalore folks",
             output_path=output_dir.joinpath(config.BLOGROLL_LATEST_FEED_FILE),
-            full_content=True,
+            add_content=True,
         )
 
     @build.rule("weeknotes_blogroll_feed")
