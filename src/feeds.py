@@ -75,6 +75,7 @@ class FeedEntry:
         feed_home_url: str,
         tags: list[str],
         summary: str,
+        content: str = "",
     ):
         self.title = title
         self.link = link
@@ -84,6 +85,7 @@ class FeedEntry:
         self.feed_home_url = feed_home_url
         self.tags = tags
         self.summary = summary
+        self.content = content
 
     def published_human(self) -> str:
         return self.published.strftime("%d %b %Y")
@@ -176,6 +178,7 @@ def generate_feed(
     feed_subtitle: str | None,
     entries: list[FeedEntry],
     output_path: Path,
+    add_content: bool = False,
 ):
     """
     Creates an Atom feed from a list of FeedEntry objects.
@@ -186,6 +189,7 @@ def generate_feed(
         feed_subtitle: Feed subtitle (optional).
         entries: A list of FeedEntry objects to include in the feed.
         output_path: Path where Atom file should be written.
+        add_content: If True, include each entry's HTML content instead of a summary.
     """
     fg = FeedGenerator()
 
@@ -211,7 +215,9 @@ def generate_feed(
             fe.published(entry.published)
             fe.updated(entry.published)
             fe.author(name=entry.feed_title, uri=entry.feed_url)
-            if entry.summary:
+            if add_content and entry.content:
+                fe.content(content=entry.content, type="html")
+            elif entry.summary:
                 fe.summary(summary=entry.summary, type="text")
 
             for tag in entry.tags:
@@ -404,6 +410,16 @@ def extract_summary(entry, feed_title: str, title: str, link: str) -> str:
     return plain
 
 
+def extract_content(entry) -> str:
+    """Extract HTML content from a feed entry. Empty if the entry has no content field."""
+    if hasattr(entry, "content") and entry.content:
+        content = entry.content[0]
+        if hasattr(content, "value") and content.value:
+            return content.value
+
+    return ""
+
+
 def parse_feed(
     feed_title: str, feed_url: str, feed_content: str
 ) -> tuple[list[FeedEntry], bool | None]:
@@ -487,6 +503,7 @@ def parse_feed(
             ]
 
             summary = extract_summary(entry, feed_title, title, link)
+            content = extract_content(entry)
 
             entries.append(
                 FeedEntry(
@@ -502,6 +519,7 @@ def parse_feed(
                         if summary and not summary.startswith("«")
                         else summary
                     ),
+                    content=content,
                 )
             )
 
@@ -756,7 +774,11 @@ def separate_weeknote_entries(
 
 
 def generate_blogroll_feed(
-    entries: list[FeedEntry], feed_name: str, feed_subtitle: str, output_path: Path
+    entries: list[FeedEntry],
+    feed_name: str,
+    feed_subtitle: str,
+    output_path: Path,
+    add_content: bool = False,
 ):
     """
     Creates an Atom feed from a list of FeedEntry objects.
@@ -766,6 +788,7 @@ def generate_blogroll_feed(
         feed_name: Name of generator feed.
         feed_subtitle: Subtitle of the generated feed.
         output_path: The path of the Atom file to be written.
+        add_content: If True, include each entry's HTML content instead of a summary.
     """
     logger.info(f"Generating {feed_name} feed with {len(entries)} entries")
     feed_url = config.SITE_URL + output_path.name
@@ -782,6 +805,7 @@ def generate_blogroll_feed(
         feed_subtitle=feed_subtitle,
         entries=entries,
         output_path=output_path,
+        add_content=add_content,
     )
 
     logger.info(f"{feed_name} feed written to: {output_path}")
