@@ -209,7 +209,7 @@ class BuildCache:
     events: list[Event] = field(default_factory=list)
     fediverse_creators: dict[str, str] = field(default_factory=dict)
     entries_by_year: dict[int, list[FeedEntry]] = field(default_factory=dict)
-    webring_prev_next: dict[str, tuple[FeedInfo, FeedInfo]] = field(
+    webring_prev_next: dict[str, tuple[FeedInfo, FeedInfo, str]] = field(
         default_factory=dict
     )
     webring_legacy: dict[str, FeedInfo] = field(default_factory=dict)
@@ -399,7 +399,7 @@ def generate_website(
             prev_feed = feeds[(i - 1) % n]
             next_feed = feeds[(i + 1) % n]
             slug = urlparse(feed.html_url).netloc.replace(".", "-")
-            cache.webring_prev_next[slug] = (prev_feed, next_feed)
+            cache.webring_prev_next[slug] = (prev_feed, next_feed, feed.html_url)
             targets.append(f"webring_member:{slug}")
             targets.append(f"webring_embed:{slug}")
 
@@ -413,7 +413,7 @@ def generate_website(
 
     @build.rule("webring_member:*")
     def _(slug: str):
-        prev_feed, next_feed = cache.webring_prev_next[slug]
+        prev_feed, next_feed, feed_url = cache.webring_prev_next[slug]
         for feed, name in [(prev_feed, "previous"), (next_feed, "next")]:
             save_html(
                 webring_renderer.render(
@@ -421,7 +421,7 @@ def generate_website(
                     {
                         "title": feed.title,
                         "url": feed.html_url,
-                        "url_utm": add_ref_param(feed.html_url),
+                        "url_utm": add_ref_param(feed.html_url, urlparse(feed_url).netloc),
                     },
                 ),
                 f"webring/{slug}/{name}.html",

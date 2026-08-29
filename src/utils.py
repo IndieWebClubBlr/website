@@ -117,7 +117,7 @@ def render_and_save_html(html_content: str, page_url: str, output_dir: Path):
         raise
 
 
-def add_ref_param(url: str) -> str:
+def add_ref_param(url: str, ref: str = config.SITE_DOMAIN) -> str:
     """
     Add ref parameter to a URL, replacing any existing ref param.
 
@@ -127,7 +127,7 @@ def add_ref_param(url: str) -> str:
 
     parsed = urlparse(url)
     params = parse_qs(parsed.query)
-    params["ref"] = [config.SITE_DOMAIN]
+    params["ref"] = [ref]
     new_query = urlencode(params, doseq=True)
     return urlunparse(parsed._replace(query=new_query))
 
