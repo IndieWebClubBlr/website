@@ -2,9 +2,20 @@
 
 [TOC]
 
+## September 5, 2026
+
+**The journey of a draft from idea to published post**
+
+- Where do you find ideas for blog posts? Do they come from life experiences or from reading posts by other bloggers? Or do you simply sit down and write on a schedule, regardless of whether you have an idea or not?
+- How do your ideas evolve into full posts? Do you collect material over time, or do you prefer to publish quickly? How does your initial idea evolve as you work on something?
+- How do you organize your drafts? If you have multiple drafts, how do you prioritize one over another?
+- On average, how long do ideas sit in your drafts before you publish them? Do all your drafts make it to your blog? What happens to the ones that don’t make it, and how do you feel about them?
+- What is your policy around editing your posts after you’ve published them? What kind of edits do you allow yourself to make post-publish?
+- What do you do after you publish a post?
+
 ## August 2, 2026
 
-Understanding the media on the IndieWeb beyond text.
+**Understanding the media on the IndieWeb beyond text**
 
 - Why does the IndieWeb feel primarily like a place for words? Why doesn’t the IndieWeb seem to have space for other types of media? Why do most of us choose to write words instead of posting pictures?
 - What would need to change to see more types of media on independent websites? At an ecosystem level? For you personally? What would need to change to have a diversity of media on the IndieWeb?
