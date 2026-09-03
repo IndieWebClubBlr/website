@@ -331,7 +331,7 @@ def generate_website(
         entries = prepend_fediverse_creator(cache.entries, cache.fediverse_creators)
         generate_blogroll_feed(
             entries=entries,
-            feed_name="Blogroll",
+            feed_name="Blogroll (All posts)",
             feed_subtitle="All posts by IndieWebClub Bangalore folks",
             output_path=output_dir.joinpath(config.BLOGROLL_FEED_FILE),
         )
@@ -345,7 +345,7 @@ def generate_website(
         entries = prepend_fediverse_creator(entries, cache.fediverse_creators)
         generate_blogroll_feed(
             entries=entries,
-            feed_name="Blogroll",
+            feed_name="Blogroll (Recent posts)",
             feed_subtitle="Recent posts by IndieWebClub Bangalore folks",
             output_path=output_dir.joinpath(config.BLOGROLL_LATEST_FEED_FILE),
             add_content=True,
