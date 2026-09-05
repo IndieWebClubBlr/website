@@ -28,7 +28,7 @@
     <outline type="rss" text="Ankur Sethi" xmlUrl="https://archive.ankursethi.com/feed/index.xml" htmlUrl="https://archive.ankursethi.com/" />
     <outline type="rss" text="Arpit" xmlUrl="https://musings.thedataareclean.com/feed.xml" htmlUrl="https://musings.thedataareclean.com" />
     <outline type="rss" text="ascelpius" xmlUrl="https://ascelpius.mataroa.blog/rss/" htmlUrl="https://ascelpius.mataroa.blog/" />
-    <outline type="rss" text="aspizu" xmlUrl="https://aspiz.uk/blog/rss.xml" htmlUrl="https://aspiz.uk/" />
+    <outline type="rss" text="aspizu" xmlUrl="https://aspiz.uk/weeknotes/rss.xml" htmlUrl="https://aspiz.uk/" />
     <outline type="rss" text="asthabugs" xmlUrl="https://asthabugs.mataroa.blog/rss/" htmlUrl="https://asthabugs.mataroa.blog/" />
     <outline type="rss" text="Atharva Raykar" xmlUrl="https://atharvaraykar.com/rss/" htmlUrl="https://atharvaraykar.com/" />
     <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/rss.xml" htmlUrl="https://azan-n.com/" />
@@ -57,6 +57,7 @@
     <outline type="rss" text="itrytobefunny" xmlUrl="https://itrytobefunny.mataroa.blog/rss/" htmlUrl="https://itrytobefunny.mataroa.blog/" />
     <outline type="rss" text="Jatan" xmlUrl="https://journal.jatan.space/rss/" htmlUrl="https://journal.jatan.space/" />
     <outline type="rss" text="Jatan" xmlUrl="https://jatan.space/rss" htmlUrl="https://jatan.space/" />
+    <outline type="rss" text="Jatan" xmlUrl="https://web.jatan.space/feed.xml" htmlUrl="https://web.jatan.space/" />
     <outline type="rss" text="jawangana" xmlUrl="https://jawangana.mataroa.blog/rss/" htmlUrl="https://jawangana.mataroa.blog/" />
     <outline type="rss" text="Karthik Balakrishnan" xmlUrl="https://karthikbalakrishnan.com/feed.xml" htmlUrl="https://karthikbalakrishnan.com/" />
     <outline type="rss" text="Karthik Devan" xmlUrl="https://kdqed.com/feed.xml" htmlUrl="https://kdqed.com/" />
@@ -71,6 +72,7 @@
     <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/index.xml" htmlUrl="https://navendu.me/" webring="true" />
     <outline type="rss" text="Navendu Pottekkat" xmlUrl="https://navendu.me/books/index.xml" htmlUrl="https://navendu.me/books/" />
     <outline type="rss" text="Nihal Sahu" xmlUrl="https://nihalsahu.net/index.xml" htmlUrl="https://nihalsahu.net/" />
+    <outline type="rss" text="Nikshep" xmlUrl="https://nikshep.handwritten.blog/feed.xml" htmlUrl="https://nikshep.handwritten.blog/" />
     <outline type="rss" text="nim" xmlUrl="https://nim.mataroa.blog/rss/" htmlUrl="https://nim.mataroa.blog/" />
     <outline type="rss" text="Nithitsuki" xmlUrl="https://nithitsuki.com/index.xml" htmlUrl="https://nithitsuki.com/" webring="true" />
     <outline type="rss" text="Niya" xmlUrl="https://text.tchncs.de/niya/feed/" htmlUrl="https://text.tchncs.de/niya/" />
