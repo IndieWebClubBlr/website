@@ -19,7 +19,7 @@
     <outline type="rss" text="adityan" xmlUrl="https://adityan.bearblog.dev/feed/" htmlUrl="https://adityan.bearblog.dev/" />
     <outline type="rss" text="Aeish" xmlUrl="https://aeish-world.neocities.org/feed.txt" htmlUrl="https://aeish-world.neocities.org/" />
     <outline type="rss" text="Akash Bhat" xmlUrl="https://akashbhat.com/feed/" htmlUrl="https://akashbhat.com/" />
-    <outline type="rss" text="Akhil Unnikrishnan" xmlUrl="https://akhilunnikrishnan.com/feed/blog/" htmlUrl="https://akhilunnikrishnan.com" />
+    <outline type="rss" text="Akhil Unnikrishnan" xmlUrl="https://akhilunnikrishnan.com/feed/blog/" htmlUrl="https://akhilunnikrishnan.com" webring="true" />
     <outline type="rss" text="akils" xmlUrl="https://akils.mataroa.blog/rss/" htmlUrl="https://akils.mataroa.blog/" />
     <outline type="rss" text="Akshay S Dinesh" xmlUrl="https://asd.learnlearn.in/feed.atom" htmlUrl="https://asd.learnlearn.in/" />
     <outline type="rss" text="Akshay S Dinesh" xmlUrl="https://blog.learnlearn.in/feed/" htmlUrl="https://blog.learnlearn.in/" />
