@@ -2,6 +2,16 @@
 
 [TOC]
 
+## October 3, 2026
+
+**The life of a blog post after you publish it**
+
+- Do you edit your blog posts after you’ve published them? What kinds of edits do you allow yourself to make? Would you ever consider deleting a piece of writing you’ve already published?
+- Do you share your blog posts with your friends? What about the communities you’re part of? What drives you to share your writing in this way?
+- What are your feelings about likes, shares, analytics, or other engagement metrics on your writing? Do you like to track such metrics?
+- Do you ever go back to read your old blog posts? Why or why not?
+- Have you ever thought about what you’d like your writing to add up to in the long term? In ten or fifteen years, are you hoping to tell a story, or meander through different ones?
+
 ## September 5, 2026
 
 **The journey of a draft from idea to published post**
