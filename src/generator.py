@@ -178,7 +178,7 @@ def get_feeds_with_entries(
     feeds: list[FeedInfo],
 ) -> list[FeedInfo]:
     # Collect all feeds with entries
-    webring_lookup = {f.html_url: f.webring for f in feeds}
+    webring_sites = {f.html_url for f in feeds if f.webring}
 
     feeds_with_entries: dict[str, FeedInfo] = {}
     for entry in entries:
@@ -186,7 +186,7 @@ def get_feeds_with_entries(
             title=entry.feed_title,
             xml_url=entry.feed_url,
             html_url=entry.feed_home_url,
-            webring=webring_lookup.get(entry.feed_home_url, False),
+            webring=entry.feed_home_url in webring_sites,
         )
 
     # Add failed feeds that were filtered (had entries but all filtered out)
@@ -421,7 +421,9 @@ def generate_website(
                     {
                         "title": feed.title,
                         "url": feed.html_url,
-                        "url_utm": add_ref_param(feed.html_url, urlparse(feed_url).netloc),
+                        "url_utm": add_ref_param(
+                            feed.html_url, urlparse(feed_url).netloc
+                        ),
                     },
                 ),
                 f"webring/{slug}/{name}.html",
@@ -430,7 +432,6 @@ def generate_website(
 
     @build.rule("webring_embed:*")
     def _(slug: str):
-        prev_feed, next_feed = cache.webring_prev_next[slug]
         prev_url = f"{config.SITE_URL}webring/{slug}/previous.html"
         next_url = f"{config.SITE_URL}webring/{slug}/next.html"
         embed_html = (
