@@ -290,6 +290,15 @@ def prepend_fediverse_creator(
     return entries
 
 
+MATAROA_DOMAIN = "mataroa.blog"
+
+
+def is_mataroa_host(host: str | None) -> bool:
+    """Return True if host is mataroa.blog or one of its subdomains."""
+    h = (host or "").lower()
+    return h == MATAROA_DOMAIN or h.endswith("." + MATAROA_DOMAIN)
+
+
 def normalize_link(link: str, feed_url: str) -> str:
     """
     Convert relative URLs to absolute URLs using the feed's domain as base.
@@ -452,6 +461,9 @@ def parse_feed(
         early_cutoff_time = now - timedelta(hours=config.MIN_FEED_ENTRY_AGE_HOURS)
         late_cutoff_time = now - timedelta(days=config.MAX_FEED_ENTRY_AGE_DAYS)
 
+        feed_host = urlparse(feed_url).hostname
+        is_mataroa = is_mataroa_host(feed_host)
+
         entries: list[FeedEntry] = []
 
         has_entries = False
@@ -475,6 +487,15 @@ def parse_feed(
             if not link:
                 logger.warning(
                     f"Feed '{feed_title}': Skipping entry '{title}' with empty link"
+                )
+                continue
+
+            # Mataroa feeds intermittently include entries from a different
+            # mataroa blog; drop entries that are not from this feed's blog.
+            if is_mataroa and urlparse(link).hostname != feed_host:
+                logger.warning(
+                    f"Feed '{feed_title}': Dropping entry from foreign blog"
+                    f" (link: {link})"
                 )
                 continue
 
