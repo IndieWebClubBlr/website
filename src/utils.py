@@ -25,12 +25,22 @@ class SessionManager:
     """Thread-local HTTP session manager."""
 
     def __init__(self, headers: dict[str, str] | None = None):
+        """Create a session manager with the given default headers.
+
+        Args:
+            headers: Extra headers sent with every request. The site
+                User-Agent is always added on top of these.
+        """
         self._sessions: dict[int, requests.Session] = {}
         self._headers: dict[str, str] = headers or {}
         self._headers.update({"User-Agent": config.UA})
 
     def get(self) -> requests.Session:
-        """Get or create a thread-local requests session."""
+        """Get or create a thread-local requests session.
+
+        Returns:
+            The calling thread's session, created on first use.
+        """
         thread_id = threading.get_ident()
         if thread_id not in self._sessions:
             session = requests.Session()
@@ -80,6 +90,11 @@ def save_html(content: str, output_file: str, output_dir: Path):
 
 
 def make_renderer():
+    """Create a Pystache renderer that searches the repository templates directory.
+
+    Returns:
+        Renderer configured to raise on missing template tags.
+    """
     templates_dir = (Path(__file__).resolve().parent.parent / "templates").resolve()
     return pystache.Renderer(
         search_dirs=[str(templates_dir)],
@@ -122,6 +137,13 @@ def add_ref_param(url: str, ref: str = config.SITE_DOMAIN) -> str:
     Add ref parameter to a URL, replacing any existing ref param.
 
     Properly handles URLs that already have query parameters.
+
+    Args:
+        url: URL to add the parameter to.
+        ref: Value for the ref parameter.
+
+    Returns:
+        URL with the ref parameter set, replacing any existing value.
     """
     from src import config
 

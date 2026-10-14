@@ -22,7 +22,16 @@ logger = logging.getLogger(__name__)
 
 
 def load_newsletter_archive() -> list[dict[str, str]]:
-    """Load newsletter archive URLs from RSS feed with caching."""
+    """Load newsletter archive URLs from RSS feed with caching.
+
+    The archive feed is cached for config.NEWSLETTER_CACHE_EXPIRY days and
+    refreshed on expiry; a stale cache is used if the fetch fails. Only
+    entries titled "IndieWebClub Bangalore Blogroll Digest" are kept.
+
+    Returns:
+        Digest entries as {"url", "date"} dicts, newest first; empty list
+        if the feed is unavailable.
+    """
     cache_file = config.CACHE_DIR / "newsletter_archive.xml"
     now = datetime.now(timezone.utc)
 
@@ -83,7 +92,11 @@ def load_newsletter_archive() -> list[dict[str, str]]:
 
 
 def generate_newsletter_page(output_dir: Path):
-    """Generate the newsletter subscription page."""
+    """Generate the newsletter subscription page.
+
+    Args:
+        output_dir: Directory where the newsletter/ page should be written.
+    """
     renderer = make_renderer()
     archive = load_newsletter_archive()
 

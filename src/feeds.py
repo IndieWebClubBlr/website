@@ -77,6 +77,19 @@ class FeedEntry:
         summary: str,
         content: str = "",
     ):
+        """Initialize a normalized feed entry.
+
+        Args:
+            title: Entry title.
+            link: Absolute URL of the entry.
+            published: Publication time in UTC.
+            feed_title: Title of the feed the entry came from.
+            feed_url: XML URL of the feed the entry came from.
+            feed_home_url: Home URL of the feed the entry came from.
+            tags: Entry tags.
+            summary: First paragraph of the entry, wrapped in guillemets.
+            content: Raw HTML content of the entry, if any.
+        """
         self.title = title
         self.link = link
         self.published = published
@@ -88,12 +101,15 @@ class FeedEntry:
         self.content = content
 
     def published_human(self) -> str:
+        """Format the publication date as e.g. "05 Oct 2026"."""
         return self.published.strftime("%d %b %Y")
 
     def published_machine(self) -> str:
+        """Return the publication time as an ISO 8601 string."""
         return self.published.isoformat()
 
     def __repr__(self) -> str:
+        """Return a developer-friendly representation of the entry."""
         return f"""FeedEntry(title={self.title!r},
           link={self.link!r},
           published={self.published!r},
@@ -102,7 +118,15 @@ class FeedEntry:
 
 
 def entry_ctx(entry: FeedEntry) -> dict[str, str | bool]:
-    """Build a template context dict for a FeedEntry."""
+    """Build a template context dict for a FeedEntry.
+
+    Args:
+        entry: Entry to build context for.
+
+    Returns:
+        Dict with entry_id, title, link_utm, feed_title, feed_home_url_utm,
+        published_machine, published_human, and summary keys.
+    """
     entry_id = hashlib.sha256(entry.link.encode()).hexdigest()[:16]
     return {
         "entry_id": entry_id,
@@ -282,7 +306,16 @@ def fetch_feed_content(url: str) -> str | None:
 def prepend_fediverse_creator(
     entries: list[FeedEntry], fediverse_creators: dict[str, str]
 ) -> list[FeedEntry]:
-    """Prepend fediverse creator to entry summaries if available."""
+    """Prepend fediverse creator to entry summaries if available.
+
+    Args:
+        entries: Entries to annotate (mutated in place).
+        fediverse_creators: Mapping of feed home URL to creator handle.
+
+    Returns:
+        The same list of entries, with summaries prefixed where a creator
+        handle exists and is not already present.
+    """
     for entry in entries:
         creator = fediverse_creators.get(entry.feed_home_url)
         if creator and not entry.summary.startswith(creator):
@@ -294,7 +327,14 @@ MATAROA_DOMAIN = "mataroa.blog"
 
 
 def is_mataroa_host(host: str | None) -> bool:
-    """Return True if host is mataroa.blog or one of its subdomains."""
+    """Return True if host is mataroa.blog or one of its subdomains.
+
+    Args:
+        host: Hostname to check, or None.
+
+    Returns:
+        True for "mataroa.blog" and any "*.mataroa.blog" host.
+    """
     h = (host or "").lower()
     return h == MATAROA_DOMAIN or h.endswith("." + MATAROA_DOMAIN)
 
@@ -360,14 +400,28 @@ def parse_feed_date(date_string: str) -> datetime | None:
 
 
 def strip_html(text: str) -> str:
-    """Remove HTML tags from text."""
+    """Remove HTML tags from text.
+
+    Args:
+        text: Text, possibly containing HTML tags.
+
+    Returns:
+        The text content of the markup, stripped of surrounding whitespace.
+    """
     if not text:
         return ""
     return BeautifulSoup(text, "html.parser").get_text().strip()
 
 
 def get_first_para_text(html: str) -> str:
-    """Extract text from the first paragraph in HTML, or first para if plain text."""
+    """Extract text from the first paragraph in HTML, or first para if plain text.
+
+    Args:
+        html: HTML or plain text to extract from.
+
+    Returns:
+        Text of the first non-empty paragraph, or "" if there is none.
+    """
     if not html:
         return ""
     soup = BeautifulSoup(html, "html.parser")
@@ -383,7 +437,18 @@ def get_first_para_text(html: str) -> str:
 
 
 def truncate_at_word(text: str, max_length: int) -> str:
-    """Truncate text at word boundary, adding ellipsis if truncated."""
+    """Truncate text at word boundary, adding ellipsis if truncated.
+
+    Args:
+        text: Text to truncate.
+        max_length: Length to cut the text at before the word-boundary trim.
+
+    Returns:
+        The text unchanged if it fits, otherwise cut at the last word
+        boundary within the first max_length characters (or at max_length
+        if there is no word boundary) followed by "…". The result can be
+        one character longer than max_length because of the ellipsis.
+    """
     if len(text) <= max_length:
         return text
     truncated = text[:max_length]
@@ -394,7 +459,18 @@ def truncate_at_word(text: str, max_length: int) -> str:
 
 
 def extract_summary(entry, feed_title: str, title: str, link: str) -> str:
-    """Extract and normalize summary from a feed entry."""
+    """Extract and normalize summary from a feed entry.
+
+    Args:
+        entry: Feedparser entry to extract the summary from.
+        feed_title: Unused.
+        title: Unused.
+        link: Unused.
+
+    Returns:
+        First paragraph of the entry truncated at config.MAX_SUMMARY_LENGTH,
+        or "" if the entry has no textual content.
+    """
     html_content = None
 
     if hasattr(entry, "summary"):
@@ -420,7 +496,14 @@ def extract_summary(entry, feed_title: str, title: str, link: str) -> str:
 
 
 def extract_content(entry) -> str:
-    """Extract HTML content from a feed entry. Empty if the entry has no content field."""
+    """Extract HTML content from a feed entry. Empty if the entry has no content field.
+
+    Args:
+        entry: Feedparser entry to extract content from.
+
+    Returns:
+        Entry's content (or summary as a fallback), "" if neither exists.
+    """
     if hasattr(entry, "content") and entry.content:
         content = entry.content[0]
         if hasattr(content, "value") and content.value:
@@ -440,6 +523,8 @@ def parse_feed(
 
     Args:
         feed_title: Title of the feed.
+        feed_url: XML URL of the feed, used to resolve relative links and
+            to filter entries from other mataroa blogs.
         feed_content: Raw feed content.
 
     Returns:
@@ -630,6 +715,12 @@ def deduplicate_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
     """Deduplicate entries by link, preferring entries from the linked hostname.
 
     When duplicate entries have equal hostname priority, retain the first one.
+
+    Args:
+        entries: Entries to deduplicate by link.
+
+    Returns:
+        One entry per distinct link.
     """
     entries_by_link: dict[str, FeedEntry] = {}
 
@@ -777,7 +868,14 @@ def separate_weeknote_entries(
     A post is treated as a weeknote if any of:
       - a tag matches WEEKNOTE_PATTERN (week/month/quarter/year + "note")
       - the title matches WEEKNOTE_PATTERN
+      - the summary matches WEEKNOTE_PATTERN
       - the title contains "week" and none of WEEK_EXCLUSIONS
+
+    Args:
+        entries: Entries to split.
+
+    Returns:
+        Tuple of (weeknote entries, all other entries).
     """
     weeknote_entries: list[FeedEntry] = []
     other_entries: list[FeedEntry] = []

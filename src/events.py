@@ -39,6 +39,24 @@ class Event:
         underline_url: str,
         district_url: str | None,
     ):
+        """Parse a Discourse event topic into an Event.
+
+        The details HTML is reduced to an agenda summary: everything before
+        the "Agenda" heading and the "What is IndieWebClub?" blurb are
+        stripped; summary is None if no "Agenda" heading is found.
+
+        Args:
+            id: Discourse topic id.
+            title: Topic title as given by the caller (make_event strips
+                event-series suffixes before calling this).
+            slug: Topic slug used in the Underline URL.
+            created_at: When the topic was created.
+            start_at: Event start, converted to the site timezone.
+            end_at: Event end, converted to the site timezone.
+            details: Raw HTML of the first post.
+            underline_url: URL of the topic on Underline Center.
+            district_url: Venue URL if the event location is a URL, else None.
+        """
         self.id = id
         self.title = title
         self.slug = slug
@@ -66,21 +84,27 @@ class Event:
             self.summary = None
 
     def start_at_human(self) -> str:
+        """Format the start time as e.g. "05 Oct 2026, 06:30 PM IST"."""
         return self.start_at.strftime("%d %b %Y, %I:%M %p IST")
 
     def start_at_machine(self) -> str:
+        """Return the start time as an ISO 8601 string."""
         return self.start_at.isoformat()
 
     def end_at_human(self) -> str:
+        """Format the end time as e.g. "05 Oct 2026, 08:30 PM IST"."""
         return self.end_at.strftime("%d %b %Y, %I:%M %p IST")
 
     def end_at_machine(self) -> str:
+        """Return the end time as an ISO 8601 string."""
         return self.end_at.isoformat()
 
     def created_at_human(self) -> str:
+        """Format the creation date as e.g. "01 Oct 2026"."""
         return self.created_at.strftime("%d %b %Y")
 
     def created_at_machine(self) -> str:
+        """Return the creation time as an ISO 8601 string."""
         return self.created_at.isoformat()
 
 
@@ -101,6 +125,16 @@ DiscourseTopicPosts = TypedDict(
 
 
 def make_event(base_url: str, topic: DiscourseTopic, post: DiscoursePost) -> Event:
+    """Build an Event from a Discourse topic and its first post.
+
+    Args:
+        base_url: URL of the Underline Center Discourse instance.
+        topic: Topic JSON returned from the Discourse Search API.
+        post: First post of the topic, carrying the event metadata.
+
+    Returns:
+        Event for the topic.
+    """
     event = post["event"]
 
     district_url = None

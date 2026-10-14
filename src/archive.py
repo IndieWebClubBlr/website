@@ -18,7 +18,14 @@ MONTH_NAMES = list(calendar.month_name)
 
 
 def _archive_entry_ctx(entry: FeedEntry) -> dict[str, str | bool]:
-    """Extend the base entry context with archive-specific fields."""
+    """Extend the base entry context with archive-specific fields.
+
+    Args:
+        entry: Feed entry to build the context for.
+
+    Returns:
+        Entry context with tags, has_tags, and search_text keys added.
+    """
     ctx: dict[str, str | bool] = entry_ctx(entry)
     tags_str = " ".join(entry.tags)
     ctx["tags"] = tags_str
@@ -37,7 +44,14 @@ def _archive_entry_ctx(entry: FeedEntry) -> dict[str, str | bool]:
 def group_entries_by_year(
     entries: list[FeedEntry],
 ) -> dict[int, list[FeedEntry]]:
-    """Group entries by publication year."""
+    """Group entries by publication year.
+
+    Args:
+        entries: Feed entries to group.
+
+    Returns:
+        Mapping of publication year to the entries published that year.
+    """
     by_year: defaultdict[int, list[FeedEntry]] = defaultdict(list)
     for entry in entries:
         by_year[entry.published.year].append(entry)
@@ -45,7 +59,14 @@ def group_entries_by_year(
 
 
 def _build_monthly_chart_svg(entries: list[FeedEntry]) -> str:
-    """Build an inline SVG bar chart of posts per month over all time."""
+    """Build an inline SVG bar chart of posts per month over all time.
+
+    Args:
+        entries: Feed entries to count per month.
+
+    Returns:
+        SVG markup for the bar chart, empty string if there are no entries.
+    """
     counts: defaultdict[tuple[int, int], int] = defaultdict(int)
     for entry in entries:
         counts[(entry.published.year, entry.published.month)] += 1
@@ -141,7 +162,13 @@ def generate_archive_index(
     years: list[int],
     output_dir: Path,
 ):
-    """Generate the archive index page listing all years."""
+    """Generate the archive index page listing all years.
+
+    Args:
+        entries: All feed entries to include in the archive.
+        years: Sorted list of years to show links for.
+        output_dir: Directory where the archive/ page should be written.
+    """
     if not entries:
         logger.info("No entries for archive, skipping")
         return
@@ -189,7 +216,14 @@ def generate_archive_year(
     years: list[int],
     output_dir: Path,
 ):
-    """Generate a single year's archive page."""
+    """Generate a single year's archive page.
+
+    Args:
+        year: Year to generate the page for.
+        year_entries: Entries published in that year.
+        years: Sorted list of all archive years, for prev/next navigation.
+        output_dir: Directory where the archive/<year>/ page should be written.
+    """
     # Group by month (descending)
     by_month: defaultdict[int, list[FeedEntry]] = defaultdict(list)
     for entry in year_entries:

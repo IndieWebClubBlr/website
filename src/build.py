@@ -37,6 +37,11 @@ class Build:
     """
 
     def __init__(self, max_workers: int = 100):
+        """Initialize an empty build with a worker limit.
+
+        Args:
+            max_workers: Maximum number of concurrent target builds.
+        """
         self._rules: list[tuple[str, RuleFn]] = []
         # Targets currently being built, maps to their Future
         self._building: dict[str, Future[None]] = {}
@@ -56,15 +61,30 @@ class Build:
 
         @build.rule("render_page:*")
         def _(...): ...  # pattern with wildcard
+
+        Args:
+            pattern: Target name or fnmatch pattern (e.g. "render_page:*").
+
+        Returns:
+            Decorator that registers fn as the rule for matching targets.
         """
 
         def decorator(fn: RuleFn) -> RuleFn:
+            """Register fn as the rule for targets matching the pattern."""
             self._rules.append((pattern, fn))
             return fn
 
         return decorator
 
     def _find_rule_fn(self, target: str) -> RuleFn | None:
+        """Find the first registered rule whose pattern matches the target.
+
+        Args:
+            target: Target name to look up.
+
+        Returns:
+            The matching rule function, or None if no pattern matches.
+        """
         for pattern, fn in self._rules:
             if fnmatch.fnmatch(target, pattern):
                 return fn
@@ -78,6 +98,9 @@ class Build:
         2. If already done -> skip
         3. If currently building -> wait on existing Future
         4. Otherwise -> submit new build task
+
+        Args:
+            *targets: Target names to build.
 
         Raises:
             The exception from any failed target (either stored or from Future).
@@ -120,6 +143,9 @@ class Build:
         The exception is captured and stored before re-raising so that
         other threads waiting on this target (or future need() calls)
         see a consistent failure state.
+
+        Args:
+            target: Target name to build.
         """
         logger.debug(f"Building: {target}")
         exc: BaseException | None = None
@@ -146,7 +172,15 @@ class Build:
                 logger.debug(f"Completed: {target}")
 
     def run(self, target: str) -> None:
-        """Build a target and all its dependencies."""
+        """Build a target and all its dependencies.
+
+        Args:
+            target: Top-level target to build.
+
+        Raises:
+            KeyboardInterrupt: If interrupted by the user; pending builds
+                are cancelled and the exception is re-raised.
+        """
         with ThreadPoolExecutor(
             max_workers=self._max_workers, thread_name_prefix="Builder"
         ) as executor:

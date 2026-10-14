@@ -48,6 +48,14 @@ class IndieWebFeatures:
 
 
 def _has_personal_domain(url: str) -> bool:
+    """Check whether a URL is hosted on a personal domain.
+
+    Args:
+        url: Site URL to check.
+
+    Returns:
+        True if the URL is not on a known shared blogging platform.
+    """
     return not any(
         domain in url
         for domain in [
@@ -65,6 +73,14 @@ def _has_personal_domain(url: str) -> bool:
 
 
 def _has_h_card(soup: object) -> bool:
+    """Check for an h-card element.
+
+    Args:
+        soup: Parsed page HTML.
+
+    Returns:
+        True if the page contains an element with class "h-card".
+    """
     from bs4 import BeautifulSoup
 
     assert isinstance(soup, BeautifulSoup)
@@ -73,6 +89,15 @@ def _has_h_card(soup: object) -> bool:
 
 
 def _has_webmention(soup: object, headers: dict[str, str]) -> bool:
+    """Check for a webmention endpoint.
+
+    Args:
+        soup: Parsed page HTML.
+        headers: Response headers of the page fetch.
+
+    Returns:
+        True if a <link rel="webmention"> tag or Link header is present.
+    """
     from bs4 import BeautifulSoup
 
     assert isinstance(soup, BeautifulSoup)
@@ -84,6 +109,16 @@ def _has_webmention(soup: object, headers: dict[str, str]) -> bool:
 
 
 def _has_indieauth(soup: object, headers: dict[str, str]) -> bool:
+    """Check for an IndieAuth authorization endpoint.
+
+    Args:
+        soup: Parsed page HTML.
+        headers: Response headers of the page fetch.
+
+    Returns:
+        True if a <link rel="authorization_endpoint"> tag or Link header
+        is present.
+    """
     from bs4 import BeautifulSoup
 
     assert isinstance(soup, BeautifulSoup)
@@ -95,6 +130,14 @@ def _has_indieauth(soup: object, headers: dict[str, str]) -> bool:
 
 
 def _has_rel_me(soup: object) -> bool:
+    """Check for a rel-me link.
+
+    Args:
+        soup: Parsed page HTML.
+
+    Returns:
+        True if a <link rel="me"> tag is present.
+    """
     from bs4 import BeautifulSoup
 
     assert isinstance(soup, BeautifulSoup)
@@ -106,6 +149,14 @@ OG_PROP_RE = re.compile("og:\\w+")
 
 
 def _has_opengraph(soup: object) -> bool:
+    """Check for Open Graph metadata.
+
+    Args:
+        soup: Parsed page HTML.
+
+    Returns:
+        True if any og:* meta property is present.
+    """
     from bs4 import BeautifulSoup
 
     assert isinstance(soup, BeautifulSoup)
@@ -114,6 +165,14 @@ def _has_opengraph(soup: object) -> bool:
 
 
 def _has_fediverse(soup: object) -> str | None:
+    """Read the fediverse:creator meta tag.
+
+    Args:
+        soup: Parsed page HTML.
+
+    Returns:
+        The creator handle, or None if the tag is missing or empty.
+    """
     from bs4 import BeautifulSoup
 
     assert isinstance(soup, BeautifulSoup)
@@ -128,6 +187,16 @@ def _has_fediverse(soup: object) -> str | None:
 def check_indieweb_features(
     soup: object, url: str, headers: dict[str, str]
 ) -> IndieWebFeatures:
+    """Detect IndieWeb features for a fetched site.
+
+    Args:
+        soup: Parsed page HTML.
+        url: Final URL of the fetched page.
+        headers: Response headers of the page fetch.
+
+    Returns:
+        IndieWebFeatures with each detected feature set.
+    """
     return IndieWebFeatures(
         personal_domain=_has_personal_domain(url),
         h_card=_has_h_card(soup),
@@ -140,7 +209,15 @@ def check_indieweb_features(
 
 
 def fetch_site_html(url: str) -> tuple[str, str, dict[str, str]] | None:
-    """Fetch a website's HTML. Returns (final URL, HTML, headers) or None on failure."""
+    """Fetch a website's HTML.
+
+    Args:
+        url: URL of the page to fetch.
+
+    Returns:
+        Tuple of (final URL after redirects, HTML, response headers), or
+        None if the fetch failed.
+    """
     try:
         response = session_manager.get().get(url, timeout=config.REQUEST_TIMEOUT)
         response.raise_for_status()
@@ -151,7 +228,14 @@ def fetch_site_html(url: str) -> tuple[str, str, dict[str, str]] | None:
 
 
 def get_ddg_favicon_url(site_url: str) -> str | None:
-    """Get the DuckDuckGo favicon proxy URL for a website, or None if not found."""
+    """Get the DuckDuckGo favicon proxy URL for a website.
+
+    Args:
+        site_url: URL of the site whose favicon is wanted.
+
+    Returns:
+        Proxy URL of the site's icon, or None if DuckDuckGo has none.
+    """
     from urllib.parse import urlparse
 
     domain = urlparse(site_url).netloc
@@ -168,7 +252,14 @@ def get_ddg_favicon_url(site_url: str) -> str | None:
 
 
 def check_hotlink_allowed(url: str) -> bool:
-    """Check if a URL allows hotlinking by making a HEAD request."""
+    """Check if a URL allows hotlinking by making a HEAD request.
+
+    Args:
+        url: Image URL to probe.
+
+    Returns:
+        True if the URL responds 200 to a HEAD request.
+    """
     try:
         response = session_manager.get().head(url, timeout=5, allow_redirects=True)
         return response.status_code == 200
@@ -177,7 +268,18 @@ def check_hotlink_allowed(url: str) -> bool:
 
 
 def get_favicon_from_html(url: str, html: str) -> str | None:
-    """Get favicon URL from already-fetched HTML, checking hotlink is allowed."""
+    """Get favicon URL from already-fetched HTML, checking hotlink is allowed.
+
+    Icon candidates are ranked by how close their size is to 32px; the best
+    candidate that allows hotlinking wins.
+
+    Args:
+        url: URL the HTML was fetched from (used to resolve icon URLs).
+        html: Raw HTML of the page.
+
+    Returns:
+        URL of the first hotlinkable icon, or None if there is none.
+    """
     try:
         import favicon
 
@@ -188,6 +290,7 @@ def get_favicon_from_html(url: str, html: str) -> str | None:
             return None
 
         def icon_score(icon: favicon.Icon) -> int:
+            """Rank an icon: prefer sizes near 32px, then larger, then smaller."""
             size = icon.width or icon.height or 0
             if 16 <= size <= 64:
                 return 1000 - abs(size - 32)
@@ -209,7 +312,15 @@ def get_favicon_from_html(url: str, html: str) -> str | None:
 
 
 def get_favicon_default(url: str) -> str | None:
-    """Check for /favicon.ico at the site root."""
+    """Check for /favicon.ico at the site root.
+
+    Args:
+        url: URL of the site whose root favicon should be probed.
+
+    Returns:
+        URL of the root favicon if it exists and allows hotlinking,
+        otherwise None.
+    """
     try:
         import favicon
 
@@ -225,6 +336,14 @@ def get_favicon_default(url: str) -> str | None:
 
 
 def get_name_key(feed: FeedInfo) -> str:
+    """Return the case-insensitive key used to deduplicate members by name.
+
+    Args:
+        feed: Feed to derive the member name from.
+
+    Returns:
+        The feed title in lower case.
+    """
     return feed.title.lower()
 
 
@@ -279,6 +398,17 @@ def generate_members_page(
             indieweb_cache = json.load(file)
 
     def build_member(feed: FeedInfo) -> tuple[FeedInfo, str, IndieWebFeatures]:
+        """Resolve the favicon and IndieWeb features for one member.
+
+        Fetches the site HTML at most once, and reuses the favicon and
+        IndieWeb caches when possible.
+
+        Args:
+            feed: Feed of the member to build.
+
+        Returns:
+            Tuple of (feed, favicon URL, detected IndieWeb features).
+        """
         name_key = get_name_key(feed)
         has_favicon = name_key in favicon_cache
         has_indieweb = name_key in indieweb_cache

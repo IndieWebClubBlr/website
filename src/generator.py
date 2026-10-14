@@ -106,6 +106,14 @@ def generate_homepage(
     current_year = datetime.now(config.EVENTS_TZ).year
 
     def past_entry_ctx(entry: FeedEntry) -> dict[str, str | bool]:
+        """Build entry context with extra "N years ago" fields for on-this-day.
+
+        Args:
+            entry: Entry from a previous year.
+
+        Returns:
+            Entry context with years_ago and years_text keys added.
+        """
         ctx = entry_ctx(entry)
         years_ago = current_year - entry.published.year
         ctx.update(
@@ -177,6 +185,20 @@ def get_feeds_with_entries(
     failed_feeds: list[FailedFeedInfo],
     feeds: list[FeedInfo],
 ) -> list[FeedInfo]:
+    """Collect the feeds that contributed content to this build.
+
+    Feeds whose entries were all filtered out are still included, so they
+    keep appearing in the member directory.
+
+    Args:
+        entries: All fetched entries.
+        failed_feeds: Feeds that failed or had all entries filtered out.
+        feeds: Feeds parsed from the OPML file, for webring membership.
+
+    Returns:
+        Deduplicated feeds with entries in entry order, followed by the
+        feeds whose entries were all filtered out in failed_feeds order.
+    """
     # Collect all feeds with entries
     webring_sites = {f.html_url for f in feeds if f.webring}
 
@@ -236,10 +258,12 @@ def generate_website(
 
     @build.rule("blogroll_opml")
     def _(_target: str):
+        """Copy the source OPML file into the output directory."""
         _ = shutil.copyfile(opml_path, output_dir / opml_path.name)
 
     @build.rule("asset:*")
     def _(asset: str):
+        """Copy one static asset into the output directory."""
         src = Path(asset)
         if src.exists():
             dst = output_dir / src.name
@@ -250,6 +274,7 @@ def generate_website(
 
     @build.rule("page:*/index.html")
     def _(page_name: str):
+        """Copy a static HTML page into the output directory."""
         src = Path(f"./pages/{page_name}")
         if src.exists():
             dst = output_dir / page_name
@@ -259,6 +284,7 @@ def generate_website(
 
     @build.rule("page:*")
     def _(page_name: str):
+        """Render a Markdown page to HTML."""
         md_file = Path(f"./pages/{page_name}.md")
         render_and_save_html(
             html_content=markdown_to_html(md_file),
@@ -268,6 +294,7 @@ def generate_website(
 
     @build.rule("webring_page")
     def _(_target: str):
+        """Generate the /webring/ tool page."""
         webring_template = read_template("webring.html")
         webring_content = webring_renderer.render(
             webring_template, {"site_url": config.SITE_URL}
@@ -280,14 +307,17 @@ def generate_website(
 
     @build.rule("parsed_opml")
     def _(_target: str):
+        """Parse the OPML file into the build cache."""
         cache.feeds = parse_opml_file(opml_path)
 
     @build.rule("events")
     def _(_target: str):
+        """Fetch events from Discourse into the build cache."""
         cache.events = fetch_events(use_cache=use_cache, cache_fallback=cache_fallback)
 
     @build.rule("feeds")
     def _(_target: str):
+        """Fetch all feeds and classify entries into the build cache."""
         build.need("parsed_opml")
         cache.entries, cache.failed_feeds = fetch_all_feeds(
             cache.feeds,
@@ -317,16 +347,19 @@ def generate_website(
 
     @build.rule("events_feed")
     def _(_target: str):
+        """Generate the events Atom feed."""
         build.need("events")
         generate_events_feed(cache.events, output_dir)
 
     @build.rule("events_calendar")
     def _(_target: str):
+        """Generate the events iCalendar file."""
         build.need("events")
         generate_events_calendar(cache.events, output_dir)
 
     @build.rule("blogroll_feed")
     def _(_target: str):
+        """Generate the all-posts blogroll Atom feed."""
         build.need("feeds", "members_dir")
         entries = prepend_fediverse_creator(cache.entries, cache.fediverse_creators)
         generate_blogroll_feed(
@@ -338,6 +371,7 @@ def generate_website(
 
     @build.rule("blogroll_latest_feed")
     def _(_target: str):
+        """Generate the recent-posts blogroll Atom feed."""
         build.need("feeds", "members_dir")
         entries = sorted(cache.entries, key=lambda e: e.published, reverse=True)[
             : config.MAX_LATEST_FEED_ENTRIES
@@ -353,6 +387,7 @@ def generate_website(
 
     @build.rule("weeknotes_blogroll_feed")
     def _(_target: str):
+        """Generate the weeknotes-only blogroll Atom feed."""
         build.need("feeds", "members_dir")
         entries = prepend_fediverse_creator(
             cache.weeknote_entries, cache.fediverse_creators
@@ -366,6 +401,7 @@ def generate_website(
 
     @build.rule("members_dir")
     def _(_target: str):
+        """Generate the member directory and cache fediverse creators."""
         build.need("feeds", "parsed_opml")
         cache.fediverse_creators = generate_members_page(
             cache.feeds_with_entries, cache.feeds, output_dir
@@ -376,6 +412,7 @@ def generate_website(
 
     @build.rule("webring")
     def _(_target: str):
+        """Shuffle the webring chain and demand its per-member targets."""
         build.need("feeds")
         feeds = [f for f in cache.feeds_with_entries if f.webring]
         if len(feeds) < 2:
@@ -413,6 +450,7 @@ def generate_website(
 
     @build.rule("webring_member:*")
     def _(slug: str):
+        """Generate previous/next redirect pages for one webring member."""
         prev_feed, next_feed, feed_url = cache.webring_prev_next[slug]
         for feed, name in [(prev_feed, "previous"), (next_feed, "next")]:
             save_html(
@@ -432,6 +470,7 @@ def generate_website(
 
     @build.rule("webring_embed:*")
     def _(slug: str):
+        """Generate pygments-highlighted embed code for one webring member."""
         prev_url = f"{config.SITE_URL}webring/{slug}/previous.html"
         next_url = f"{config.SITE_URL}webring/{slug}/next.html"
         embed_html = (
@@ -447,6 +486,7 @@ def generate_website(
 
     @build.rule("webring_legacy:*")
     def _(kind: str):
+        """Generate a legacy random prev/next webring redirect page."""
         feed = cache.webring_legacy[kind]
         save_html(
             webring_renderer.render(
@@ -464,9 +504,18 @@ def generate_website(
 
     @build.rule("newsletter")
     def _(_target: str):
+        """Generate the newsletter subscription page."""
         generate_newsletter_page(output_dir)
 
     def get_archive_years(entries_by_year: dict[int, list[FeedEntry]]) -> list[int]:
+        """Return the archive years at or after config.ARCHIVE_MIN_YEAR.
+
+        Args:
+            entries_by_year: Entries grouped by publication year.
+
+        Returns:
+            Sorted list of years that have entries and are archivable.
+        """
         return [
             year
             for year in sorted(entries_by_year.keys())
@@ -475,6 +524,7 @@ def generate_website(
 
     @build.rule("archive")
     def _(_target: str):
+        """Demand the archive index and every per-year archive page."""
         build.need("feeds")
         archive_year_targets = [
             f"archive_year:{year}" for year in get_archive_years(cache.entries_by_year)
@@ -483,6 +533,7 @@ def generate_website(
 
     @build.rule("archive_index")
     def _(_target: str):
+        """Generate the archive index page with the monthly bar chart."""
         build.need("feeds")
         generate_archive_index(
             [
@@ -496,6 +547,7 @@ def generate_website(
 
     @build.rule("archive_year:*")
     def _(target: str):
+        """Generate one year's archive page."""
         build.need("feeds")
         year = int(target)
         generate_archive_year(
@@ -507,6 +559,7 @@ def generate_website(
 
     @build.rule("homepage")
     def _(_target: str):
+        """Generate the homepage."""
         build.need("feeds", "events")
         generate_homepage(
             cache.entries,
@@ -520,6 +573,7 @@ def generate_website(
 
     @build.rule("sitemap")
     def _(_target: str):
+        """Generate sitemap.xml from every built index.html."""
         build.need(
             "members_dir",
             "webring",
@@ -547,6 +601,7 @@ def generate_website(
 
     @build.rule("website")
     def _(_target: str):
+        """Top-level target: demand every other target in the build."""
         build.need(
             "blogroll_opml",
             "members_dir",
