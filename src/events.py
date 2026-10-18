@@ -5,16 +5,16 @@ import json
 import logging
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import TypedDict, cast, final
+from typing import Any, TypeVar, final
 from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 
 import requests
 from bs4 import BeautifulSoup
-from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 from icalendar import Calendar, Timezone, TimezoneStandard
 from icalendar import Event as CalEvent
+from pydantic import BaseModel, ValidationError, field_validator
 
 from src import config
 
@@ -108,50 +108,110 @@ class Event:
         return self.created_at.isoformat()
 
 
-DiscourseTopic = TypedDict(
-    "DiscourseTopic", {"id": int, "created_at": str, "title": str, "slug": str}
-)
-DiscoureSearchResults = TypedDict(
-    "DiscoureSearchResults", {"topics": list[DiscourseTopic]}
-)
-DiscoursePostEvent = TypedDict(
-    "DiscoursePostEvent", {"starts_at": str, "ends_at": str, "location": str}
-)
-DiscoursePost = TypedDict("DiscoursePost", {"cooked": str, "event": DiscoursePostEvent})
-DiscoursePostStream = TypedDict("DiscoursePostStream", {"posts": list[DiscoursePost]})
-DiscourseTopicPosts = TypedDict(
-    "DiscourseTopicPosts", {"post_stream": DiscoursePostStream}
-)
+class DiscourseTopic(BaseModel):
+    """Topic summary from the Discourse Search API."""
+
+    id: int
+    created_at: datetime
+    title: str
+    slug: str
 
 
-def make_event(base_url: str, topic: DiscourseTopic, post: DiscoursePost) -> Event:
+class DiscoursePostEvent(BaseModel):
+    """Event metadata attached to a Discourse post."""
+
+    starts_at: datetime
+    ends_at: datetime
+    location: str = ""
+
+
+class DiscoursePost(BaseModel):
+    """First post of a topic, carrying the event metadata and HTML."""
+
+    cooked: str
+    event: DiscoursePostEvent | None = None
+
+
+class DiscoursePostStream(BaseModel):
+    posts: list[DiscoursePost] = []
+
+
+class DiscourseTopicPosts(BaseModel):
+    post_stream: DiscoursePostStream
+
+
+class DiscourseSearchResults(BaseModel):
+    """Search results; malformed topics are dropped instead of fatal."""
+
+    topics: list[DiscourseTopic] = []
+
+    @field_validator("topics", mode="before")
+    @classmethod
+    def _drop_malformed_topics(cls, value: Any) -> list[Any]:
+        if not isinstance(value, list):
+            logger.warning(
+                f"Expected a topics list, got {type(value).__name__}; treating as empty"
+            )
+            return []
+        valid: list[Any] = []
+        for item in value:
+            try:
+                DiscourseTopic.model_validate(item)
+            except ValidationError as e:
+                logger.warning(
+                    f"Dropping malformed search topic: {e.error_count()} errors"
+                )
+            else:
+                valid.append(item)
+        return valid
+
+
+T = TypeVar("T", bound=BaseModel)
+
+
+def _load_cached(cache_file: Path, model_cls: type[T]) -> T | None:
+    """Load a cached JSON payload as a model, or None if absent or invalid."""
+    if not cache_file.exists():
+        return None
+    try:
+        return model_cls.model_validate_json(cache_file.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        logger.warning(f"Ignoring invalid cache file {cache_file.name}: {e}")
+        return None
+
+
+def make_event(
+    base_url: str, topic: DiscourseTopic, post: DiscoursePost
+) -> Event | None:
     """Build an Event from a Discourse topic and its first post.
 
     Args:
         base_url: URL of the Underline Center Discourse instance.
-        topic: Topic JSON returned from the Discourse Search API.
+        topic: Topic validated from the Discourse Search API.
         post: First post of the topic, carrying the event metadata.
 
     Returns:
-        Event for the topic.
+        Event for the topic, or None if the post carries no event metadata.
     """
-    event = post["event"]
+    event = post.event
+    if event is None:
+        return None
 
     district_url = None
-    url = event["location"]
+    url = event.location
     parsed_url = urlparse(url)
     if parsed_url.scheme and parsed_url.netloc:
         district_url = url
 
     return Event(
-        id=topic["id"],
-        title=topic["title"].replace(" with Ankur and Tanvi", ""),
-        slug=topic["slug"],
-        created_at=date_parser.parse(topic["created_at"]),
-        start_at=date_parser.parse(event["starts_at"]),
-        end_at=date_parser.parse(event["ends_at"]),
-        details=post["cooked"],
-        underline_url=f"{base_url}/t/{topic['slug']}",
+        id=topic.id,
+        title=topic.title.replace(" with Ankur and Tanvi", ""),
+        slug=topic.slug,
+        created_at=topic.created_at,
+        start_at=event.starts_at,
+        end_at=event.ends_at,
+        details=post.cooked,
+        underline_url=f"{base_url}/t/{topic.slug}",
         district_url=district_url,
     )
 
@@ -168,50 +228,62 @@ def fetch_event_detail(
     Args:
       session: requests.Session object.
       base_url: URL of Underline Center Discourse. Default: https://underline.center/.
-      topic: topic JSON returned from Discourse Search API.
+      topic: Topic validated from the Discourse Search API.
       use_cache: Whether to use cached content instead of fetching.
       cache_fallback: Whether to fall back to cached content on fetch failure
           and update the cache on success.
 
     Returns:
-      IWCB Event, None if fetch failed.
+      IWCB Event, None if fetch or validation failed or the topic carries no
+      event metadata.
     """
-    url = f"{base_url}/t/{topic['id']}.json"
+    url = f"{base_url}/t/{topic.id}.json"
     cache_key = hashlib.sha256(url.encode()).hexdigest()
     cache_file = config.CACHE_DIR / cache_key
 
-    if use_cache and cache_file.exists():
-        logger.debug(f"Using cached content for: {url}")
-        post = cast(DiscoursePost, json.loads(cache_file.read_text(encoding="utf-8")))
-        return make_event(base_url, topic, post)
+    post: DiscoursePost | None = None
+    if use_cache:
+        post = _load_cached(cache_file, DiscoursePost)
+        if post is not None:
+            logger.debug(f"Using cached content for: {url}")
 
-    try:
-        logger.info(f"Fetching event details: {url}")
-        response = session.get(url, timeout=config.REQUEST_TIMEOUT, stream=True)
-        response.raise_for_status()
+    if post is None:
+        try:
+            logger.info(f"Fetching event details: {url}")
+            response = session.get(url, timeout=config.REQUEST_TIMEOUT, stream=True)
+            response.raise_for_status()
 
-        topic_posts = cast(DiscourseTopicPosts, response.json())
-        post = topic_posts["post_stream"]["posts"][0]
-        if use_cache or cache_fallback:
-            _ = cache_file.write_text(json.dumps(post), encoding="utf-8")
-            logger.debug(f"Cached content for: {url}")
+            raw = response.json()
+            topic_posts = DiscourseTopicPosts.model_validate(raw)
+            posts = topic_posts.post_stream.posts
+            if not posts:
+                logger.warning(f"No posts in topic: {url}")
+            else:
+                if use_cache or cache_fallback:
+                    _ = cache_file.write_text(
+                        json.dumps(raw["post_stream"]["posts"][0]), encoding="utf-8"
+                    )
+                    logger.debug(f"Cached content for: {url}")
+                post = posts[0]
+        except ValidationError as e:
+            logger.warning(f"Invalid event data for {url}: {e.error_count()} errors")
+        except requests.exceptions.Timeout:
+            logger.warning(f"Timeout fetching event details: {url}")
+        except requests.exceptions.HTTPError as e:
+            logger.warning(f"HTTP error fetching event details {url}: {e}")
+        except requests.exceptions.RequestException as e:
+            logger.warning(f"Request error fetching event details {url}: {e}")
+        except Exception as e:
+            logger.error(f"Unexpected error fetching event details {url}: {e}")
 
-        return make_event(base_url, topic, post)
-    except requests.exceptions.Timeout:
-        logger.warning(f"Timeout fetching event details: {url}")
-    except requests.exceptions.HTTPError as e:
-        logger.warning(f"HTTP error fetching event details {url}: {e}")
-    except requests.exceptions.RequestException as e:
-        logger.warning(f"Request error fetching event details {url}: {e}")
-    except Exception as e:
-        logger.error(f"Unexpected error fetching event details {url}: {e}")
+    if post is None and cache_fallback:
+        post = _load_cached(cache_file, DiscoursePost)
+        if post is not None:
+            logger.debug(f"Using cached content as fallback for: {url}")
 
-    if cache_fallback and cache_file.exists():
-        logger.debug(f"Using cached content as fallback for: {url}")
-        post = cast(DiscoursePost, json.loads(cache_file.read_text(encoding="utf-8")))
-        return make_event(base_url, topic, post)
-
-    return None
+    if post is None:
+        return None
+    return make_event(base_url, topic, post)
 
 
 def fetch_events(
@@ -240,29 +312,29 @@ def fetch_events(
     with requests.Session() as session:
         session.headers.update({"User-Agent": config.UA, "Accept": "application/json"})
 
-        response_json = None
-        if use_cache and cache_file.exists():
-            logger.debug(f"Using cached content for: {url}")
-            response_json = cast(
-                DiscoureSearchResults,
-                json.loads(cache_file.read_text(encoding="utf-8")),
-            )
-        else:
+        response_json: DiscourseSearchResults | None = None
+        if use_cache:
+            response_json = _load_cached(cache_file, DiscourseSearchResults)
+            if response_json is not None:
+                logger.debug(f"Using cached content for: {url}")
+
+        if response_json is None:
             try:
                 logger.info("Fetching events")
 
                 response = session.get(url, timeout=config.REQUEST_TIMEOUT, stream=True)
                 response.raise_for_status()
 
-                response_json = cast(DiscoureSearchResults, response.json())
+                raw = response.json()
+                response_json = DiscourseSearchResults.model_validate(raw)
 
                 if use_cache or cache_fallback:
-                    cache_key = hashlib.sha256(url.encode()).hexdigest()
-                    cache_file = config.CACHE_DIR / cache_key
-                    _ = cache_file.write_text(
-                        json.dumps(response_json), encoding="utf-8"
-                    )
+                    _ = cache_file.write_text(json.dumps(raw), encoding="utf-8")
                     logger.debug(f"Cached content for: {url}")
+            except ValidationError as e:
+                logger.warning(
+                    f"Invalid events response {url}: {e.error_count()} errors"
+                )
             except requests.exceptions.Timeout:
                 logger.warning(f"Timeout fetching events: {url}")
             except requests.exceptions.HTTPError as e:
@@ -273,18 +345,16 @@ def fetch_events(
                 logger.error(f"Unexpected error fetching events {url}: {e}")
 
     if response_json is None:
-        if cache_fallback and cache_file.exists():
-            logger.debug(f"Using cached content as fallback for: {url}")
-            response_json = cast(
-                DiscoureSearchResults,
-                json.loads(cache_file.read_text(encoding="utf-8")),
-            )
-        else:
+        if cache_fallback:
+            response_json = _load_cached(cache_file, DiscourseSearchResults)
+            if response_json is not None:
+                logger.debug(f"Using cached content as fallback for: {url}")
+        if response_json is None:
             return []
 
     events: list[Event] = []
     previous_count = 0
-    for topic in response_json["topics"]:
+    for topic in response_json.topics:
         event = fetch_event_detail(session, base_url, topic, use_cache, cache_fallback)
         if event is None:
             continue
