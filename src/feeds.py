@@ -541,10 +541,9 @@ def parse_feed(
                 f"Feed parser warning for {feed_title}: {parsed_feed.bozo_exception}"
             )
 
-        # Calculate cutoff date
+        # Calculate recency cutoff
         now = datetime.now(timezone.utc)
         early_cutoff_time = now - timedelta(hours=config.MIN_FEED_ENTRY_AGE_HOURS)
-        late_cutoff_time = now - timedelta(days=config.MAX_FEED_ENTRY_AGE_DAYS)
 
         feed_host = urlparse(feed_url).hostname
         is_mataroa = is_mataroa_host(feed_host)
@@ -598,12 +597,8 @@ def parse_feed(
                     f"Feed '{feed_title}': Entry '{title}' has no valid date"
                 )
 
-            # Skip entries without valid dates or too old
-            if (
-                not published
-                or published < late_cutoff_time
-                or published > early_cutoff_time
-            ):
+            # Skip entries without valid dates or still too recent
+            if not published or published > early_cutoff_time:
                 continue
 
             tags = [
