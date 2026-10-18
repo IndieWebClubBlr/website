@@ -1,0 +1,16 @@
+<a class="feed-link" href="{{{site_url}}}topics.atom">Feed</a>
+<h1>Topics</h1>
+
+<div class="toc">
+<ul>
+{{#sections}}
+<li><a href="#{{slug}}">{{date_display}}</a></li>
+{{/sections}}
+</ul>
+</div>
+
+{{#sections}}
+<h2 id="{{slug}}">{{date_display}}</h2>
+{{#title}}<p>{{title}}</p>{{/title}}
+{{{topic_html}}}
+{{/sections}}

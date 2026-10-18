@@ -695,6 +695,12 @@ form.newsletter-form input[type="submit"],
   font-weight: bold;
 }
 
+.feed-link {
+  float: right;
+  top: 1.5rem;
+  position: relative;
+}
+
 .noscript p {
   text-decoration: underline;
   text-decoration-style: wavy;

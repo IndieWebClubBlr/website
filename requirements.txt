@@ -9,3 +9,4 @@ markdown>=3.5.0
 pygments>=2.19.2
 favicon>=0.7.0
 PyYAML>=6.0.3
+pydantic>=2.0.0

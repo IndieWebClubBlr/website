@@ -15,6 +15,7 @@ let
       pygments
       favicon
       pyyaml
+      pydantic
     ];
   pythonEnv = pkgs.python3.withPackages pythonPackages;
   run = pkgs.writeShellScriptBin "run" ''

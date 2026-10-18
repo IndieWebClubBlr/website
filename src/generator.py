@@ -20,24 +20,31 @@ import random
 import shutil
 import sys
 from dataclasses import dataclass, field
-from urllib.parse import urlparse
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 # Add parent directory to path so we can import src modules
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src import config
 from pygments import highlight
-from pygments.lexers import HtmlLexer
 from pygments.formatters import HtmlFormatter
+from pygments.lexers import HtmlLexer
 
+from src import config
 from src.archive import (
     generate_archive_index,
     generate_archive_year,
     group_entries_by_year,
 )
 from src.build import Build
+from src.data_pages import (
+    PromptsPage,
+    TopicsPage,
+    generate_data_page_feed,
+    load_data_page,
+    render_data_page,
+)
 from src.events import (
     Event,
     fetch_events,
@@ -235,6 +242,38 @@ class BuildCache:
         default_factory=dict
     )
     webring_legacy: dict[str, FeedInfo] = field(default_factory=dict)
+    data_pages: dict[str, TopicsPage | PromptsPage] = field(default_factory=dict)
+
+
+def register_pages(
+    pages_path: Path,
+    data_path: Path,
+    data_page_classes: dict[str, type[TopicsPage | PromptsPage]],
+) -> dict[str, Path]:
+    page_sources: dict[str, Path] = {}
+
+    def _register_page(target: str, src_file: Path) -> None:
+        if (existing := page_sources.get(target)) is not None:
+            raise ValueError(
+                f"Duplicate page target {target}: {existing} and {src_file}"
+            )
+        page_sources[target] = src_file
+
+    for f in pages_path.glob("*.md"):
+        _register_page(f"page:{f.stem}", f)
+    data_stems: set[str] = set()
+    for f in data_path.glob("*.yaml"):
+        data_stems.add(f.stem)
+        if f.stem in data_page_classes:
+            _register_page(f"page:{f.stem}", f)
+    for f in pages_path.glob("*/index.html"):
+        _register_page(f"page:{f.relative_to(pages_path)}", f)
+    if missing := sorted(set(data_page_classes) - data_stems):
+        raise ValueError(
+            "data_page_classes entries without a YAML file: "
+            + ", ".join(f"data/{name}.yaml" for name in missing)
+        )
+    return page_sources
 
 
 def generate_website(
@@ -252,9 +291,14 @@ def generate_website(
     cache = BuildCache()
     build = Build()
     pages_path = Path("./pages/")
-    page_targets = [f"page:{f.stem}" for f in pages_path.glob("*.md")] + [
-        f"page:{f.relative_to(pages_path)}" for f in pages_path.glob("*/index.html")
-    ]
+    data_path = Path("./data/")
+    data_page_classes: dict[str, type[TopicsPage | PromptsPage]] = {
+        "topics": TopicsPage,
+        "prompts": PromptsPage,
+    }
+
+    page_sources = register_pages(pages_path, data_path, data_page_classes)
+    page_targets = list(page_sources)
 
     @build.rule("blogroll_opml")
     def _(_target: str):
@@ -268,9 +312,9 @@ def generate_website(
         if src.exists():
             dst = output_dir / src.name
             _ = shutil.copyfile(src, dst)
-            logger.debug(f"Copied asset: {src} -> {dst}")
+            logger.info(f"Copied asset: {src} -> {dst}")
         else:
-            logger.warn(f"Asset does not exist: {src}")
+            logger.warning(f"Asset does not exist: {src}")
 
     @build.rule("page:*/index.html")
     def _(page_name: str):
@@ -280,14 +324,29 @@ def generate_website(
             dst = output_dir / page_name
             dst.parent.mkdir(exist_ok=True)
             _ = shutil.copyfile(src, dst)
-            logger.debug(f"Copied page: {src} -> {dst}")
+            logger.info(f"Copied page: {src} -> {dst}")
+
+    @build.rule("data_page:*")
+    def _(page_name: str):
+        """Load and validate one data page's YAML file."""
+        cache.data_pages[page_name] = load_data_page(
+            data_path / f"{page_name}.yaml", data_page_classes[page_name]
+        )
+        logger.info(f"Loaded data page: {page_name}")
 
     @build.rule("page:*")
     def _(page_name: str):
-        """Render a Markdown page to HTML."""
-        md_file = Path(f"./pages/{page_name}.md")
+        """Render a Markdown or data (YAML) page to HTML."""
+        src = page_sources[f"page:{page_name}"]
+        if src.suffix == ".yaml":
+            build.need(f"data_page:{page_name}")
+            html_content = render_data_page(
+                cache.data_pages[page_name], f"{page_name}.html"
+            )
+        else:
+            html_content = markdown_to_html(src)
         render_and_save_html(
-            html_content=markdown_to_html(md_file),
+            html_content=html_content,
             page_url=f"{page_name}/",
             output_dir=output_dir / page_name,
         )
@@ -356,6 +415,30 @@ def generate_website(
         """Generate the events iCalendar file."""
         build.need("events")
         generate_events_calendar(cache.events, output_dir)
+
+    @build.rule("topics_feed")
+    def _(_target: str):
+        """Generate the topics Atom feed."""
+        build.need("data_page:topics")
+        generate_data_page_feed(
+            page=cache.data_pages["topics"],
+            feed_title="IndieWebClub Bangalore Topics",
+            feed_subtitle="Discussion topics from IndieWebClub Bangalore.",
+            output_path=output_dir / config.TOPICS_FEED_FILE,
+            page_url="topics/",
+        )
+
+    @build.rule("prompts_feed")
+    def _(_target: str):
+        """Generate the writing-prompts Atom feed."""
+        build.need("data_page:prompts")
+        generate_data_page_feed(
+            page=cache.data_pages["prompts"],
+            feed_title="IndieWebClub Bangalore Writing Prompts",
+            feed_subtitle="Writing prompts from IndieWebClub Bangalore.",
+            output_path=output_dir / config.PROMPTS_FEED_FILE,
+            page_url="prompts/",
+        )
 
     @build.rule("blogroll_feed")
     def _(_target: str):
@@ -618,6 +701,7 @@ def generate_website(
             "sitemap",
             *[f"asset:{asset}" for asset in config.ASSETS],
             *page_targets,
+            *[f"{page_name}_feed" for page_name in data_page_classes],
         )
         logger.info("Website generation completed successfully")
 

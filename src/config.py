@@ -75,6 +75,12 @@ MAX_LATEST_FEED_ENTRIES = 50
 # Filename for the generated events Atom feed.
 EVENTS_FEED_FILE = "events.atom"
 
+# Filename for the generated topics Atom feed.
+TOPICS_FEED_FILE = "topics.atom"
+
+# Filename for the generated writing-prompts Atom feed.
+PROMPTS_FEED_FILE = "prompts.atom"
+
 # Filename for the generated events iCalendar file.
 EVENTS_CAL_FILE = "events.ics"
 
