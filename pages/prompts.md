@@ -2,6 +2,12 @@
 
 [TOC]
 
+## October 19, 2026
+
+- What’s the story behind your domain name? (Or your government name, or your online handle.)
+- What Story do you tell yourself about the world?
+- Describe your personal style.
+
 ## October 3, 2026
 
 - Take a blog post you published very long ago and see if your views have changed.
