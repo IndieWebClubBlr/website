@@ -4,11 +4,12 @@ Utility functions for IWCB website generation.
 
 from __future__ import annotations
 
+import hashlib
 import logging
 import threading
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
+from urllib.parse import quote, urlsplit, urlunsplit
 
 import markdown
 import pystache
@@ -136,7 +137,11 @@ def add_ref_param(url: str, ref: str = config.SITE_DOMAIN) -> str:
     """
     Add ref parameter to a URL, replacing any existing ref param.
 
-    Properly handles URLs that already have query parameters.
+    Operates on the raw query string rather than parsing and re-encoding
+    it: a parse/encode round trip drops valueless params (`&preview`) and
+    re-cases escapes (`%2f` -> `%2F`), which would make an archived link
+    stop deduplicating against the member's own feed. Existing parameters
+    are preserved byte for byte; only `ref=` entries are replaced.
 
     Args:
         url: URL to add the parameter to.
@@ -145,13 +150,14 @@ def add_ref_param(url: str, ref: str = config.SITE_DOMAIN) -> str:
     Returns:
         URL with the ref parameter set, replacing any existing value.
     """
-    from src import config
-
-    parsed = urlparse(url)
-    params = parse_qs(parsed.query)
-    params["ref"] = [ref]
-    new_query = urlencode(params, doseq=True)
-    return urlunparse(parsed._replace(query=new_query))
+    parts = urlsplit(url)
+    kept = [
+        pair for pair in parts.query.split("&") if pair and not pair.startswith("ref=")
+    ]
+    kept.append(f"ref={quote(ref, safe='')}")
+    return urlunsplit(
+        (parts.scheme, parts.netloc, parts.path, "&".join(kept), parts.fragment)
+    )
 
 
 def markdown_to_html(markdown_file: Path) -> str:
@@ -179,3 +185,19 @@ def markdown_to_html(markdown_file: Path) -> str:
     except Exception as e:
         logger.error(f"Failed to convert markdown from {markdown_file}: {e}")
         raise
+
+
+def cache_path(url: str) -> Path:
+    """Return the cache file path for a URL.
+
+    Every URL-keyed cache (feeds, events) lives in `config.CACHE_DIR` and
+    is named after the SHA256 hash of the URL, so all fetchers share one
+    naming scheme.
+
+    Args:
+        url: The URL whose cache entry is needed.
+
+    Returns:
+        Path of the cache file for this URL.
+    """
+    return config.CACHE_DIR / hashlib.sha256(url.encode()).hexdigest()

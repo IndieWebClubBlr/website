@@ -69,6 +69,15 @@ BLOGROLL_LATEST_FEED_FILE = "blogroll-latest.atom"
 # Maximum number of entries in the latest blogroll feed.
 MAX_LATEST_FEED_ENTRIES = 50
 
+# Seed archives for the blogroll feedback loop. The site's own blogroll feed
+# (SITE_URL + BLOGROLL_FEED_FILE) is always fetched as an archive source;
+# these seeds backfill history the site never saw and can be emptied once
+# the self-hosted corpus is self-sustaining.
+ARCHIVE_SEED_FEED_URLS = [
+    "https://fr.abnv.me/blr-indiewebclub-org-blogroll.atom",
+    "https://indiewebclubblr.github.io/blogroll-replay/feed.atom",
+]
+
 # Filename for the generated events Atom feed.
 EVENTS_FEED_FILE = "events.atom"
 

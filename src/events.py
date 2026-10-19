@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import hashlib
 import json
 import logging
 from datetime import datetime, timedelta, timezone
@@ -17,6 +16,7 @@ from icalendar import Event as CalEvent
 from pydantic import BaseModel, ValidationError, field_validator
 
 from src import config
+from src.utils import cache_path
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -238,8 +238,7 @@ def fetch_event_detail(
       event metadata.
     """
     url = f"{base_url}/t/{topic.id}.json"
-    cache_key = hashlib.sha256(url.encode()).hexdigest()
-    cache_file = config.CACHE_DIR / cache_key
+    cache_file = cache_path(url)
 
     post: DiscoursePost | None = None
     if use_cache:
@@ -304,8 +303,7 @@ def fetch_events(
       IWCB Event as a list, empty if fetch failed.
     """
     url = f"{base_url}/search/query?term=indieweb%20%23calendar%20order%3Alatest_topic&page=1"
-    cache_key = hashlib.sha256(url.encode()).hexdigest()
-    cache_file = config.CACHE_DIR / cache_key
+    cache_file = cache_path(url)
 
     now = datetime.now(timezone.utc)
 

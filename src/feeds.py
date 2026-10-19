@@ -11,8 +11,8 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from pathlib import Path
-from typing import final
-from urllib.parse import quote, urlparse, urlsplit
+from typing import Any, final
+from urllib.parse import quote, urlparse, urlsplit, urlunsplit
 
 import feedparser
 import requests
@@ -21,7 +21,7 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from src import config
-from src.utils import SessionManager, add_ref_param
+from src.utils import SessionManager, add_ref_param, cache_path
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -303,6 +303,39 @@ def fetch_feed_content(url: str) -> str | None:
         logger.error(f"Unexpected error fetching feed {url}: {e}")
 
 
+def _fetch_feed_content_cached(
+    feed_url: str, use_cache: bool, cache_fallback: bool
+) -> str | None:
+    """Fetch feed content, reading from and writing to the fetch cache.
+
+    Args:
+        feed_url: Feed URL to fetch.
+        use_cache: Whether to use cached content instead of fetching.
+            A cache miss fetches live and warms the cache, so repeated
+            `--cache` runs only need the network on their first run.
+        cache_fallback: Whether to fall back to cached content on fetch
+            failure and update the cache on success.
+
+    Returns:
+        Feed content, or None if it could not be obtained.
+    """
+    cache_file = cache_path(feed_url)
+
+    if use_cache and cache_file.exists():
+        logger.debug(f"Using cached content for: {feed_url}")
+        return cache_file.read_text(encoding="utf-8")
+
+    content = fetch_feed_content(feed_url)
+    if content and (cache_fallback or use_cache):
+        cache_file.write_text(content, encoding="utf-8")
+    if not content:
+        if cache_fallback and cache_file.exists():
+            logger.info(f"Using cached content as fallback for: {feed_url}")
+            return cache_file.read_text(encoding="utf-8")
+        return None
+    return content
+
+
 def prepend_fediverse_creator(
     entries: list[FeedEntry], fediverse_creators: dict[str, str]
 ) -> list[FeedEntry]:
@@ -314,11 +347,11 @@ def prepend_fediverse_creator(
 
     Returns:
         The same list of entries, with summaries prefixed where a creator
-        handle exists and is not already present.
+        handle exists and the summary is not already prefixed with it.
     """
     for entry in entries:
         creator = fediverse_creators.get(entry.feed_home_url)
-        if creator and not entry.summary.startswith(creator):
+        if creator and not entry.summary.startswith(f"{creator}: "):
             entry.summary = f"{creator}: {entry.summary}"
     return entries
 
@@ -341,15 +374,24 @@ def is_mataroa_host(host: str | None) -> bool:
 
 def normalize_link(link: str, feed_url: str) -> str:
     """
-    Convert relative URLs to absolute URLs using the feed's domain as base.
-    Properly encodes spaces and special characters in the URL.
+    Canonicalize an entry link: absolute, percent-encoded, and free of
+    syndication tracking parameters (ref, utm_*).
+
+    Stripping at this single choke point keeps `entry.link` canonical no
+    matter the source (raw member feed, the normalized Atom our cache
+    writer produces, or an archive snapshot whose hrefs carry our ref
+    param), so link dedupe and entry ids are idempotent across builds.
+    `%` is kept safe so already-percent-encoded links are neither
+    double-encoded (`%20` -> `%2520`) nor grow a `25` layer per pass —
+    the archive self-loop re-ingests our own hrefs every build.
 
     Args:
         link: The link to normalize (can be absolute or relative).
         feed_url: The feed URL to extract the domain from.
 
     Returns:
-        Absolute URL with properly percent-encoded characters.
+        Absolute URL with percent-encoded characters and tracking
+        parameters removed.
     """
     if not link:
         return link
@@ -357,7 +399,7 @@ def normalize_link(link: str, feed_url: str) -> str:
     if (
         link.startswith("http://") or link.startswith("https://")
     ) and not link.startswith("http://localhost:"):
-        return quote(link, safe=":/?#[]@!$&'()*+,;=")
+        return strip_tracking_params(quote(link, safe=":/?#[]@!$&'()*+,;=%"))
 
     parsed = urlparse(feed_url)
     link_parts = urlsplit(link)
@@ -366,7 +408,35 @@ def normalize_link(link: str, feed_url: str) -> str:
         netloc=parsed.netloc,
         path=link_parts.path.removeprefix(parsed.netloc),
     ).geturl()
-    return quote(absolute_url, safe=":/?#[]@!$&'()*+,;=").strip()
+    return strip_tracking_params(
+        quote(absolute_url, safe=":/?#[]@!$&'()*+,;=%").strip()
+    )
+
+
+def strip_tracking_params(url: str) -> str:
+    """Strip syndication tracking parameters (ref, utm_*) from a URL.
+
+    Our own generated feeds add `ref=` to every entry href, and seed
+    archives may carry other campaign parameters; stripping them keeps
+    links canonical so archive round-trips deduplicate against the clean
+    links member feeds publish. Idempotent: an already-canonical URL is
+    returned unchanged.
+
+    Args:
+        url: URL to canonicalize.
+
+    Returns:
+        URL with ref and utm_* query parameters removed.
+    """
+    parts = urlsplit(url)
+    kept = [
+        pair
+        for pair in parts.query.split("&")
+        if pair and not pair.startswith(("ref=", "utm_"))
+    ]
+    return urlunsplit(
+        (parts.scheme, parts.netloc, parts.path, "&".join(kept), parts.fragment)
+    )
 
 
 def parse_feed_date(date_string: str) -> datetime | None:
@@ -489,10 +559,51 @@ def extract_summary(entry, feed_title: str, title: str, link: str) -> str:
     if not plain:
         return ""
 
+    # Peel accumulated @handle: prefixes and «» layers back to raw text
+    # before truncating. prepend_fediverse_creator adds one @handle: prefix
+    # on every publish, and the site re-ingests its own feed as an archive
+    # source, so summaries can arrive as `«@a: @b: «text»»`. Normalizing
+    # here (before the length check) keeps re-processing byte-for-byte
+    # stable: the same post yields the same summary from its member feed
+    # and from any archive round trip.
+    while True:
+        stripped = re.sub(r"^(?:@[^:]+:\s*)+", "", plain)
+        if stripped != plain:
+            plain = stripped
+            continue
+        if len(plain) >= 2 and plain.startswith("«") and plain.endswith("»"):
+            plain = plain[1:-1]
+            continue
+        break
+
     if len(plain) > config.MAX_SUMMARY_LENGTH:
         plain = truncate_at_word(plain, config.MAX_SUMMARY_LENGTH)
 
     return plain
+
+
+def wrap_summary_once(summary: str) -> str:
+    """Wrap a summary in «» exactly once.
+
+    Tolerates a leading fediverse creator prefix (``@handle: …``): the
+    published ``blogroll.atom`` is itself an archive source, so a summary
+    that already carries a prefix and guillemets must pass through
+    unchanged — otherwise the self-loop stacks one wrap and one prepend
+    per build.
+
+    Args:
+        summary: Plain-text summary, possibly creator-prefixed.
+
+    Returns:
+        The summary wrapped in «» unless it is already wrapped (behind at
+        most one creator prefix).
+    """
+    if not summary:
+        return summary
+    body = re.sub(r"^@[^:]+:\s*", "", summary, count=1)
+    if not body or body.startswith("«"):
+        return summary
+    return f"«{summary}»"
 
 
 def extract_content(entry) -> str:
@@ -618,11 +729,7 @@ def parse_feed(
                     feed_url=feed_url,
                     feed_home_url=parsed_feed.feed.link,
                     tags=[tag for tag in tags if tag is not None],
-                    summary=(
-                        f"«{summary}»"
-                        if summary and not summary.startswith("«")
-                        else summary
-                    ),
+                    summary=wrap_summary_once(summary),
                     content=content,
                 )
             )
@@ -658,23 +765,9 @@ def process_single_feed(
     feed_url = feed_info.xml_url
     home_url = feed_info.html_url
 
-    cache_key = hashlib.sha256(feed_url.encode()).hexdigest()
-    cache_file = config.CACHE_DIR / cache_key
-
-    if use_cache and cache_file.exists():
-        logger.debug(f"Using cached content for: {feed_url}")
-        content = cache_file.read_text(encoding="utf-8")
-    else:
-        # Fetch feed content
-        content = fetch_feed_content(feed_url)
-        if content and cache_fallback:
-            cache_file.write_text(content, encoding="utf-8")
-        if not content:
-            if cache_fallback and cache_file.exists():
-                logger.info(f"Using cached content as fallback for: {feed_url}")
-                content = cache_file.read_text(encoding="utf-8")
-            else:
-                return [], FailureReason.ERROR
+    content = _fetch_feed_content_cached(feed_url, use_cache, cache_fallback)
+    if content is None:
+        return [], FailureReason.ERROR
 
     # Parse feed content
     entries, has_entries = parse_feed(feed_title, feed_url, content)
@@ -698,11 +791,204 @@ def process_single_feed(
             author_name=entries[0].feed_title,
             feed_subtitle=None,
             entries=entries,
-            output_path=cache_file,
+            output_path=cache_path(feed_url),
         )
         logger.debug(f"Cached content for: {feed_url}")
 
     logger.info(f"Processed {feed_title}: {len(entries)} entries")
+    return entries, None
+
+
+def attribute_archive_entry(
+    entry: Any,
+    link: str,
+    member_feeds: list[FeedInfo],
+    by_xml: dict[str, FeedInfo],
+    by_domain: dict[str, FeedInfo],
+    by_title: dict[str, FeedInfo],
+) -> FeedInfo | None:
+    """Attribute one archive entry to an OPML member feed.
+
+    Cascade (first hit wins, link must already be canonicalized):
+      1. exact match of the entry's author uri against an OPML feed url
+      2. longest OPML site-url prefix of the entry link (boundary-guarded
+         so `/posts` can never claim a link to `/postsmith`)
+      3. link domain (first OPML feed wins)
+      4. author name against member titles (last OPML feed wins)
+    Returns None when no tier matches; the caller drops the entry.
+
+    Args:
+        entry: feedparser entry (provides author_detail/author).
+        link: Canonicalized entry link.
+        member_feeds: OPML member feeds in file order (tie-breaks tier 2).
+        by_xml: Feed-url -> member, from tier 1.
+        by_domain: Host -> member, from tier 3.
+        by_title: Lowercased title -> member, from tier 4.
+
+    Returns:
+        The attributed member feed, or None if unattributed.
+    """
+    # Tier 1: exact feed-url match from the entry's author uri.
+    author_detail = getattr(entry, "author_detail", None)
+    href = author_detail.get("href") if author_detail else None
+    if href and href in by_xml:
+        return by_xml[href]
+
+    # Tier 2: longest OPML html_url prefix of the entry link.
+    best: FeedInfo | None = None
+    best_base = ""
+    for member in member_feeds:
+        base = member.html_url
+        if base.endswith("/"):
+            hit = link == base or link.startswith(base)
+        else:
+            hit = (
+                link == base
+                or link.startswith(base + "/")
+                or link.startswith(base + "?")
+            )
+        if hit and len(base) > len(best_base):
+            best, best_base = member, base
+    if best is not None:
+        return best
+
+    # Tier 3: link domain.
+    host = (urlparse(link).hostname or "").removeprefix("www.")
+    member = by_domain.get(host) if host else None
+    if member is not None:
+        return member
+
+    # Tier 4: author title.
+    author = getattr(entry, "author", None)
+    if author:
+        member = by_title.get(author.strip().lower())
+        if member is not None:
+            return member
+
+    return None
+
+
+def process_archive_feed(
+    feed_info: FeedInfo,
+    member_feeds: list[FeedInfo],
+    use_cache: bool,
+    cache_fallback: bool,
+) -> tuple[list[FeedEntry], FailureReason | None]:
+    """Fetch an archive feed and attribute its entries to blogroll members.
+
+    Archive feeds (the site's own blogroll feed, plus optional seed
+    archives) are snapshots of member posts. Entry links are canonicalized
+    by stripping syndication tracking parameters so they deduplicate
+    against the clean links member feeds publish, and each entry is
+    attributed to an OPML member by the cascade in
+    `attribute_archive_entry` (exact feed-url match, then longest site-url
+    prefix of the link, then link domain, then author name). Entries that
+    match no member are dropped. Entries are built like member entries
+    (same summary handling and recency filter, no per-feed cap) so the
+    merged corpus is a fixed point across builds. Fetch failures are the
+    caller's concern; this never touches the member-feed failure list.
+
+    Args:
+        feed_info: Archive feed to process.
+        member_feeds: OPML member feeds used for per-entry attribution.
+        use_cache: Whether to use cached content instead of fetching.
+        cache_fallback: Whether to fall back to cached content on fetch
+            failure and update the cache on success.
+
+    Returns:
+        Tuple of (entries list, failure_reason). failure_reason is None
+        if successful.
+    """
+    content = _fetch_feed_content_cached(feed_info.xml_url, use_cache, cache_fallback)
+    if content is None:
+        return [], FailureReason.ERROR
+
+    parsed_feed = feedparser.parse(content)
+    if parsed_feed.bozo and hasattr(parsed_feed, "bozo_exception"):
+        logger.debug(
+            f"Feed parser warning for {feed_info.title}:"
+            f" {parsed_feed.bozo_exception}"
+        )
+
+    by_xml = {member.xml_url: member for member in member_feeds}
+    by_domain: dict[str, FeedInfo] = {}
+    for member in member_feeds:
+        host = (urlparse(member.html_url).hostname or "").removeprefix("www.")
+        if host:
+            by_domain.setdefault(host, member)
+    by_title = {member.title.strip().lower(): member for member in member_feeds}
+
+    early_cutoff_time = datetime.now(timezone.utc) - timedelta(
+        hours=config.MIN_FEED_ENTRY_AGE_HOURS
+    )
+
+    entries: list[FeedEntry] = []
+    dropped_unattributed = 0
+    for entry in parsed_feed.entries:
+        title = getattr(entry, "title", None)
+        raw_link = getattr(entry, "link", None)
+        if title:
+            title = title.strip()
+
+        if not title or not raw_link:
+            logger.warning(
+                f"Archive entry missing title or link in"
+                f" {feed_info.title}: {getattr(entry, 'link', 'no link')}"
+            )
+            continue
+
+        link = normalize_link(raw_link, feed_info.xml_url)
+
+        member = attribute_archive_entry(
+            entry, link, member_feeds, by_xml, by_domain, by_title
+        )
+        if member is None:
+            dropped_unattributed += 1
+            if dropped_unattributed <= 5:
+                logger.warning(
+                    f"Archive '{feed_info.title}': Dropping unattributed"
+                    f" entry (title: {title!r}, link: {link!r},"
+                    f" author: {getattr(entry, 'author', None)!r})"
+                )
+            continue
+        feed_title = member.title
+        feed_url = member.xml_url
+        feed_home_url = member.html_url
+
+        published = None
+        for date_field in ["published", "updated", "created"]:
+            date_value = getattr(entry, date_field, None)
+            if date_value:
+                published = parse_feed_date(date_value)
+                if published:
+                    break
+        if not published or published > early_cutoff_time:
+            continue
+
+        tags = [
+            tag.get("label") or tag.get("term") for tag in getattr(entry, "tags", [])
+        ]
+        summary = extract_summary(entry, feed_title, title, link)
+        content_html = extract_content(entry)
+
+        entries.append(
+            FeedEntry(
+                title=title,
+                link=link,
+                published=published,
+                feed_title=feed_title,
+                feed_url=feed_url,
+                feed_home_url=feed_home_url,
+                tags=[tag for tag in tags if tag is not None],
+                summary=wrap_summary_once(summary),
+                content=content_html,
+            )
+        )
+
+    logger.info(
+        f"Processed archive {feed_info.title}: {len(entries)} entries"
+        f" ({dropped_unattributed} dropped unattributed)"
+    )
     return entries, None
 
 
@@ -744,6 +1030,13 @@ def fetch_all_feeds(
     """
     Fetch and parse all feeds concurrently.
 
+    Member feeds are fetched first-class; the site's own blogroll feed and
+    any configured seed archives are fetched concurrently as archive
+    sources whose entries fill gaps the rolling member windows have lost.
+    Archive entries are slotted after member entries so the link dedupe
+    keeps the current member entry on duplicates, and archive failures are
+    logged without joining the member-feed failure list.
+
     Args:
         feeds: List of FeedInfo objects.
         use_cache: Whether to use cached content instead of fetching.
@@ -752,15 +1045,38 @@ def fetch_all_feeds(
     Returns:
         A tuple containing:
         - Combined, link-deduplicated list of all feed entries.
-        - List of feeds that failed to be fetched.
+        - List of member feeds that failed to be fetched.
     """
     if len(feeds) == 0:
         return [], []
 
-    logger.info(f"Processing {len(feeds)} feeds with {config.MAX_WORKERS} workers")
+    archive_feeds = [
+        FeedInfo(
+            title="Blogroll Archive (self)",
+            xml_url=config.SITE_URL + config.BLOGROLL_FEED_FILE,
+            html_url=config.SITE_URL,
+        ),
+        *(
+            FeedInfo(
+                title=f"Blogroll Archive ({urlparse(url).netloc})",
+                xml_url=url,
+                html_url=url,
+            )
+            for url in config.ARCHIVE_SEED_FEED_URLS
+        ),
+    ]
+    member_count = len(feeds)
 
-    # Preserve OPML order for deterministic duplicate fallback selection.
-    entries_by_feed: list[list[FeedEntry]] = [[] for _ in feeds]
+    logger.info(
+        f"Processing {member_count} feeds and {len(archive_feeds)} archive feeds"
+        f" with {config.MAX_WORKERS} workers"
+    )
+
+    # Member entries first, then archive entries: results land in
+    # index-addressed slots so completion order never affects dedupe order.
+    entries_by_feed: list[list[FeedEntry]] = [
+        [] for _ in range(member_count + len(archive_feeds))
+    ]
     failed_feeds: list[FailedFeedInfo] = []
 
     with ThreadPoolExecutor(
@@ -773,6 +1089,18 @@ def fetch_all_feeds(
             ): (index, feed_info)
             for index, feed_info in enumerate(feeds)
         }
+        future_to_feed.update(
+            {
+                executor.submit(
+                    process_archive_feed,
+                    feed_info,
+                    feeds,
+                    use_cache,
+                    cache_fallback,
+                ): (index, feed_info)
+                for index, feed_info in enumerate(archive_feeds, start=member_count)
+            }
+        )
 
         # Collect results as they complete
         for future in as_completed(future_to_feed):
@@ -781,17 +1109,26 @@ def fetch_all_feeds(
             try:
                 entries, failure_reason = future.result()
                 if failure_reason is not None:
-                    failed_feeds.append(
-                        FailedFeedInfo(feed_info=feed_info, reason=failure_reason)
-                    )
+                    if feed_index >= member_count:
+                        logger.warning(
+                            f"Archive feed {feed_info.title} failed"
+                            f" ({failure_reason.name}); skipping"
+                        )
+                    else:
+                        failed_feeds.append(
+                            FailedFeedInfo(feed_info=feed_info, reason=failure_reason)
+                        )
                 else:
                     entries_by_feed[feed_index] = entries
 
             except Exception as e:
-                logger.error(f"Failed to process {feed_info.title}: {e}")
-                failed_feeds.append(
-                    FailedFeedInfo(feed_info=feed_info, reason=FailureReason.ERROR)
-                )
+                if feed_index >= member_count:
+                    logger.error(f"Failed to process archive {feed_info.title}: {e}")
+                else:
+                    logger.error(f"Failed to process {feed_info.title}: {e}")
+                    failed_feeds.append(
+                        FailedFeedInfo(feed_info=feed_info, reason=FailureReason.ERROR)
+                    )
 
     session_manager.close_all()
     all_entries = [entry for feed_entries in entries_by_feed for entry in feed_entries]
