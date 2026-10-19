@@ -376,7 +376,7 @@ def generate_events_feed(events: list[Event], output_dir: Path):
         output_dir: Path where Atom file should be written.
     """
     logger.info(f"Generating events feed with {len(events)} events")
-    output_path = output_dir.joinpath(config.EVENTS_FEED_FILE)
+    output_path = output_dir.joinpath("events.atom")
 
     feed_url = config.SITE_URL + output_path.name
     fg = FeedGenerator()
@@ -446,7 +446,7 @@ def generate_events_calendar(events: list[Event], output_dir: Path):
 
         cal.add_component(event)
 
-    output_path = output_dir.joinpath(config.EVENTS_CAL_FILE)
+    output_path = output_dir.joinpath("events.ics")
     with open(output_path, "wb") as f:
         _ = f.write(cal.to_ical())
 

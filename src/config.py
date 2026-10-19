@@ -57,15 +57,6 @@ WEBCAL_URL = SITE_URL.replace("https", "webcal")
 # Timezone for events.
 EVENTS_TZ = ZoneInfo("Asia/Kolkata")
 
-# Filename for the generated blogroll Atom feed.
-BLOGROLL_FEED_FILE = "blogroll.atom"
-
-# Filename for the generated weeknote blogroll Atom feed.
-WEEKNOTE_BLOGROLL_FEED_FILE = "blogroll-weeknotes.atom"
-
-# Filename for the generated full-content blogroll Atom feed.
-BLOGROLL_LATEST_FEED_FILE = "blogroll-latest.atom"
-
 # Maximum number of entries in the latest blogroll feed.
 MAX_LATEST_FEED_ENTRIES = 50
 
@@ -75,18 +66,6 @@ MAX_LATEST_FEED_ENTRIES = 50
 # self-hosted corpus proved self-sustaining in production.
 ARCHIVE_SEED_FEED_URLS: list[str] = []
 
-# Filename for the generated events Atom feed.
-EVENTS_FEED_FILE = "events.atom"
-
-# Filename for the generated topics Atom feed.
-TOPICS_FEED_FILE = "topics.atom"
-
-# Filename for the generated writing-prompts Atom feed.
-PROMPTS_FEED_FILE = "prompts.atom"
-
-# Filename for the generated events iCalendar file.
-EVENTS_CAL_FILE = "events.ics"
-
 # Directory for caching fetched data.
 CACHE_DIR = Path(".cache")
 
@@ -95,17 +74,6 @@ NEWSLETTER_ARCHIVE_URL = "https://epi.stic.earth/archive.xml"
 
 # Cache expiry for newsletter archive in days.
 NEWSLETTER_CACHE_EXPIRY = 1
-
-# List of static assets to be copied to the output directory.
-ASSETS = [
-    "assets/style.css",
-    "assets/indiewebcamp-button.svg",
-    "assets/preview.png",
-    "assets/favicon.svg",
-    "assets/archive.js",
-    "assets/.nojekyll",
-    "CNAME",
-]
 
 # Log format for the application.
 LOG_FORMAT = "%(asctime)s [%(levelname)-7s] (%(threadName)-10s) %(message)s"

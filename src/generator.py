@@ -52,6 +52,7 @@ from src.events import (
     generate_events_feed,
 )
 from src.feeds import (
+    BLOGROLL_FEED_FILE,
     FailedFeedInfo,
     FailureReason,
     FeedEntry,
@@ -78,6 +79,17 @@ from src.utils import (
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
+
+# List of static assets to be copied to the output directory.
+ASSETS = [
+    "assets/style.css",
+    "assets/indiewebcamp-button.svg",
+    "assets/preview.png",
+    "assets/favicon.svg",
+    "assets/archive.js",
+    "assets/.nojekyll",
+    "CNAME",
+]
 
 
 def generate_homepage(
@@ -424,7 +436,7 @@ def generate_website(
             page=cache.data_pages["topics"],
             feed_title="IndieWebClub Bangalore Topics",
             feed_subtitle="Discussion topics from IndieWebClub Bangalore.",
-            output_path=output_dir / config.TOPICS_FEED_FILE,
+            output_path=output_dir / "topics.atom",
             page_url="topics/",
         )
 
@@ -436,7 +448,7 @@ def generate_website(
             page=cache.data_pages["prompts"],
             feed_title="IndieWebClub Bangalore Writing Prompts",
             feed_subtitle="Writing prompts from IndieWebClub Bangalore.",
-            output_path=output_dir / config.PROMPTS_FEED_FILE,
+            output_path=output_dir / "prompts.atom",
             page_url="prompts/",
         )
 
@@ -449,7 +461,7 @@ def generate_website(
             entries=entries,
             feed_name="Blogroll (All posts)",
             feed_subtitle="All posts by IndieWebClub Bangalore folks",
-            output_path=output_dir.joinpath(config.BLOGROLL_FEED_FILE),
+            output_path=output_dir.joinpath(BLOGROLL_FEED_FILE),
         )
 
     @build.rule("blogroll_latest_feed")
@@ -464,7 +476,7 @@ def generate_website(
             entries=entries,
             feed_name="Blogroll (Recent posts)",
             feed_subtitle="Recent posts by IndieWebClub Bangalore folks",
-            output_path=output_dir.joinpath(config.BLOGROLL_LATEST_FEED_FILE),
+            output_path=output_dir.joinpath("blogroll-latest.atom"),
             add_content=True,
         )
 
@@ -479,7 +491,7 @@ def generate_website(
             entries=entries,
             feed_name="Week Notes Blogroll",
             feed_subtitle="Week Notes by IndieWebClub Bangalore folks",
-            output_path=output_dir.joinpath(config.WEEKNOTE_BLOGROLL_FEED_FILE),
+            output_path=output_dir.joinpath("blogroll-weeknotes.atom"),
         )
 
     @build.rule("members_dir")
@@ -699,7 +711,7 @@ def generate_website(
             "archive",
             "homepage",
             "sitemap",
-            *[f"asset:{asset}" for asset in config.ASSETS],
+            *[f"asset:{asset}" for asset in ASSETS],
             *page_targets,
             *[f"{page_name}_feed" for page_name in data_page_classes],
         )

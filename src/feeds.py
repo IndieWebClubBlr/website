@@ -1053,7 +1053,7 @@ def fetch_all_feeds(
     archive_feeds = [
         FeedInfo(
             title="Blogroll Archive (self)",
-            xml_url=config.SITE_URL + config.BLOGROLL_FEED_FILE,
+            xml_url=config.SITE_URL + BLOGROLL_FEED_FILE,
             html_url=config.SITE_URL,
         ),
         *(
@@ -1225,6 +1225,12 @@ def separate_weeknote_entries(
             other_entries.append(entry)
 
     return (weeknote_entries, other_entries)
+
+
+# Subscriber-facing blogroll feed filename — also fetched as the site's own
+# archive source in fetch_all_feeds(). Changing it breaks existing
+# subscribers and the feedback loop.
+BLOGROLL_FEED_FILE = "blogroll.atom"
 
 
 def generate_blogroll_feed(
