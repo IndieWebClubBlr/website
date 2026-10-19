@@ -992,16 +992,45 @@ def process_archive_feed(
     return entries, None
 
 
-def deduplicate_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
-    """Deduplicate entries by link, preferring entries from the linked hostname.
+def _link_host_matches_site(entry: FeedEntry) -> bool:
+    """True when the entry's link host is the author's own site host.
 
-    When duplicate entries have equal hostname priority, retain the first one.
+    `feed_home_url` is the member's OPML site URL for both member and
+    attributed archive entries, so this identifies the canonical copy of
+    a post when several historical URL forms exist (for example an old
+    pages.dev host versus the member's current domain).
+    """
+    link_host = urlparse(entry.link).hostname
+    home_host = urlparse(entry.feed_home_url).hostname
+    if link_host is None or home_host is None:
+        return False
+    return link_host.removeprefix("www.") == home_host.removeprefix("www.")
+
+
+def deduplicate_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
+    """Deduplicate entries by link, then by post identity across URL forms.
+
+    First pass: entries with an identical link collapse to one, preferring
+    an entry whose feed home matches the link's hostname (www-insensitive,
+    via `_link_host_matches_site`); equal priority keeps the first.
+
+    Second pass: entries sharing (feed_title, title, published) are the
+    same post published under a different historical link form (scheme
+    change, www prefix, path or slug migration) or syndicated across two
+    feeds of the same author. The surviving copy is the one whose link
+    host matches the author's site URL (see
+    `_link_host_matches_site`); when neither or both match, member slots
+    precede archive slots, so the first — the current member-feed form —
+    is kept. `feed_title` is the author's identity (the same convention
+    the member directory and the attribution cascade's title tier use),
+    which also joins a person's multiple OPML feeds.
 
     Args:
-        entries: Entries to deduplicate by link.
+        entries: Entries to deduplicate.
 
     Returns:
-        One entry per distinct link.
+        One entry per distinct link and per distinct (feed, title,
+        timestamp).
     """
     entries_by_link: dict[str, FeedEntry] = {}
 
@@ -1011,17 +1040,35 @@ def deduplicate_feed_entries(entries: list[FeedEntry]) -> list[FeedEntry]:
             entries_by_link[entry.link] = entry
             continue
 
-        link_hostname = urlparse(entry.link).hostname
-        entry_hostname = urlparse(entry.feed_home_url).hostname
-        existing_hostname = urlparse(existing_entry.feed_home_url).hostname
-        if (
-            link_hostname is not None
-            and entry_hostname == link_hostname
-            and existing_hostname != link_hostname
+        if _link_host_matches_site(entry) and not _link_host_matches_site(
+            existing_entry
         ):
             entries_by_link[entry.link] = entry
 
-    return list(entries_by_link.values())
+    best_by_post: dict[tuple[str, str, datetime], FeedEntry] = {}
+    collapsed = 0
+    for entry in entries_by_link.values():
+        post_key = (entry.feed_title, entry.title, entry.published)
+        existing = best_by_post.get(post_key)
+        if existing is None:
+            best_by_post[post_key] = entry
+            continue
+        collapsed += 1
+        if _link_host_matches_site(entry) and not _link_host_matches_site(existing):
+            best_by_post[post_key] = entry
+            dropped, kept = existing, entry
+        else:
+            dropped, kept = entry, existing
+        logger.debug(
+            f"Collapsed {dropped.feed_title!r} post {dropped.title!r} ({dropped.published}): kept {kept.link}, dropped {dropped.link}"
+        )
+
+    if collapsed:
+        logger.info(
+            f"Collapsed {collapsed} entries repeating a post already in the corpus under a different URL form"
+        )
+
+    return list(best_by_post.values())
 
 
 def fetch_all_feeds(
@@ -1044,7 +1091,8 @@ def fetch_all_feeds(
 
     Returns:
         A tuple containing:
-        - Combined, link-deduplicated list of all feed entries.
+        - Combined, deduplicated list of all feed entries (by link, then
+          by author/title/timestamp across URL forms).
         - List of member feeds that failed to be fetched.
     """
     if len(feeds) == 0:
