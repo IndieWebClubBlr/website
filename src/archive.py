@@ -12,7 +12,7 @@ from src.feeds import FeedEntry, entry_ctx
 from src.utils import make_renderer, read_template, render_and_save_html
 
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("archive")
 
 MONTH_NAMES = list(calendar.month_name)
 

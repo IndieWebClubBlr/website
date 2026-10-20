@@ -19,7 +19,13 @@ from markdown.extensions.toc import TocExtension
 from src import config
 
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("utils")
+
+# Third-party libraries that log at DEBUG and would otherwise flood a
+# verbose build: the markdown library logs every extension it loads, and
+# urllib3/requests log every connection and retry.
+for noisy_logger in ("MARKDOWN", "urllib3", "requests"):
+    logging.getLogger(noisy_logger).setLevel(logging.WARNING)
 
 
 class SessionManager:

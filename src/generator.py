@@ -78,7 +78,9 @@ from src.utils import (
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
-logger = logging.getLogger(__name__)
+# Named explicitly: the script runs as __main__, which would not tell the
+# log lines apart from the modules it calls.
+logger = logging.getLogger("generator")
 
 # List of static assets to be copied to the output directory.
 ASSETS = [

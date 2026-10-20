@@ -18,7 +18,7 @@ from src.utils import (
 )
 
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("newsletter")
 
 
 def load_newsletter_archive() -> list[dict[str, str]]:

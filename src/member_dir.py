@@ -27,7 +27,7 @@ from src.utils import (
 )
 
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("member_dir")
 
 session_manager = SessionManager()
 
@@ -456,7 +456,9 @@ def generate_members_page(
 
         return feed, icon_url, features
 
-    with ThreadPoolExecutor(max_workers=config.MAX_WORKERS) as executor:
+    with ThreadPoolExecutor(
+        max_workers=config.MAX_WORKERS, thread_name_prefix="MemberFetcher"
+    ) as executor:
         members = list(executor.map(build_member, unique_feeds))
 
     session_manager.close_all()

@@ -25,7 +25,7 @@ from src.utils import SessionManager, add_ref_param, cache_path
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("feeds")
 
 
 @dataclass

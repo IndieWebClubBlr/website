@@ -13,7 +13,7 @@ from concurrent.futures import Future, ThreadPoolExecutor
 from threading import Lock
 from typing import Callable
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("build")
 
 RuleFn = Callable[[str], None]
 

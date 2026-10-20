@@ -76,4 +76,6 @@ NEWSLETTER_ARCHIVE_URL = "https://epi.stic.earth/archive.xml"
 NEWSLETTER_CACHE_EXPIRY = 1
 
 # Log format for the application.
-LOG_FORMAT = "%(asctime)s [%(levelname)-7s] (%(threadName)-10s) %(message)s"
+LOG_FORMAT = (
+    "%(asctime)s [%(levelname)-7s] (%(name)-10s) (%(threadName)-10s) %(message)s"
+)

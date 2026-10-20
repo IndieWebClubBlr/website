@@ -20,7 +20,7 @@ from src.utils import cache_path
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("events")
 
 
 @final

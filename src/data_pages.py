@@ -25,7 +25,7 @@ from src import config
 from src.utils import make_renderer, read_template
 
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("data_pages")
 
 # Same extensions as src.utils.markdown_to_html, minus the table of contents.
 _MARKDOWN_EXTENSIONS = ["fenced_code", "admonition", "codehilite", "smarty"]
