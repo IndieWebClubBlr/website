@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import logging
 import re
+import tempfile
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -26,6 +28,13 @@ from src.utils import SessionManager, add_ref_param, cache_path
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger("feeds")
+
+# Version of the parsed-feed cache. Bump it when the entries are stored
+# differently, so the cache is rebuilt instead of misread, and also when the
+# parsing changes, so that a parsing fix is not held back by a cached feed.
+# The cache is cleared weekly in CI anyway (.github/workflows/clear_cache.yml),
+# but a bump makes the change take effect at once.
+_FEED_CACHE_VERSION = 1
 
 
 @dataclass
@@ -303,10 +312,140 @@ def fetch_feed_content(url: str) -> str | None:
         logger.error(f"Unexpected error fetching feed {url}: {e}")
 
 
+def _feed_cache_path(feed_url: str) -> Path:
+    """Return the cache file path for a feed's parsed entries.
+
+    Args:
+        feed_url: Feed URL.
+
+    Returns:
+        Path of the cache file.
+    """
+    digest = hashlib.sha256(feed_url.encode()).hexdigest()
+    return config.CACHE_DIR / "feeds" / f"{digest}.json"
+
+
+def _load_cached_feed(
+    path: Path, raw_digest: str | None
+) -> tuple[list[FeedEntry], bool | None] | None:
+    """Return a feed's cached entries, if they are usable.
+
+    Args:
+        path: Cache file path.
+        raw_digest: Hash of the raw feed, when the raw feed is at hand.
+            The cache is then only used when it was built from the same
+            bytes; pass None when the raw feed is not available (a pure
+            cache run) and the cached entries are used as they are.
+
+    Returns:
+        The cached entries and the has_entries flag, or None when there is
+        no usable cache.
+    """
+    if not path.exists():
+        return None
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if data.get("version") != _FEED_CACHE_VERSION:
+            return None
+        if raw_digest is not None and data.get("raw_sha256") != raw_digest:
+            return None
+        entries = []
+        for item in data["entries"]:
+            item = dict(item)
+            published = datetime.fromisoformat(item["published"])
+            if published.tzinfo is None:
+                # A hand-edited cache file could hold a naive timestamp;
+                # comparing it with an aware one would raise.
+                published = published.replace(tzinfo=timezone.utc)
+            item["published"] = published
+            entries.append(FeedEntry(**item))
+        # Indexed, not fetched: the flag is a tri-state (None means "the feed
+        # could not be parsed"), so a missing key must not be mistaken for
+        # it. A KeyError here discards the cache and the feed is parsed again.
+        return entries, data["has_entries"]
+    except (OSError, ValueError, KeyError, TypeError, AttributeError) as e:
+        logger.debug(f"Ignoring unusable feed cache {path}: {e}")
+        return None
+
+
+def _store_cached_feed(
+    path: Path,
+    entries: list[FeedEntry],
+    has_entries: bool | None,
+    raw_digest: str,
+) -> None:
+    """Store a feed's parsed entries in the cache.
+
+    Args:
+        path: Cache file path.
+        entries: The parsed entries.
+        has_entries: Whether the feed had entries before filtering.
+        raw_digest: Hash of the raw feed the entries were parsed from.
+    """
+    payload = {
+        "version": _FEED_CACHE_VERSION,
+        "raw_sha256": raw_digest,
+        "has_entries": has_entries,
+        "entries": [
+            {
+                "title": e.title,
+                "link": e.link,
+                "published": e.published.isoformat(),
+                "feed_title": e.feed_title,
+                "feed_url": e.feed_url,
+                "feed_home_url": e.feed_home_url,
+                "tags": e.tags,
+                "summary": e.summary,
+                "content": e.content,
+            }
+            for e in entries
+        ],
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    # Write to a temporary file and move it into place, so that a build
+    # killed mid-write does not leave a truncated file behind.
+    with tempfile.NamedTemporaryFile(
+        mode="w",
+        encoding="utf-8",
+        dir=path.parent,
+        prefix=f"{path.name}.",
+        suffix=".tmp",
+        delete=False,
+    ) as handle:
+        _ = handle.write(json.dumps(payload, ensure_ascii=False))
+        temp_path = Path(handle.name)
+    _ = temp_path.replace(path)
+
+
+def _apply_feed_fields(
+    entries: list[FeedEntry], feed_title: str, feed_url: str, home_url: str
+) -> None:
+    """Set the OPML-sourced fields on a feed's entries.
+
+    The feed itself only supplies the entries; the name and the addresses
+    of the feed come from the OPML, which is the source of truth for them.
+
+    Args:
+        entries: The feed's entries.
+        feed_title: Title of the feed, from the OPML.
+        feed_url: Feed URL, from the OPML.
+        home_url: Home URL of the feed, from the OPML.
+    """
+    for entry in entries:
+        entry.feed_title = feed_title
+        entry.feed_url = feed_url
+        entry.feed_home_url = home_url
+
+
 def _fetch_feed_content_cached(
     feed_url: str, use_cache: bool, cache_fallback: bool
 ) -> str | None:
     """Fetch feed content, reading from and writing to the fetch cache.
+
+    Only the site's own archive feed still uses this: attributing its
+    entries to members needs the feedparser entry (the author), which the
+    parsed-entry cache does not keep. Member feeds are cached as parsed
+    entries instead (see :func:`_feed_cache_path`).
 
     Args:
         feed_url: Feed URL to fetch.
@@ -630,7 +769,11 @@ def parse_feed(
     feed_title: str, feed_url: str, feed_content: str
 ) -> tuple[list[FeedEntry], bool | None]:
     """
-    Parse feed content and extract recent entries.
+    Parse feed content and extract its dated entries.
+
+    Entries that are still too recent are kept: the recency cutoff is
+    applied when the feed is finished, so that it is always evaluated
+    against the current time.
 
     Args:
         feed_title: Title of the feed.
@@ -651,10 +794,6 @@ def parse_feed(
             logger.debug(
                 f"Feed parser warning for {feed_title}: {parsed_feed.bozo_exception}"
             )
-
-        # Calculate recency cutoff
-        now = datetime.now(timezone.utc)
-        early_cutoff_time = now - timedelta(hours=config.MIN_FEED_ENTRY_AGE_HOURS)
 
         feed_host = urlparse(feed_url).hostname
         is_mataroa = is_mataroa_host(feed_host)
@@ -707,11 +846,12 @@ def parse_feed(
                 logger.warning(
                     f"Feed '{feed_title}': Entry '{title}' has no valid date"
                 )
-
-            # Skip entries without valid dates or still too recent
-            if not published or published > early_cutoff_time:
                 continue
 
+            # Entries that are still too recent are kept here and dropped
+            # when the feed is finished: the parsed entries are cached, and
+            # a post that was too young when the feed was parsed has to
+            # show up once it has aged.
             tags = [
                 tag.get("label") or tag.get("term")
                 for tag in getattr(entry, "tags", [])
@@ -734,11 +874,12 @@ def parse_feed(
                 )
             )
 
-        # Sort by publication date (newest first) and take top N
+        # Sort by publication date (newest first). The cap is applied later,
+        # after the age filter, so that it keeps the same entries it always
+        # did.
         entries.sort(key=lambda x: x.published, reverse=True)
-        entries = entries[: config.MAX_FEED_ENTRIES]
 
-        logger.debug(f"Extracted {len(entries)} recent entries from {feed_title}")
+        logger.debug(f"Extracted {len(entries)} dated entries from {feed_title}")
         return entries, has_entries
 
     except Exception as e:
@@ -754,9 +895,10 @@ def process_single_feed(
 
     Args:
         feed_info: FeedInfo object containing feed metadata.
-        use_cache: Whether to use cached content instead of fetching.
-        cache_fallback: Whether to fall back to cached content on fetch failure
-            and update the cache on success.
+        use_cache: Whether to serve the cached entries instead of fetching.
+            A cache miss still fetches live and warms the cache.
+        cache_fallback: Whether to fall back to the cached entries on fetch
+            failure.
 
     Returns:
         Tuple of (entries list, failure_reason). failure_reason is None if successful.
@@ -764,16 +906,87 @@ def process_single_feed(
     feed_title = feed_info.title
     feed_url = feed_info.xml_url
     home_url = feed_info.html_url
+    entries_cache = _feed_cache_path(feed_url)
 
-    content = _fetch_feed_content_cached(feed_url, use_cache, cache_fallback)
-    if content is None:
-        return [], FailureReason.ERROR
+    if use_cache:
+        cached = _load_cached_feed(entries_cache, None)
+        if cached is not None:
+            entries, has_entries = cached
+            return _finish_feed(
+                feed_title, feed_url, home_url, entries, has_entries, cached=True
+            )
 
-    # Parse feed content
+    content = fetch_feed_content(feed_url)
+    if not content:
+        # The feed could not be fetched: fall back to the cached copy when
+        # the caller asked for it.
+        cached = _load_cached_feed(entries_cache, None) if cache_fallback else None
+        if cached is None:
+            return [], FailureReason.ERROR
+        entries, has_entries = cached
+        logger.warning(f"Feed {feed_title} could not be fetched, using the cached copy")
+        return _finish_feed(
+            feed_title, feed_url, home_url, entries, has_entries, cached=True
+        )
+
+    # The raw feed changed? Only then is it worth parsing it again.
+    raw_digest = hashlib.sha256(content.encode("utf-8", "replace")).hexdigest()
+    cached = _load_cached_feed(entries_cache, raw_digest)
+    if cached is not None:  # fetched feed is already cached
+        entries, has_entries = cached
+        return _finish_feed(
+            feed_title, feed_url, home_url, entries, has_entries, cached=True
+        )
+
     entries, has_entries = parse_feed(feed_title, feed_url, content)
+    # The cached entries carry the OPML-sourced fields too, so that they
+    # are not read back with the feed's own address.
+    _apply_feed_fields(entries, feed_title, feed_url, home_url)
+    try:
+        _store_cached_feed(entries_cache, entries, has_entries, raw_digest)
+    except Exception as e:
+        # A cache that cannot be written must not cost us the feed.
+        logger.warning(f"Could not cache the entries of {feed_title}: {e}")
+    return _finish_feed(
+        feed_title, feed_url, home_url, entries, has_entries, cached=False
+    )
+
+
+def _finish_feed(
+    feed_title: str,
+    feed_url: str,
+    home_url: str,
+    entries: list[FeedEntry],
+    has_entries: bool | None,
+    cached: bool,
+) -> tuple[list[FeedEntry], FailureReason | None]:
+    """Finish processing one feed's entries.
+
+    Args:
+        feed_title: Title of the feed, from the OPML.
+        feed_url: Feed URL, from the OPML.
+        home_url: Home URL of the feed, from the OPML.
+        entries: The feed's entries.
+        has_entries: Whether the feed had entries before filtering.
+        cached: Whether the entries came from the cache.
+
+    Returns:
+        The entries, or the reason the feed failed.
+    """
+    # Entries that are still too recent are dropped here, not at parse
+    # time: the parsed entries are cached, so the cutoff has to be applied
+    # against the current time on every build.
+    cutoff = datetime.now(timezone.utc) - timedelta(
+        hours=config.MIN_FEED_ENTRY_AGE_HOURS
+    )
+    entries = [entry for entry in entries if entry.published <= cutoff]
+    # The cap is applied here as well, so that it keeps the newest entries
+    # of the ones that survived the age filter.
+    entries = entries[: config.MAX_FEED_ENTRIES]
+    suffix = " (cached)" if cached else ""
 
     if len(entries) == 0:
-        logger.info(f"Processed {feed_title}: 0 entries")
+        logger.info(f"Processed {feed_title}: 0 entries{suffix}")
         if has_entries is None:
             return [], FailureReason.ERROR
         elif has_entries:
@@ -781,21 +994,10 @@ def process_single_feed(
         else:
             return [], FailureReason.NO_ENTRIES
 
-    for entry in entries:
-        entry.feed_home_url = home_url
+    # The OPML is the source of truth for the feed's name and address.
+    _apply_feed_fields(entries, feed_title, feed_url, home_url)
 
-    if use_cache:
-        # Save content to cache
-        generate_feed(
-            feed_info=feed_info,
-            author_name=entries[0].feed_title,
-            feed_subtitle=None,
-            entries=entries,
-            output_path=cache_path(feed_url),
-        )
-        logger.debug(f"Cached content for: {feed_url}")
-
-    logger.info(f"Processed {feed_title}: {len(entries)} entries")
+    logger.info(f"Processed {feed_title}: {len(entries)} entries{suffix}")
     return entries, None
 
 
