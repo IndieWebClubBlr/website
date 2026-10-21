@@ -16,7 +16,7 @@ from icalendar import Event as CalEvent
 from pydantic import BaseModel, ValidationError, field_validator
 
 from src import config
-from src.utils import cache_path
+from src.utils import cache_path, write_file
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -259,9 +259,7 @@ def fetch_event_detail(
                 logger.warning(f"No posts in topic: {url}")
             else:
                 if use_cache or cache_fallback:
-                    _ = cache_file.write_text(
-                        json.dumps(raw["post_stream"]["posts"][0]), encoding="utf-8"
-                    )
+                    write_file(cache_file, json.dumps(raw["post_stream"]["posts"][0]))
                     logger.debug(f"Cached content for: {url}")
                 post = posts[0]
         except ValidationError as e:
@@ -327,7 +325,7 @@ def fetch_events(
                 response_json = DiscourseSearchResults.model_validate(raw)
 
                 if use_cache or cache_fallback:
-                    _ = cache_file.write_text(json.dumps(raw), encoding="utf-8")
+                    write_file(cache_file, json.dumps(raw))
                     logger.debug(f"Cached content for: {url}")
             except ValidationError as e:
                 logger.warning(
@@ -447,7 +445,6 @@ def generate_events_calendar(events: list[Event], output_dir: Path):
         cal.add_component(event)
 
     output_path = output_dir.joinpath("events.ics")
-    with open(output_path, "wb") as f:
-        _ = f.write(cal.to_ical())
+    write_file(output_path, cal.to_ical())
 
     logger.info(f"Events calendar written to: {output_path}")

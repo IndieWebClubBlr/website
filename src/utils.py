@@ -6,6 +6,8 @@ from __future__ import annotations
 
 import hashlib
 import logging
+import os
+import tempfile
 import threading
 from datetime import datetime, timezone
 from pathlib import Path
@@ -20,6 +22,13 @@ from src import config
 
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger("utils")
+
+# The permissions a new file gets, honouring the umask. Read once, at
+# import time, so that the write path does not have to touch the umask
+# (which is process-wide) while other threads are running.
+_UMASK = os.umask(0)
+_ = os.umask(_UMASK)
+_FILE_MODE = 0o666 & ~_UMASK
 
 # Third-party libraries that log at DEBUG and would otherwise flood a
 # verbose build: the markdown library logs every extension it loads, and
@@ -81,6 +90,46 @@ def read_template(file_name: str) -> str:
         raise
 
 
+def write_file(path: Path, data: str | bytes | bytearray | memoryview) -> None:
+    """Write a file atomically.
+
+    The data goes to a temporary file in the same directory and is then
+    moved into place, so a build that is killed mid-write cannot leave a
+    truncated file behind for the next build to read as corrupt.
+
+    Args:
+        path: The file to write.
+        data: The text or bytes to write.
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    binary = not isinstance(data, str)
+    temp_path: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="wb" if binary else "w",
+            encoding=None if binary else "utf-8",
+            dir=path.parent,
+            prefix=f"{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            # Remember the name before writing: a failed write must not
+            # leave the temporary file behind.
+            temp_path = Path(handle.name)
+            _ = handle.write(data)
+        # Temporary files are created with mode 0600. Give the result the
+        # permissions the file already had, or the ones an ordinary new
+        # file would get.
+        mode = path.stat().st_mode & 0o777 if path.exists() else _FILE_MODE
+        _ = os.chmod(temp_path, mode)
+        _ = temp_path.replace(path)
+        temp_path = None
+    finally:
+        if temp_path is not None:
+            # Only left behind when the write or the move failed.
+            temp_path.unlink(missing_ok=True)
+
+
 def save_html(content: str, output_file: str, output_dir: Path):
     """
     Save HTML content to a file.
@@ -91,8 +140,7 @@ def save_html(content: str, output_file: str, output_dir: Path):
         output_dir: Directory where file should be written.
     """
     output_path = output_dir.joinpath(output_file)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    _ = output_path.write_text(content, encoding="utf-8")
+    write_file(output_path, content)
     logger.info(f"HTML file written to: {output_path}")
 
 

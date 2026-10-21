@@ -74,6 +74,7 @@ from src.utils import (
     read_template,
     render_and_save_html,
     save_html,
+    write_file,
 )
 
 # Configure logging
@@ -693,7 +694,7 @@ def generate_website(
         lines.append("</urlset>")
 
         sitemap_path = output_dir / "sitemap.xml"
-        sitemap_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        write_file(sitemap_path, "\n".join(lines) + "\n")
         logger.info(f"Generated sitemap with {len(pages)} URLs")
 
     @build.rule("website")

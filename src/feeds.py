@@ -4,7 +4,6 @@ import hashlib
 import json
 import logging
 import re
-import tempfile
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -23,7 +22,7 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from src import config
-from src.utils import SessionManager, add_ref_param, cache_path
+from src.utils import SessionManager, add_ref_param, cache_path, write_file
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -401,20 +400,7 @@ def _store_cached_feed(
             for e in entries
         ],
     }
-    path.parent.mkdir(parents=True, exist_ok=True)
-    # Write to a temporary file and move it into place, so that a build
-    # killed mid-write does not leave a truncated file behind.
-    with tempfile.NamedTemporaryFile(
-        mode="w",
-        encoding="utf-8",
-        dir=path.parent,
-        prefix=f"{path.name}.",
-        suffix=".tmp",
-        delete=False,
-    ) as handle:
-        _ = handle.write(json.dumps(payload, ensure_ascii=False))
-        temp_path = Path(handle.name)
-    _ = temp_path.replace(path)
+    write_file(path, json.dumps(payload, ensure_ascii=False))
 
 
 def _apply_feed_fields(
@@ -466,7 +452,7 @@ def _fetch_feed_content_cached(
 
     content = fetch_feed_content(feed_url)
     if content and (cache_fallback or use_cache):
-        cache_file.write_text(content, encoding="utf-8")
+        write_file(cache_file, content)
     if not content:
         if cache_fallback and cache_file.exists():
             logger.info(f"Using cached content as fallback for: {feed_url}")

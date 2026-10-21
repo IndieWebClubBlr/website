@@ -24,6 +24,7 @@ from src.utils import (
     make_renderer,
     read_template,
     render_and_save_html,
+    write_file,
 )
 
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -479,12 +480,10 @@ def generate_members_page(
                 key = get_name_key(feed)
                 favicon_cache[key] = icon_url
                 indieweb_cache[key] = asdict(features)
-            with favicon_cache_file.open("w") as file:
-                json.dump(favicon_cache, file)
-                logger.debug("Cached favicons")
-            with indieweb_cache_file.open("w") as file:
-                json.dump(indieweb_cache, file)
-                logger.debug("Cached indieweb features")
+            write_file(favicon_cache_file, json.dumps(favicon_cache))
+            logger.debug("Cached favicons")
+            write_file(indieweb_cache_file, json.dumps(indieweb_cache))
+            logger.debug("Cached indieweb features")
     except Exception as e:
         logger.warn(f"Failed to cache data: {e}")
 

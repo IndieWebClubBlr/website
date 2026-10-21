@@ -15,6 +15,7 @@ from src.utils import (
     make_renderer,
     read_template,
     render_and_save_html,
+    write_file,
 )
 
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -59,7 +60,7 @@ def load_newsletter_archive() -> list[dict[str, str]]:
             )
             response.raise_for_status()
             content = response.text
-            cache_file.write_text(content, encoding="utf-8")
+            write_file(cache_file, content)
             logger.debug("Fetched and cached newsletter archive")
         except requests.RequestException as e:
             logger.warning(f"Failed to fetch newsletter archive: {e}")
