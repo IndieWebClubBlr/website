@@ -122,7 +122,7 @@ clean_all: clean clean_venv clean_cache
 
 # Serve the website
 serve:
-	$(VENV_PYTHON) -m http.server -d ./_site/
+	$(VENV_PYTHON) scripts/serve.py 8000 ./_site/
 
 # Watch for changes and copy assets
 watch:
