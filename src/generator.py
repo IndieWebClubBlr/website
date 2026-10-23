@@ -646,7 +646,7 @@ def generate_website(
     @build.rule("archive_index")
     def _(_target: str):
         """Generate the archive index page with the monthly bar chart."""
-        build.need("feeds")
+        build.need("feeds", "search_page")
         generate_archive_index(
             [
                 entry
@@ -655,6 +655,7 @@ def generate_website(
             ],
             get_archive_years(cache.entries_by_year),
             output_dir,
+            has_search=cache.search_page_built,
         )
 
     @build.rule("archive_year:*")

@@ -567,7 +567,7 @@ def resolve_post_bodies(entries: list[FeedEntry]) -> dict[str, str]:
             for index, (link, body) in enumerate(executor.map(resolve, links), 1):
                 bodies[link] = body
                 if index % _PROGRESS_EVERY == 0:
-                    logger.debug(
+                    logger.info(
                         f"Resolved {index}/{len(links)} bodies "
                         f"in {time.monotonic() - started:.1f}s"
                     )
