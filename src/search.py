@@ -42,15 +42,15 @@ import subprocess
 import time
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
+import snowballstemmer
 from bs4 import BeautifulSoup
 
-from src import config
-from src import ssrf
+from src import config, ssrf
 from src.feeds import FeedEntry
 from src.utils import (
     SessionManager,
@@ -76,7 +76,56 @@ _EXTRACTOR = "readability-1"
 # Identifies how the corpus is assembled from the entries. Bump it when
 # that changes (the feed text, the summary line, ...), so the extracted
 # corpus is rebuilt instead of reused.
-_CORPUS_VERSION = "2"
+_CORPUS_VERSION = "3"
+
+# British spellings are normalized to their American counterparts before
+# stemming, so a search for either form finds the same posts. The browser
+# gets the same map inlined into the search page by ``_build_search_page``.
+_SPELLING_PATH = Path(__file__).resolve().parents[1] / "assets" / "spelling.json"
+_SPELLING_DATA = json.loads(_SPELLING_PATH.read_text(encoding="utf-8"))
+_SPELLING_MAP: dict[str, str] = {
+    str(gb): str(us) for gb, us in _SPELLING_DATA["map"].items()
+}
+_SPELLING_DIGEST = hashlib.sha256(
+    json.dumps(_SPELLING_MAP, sort_keys=True, separators=(",", ":")).encode("utf-8")
+).hexdigest()
+
+# Porter stemming is applied to the indexed text and, in
+# ``assets/search.js``, to query terms as well; both sides must agree.
+_STEMMER = snowballstemmer.stemmer("porter")
+_TOKEN_RE = re.compile(r"(?:[^\W\d_]|')+")
+_STEM_CACHE: dict[str, str] = {}
+
+
+def _stem_token(token: str) -> str:
+    """Stem one token; leave non-ASCII and letterless tokens unchanged."""
+    if (
+        not token.isascii()
+        or len(token) < 2
+        or not token[0].isalpha()
+        or not token[-1].isalpha()
+    ):
+        return token
+    lowered = token.lower()
+    stemmed = _STEM_CACHE.get(lowered)
+    if stemmed is None:
+        stemmed = _STEMMER.stemWord(lowered)
+        _STEM_CACHE[lowered] = stemmed
+    return stemmed
+
+
+def _stem_text(text: str) -> str:
+    """Normalize text to lowercase, stemmed English terms."""
+    stems = []
+    for token in _TOKEN_RE.findall(text):
+        cleaned = "".join(
+            character for character in token if character.isalpha() or character == "'"
+        )
+        if cleaned:
+            cleaned = _SPELLING_MAP.get(cleaned.lower(), cleaned)
+            stems.append(_stem_token(cleaned))
+    return " ".join(stems)
+
 
 # Below this many characters, readability's output is treated as a miss and
 # the structural fallback is used instead.
@@ -294,7 +343,7 @@ def _read_search_cache(
         fetched_raw = data["fetched_at"]
         fetched_at = datetime.fromisoformat(fetched_raw)
         if fetched_at.tzinfo is None:
-            fetched_at = fetched_at.replace(tzinfo=timezone.utc)
+            fetched_at = fetched_at.replace(tzinfo=UTC)
         attempts = int(data.get("attempts", 1))
     except (ValueError, KeyError, TypeError, OSError) as e:
         logger.debug(f"Ignoring unreadable post-text cache {path}: {e}")
@@ -311,7 +360,7 @@ def _write_search_cache(path: Path, text: str | None, attempts: int) -> None:
     """Write one post-text cache entry, success or failure."""
     path.parent.mkdir(parents=True, exist_ok=True)
     payload: dict[str, str] = {
-        "fetched_at": datetime.now(timezone.utc).isoformat(),
+        "fetched_at": datetime.now(UTC).isoformat(),
         "extractor": _EXTRACTOR,
         "attempts": str(attempts),
     }
@@ -396,7 +445,7 @@ def _search_cache_fresh(fetched_at: datetime | None) -> bool:
     """Whether a cache timestamp is within the failure retry window."""
     if fetched_at is None:
         return False
-    age = datetime.now(timezone.utc) - fetched_at
+    age = datetime.now(UTC) - fetched_at
     return age < timedelta(days=config.SEARCH_FETCH_FAILURE_TTL_DAYS)
 
 
@@ -568,8 +617,7 @@ def resolve_post_bodies(entries: list[FeedEntry]) -> dict[str, str]:
                 bodies[link] = body
                 if index % _PROGRESS_EVERY == 0:
                     logger.info(
-                        f"Resolved {index}/{len(links)} bodies "
-                        f"in {time.monotonic() - started:.1f}s"
+                        f"Resolved {index}/{len(links)} bodies in {time.monotonic() - started:.1f}s"
                     )
     finally:
         session_manager.close_all()
@@ -613,14 +661,15 @@ def write_documents(
         if entry.link in seen:
             continue
         seen.add(entry.link)
+        title = _unescape(entry.title)
+        sub = _entry_sub(entry)
+        body = _collapse_ws(bodies.get(entry.link, ""))[: config.SEARCH_BODY_MAX_CHARS]
         docs.append(
             {
-                "title": _unescape(entry.title),
+                "title": title,
                 "url": entry.link,
-                "body": _collapse_ws(bodies.get(entry.link, ""))[
-                    : config.SEARCH_BODY_MAX_CHARS
-                ],
-                "sub": _entry_sub(entry),
+                "body": _stem_text(f"{title} {sub} {body}"),
+                "sub": sub,
             }
         )
 
@@ -1017,7 +1066,7 @@ def _stale_search_failures(corpus_names: set[str]) -> list[str]:
         except (KeyError, TypeError, ValueError):
             continue
         if fetched_at.tzinfo is None:
-            fetched_at = fetched_at.replace(tzinfo=timezone.utc)
+            fetched_at = fetched_at.replace(tzinfo=UTC)
         try:
             attempts = int(data.get("attempts", 1))
         except (TypeError, ValueError):
@@ -1049,6 +1098,7 @@ def corpus_digest(entries: list[FeedEntry]) -> str:
     parts = [
         _EXTRACTOR,
         _CORPUS_VERSION,
+        "spelling:" + _SPELLING_DIGEST,
         str(config.SEARCH_BODY_MAX_CHARS),
         str(config.SEARCH_FEED_BODY_MIN_CHARS),
         "failed:" + ",".join(failed),
@@ -1209,6 +1259,9 @@ def _build_search_page(entries: list[FeedEntry], output_dir: Path) -> str | None
             "site_url": config.SITE_URL,
             "wasm_file": artifact.wasm_filename,
             "ref": config.SITE_DOMAIN,
+            "spelling_map_json": json.dumps(
+                _SPELLING_MAP, sort_keys=True, separators=(",", ":")
+            ),
         },
     )
     render_and_save_html(

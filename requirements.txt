@@ -11,3 +11,4 @@ favicon>=0.7.0
 PyYAML>=6.0.3
 pydantic>=2.0.0
 readability-lxml>=0.8.4.1
+snowballstemmer==3.1.1

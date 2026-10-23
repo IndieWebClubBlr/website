@@ -166,6 +166,20 @@ nothing is logged. The engine is built at build time from the whole corpus
 (all posts, back to 2001) and its file name carries a hash of that corpus and
 how it is indexed, so the URL changes when the index or its settings change.
 
+Both the index and the query are Porter-stemmed, so `policies` finds `policy`
+(and vice versa) while prefix matching still works from three characters. The
+same stemmer runs on both sides: Python's `snowballstemmer` at build time and
+the vendored `assets/stemmer.js` in the browser. Keeping the two in sync
+matters — if the stems differ, a query silently stops matching its own index.
+The browser copy is a minified, dead-code-trimmed build of
+[snowball-stemmer.jsx](https://github.com/shibukawa/snowball-stemmer.jsx)'s
+Porter stemmer (MIT), retaining only the code reachable from `stemQuery()`.
+
+British and American spellings are normalized to one form before stemming,
+using a committed one-way GB→US map (`assets/spelling.json`) built from the
+MIT-licensed Breame and uk2us lists. The same map is inlined into `/search/`,
+so `colour` and `color` (and their inflections) find the same posts.
+
 ### Fetching and SSRF
 
 Almost every URL the site fetches comes from outside the site: the feeds in
@@ -215,6 +229,8 @@ A brief overview of the project's file structure:
 ├── assets/                    # Static assets
 │   ├── archive.js             # Archive page search
 │   ├── search.js              # Full-text search page (loads the wasm engine)
+│   ├── spelling.json          # British→American spelling map for search
+│   ├── stemmer.js             # Porter stemmer for search queries (mirrors search.py)
 │   ├── style.css              # Styles
 │   ├── favicon.svg
 │   ├── indiewebcamp-button.svg

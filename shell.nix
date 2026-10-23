@@ -17,6 +17,7 @@ let
       pyyaml
       pydantic
       readability-lxml
+      snowballstemmer
     ];
   pythonEnv = pkgs.python3.withPackages pythonPackages;
   run = pkgs.writeShellScriptBin "run" ''

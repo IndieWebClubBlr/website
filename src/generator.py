@@ -92,6 +92,7 @@ ASSETS = [
     "assets/favicon.svg",
     "assets/archive.js",
     "assets/search.js",
+    "assets/stemmer.js",
     "assets/.nojekyll",
     "CNAME",
 ]

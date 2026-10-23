@@ -14,6 +14,25 @@
 (function () {
   "use strict";
 
+  // Normalize British spellings to their American counterparts before
+  // stemming. The map is inlined into the page by the generator, so the
+  // browser and the build index use exactly the same data.
+  function normalizeSpelling(query) {
+    const map = window.SPELLING_MAP;
+    if (!map) return query;
+    return query
+      .replace(/[^\p{L}']+/gu, " ")
+      .split(/\s+/)
+      .filter(function (token) {
+        return token.length > 0;
+      })
+      .map(function (token) {
+        const key = token.toLowerCase();
+        return Object.prototype.hasOwnProperty.call(map, key) ? map[key] : token;
+      })
+      .join(" ");
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initSearch);
   } else {
@@ -251,14 +270,17 @@
       const query = input.value.trim();
       if (query.length < MIN_QUERY_LENGTH) {
         resultsEl.textContent = "";
-        setStatus(
-          "Type at least 3 characters to search. Matching is by word prefix."
-        );
+        setStatus("Type at least 3 characters to search");
         return;
       }
       loadEngine()
         .then(function (active) {
-          renderResults(query, active.search(query, MAX_RESULTS));
+          const normalizedQuery = normalizeSpelling(query);
+          const engineQuery =
+            typeof stemQuery === "function"
+              ? stemQuery(normalizedQuery)
+              : normalizedQuery;
+          renderResults(query, active.search(engineQuery, MAX_RESULTS));
         })
         .catch(function () {
           /* status already set by loadEngine */

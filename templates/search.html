@@ -4,7 +4,9 @@
 <div id="search-page" data-wasm="/{{{wasm_file}}}" data-ref="{{ref}}">
   <noscript class="noscript"><p>Enable JavaScript to search posts.</p></noscript>
   <input type="search" id="search-input" aria-label="Search posts" placeholder="Search posts&hellip;" autocomplete="off" spellcheck="false" autofocus />
-  <p id="search-status" class="search-status">Type at least 3 characters to search. Matching is by word prefix.</p>
+  <p id="search-status" class="search-status">Type at least 3 characters to search.</p>
   <div id="search-results"></div>
 </div>
+<script>window.SPELLING_MAP = {{{spelling_map_json}}};</script>
+<script src="/stemmer.js"></script>
 <script src="/search.js" async></script>
