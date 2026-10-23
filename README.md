@@ -166,6 +166,10 @@ nothing is logged. The engine is built at build time from the whole corpus
 (all posts, back to 2001) and its file name carries a hash of that corpus and
 how it is indexed, so the URL changes when the index or its settings change.
 
+Queries are kept in the URL (`/search/?q=policy`), so a search can be linked.
+After the typing pause or Enter, the page adds a history entry; back and
+forward restore the previous query and its results.
+
 Both the index and the query are Porter-stemmed, so `policies` finds `policy`
 (and vice versa) while prefix matching still works from three characters. The
 same stemmer runs on both sides: Python's `snowballstemmer` at build time and

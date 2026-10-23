@@ -1,6 +1,8 @@
 // Full-text search for /search/. Loads the tinysearch wasm engine (hashed
 // filename baked into the page, so browser caches keep it across builds) on
-// first interaction and runs queries entirely client-side.
+// first interaction and runs queries entirely client-side. The current query
+// is kept in the URL (?q=...), so searches can be linked and the back button
+// steps through previous queries.
 //
 // The engine is fetched as a pre-compressed .gz sibling and decompressed in
 // the browser, so the download is ~1 MB instead of ~1.8 MB on any host
@@ -52,7 +54,8 @@
 
     const MAX_RESULTS = 30;
     const MIN_QUERY_LENGTH = 3;
-    const DEBOUNCE_MS = 150;
+    const DEBOUNCE_MS = 300;
+    const QUERY_PARAM = "q";
     // The engine exports no allocator, and its own allocator takes the
     // memory from the end and grows upwards. So the query string is parked
     // in a page we reserve below that arena and reused for every query:
@@ -64,6 +67,31 @@
     let loadFailed = false;
     let debounceTimer = null;
     let queryPtr = 0;
+
+    function readQueryFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return (params.get(QUERY_PARAM) || "").trim();
+    }
+
+    function syncUrlQuery(query) {
+      const url = new URL(window.location.href);
+      const current = url.searchParams.get(QUERY_PARAM) || "";
+      if (
+        current === query &&
+        (query !== "" || !url.searchParams.has(QUERY_PARAM))
+      ) {
+        return;
+      }
+      if (query) {
+        url.searchParams.set(QUERY_PARAM, query);
+      } else {
+        url.searchParams.delete(QUERY_PARAM);
+      }
+      window.history.pushState(null, "", url.toString());
+    }
+
+    const initialQuery = readQueryFromUrl();
+    if (initialQuery) input.value = initialQuery;
 
     // The box stays disabled until the engine is ready: querying before it
     // loaded would silently do nothing.
@@ -266,8 +294,12 @@
       resultsEl.appendChild(list);
     }
 
-    function runSearch() {
+    function runSearch(options) {
+      const updateUrl = !options || options.updateUrl !== false;
       const query = input.value.trim();
+      if (updateUrl) {
+        syncUrlQuery(query.length >= MIN_QUERY_LENGTH ? query : "");
+      }
       if (query.length < MIN_QUERY_LENGTH) {
         resultsEl.textContent = "";
         setStatus("Type at least 3 characters to search");
@@ -287,19 +319,44 @@
         });
     }
 
+    function cancelPendingSearch() {
+      if (debounceTimer) {
+        window.clearTimeout(debounceTimer);
+        debounceTimer = null;
+      }
+    }
+
     function onInput() {
-      if (debounceTimer) window.clearTimeout(debounceTimer);
-      debounceTimer = window.setTimeout(runSearch, DEBOUNCE_MS);
+      cancelPendingSearch();
+      debounceTimer = window.setTimeout(function () {
+        debounceTimer = null;
+        runSearch();
+      }, DEBOUNCE_MS);
+    }
+
+    function onKeyDown(event) {
+      if (event.key !== "Enter" || event.isComposing) return;
+      event.preventDefault();
+      cancelPendingSearch();
+      runSearch();
     }
 
     input.addEventListener("focus", function () {
       loadEngine().catch(function () {});
     });
     input.addEventListener("input", onInput);
+    input.addEventListener("keydown", onKeyDown);
+
+    window.addEventListener("popstate", function () {
+      cancelPendingSearch();
+      input.value = readQueryFromUrl();
+      runSearch({ updateUrl: false });
+    });
 
     // Start downloading the index as soon as the page opens: autofocus does
     // not fire a focus event, so waiting for one would leave the engine
     // unloaded until the user clicked out of and back into the box.
     loadEngine().catch(function () {});
+    if (initialQuery) runSearch({ updateUrl: false });
   }
 })();
