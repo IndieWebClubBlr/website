@@ -22,6 +22,7 @@ from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
 from src import config
+from src import ssrf
 from src.utils import SessionManager, add_ref_param, cache_path, write_file
 
 # Configure logging
@@ -281,8 +282,8 @@ def fetch_feed_content(url: str) -> str | None:
             logger.warning(f"Invalid URL format: {url}")
             return None
 
-        response = session_manager.get().get(
-            url, timeout=config.REQUEST_TIMEOUT, stream=True
+        response = ssrf.safe_get(
+            session_manager.get(), url, timeout=config.REQUEST_TIMEOUT, stream=True
         )
         response.raise_for_status()
 
@@ -303,6 +304,8 @@ def fetch_feed_content(url: str) -> str | None:
         return content.decode("utf-8", errors="ignore")
     except requests.exceptions.Timeout:
         logger.warning(f"Timeout fetching feed: {url}")
+    except ssrf.SSRFError as e:
+        logger.warning(f"Refusing to fetch feed {url}: {e}")
     except requests.exceptions.HTTPError as e:
         logger.warning(f"HTTP error fetching feed {url}: {e}")
     except requests.exceptions.RequestException as e:

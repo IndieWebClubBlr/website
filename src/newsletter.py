@@ -10,6 +10,7 @@ import feedparser
 import requests
 
 from src import config
+from src import ssrf
 from src.feeds import parse_feed_date
 from src.utils import (
     make_renderer,
@@ -53,16 +54,20 @@ def load_newsletter_archive() -> list[dict[str, str]]:
             logger.info(
                 f"Fetching newsletter archive from {config.NEWSLETTER_ARCHIVE_URL}"
             )
-            response = requests.get(
-                config.NEWSLETTER_ARCHIVE_URL,
-                timeout=config.REQUEST_TIMEOUT,
-                headers={"User-Agent": config.UA},
-            )
+            with requests.Session() as session:
+                session.headers.update({"User-Agent": config.UA})
+                response = ssrf.safe_get(
+                    session,
+                    config.NEWSLETTER_ARCHIVE_URL,
+                    timeout=config.REQUEST_TIMEOUT,
+                )
             response.raise_for_status()
             content = response.text
             write_file(cache_file, content)
             logger.debug("Fetched and cached newsletter archive")
         except requests.RequestException as e:
+            # An SSRFError is a request error too, so a refused URL falls
+            # back to the cached archive just like a failed fetch.
             logger.warning(f"Failed to fetch newsletter archive: {e}")
             if cache_file.exists():
                 logger.info("Using cached newsletter archive as fallback")

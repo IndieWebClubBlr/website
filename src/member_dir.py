@@ -13,10 +13,12 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import cast
+from urllib.parse import urljoin, urlparse
 
 import pystache
 
 from src import config
+from src import ssrf
 from src.feeds import FeedInfo
 from src.utils import (
     SessionManager,
@@ -220,7 +222,9 @@ def fetch_site_html(url: str) -> tuple[str, str, dict[str, str]] | None:
         None if the fetch failed.
     """
     try:
-        response = session_manager.get().get(url, timeout=config.REQUEST_TIMEOUT)
+        response = ssrf.safe_get(
+            session_manager.get(), url, timeout=config.REQUEST_TIMEOUT
+        )
         response.raise_for_status()
         return response.url, response.text, dict(response.headers)
     except Exception as e:
@@ -237,13 +241,11 @@ def get_ddg_favicon_url(site_url: str) -> str | None:
     Returns:
         Proxy URL of the site's icon, or None if DuckDuckGo has none.
     """
-    from urllib.parse import urlparse
-
     domain = urlparse(site_url).netloc
     url = f"https://icons.duckduckgo.com/ip3/{domain}.ico"
 
     try:
-        response = session_manager.get().head(url, timeout=5)
+        response = ssrf.safe_head(session_manager.get(), url, timeout=5)
         if response.status_code == 200:
             return url
     except Exception as e:
@@ -262,7 +264,7 @@ def check_hotlink_allowed(url: str) -> bool:
         True if the URL responds 200 to a HEAD request.
     """
     try:
-        response = session_manager.get().head(url, timeout=5, allow_redirects=True)
+        response = ssrf.safe_head(session_manager.get(), url, timeout=5)
         return response.status_code == 200
     except Exception:
         return False
@@ -323,17 +325,15 @@ def get_favicon_default(url: str) -> str | None:
         otherwise None.
     """
     try:
-        import favicon
-
-        icon = favicon.default(  # pyright: ignore[reportAttributeAccessIssue]
-            url, timeout=5
-        )
-        if icon and check_hotlink_allowed(icon.url):
-            return icon.url
-        return None
+        icon_url = urljoin(url, "/favicon.ico")
+        response = ssrf.safe_head(session_manager.get(), icon_url, timeout=5)
+        # The head follows redirects, so the final response already says
+        # whether the icon allows hotlinking.
+        if response.status_code == 200:
+            return response.url
     except Exception as e:
         logger.debug(f"Failed to get default favicon for {url}: {e}")
-        return None
+    return None
 
 
 def get_name_key(feed: FeedInfo) -> str:

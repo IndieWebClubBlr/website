@@ -16,6 +16,7 @@ from icalendar import Event as CalEvent
 from pydantic import BaseModel, ValidationError, field_validator
 
 from src import config
+from src import ssrf
 from src.utils import cache_path, write_file
 
 # Configure logging
@@ -249,7 +250,9 @@ def fetch_event_detail(
     if post is None:
         try:
             logger.info(f"Fetching event details: {url}")
-            response = session.get(url, timeout=config.REQUEST_TIMEOUT, stream=True)
+            response = ssrf.safe_get(
+                session, url, timeout=config.REQUEST_TIMEOUT, stream=True
+            )
             response.raise_for_status()
 
             raw = response.json()
@@ -266,6 +269,8 @@ def fetch_event_detail(
             logger.warning(f"Invalid event data for {url}: {e.error_count()} errors")
         except requests.exceptions.Timeout:
             logger.warning(f"Timeout fetching event details: {url}")
+        except ssrf.SSRFError as e:
+            logger.warning(f"Refusing to fetch event details {url}: {e}")
         except requests.exceptions.HTTPError as e:
             logger.warning(f"HTTP error fetching event details {url}: {e}")
         except requests.exceptions.RequestException as e:
@@ -318,7 +323,9 @@ def fetch_events(
             try:
                 logger.info("Fetching events")
 
-                response = session.get(url, timeout=config.REQUEST_TIMEOUT, stream=True)
+                response = ssrf.safe_get(
+                    session, url, timeout=config.REQUEST_TIMEOUT, stream=True
+                )
                 response.raise_for_status()
 
                 raw = response.json()
@@ -333,6 +340,8 @@ def fetch_events(
                 )
             except requests.exceptions.Timeout:
                 logger.warning(f"Timeout fetching events: {url}")
+            except ssrf.SSRFError as e:
+                logger.warning(f"Refusing to fetch events {url}: {e}")
             except requests.exceptions.HTTPError as e:
                 logger.warning(f"HTTP error fetching events {url}: {e}")
             except requests.exceptions.RequestException as e:
