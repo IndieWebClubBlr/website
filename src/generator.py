@@ -67,6 +67,7 @@ from src.feeds import (
 )
 from src.member_dir import generate_members_page
 from src.newsletter import generate_newsletter_page
+from src.search import generate_search_page
 from src.utils import (
     add_ref_param,
     make_renderer,
@@ -90,6 +91,7 @@ ASSETS = [
     "assets/preview.png",
     "assets/favicon.svg",
     "assets/archive.js",
+    "assets/search.js",
     "assets/.nojekyll",
     "CNAME",
 ]
@@ -103,6 +105,7 @@ def generate_homepage(
     events: list[Event],
     failed_feeds: list[FailedFeedInfo],
     output_dir: Path,
+    has_search: bool = False,
 ):
     """
     Generate homepage from feed entries using Mustache templating.
@@ -115,6 +118,7 @@ def generate_homepage(
         events: List of Event objects to include.
         failed_feeds: List of FailedFeedInfo objects for failed feeds.
         output_dir: Path where homepage file should be written.
+        has_search: Whether the /search/ page is part of this build.
     """
     logger.info(
         f"Generating the homepage with {len(weeknote_entries) + len(other_entries)} entries, {len(on_this_day_entries)} on this day entries, {len(events)} events, and {len(failed_feeds)} failed feeds"
@@ -186,6 +190,7 @@ def generate_homepage(
         "has_on_this_day": len(shown_on_this_day) > 0,
         "failed_feeds": failed_feeds,
         "has_failed_feeds": len(failed_feeds) != 0,
+        "has_search": has_search,
     }
 
     index_template = read_template("index.html")
@@ -258,6 +263,7 @@ class BuildCache:
     )
     webring_legacy: dict[str, FeedInfo] = field(default_factory=dict)
     data_pages: dict[str, TopicsPage | PromptsPage] = field(default_factory=dict)
+    search_page_built: bool = False
 
 
 def register_pages(
@@ -377,6 +383,14 @@ def generate_website(
             html_content=webring_content,
             page_url="webring/",
             output_dir=output_dir / "webring",
+        )
+
+    @build.rule("search_page")
+    def _(_target: str):
+        """Generate the /search/ full-text search page."""
+        build.need("feeds")
+        cache.search_page_built = (
+            generate_search_page(cache.entries, output_dir) is not None
         )
 
     @build.rule("parsed_opml")
@@ -658,7 +672,7 @@ def generate_website(
     @build.rule("homepage")
     def _(_target: str):
         """Generate the homepage."""
-        build.need("feeds", "events")
+        build.need("feeds", "events", "search_page")
         generate_homepage(
             cache.entries,
             cache.weeknote_entries,
@@ -667,6 +681,7 @@ def generate_website(
             cache.events,
             cache.failed_feeds,
             output_dir,
+            has_search=cache.search_page_built,
         )
 
     @build.rule("sitemap")
@@ -676,6 +691,7 @@ def generate_website(
             "members_dir",
             "webring",
             "webring_page",
+            "search_page",
             "newsletter",
             "archive",
             "homepage",
@@ -710,6 +726,7 @@ def generate_website(
             "weeknotes_blogroll_feed",
             "webring",
             "webring_page",
+            "search_page",
             "newsletter",
             "archive",
             "homepage",

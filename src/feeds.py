@@ -7,7 +7,7 @@ import re
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from copy import deepcopy
+from copy import copy, deepcopy
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -467,21 +467,32 @@ def _fetch_feed_content_cached(
 def prepend_fediverse_creator(
     entries: list[FeedEntry], fediverse_creators: dict[str, str]
 ) -> list[FeedEntry]:
-    """Prepend fediverse creator to entry summaries if available.
+    """Return entries with fediverse creators prepended to their summaries.
+
+    The entries themselves are shared with other rules (and with the search
+    corpus digest), which run concurrently, so the prefix is applied to
+    copies: mutating in place would make a summary's content depend on
+    which rule ran first.
 
     Args:
-        entries: Entries to annotate (mutated in place).
+        entries: Entries to annotate.
         fediverse_creators: Mapping of feed home URL to creator handle.
 
     Returns:
-        The same list of entries, with summaries prefixed where a creator
-        handle exists and the summary is not already prefixed with it.
+        A new list holding a prefixed copy of every entry that has a
+        creator handle (and is not already prefixed), and the original
+        entry otherwise.
     """
+    prefixed: list[FeedEntry] = []
     for entry in entries:
         creator = fediverse_creators.get(entry.feed_home_url)
         if creator and not entry.summary.startswith(f"{creator}: "):
-            entry.summary = f"{creator}: {entry.summary}"
-    return entries
+            annotated = copy(entry)
+            annotated.summary = f"{creator}: {entry.summary}"
+            prefixed.append(annotated)
+        else:
+            prefixed.append(entry)
+    return prefixed
 
 
 MATAROA_DOMAIN = "mataroa.blog"

@@ -659,7 +659,8 @@ form.newsletter-form,
 }
 
 form.newsletter-form input[type="email"],
-#webring-tool input[type="url"] {
+#webring-tool input[type="url"],
+#search-page input[type="search"] {
   width: 100%;
   max-width: 20rem;
   height: 2em;
@@ -707,4 +708,42 @@ form.newsletter-form input[type="submit"],
   text-decoration-color: red;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.1em;
+}
+
+/* Full-text search page (/search/) */
+#search-page input[type="search"] {
+  margin-bottom: 0.5em;
+}
+
+#search-page input[type="search"]:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.search-status {
+  font-size: 0.85em;
+  margin-top: 0;
+}
+
+.search-status.search-error {
+  color: var(--color-error);
+  font-weight: bold;
+}
+
+ul.search-results {
+  list-style: none;
+  padding: 0;
+  margin: 1em 0;
+}
+
+li.search-result {
+  margin: 0.75em 0;
+}
+
+a.search-result-title {
+  font-weight: bold;
+}
+
+.search-result-meta {
+  font-size: 0.85em;
 }

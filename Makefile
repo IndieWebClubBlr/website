@@ -41,19 +41,19 @@ help:
 check-tools:
 	@command -v tinysearch >/dev/null 2>&1 || { \
 		echo "tinysearch not found."; \
-		echo "  nix:    use the nix shell (direnv allow / nix-shell)"; \
+		echo "  nix:    use the nix shell (nix-shell)"; \
 		echo "  other:  download it from https://github.com/tinysearch/tinysearch/releases"; \
 		exit 1; \
 	}
 	@command -v cargo >/dev/null 2>&1 || { \
 		echo "cargo not found."; \
-		echo "  nix:    use the nix shell (direnv allow / nix-shell)"; \
+		echo "  nix:    use the nix shell (nix-shell)"; \
 		echo "  other:  install Rust from https://rustup.rs"; \
 		exit 1; \
 	}
 	@ls "$$(rustc --print sysroot)/lib/rustlib/wasm32-unknown-unknown/lib" >/dev/null 2>&1 || { \
 		echo "rustc has no wasm32-unknown-unknown standard library."; \
-		echo "  nix:    use the nix shell (direnv allow / nix-shell)"; \
+		echo "  nix:    use the nix shell (nix-shell)"; \
 		echo "  other:  run: rustup target add wasm32-unknown-unknown"; \
 		exit 1; \
 	}
@@ -95,6 +95,7 @@ assets:
 	cp assets/*.css _site/
 	cp assets/*.svg _site/
 	cp assets/*.png _site/
+	cp assets/*.js _site/
 	@echo "Copied assets"
 
 # Clean up generated files

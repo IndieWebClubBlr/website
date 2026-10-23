@@ -48,6 +48,16 @@ MAX_SHOWN_RANDOM_POSTS = 5
 # Year from which the archive starts
 ARCHIVE_MIN_YEAR = 2025
 
+# Full-text search (tinysearch). Bodies come from feed content when at
+# least SEARCH_FEED_BODY_MIN_CHARS long; otherwise the post's permalink is
+# fetched (cached in CACHE_DIR/search with a failure retry TTL) and the
+# longest candidate, capped at SEARCH_BODY_MAX_CHARS, is indexed.
+SEARCH_BODY_MAX_CHARS = 25000
+SEARCH_FEED_BODY_MIN_CHARS = 500
+SEARCH_FETCH_FAILURE_TTL_DAYS = 7
+# How many times a failing permalink is fetched before it is given up on.
+SEARCH_FETCH_MAX_ATTEMPTS = 3
+
 # Base URL of the website.
 SITE_URL = f"https://{SITE_DOMAIN}/"
 
