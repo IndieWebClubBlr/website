@@ -37,6 +37,7 @@
     <outline type="rss" text="Avil Page" xmlUrl="https://avilpage.com/rss.xml" htmlUrl="https://avilpage.com/" />
     <outline type="rss" text="Azan" xmlUrl="https://azan-n.com/rss.xml" htmlUrl="https://azan-n.com/" />
     <outline type="rss" text="Azan" xmlUrl="https://blog.azan-n.com/rss.xml" htmlUrl="https://blog.azan-n.com/" />
+    <outline type="rss" text="balrog" xmlUrl="https://balrog.mataroa.blog/rss/" htmlUrl="https://balrog.mataroa.blog/" />
     <outline type="rss" text="barsinger" xmlUrl="https://barsinger.mataroa.blog/rss/" htmlUrl="https://barsinger.mataroa.blog/" />
     <outline type="rss" text="Chaitanya Hegde" xmlUrl="https://hegde.me/feed/" htmlUrl="https://hegde.me/" webring="true" />
     <outline type="rss" text="Chitin" xmlUrl="https://theoptout.xyz/rss.xml" htmlUrl="https://theoptout.xyz/" />
