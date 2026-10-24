@@ -82,7 +82,7 @@ def load_newsletter_archive() -> list[dict[str, str]]:
     items = []
 
     for entry in parsed.entries:
-        if entry.get("title") == "IndieWebClub Bangalore Blogroll Digest":
+        if "IndieWebClub Bangalore Blogroll" in entry.get("title"):
             pub_date = None
             if hasattr(entry, "published") and entry.published:
                 pub_date = parse_feed_date(entry.published)
