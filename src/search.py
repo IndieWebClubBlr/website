@@ -40,6 +40,7 @@ import re
 import shutil
 import subprocess
 import time
+from collections.abc import Collection
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
@@ -54,6 +55,7 @@ from src import config, ssrf
 from src.feeds import FeedEntry
 from src.utils import (
     SessionManager,
+    has_noindex_directive,
     make_renderer,
     read_template,
     render_and_save_html,
@@ -69,14 +71,18 @@ logging.getLogger("readability").setLevel(logging.WARNING)
 # Chrome that should never be part of a post's searchable text.
 _CHROME_TAGS = ("nav", "header", "footer", "aside", "form", "script", "style")
 
+# Robots meta tags live in the document head. When a page is too large to
+# index, inspect only a bounded prefix rather than the entire body.
+_NOINDEX_PREFIX_BYTES = 64 * 1024
+
 # Identifies how cached post texts were produced. Bump it when the
 # extraction changes, so stale texts are refetched instead of indexed.
-_EXTRACTOR = "readability-1"
+_EXTRACTOR = "readability-2"
 
 # Identifies how the corpus is assembled from the entries. Bump it when
 # that changes (the feed text, the summary line, ...), so the extracted
 # corpus is rebuilt instead of reused.
-_CORPUS_VERSION = "3"
+_CORPUS_VERSION = "4"
 
 # British spellings are normalized to their American counterparts before
 # stemming, so a search for either form finds the same posts. The browser
@@ -314,15 +320,54 @@ def resolve_body_from_html(html: str) -> str:
     return fallback or readable
 
 
+def _html_noindex(html: str) -> bool:
+    """Whether a page's robots meta tags ask crawlers not to index it.
+
+    ``name="robots"`` is the standard form; user-agent-specific tags such
+    as ``name="googlebot"`` are honoured too, since a member opting out
+    usually does not distinguish between crawlers.
+
+    Args:
+        html: Raw HTML of the page.
+
+    Returns:
+        True when a matching meta tag carries ``noindex`` or ``none``.
+    """
+    if not html:
+        return False
+    soup = BeautifulSoup(html, "html.parser")
+    for meta in soup.find_all("meta"):
+        name = meta.get("name")
+        content = meta.get("content")
+        if not isinstance(name, str) or not isinstance(content, str):
+            continue
+        normalized = name.strip().lower()
+        if normalized == "robots" or normalized.endswith("bot"):
+            if has_noindex_directive(content):
+                return True
+    return False
+
+
 def _search_cache_path(link: str) -> Path:
     """Return the cache file path for one post permalink."""
     digest = hashlib.sha256(link.encode()).hexdigest()
     return config.CACHE_DIR / _SEARCH_CACHE_DIR / digest
 
 
+@dataclass(frozen=True)
+class CachedPostText:
+    """A post-text cache entry and its noindex state."""
+
+    text: str | None
+    fetched_at: datetime | None
+    is_failure: bool
+    attempts: int
+    noindex: bool
+
+
 def _read_search_cache(
     path: Path,
-) -> tuple[str | None, datetime | None, bool, int]:
+) -> CachedPostText:
     """Read one post-text cache entry.
 
     Entries written by a different extractor are ignored, so switching
@@ -332,12 +377,13 @@ def _read_search_cache(
         path: Cache file path.
 
     Returns:
-        Tuple of (text, fetched_at, is_failure, attempts). text is None for
-        failures and unreadable entries; fetched_at is None when no entry
-        exists; attempts counts how often the fetch has been tried.
+        The cached post text. text is None for failures and unreadable
+        entries; fetched_at is None when no entry exists; attempts counts
+        how often the fetch has been tried; noindex records whether the page
+        asked not to be indexed.
     """
     if not path.exists():
-        return None, None, False, 0
+        return CachedPostText(None, None, False, 0, False)
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
         fetched_raw = data["fetched_at"]
@@ -347,22 +393,26 @@ def _read_search_cache(
         attempts = int(data.get("attempts", 1))
     except (ValueError, KeyError, TypeError, OSError) as e:
         logger.debug(f"Ignoring unreadable post-text cache {path}: {e}")
-        return None, None, False, 0
+        return CachedPostText(None, None, False, 0, False)
     if data.get("extractor") != _EXTRACTOR:
         logger.debug(f"Ignoring post-text cache {path}: written by another extractor")
-        return None, None, False, 0
+        return CachedPostText(None, None, False, 0, False)
+    noindex = bool(data.get("noindex", False))
     if data.get("error"):
-        return None, fetched_at, True, attempts
-    return data.get("text") or "", fetched_at, False, attempts
+        return CachedPostText(None, fetched_at, True, attempts, noindex)
+    return CachedPostText(data.get("text") or "", fetched_at, False, attempts, noindex)
 
 
-def _write_search_cache(path: Path, text: str | None, attempts: int) -> None:
+def _write_search_cache(
+    path: Path, text: str | None, attempts: int, noindex: bool
+) -> None:
     """Write one post-text cache entry, success or failure."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    payload: dict[str, str] = {
+    payload: dict[str, str | bool] = {
         "fetched_at": datetime.now(UTC).isoformat(),
         "extractor": _EXTRACTOR,
         "attempts": str(attempts),
+        "noindex": noindex,
     }
     if text is None:
         payload["error"] = "fetch failed"
@@ -394,7 +444,21 @@ def _decode_html(content: bytes, encoding: str | None) -> str:
             return content.decode("utf-8", errors="ignore")
 
 
-def _fetch_post_text(link: str, session: requests.Session) -> str | None:
+def _prefix_noindex(content: bytes, encoding: str | None) -> bool:
+    """Check the head of a page too large to read for a robots meta tag."""
+    return _html_noindex(_decode_html(content[:_NOINDEX_PREFIX_BYTES], encoding))
+
+
+@dataclass(frozen=True)
+class FetchedPostText:
+    """A fetched post's text, noindex state, and whether the fetch completed."""
+
+    text: str | None
+    noindex: bool
+    success: bool = False
+
+
+def _fetch_post_text(link: str, session: requests.Session) -> FetchedPostText:
     """Fetch one permalink and extract its text.
 
     Args:
@@ -402,12 +466,16 @@ def _fetch_post_text(link: str, session: requests.Session) -> str | None:
         session: HTTP session to fetch with.
 
     Returns:
-        Extracted plain text, or None on any failure.
+        The extracted plain text (or None on any failure), whether the
+        page asked not to be indexed through a header or meta tag, and
+        whether the fetch completed successfully.
     """
+    header_noindex = False
     try:
         response = ssrf.safe_get(
             session, link, timeout=config.REQUEST_TIMEOUT, stream=True
         )
+        header_noindex = has_noindex_directive(response.headers.get("x-robots-tag"))
         response.raise_for_status()
 
         content_length = response.headers.get("content-length")
@@ -420,25 +488,35 @@ def _fetch_post_text(link: str, session: requests.Session) -> str | None:
                 too_large = False
             if too_large:
                 logger.debug(f"Post too large ({content_length} bytes): {link}")
+                prefix = b""
+                for chunk in response.iter_content(chunk_size=8192):
+                    prefix += chunk
+                    if len(prefix) >= _NOINDEX_PREFIX_BYTES:
+                        break
+                noindex = header_noindex or _prefix_noindex(prefix, response.encoding)
                 response.close()
-                return None
+                return FetchedPostText(None, noindex)
 
         content = b""
         for chunk in response.iter_content(chunk_size=8192):
             content += chunk
             if len(content) > config.MAX_CONTENT_LENGTH:
                 logger.debug(f"Post content exceeded size limit: {link}")
+                noindex = header_noindex or _prefix_noindex(content, response.encoding)
                 response.close()
-                return None
+                return FetchedPostText(None, noindex)
     except ssrf.SSRFError as e:
         logger.warning(f"Refusing to fetch post text {link}: {e}")
-        return None
+        return FetchedPostText(None, header_noindex)
     except requests.RequestException as e:
         logger.debug(f"Failed to fetch post text {link}: {e}")
-        return None
+        return FetchedPostText(None, header_noindex)
 
-    text = resolve_body_from_html(_decode_html(content, response.encoding))
-    return text or None
+    html = _decode_html(content, response.encoding)
+    text = resolve_body_from_html(html)
+    return FetchedPostText(
+        text or None, header_noindex or _html_noindex(html), success=True
+    )
 
 
 def _search_cache_fresh(fetched_at: datetime | None) -> bool:
@@ -449,8 +527,16 @@ def _search_cache_fresh(fetched_at: datetime | None) -> bool:
     return age < timedelta(days=config.SEARCH_FETCH_FAILURE_TTL_DAYS)
 
 
-def _resolve_one_body(entry: FeedEntry, session: requests.Session) -> str:
-    """Resolve one entry's search body.
+@dataclass(frozen=True)
+class ResolvedBody:
+    """One post's resolved search body and noindex state."""
+
+    body: str
+    noindex: bool
+
+
+def _resolve_one_body(entry: FeedEntry, session: requests.Session) -> ResolvedBody:
+    """Resolve one entry's search body and noindex state.
 
     Uses the feed-provided content when it is at least
     ``SEARCH_FEED_BODY_MIN_CHARS`` characters long and needs no fetch;
@@ -464,7 +550,8 @@ def _resolve_one_body(entry: FeedEntry, session: requests.Session) -> str:
         session: HTTP session for permalink fetches.
 
     Returns:
-        Plain-text body, possibly "" when nothing textual is available.
+        The resolved body and whether the permalink asked not to be
+        indexed.
     """
     feed_text = _text_from_html(entry.content or "")
     cache_path = _search_cache_path(entry.link)
@@ -474,24 +561,33 @@ def _resolve_one_body(entry: FeedEntry, session: requests.Session) -> str:
         # on every build: this path never refreshes its timestamp.
         if cache_path.exists():
             _ = cache_path.unlink()
-        return feed_text[: config.SEARCH_BODY_MAX_CHARS]
+        return ResolvedBody(feed_text[: config.SEARCH_BODY_MAX_CHARS], False)
 
-    cached_text, fetched_at, is_failure, attempts = _read_search_cache(cache_path)
+    cached = _read_search_cache(cache_path)
+    noindex = cached.noindex
 
     fetched_text: str | None = None
-    if not is_failure and fetched_at is not None:
-        fetched_text = cached_text
-    elif is_failure and _search_cache_fresh(fetched_at):
+    if not cached.is_failure and cached.fetched_at is not None:
+        fetched_text = cached.text
+    elif cached.is_failure and _search_cache_fresh(cached.fetched_at):
         # Recent failure: do not hammer the server again this build.
         logger.debug(f"Skipping recently failed post text: {entry.link}")
-    elif is_failure and attempts >= config.SEARCH_FETCH_MAX_ATTEMPTS:
+    elif cached.is_failure and cached.attempts >= config.SEARCH_FETCH_MAX_ATTEMPTS:
         # A permalink that keeps failing is not going to start working;
         # stop asking so dead links are not retried forever.
-        logger.debug(f"Giving up on post text {entry.link} after {attempts} attempts")
+        logger.debug(
+            f"Giving up on post text {entry.link} after {cached.attempts} attempts"
+        )
     else:
         started = time.monotonic()
-        fetched_text = _fetch_post_text(entry.link, session)
-        _write_search_cache(cache_path, fetched_text, attempts + 1)
+        fetched = _fetch_post_text(entry.link, session)
+        fetched_text = fetched.text
+        noindex = fetched.noindex
+        if not fetched.success:
+            # A failed retry is not evidence that a previously observed
+            # noindex directive has gone away.
+            noindex = cached.noindex or noindex
+        _write_search_cache(cache_path, fetched.text, cached.attempts + 1, noindex)
         elapsed = time.monotonic() - started
         if elapsed >= _SLOW_FETCH_SECONDS:
             logger.debug(
@@ -502,7 +598,7 @@ def _resolve_one_body(entry: FeedEntry, session: requests.Session) -> str:
     summary_text = _normalize_summary(entry.summary or "")
     candidates = [feed_text, fetched_text or "", summary_text]
     best = max(candidates, key=len)
-    return best[: config.SEARCH_BODY_MAX_CHARS]
+    return ResolvedBody(best[: config.SEARCH_BODY_MAX_CHARS], noindex)
 
 
 def _peel_creator_prefix(text: str) -> str:
@@ -579,14 +675,32 @@ def _interleave_by_host(links: list[str]) -> list[str]:
     return ordered
 
 
-def resolve_post_bodies(entries: list[FeedEntry]) -> dict[str, str]:
+@dataclass(frozen=True)
+class ResolvedPost:
+    """One resolved post in the concurrent body pass."""
+
+    link: str
+    body: str
+    noindex: bool
+
+
+@dataclass(frozen=True)
+class ResolvedBodies:
+    """Search bodies and the links whose pages asked not to be indexed."""
+
+    bodies: dict[str, str]
+    noindex_links: frozenset[str]
+
+
+def resolve_post_bodies(entries: list[FeedEntry]) -> ResolvedBodies:
     """Resolve search bodies for all entries concurrently.
 
     Args:
         entries: All corpus entries; duplicate links are resolved once.
 
     Returns:
-        Mapping of post link to plain-text body. Entries that could not be
+        The plain-text bodies by post link, and the set of links whose
+        permalink asked not to be indexed. Entries that could not be
         resolved map to "".
     """
     unique: dict[str, FeedEntry] = {}
@@ -599,22 +713,26 @@ def resolve_post_bodies(entries: list[FeedEntry]) -> dict[str, str]:
     links = _interleave_by_host(list(unique))
     logger.info(f"Resolving search bodies for {len(links)} posts")
 
-    def resolve(link: str) -> tuple[str, str]:
+    def resolve(link: str) -> ResolvedPost:
         try:
-            return link, _resolve_one_body(unique[link], session_manager.get())
+            resolved = _resolve_one_body(unique[link], session_manager.get())
+            return ResolvedPost(link, resolved.body, resolved.noindex)
         except Exception as e:  # noqa: BLE001 - one bad post must not skip search
             logger.warning(f"Failed to resolve post text {link}: {e}")
-            return link, ""
+            return ResolvedPost(link, "", False)
 
     bodies: dict[str, str] = {}
+    noindex_links: set[str] = set()
     try:
         with ThreadPoolExecutor(
             max_workers=config.MAX_WORKERS,
             thread_name_prefix="SearchFetcher",
         ) as executor:
             started = time.monotonic()
-            for index, (link, body) in enumerate(executor.map(resolve, links), 1):
-                bodies[link] = body
+            for index, post in enumerate(executor.map(resolve, links), 1):
+                bodies[post.link] = post.body
+                if post.noindex:
+                    noindex_links.add(post.link)
                 if index % _PROGRESS_EVERY == 0:
                     logger.info(
                         f"Resolved {index}/{len(links)} bodies in {time.monotonic() - started:.1f}s"
@@ -623,8 +741,11 @@ def resolve_post_bodies(entries: list[FeedEntry]) -> dict[str, str]:
         session_manager.close_all()
 
     fetched = sum(1 for b in bodies.values() if b)
-    logger.info(f"Resolved bodies for {fetched}/{len(links)} posts")
-    return bodies
+    logger.info(
+        f"Resolved bodies for {fetched}/{len(links)} posts"
+        f" ({len(noindex_links)} noindex)"
+    )
+    return ResolvedBodies(bodies, frozenset(noindex_links))
 
 
 def _unescape(text: str) -> str:
@@ -643,22 +764,27 @@ def _entry_sub(entry: FeedEntry) -> str:
 
 
 def write_documents(
-    entries: list[FeedEntry], bodies: dict[str, str], docs_dir: Path
+    entries: list[FeedEntry],
+    bodies: dict[str, str],
+    noindex_links: Collection[str],
+    docs_dir: Path,
 ) -> int:
     """Write tinysearch's documents.json and tinysearch.toml.
 
     Args:
         entries: All corpus entries, newest first; first link wins.
         bodies: Resolved plain-text bodies by link.
+        noindex_links: Links whose permalink asked not to be indexed.
         docs_dir: Directory to write the corpus into.
 
     Returns:
         Number of documents written.
     """
+    excluded = set(noindex_links)
     docs: list[dict[str, str]] = []
     seen: set[str] = set()
     for entry in entries:
-        if entry.link in seen:
+        if entry.link in seen or entry.link in excluded:
             continue
         seen.add(entry.link)
         title = _unescape(entry.title)
@@ -1030,6 +1156,53 @@ def _failed_search_links() -> list[str]:
     return sorted(failed)
 
 
+def _cached_noindex_links(corpus_names: set[str]) -> list[str]:
+    """List corpus permalinks whose cached page asked not to be indexed.
+
+    The noindex state is part of the corpus: adding or removing a page from
+    the index has to invalidate the extracted corpus even when the feed
+    entries themselves did not change.
+
+    Args:
+        corpus_names: Cache file names of the links in the current corpus.
+
+    Returns:
+        The cache file names of the current-extractor entries marked noindex.
+    """
+    noindex: list[str] = []
+    cache_dir = config.CACHE_DIR / _SEARCH_CACHE_DIR
+    if not cache_dir.is_dir():
+        return noindex
+    for path in cache_dir.iterdir():
+        if not path.is_file() or path.name not in corpus_names:
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if data.get("extractor") != _EXTRACTOR:
+            continue
+        if data.get("noindex"):
+            noindex.append(path.name)
+    return sorted(noindex)
+
+
+def _cached_noindex_urls(entries: list[FeedEntry]) -> list[str]:
+    """List corpus URLs whose cached permalink asked not to be indexed.
+
+    Args:
+        entries: The current search corpus entries.
+
+    Returns:
+        Sorted post URLs marked noindex by the current extractor's cache.
+    """
+    links_by_name = {
+        _search_cache_path(entry.link).name: entry.link for entry in entries
+    }
+    noindex_names = _cached_noindex_links(set(links_by_name))
+    return sorted(links_by_name[name] for name in noindex_names)
+
+
 def _stale_search_failures(corpus_names: set[str]) -> list[str]:
     """List the failed permalinks that are due for another attempt.
 
@@ -1095,6 +1268,8 @@ def corpus_digest(entries: list[FeedEntry]) -> str:
     """
     started = time.monotonic()
     failed = _failed_search_links()
+    corpus_names = {_search_cache_path(entry.link).name for entry in entries}
+    noindex = _cached_noindex_links(corpus_names)
     parts = [
         _EXTRACTOR,
         _CORPUS_VERSION,
@@ -1102,6 +1277,7 @@ def corpus_digest(entries: list[FeedEntry]) -> str:
         str(config.SEARCH_BODY_MAX_CHARS),
         str(config.SEARCH_FEED_BODY_MIN_CHARS),
         "failed:" + ",".join(failed),
+        "noindex:" + ",".join(noindex),
     ]
     for entry in entries:
         parts.append(
@@ -1171,7 +1347,11 @@ def _write_corpus_meta(docs_dir: Path, digest: str, doc_count: int) -> None:
     )
 
 
-def generate_search_page(entries: list[FeedEntry], output_dir: Path) -> str | None:
+def generate_search_page(
+    entries: list[FeedEntry],
+    output_dir: Path,
+    excluded_feed_urls: Collection[str] = (),
+) -> str | None:
     """Build the search index and write the /search/ page.
 
     This is the entry point the site generator uses: it resolves the post
@@ -1183,24 +1363,32 @@ def generate_search_page(entries: list[FeedEntry], output_dir: Path) -> str | No
     Args:
         entries: The corpus entries to index.
         output_dir: Site output directory.
+        excluded_feed_urls: Feed URLs whose entries must stay out of the
+            search index. They are still rendered everywhere else.
 
     Returns:
         The URL of the page relative to the site root ("search/"), or None
         when the page was skipped.
     """
     try:
-        return _build_search_page(entries, output_dir)
+        return _build_search_page(entries, output_dir, excluded_feed_urls)
     except Exception as e:  # noqa: BLE001 - the search page is optional
         logger.warning(f"Skipping the search page: {e}")
         return None
 
 
-def _build_search_page(entries: list[FeedEntry], output_dir: Path) -> str | None:
+def _build_search_page(
+    entries: list[FeedEntry],
+    output_dir: Path,
+    excluded_feed_urls: Collection[str] = (),
+) -> str | None:
     """Build the search index and write the /search/ page.
 
     Args:
         entries: The corpus entries to index.
         output_dir: Site output directory.
+        excluded_feed_urls: Feed URLs whose entries must stay out of the
+            search index.
 
     Returns:
         The URL of the page relative to the site root ("search/"), or None
@@ -1213,6 +1401,21 @@ def _build_search_page(entries: list[FeedEntry], output_dir: Path) -> str | None
             "See the README for how to install the search toolchain."
         )
         return None
+
+    excluded = set(excluded_feed_urls)
+    for feed_url in excluded:
+        logger.debug(f"Noindex feed excluded from search: {feed_url}")
+
+    if excluded:
+        filtered: list[FeedEntry] = []
+        for entry in entries:
+            if entry.feed_url in excluded:
+                continue
+            filtered.append(entry)
+        logger.info(
+            f"Excluded {len(entries) - len(filtered)} noindex entries from search"
+        )
+        entries = filtered
 
     docs_dir = config.CACHE_DIR / "search_docs"
     docs_dir.mkdir(parents=True, exist_ok=True)
@@ -1233,13 +1436,21 @@ def _build_search_page(entries: list[FeedEntry], output_dir: Path) -> str | None
         # re-parsing every feed's content.
         doc_count = int(meta.get("doc_count", 0))
         logger.info(f"Corpus unchanged ({doc_count} documents), reusing it")
+        page_noindex_urls = _cached_noindex_urls(entries)
     else:
-        bodies = resolve_post_bodies(entries)
-        doc_count = write_documents(entries, bodies, docs_dir)
+        resolved = resolve_post_bodies(entries)
+        doc_count = write_documents(
+            entries, resolved.bodies, resolved.noindex_links, docs_dir
+        )
+        page_noindex_urls = sorted(resolved.noindex_links)
         # The permalinks that failed to fetch are part of the corpus, so the
         # digest is computed after the bodies are resolved: the next build
         # then finds this corpus instead of extracting it again.
         _write_corpus_meta(docs_dir, corpus_digest(entries), doc_count)
+
+    for link in page_noindex_urls:
+        logger.debug(f"Noindex page excluded from search: {link}")
+    logger.info(f"Excluded {len(page_noindex_urls)} noindex pages from search")
 
     # The schema shapes the index, so write it even when the corpus was
     # reused: a changed schema has to reach the engine build.

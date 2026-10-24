@@ -170,6 +170,16 @@ Queries are kept in the URL (`/search/?q=policy`), so a search can be linked.
 After the typing pause or Enter, the page adds a history entry; back and
 forward restore the previous query and its results.
 
+A member can opt out of the full-text index without leaving the blogroll,
+homepage, archive or generated feeds. Add `noindex="true"` to their
+`blogroll.opml` outline, or send `X-Robots-Tag: noindex` (`none` also works)
+on the feed or a post permalink, or use a robots meta tag such as
+`<meta name="robots" content="noindex">`. Page-level header/meta tags are
+seen when the permalink is fetched for its search body; posts whose feeds
+carry full content rely on the feed-level signal. Cached page signals are
+refreshed when the search cache is cleared (weekly in CI) or the extractor
+is bumped. The build log lists every excluded URL.
+
 Both the index and the query are Porter-stemmed, so `policies` finds `policy`
 (and vice versa) while prefix matching still works from three characters. The
 same stemmer runs on both sides: Python's `snowballstemmer` at build time and

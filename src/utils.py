@@ -7,6 +7,7 @@ from __future__ import annotations
 import hashlib
 import logging
 import os
+import re
 import tempfile
 import threading
 from datetime import datetime, timezone
@@ -35,6 +36,23 @@ _FILE_MODE = 0o666 & ~_UMASK
 # urllib3/requests log every connection and retry.
 for noisy_logger in ("MARKDOWN", "urllib3", "requests"):
     logging.getLogger(noisy_logger).setLevel(logging.WARNING)
+
+# ``X-Robots-Tag`` and robots meta tags carry comma-separated directives,
+# sometimes with a user-agent prefix (``googlebot: noindex``). Matching the
+# word rather than a substring keeps ``noindex`` from matching a longer token.
+_NOINDEX_PATTERN = re.compile(r"\b(?:noindex|none)\b", re.IGNORECASE)
+
+
+def has_noindex_directive(value: str | None) -> bool:
+    """Whether a robots directive asks crawlers not to index the page.
+
+    Args:
+        value: An ``X-Robots-Tag`` header value or robots meta content.
+
+    Returns:
+        True when the value contains ``noindex`` or its ``none`` shorthand.
+    """
+    return bool(value and _NOINDEX_PATTERN.search(value))
 
 
 class SessionManager:

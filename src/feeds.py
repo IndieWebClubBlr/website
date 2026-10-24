@@ -9,7 +9,7 @@ from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from copy import copy, deepcopy
 from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from enum import Enum
 from pathlib import Path
 from typing import Any, final
@@ -21,9 +21,14 @@ from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 from feedgen.feed import FeedGenerator
 
-from src import config
-from src import ssrf
-from src.utils import SessionManager, add_ref_param, cache_path, write_file
+from src import config, ssrf
+from src.utils import (
+    SessionManager,
+    add_ref_param,
+    cache_path,
+    has_noindex_directive,
+    write_file,
+)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -34,7 +39,7 @@ logger = logging.getLogger("feeds")
 # parsing changes, so that a parsing fix is not held back by a cached feed.
 # The cache is cleared weekly in CI anyway (.github/workflows/clear_cache.yml),
 # but a bump makes the change take effect at once.
-_FEED_CACHE_VERSION = 1
+_FEED_CACHE_VERSION = 2
 
 
 @dataclass
@@ -45,6 +50,24 @@ class FeedInfo:
     xml_url: str
     html_url: str
     webring: bool = False
+    noindex: bool = False
+
+
+@dataclass(frozen=True)
+class FetchedFeed:
+    """A fetched feed response and its noindex state."""
+
+    content: str | None
+    noindex: bool
+
+
+@dataclass(frozen=True)
+class CachedFeed:
+    """Parsed entries restored from a feed cache."""
+
+    entries: list[FeedEntry]
+    has_entries: bool | None
+    noindex: bool
 
 
 class FailureReason(Enum):
@@ -187,9 +210,14 @@ def parse_opml_file(opml_path: Path) -> list[FeedInfo]:
                     parsed_url = urlparse(xml_url)
                     html_url = f"{parsed_url.scheme}://{parsed_url.netloc}/"
                 webring = outline.get("webring", "").lower() == "true"
+                noindex = outline.get("noindex", "").strip().lower() == "true"
                 feeds.append(
                     FeedInfo(
-                        title=title, xml_url=xml_url, html_url=html_url, webring=webring
+                        title=title,
+                        xml_url=xml_url,
+                        html_url=html_url,
+                        webring=webring,
+                        noindex=noindex,
                     )
                 )
                 logger.debug(f"Found feed: {title} -> {xml_url} -> {html_url}")
@@ -273,6 +301,21 @@ def fetch_feed_content(url: str) -> str | None:
     Returns:
         Feed content as string, or None if fetch failed.
     """
+    fetched = _fetch_feed(url)
+    return fetched.content
+
+
+def _fetch_feed(url: str) -> FetchedFeed:
+    """Fetch a feed and report whether its response asks not to be indexed.
+
+    Args:
+        url: Feed URL to fetch.
+
+    Returns:
+        The fetched feed: its content (or None on failure) and whether the
+        response's ``X-Robots-Tag`` header carries a noindex directive.
+    """
+    noindex = False
     try:
         logger.info(f"Fetching feed: {url}")
 
@@ -280,18 +323,19 @@ def fetch_feed_content(url: str) -> str | None:
         parsed_url = urlparse(url)
         if not parsed_url.scheme or not parsed_url.netloc:
             logger.warning(f"Invalid URL format: {url}")
-            return None
+            return FetchedFeed(None, False)
 
         response = ssrf.safe_get(
             session_manager.get(), url, timeout=config.REQUEST_TIMEOUT, stream=True
         )
+        noindex = has_noindex_directive(response.headers.get("x-robots-tag"))
         response.raise_for_status()
 
         # Check content length
         content_length = response.headers.get("content-length")
         if content_length and int(content_length) > config.MAX_CONTENT_LENGTH:
             logger.warning(f"Feed too large ({content_length} bytes): {url}")
-            return None
+            return FetchedFeed(None, noindex)
 
         # Read content with size limit
         content = b""
@@ -299,9 +343,9 @@ def fetch_feed_content(url: str) -> str | None:
             content += chunk
             if len(content) > config.MAX_CONTENT_LENGTH:
                 logger.warning(f"Feed content exceeded size limit: {url}")
-                return None
+                return FetchedFeed(None, noindex)
 
-        return content.decode("utf-8", errors="ignore")
+        return FetchedFeed(content.decode("utf-8", errors="ignore"), noindex)
     except requests.exceptions.Timeout:
         logger.warning(f"Timeout fetching feed: {url}")
     except ssrf.SSRFError as e:
@@ -312,6 +356,7 @@ def fetch_feed_content(url: str) -> str | None:
         logger.warning(f"Request error fetching feed {url}: {e}")
     except Exception as e:
         logger.error(f"Unexpected error fetching feed {url}: {e}")
+    return FetchedFeed(None, noindex)
 
 
 def _feed_cache_path(feed_url: str) -> Path:
@@ -327,9 +372,7 @@ def _feed_cache_path(feed_url: str) -> Path:
     return config.CACHE_DIR / "feeds" / f"{digest}.json"
 
 
-def _load_cached_feed(
-    path: Path, raw_digest: str | None
-) -> tuple[list[FeedEntry], bool | None] | None:
+def _load_cached_feed(path: Path, raw_digest: str | None) -> CachedFeed | None:
     """Return a feed's cached entries, if they are usable.
 
     Args:
@@ -340,8 +383,7 @@ def _load_cached_feed(
             cache run) and the cached entries are used as they are.
 
     Returns:
-        The cached entries and the has_entries flag, or None when there is
-        no usable cache.
+        The cached feed, or None when there is no usable cache.
     """
     if not path.exists():
         return None
@@ -358,13 +400,15 @@ def _load_cached_feed(
             if published.tzinfo is None:
                 # A hand-edited cache file could hold a naive timestamp;
                 # comparing it with an aware one would raise.
-                published = published.replace(tzinfo=timezone.utc)
+                published = published.replace(tzinfo=UTC)
             item["published"] = published
             entries.append(FeedEntry(**item))
         # Indexed, not fetched: the flag is a tri-state (None means "the feed
         # could not be parsed"), so a missing key must not be mistaken for
         # it. A KeyError here discards the cache and the feed is parsed again.
-        return entries, data["has_entries"]
+        return CachedFeed(
+            entries, data["has_entries"], bool(data.get("noindex", False))
+        )
     except (OSError, ValueError, KeyError, TypeError, AttributeError) as e:
         logger.debug(f"Ignoring unusable feed cache {path}: {e}")
         return None
@@ -375,6 +419,7 @@ def _store_cached_feed(
     entries: list[FeedEntry],
     has_entries: bool | None,
     raw_digest: str,
+    noindex: bool,
 ) -> None:
     """Store a feed's parsed entries in the cache.
 
@@ -383,11 +428,13 @@ def _store_cached_feed(
         entries: The parsed entries.
         has_entries: Whether the feed had entries before filtering.
         raw_digest: Hash of the raw feed the entries were parsed from.
+        noindex: Whether the feed response asked not to be indexed.
     """
     payload = {
         "version": _FEED_CACHE_VERSION,
         "raw_sha256": raw_digest,
         "has_entries": has_entries,
+        "noindex": noindex,
         "entries": [
             {
                 "title": e.title,
@@ -597,9 +644,9 @@ def parse_feed_date(date_string: str) -> datetime | None:
 
         # Ensure timezone info
         if dt.tzinfo is None:
-            dt = dt.replace(tzinfo=timezone.utc)
+            dt = dt.replace(tzinfo=UTC)
         else:
-            dt = dt.astimezone(timezone.utc)
+            dt = dt.astimezone(UTC)
 
         return dt
 
@@ -902,40 +949,76 @@ def process_single_feed(
 
     Returns:
         Tuple of (entries list, failure_reason). failure_reason is None if successful.
+        The feed's effective noindex state is recorded on ``feed_info`` for
+        the search build; it is not applied to the rest of the site.
     """
     feed_title = feed_info.title
     feed_url = feed_info.xml_url
     home_url = feed_info.html_url
     entries_cache = _feed_cache_path(feed_url)
+    opml_noindex = feed_info.noindex
 
     if use_cache:
         cached = _load_cached_feed(entries_cache, None)
         if cached is not None:
-            entries, has_entries = cached
+            feed_info.noindex = opml_noindex or cached.noindex
             return _finish_feed(
-                feed_title, feed_url, home_url, entries, has_entries, cached=True
+                feed_title,
+                feed_url,
+                home_url,
+                cached.entries,
+                cached.has_entries,
+                cached=True,
             )
 
-    content = fetch_feed_content(feed_url)
+    fetched = _fetch_feed(feed_url)
+    content = fetched.content
+    header_noindex = fetched.noindex
+    # Record the live header before parsing: a feed that fails to parse can
+    # still have archive-attributed entries, and those must stay out of
+    # search when the feed asked not to be indexed.
+    feed_info.noindex = opml_noindex or header_noindex
     if not content:
         # The feed could not be fetched: fall back to the cached copy when
         # the caller asked for it.
         cached = _load_cached_feed(entries_cache, None) if cache_fallback else None
         if cached is None:
             return [], FailureReason.ERROR
-        entries, has_entries = cached
+        feed_info.noindex = feed_info.noindex or cached.noindex
         logger.warning(f"Feed {feed_title} could not be fetched, using the cached copy")
         return _finish_feed(
-            feed_title, feed_url, home_url, entries, has_entries, cached=True
+            feed_title,
+            feed_url,
+            home_url,
+            cached.entries,
+            cached.has_entries,
+            cached=True,
         )
 
     # The raw feed changed? Only then is it worth parsing it again.
     raw_digest = hashlib.sha256(content.encode("utf-8", "replace")).hexdigest()
     cached = _load_cached_feed(entries_cache, raw_digest)
     if cached is not None:  # fetched feed is already cached
-        entries, has_entries = cached
+        if cached.noindex != header_noindex:
+            # The raw bytes are unchanged but the response header is not, so
+            # keep a later --cache build from reading the old value.
+            try:
+                _store_cached_feed(
+                    entries_cache,
+                    cached.entries,
+                    cached.has_entries,
+                    raw_digest,
+                    header_noindex,
+                )
+            except Exception as e:
+                logger.warning(f"Could not update the feed cache for {feed_title}: {e}")
         return _finish_feed(
-            feed_title, feed_url, home_url, entries, has_entries, cached=True
+            feed_title,
+            feed_url,
+            home_url,
+            cached.entries,
+            cached.has_entries,
+            cached=True,
         )
 
     entries, has_entries = parse_feed(feed_title, feed_url, content)
@@ -943,7 +1026,9 @@ def process_single_feed(
     # are not read back with the feed's own address.
     _apply_feed_fields(entries, feed_title, feed_url, home_url)
     try:
-        _store_cached_feed(entries_cache, entries, has_entries, raw_digest)
+        _store_cached_feed(
+            entries_cache, entries, has_entries, raw_digest, header_noindex
+        )
     except Exception as e:
         # A cache that cannot be written must not cost us the feed.
         logger.warning(f"Could not cache the entries of {feed_title}: {e}")
@@ -976,9 +1061,7 @@ def _finish_feed(
     # Entries that are still too recent are dropped here, not at parse
     # time: the parsed entries are cached, so the cutoff has to be applied
     # against the current time on every build.
-    cutoff = datetime.now(timezone.utc) - timedelta(
-        hours=config.MIN_FEED_ENTRY_AGE_HOURS
-    )
+    cutoff = datetime.now(UTC) - timedelta(hours=config.MIN_FEED_ENTRY_AGE_HOURS)
     entries = [entry for entry in entries if entry.published <= cutoff]
     # The cap is applied here as well, so that it keeps the newest entries
     # of the ones that survived the age filter.
@@ -1120,7 +1203,7 @@ def process_archive_feed(
             by_domain.setdefault(host, member)
     by_title = {member.title.strip().lower(): member for member in member_feeds}
 
-    early_cutoff_time = datetime.now(timezone.utc) - timedelta(
+    early_cutoff_time = datetime.now(UTC) - timedelta(
         hours=config.MIN_FEED_ENTRY_AGE_HOURS
     )
 

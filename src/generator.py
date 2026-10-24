@@ -390,8 +390,14 @@ def generate_website(
     def _(_target: str):
         """Generate the /search/ full-text search page."""
         build.need("feeds")
+        noindex_feed_urls = {feed.xml_url for feed in cache.feeds if feed.noindex}
         cache.search_page_built = (
-            generate_search_page(cache.entries, output_dir) is not None
+            generate_search_page(
+                cache.entries,
+                output_dir,
+                excluded_feed_urls=noindex_feed_urls,
+            )
+            is not None
         )
 
     @build.rule("parsed_opml")
