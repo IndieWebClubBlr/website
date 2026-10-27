@@ -6,8 +6,8 @@ to a wasm engine that /search/ loads in the browser.
 
 The whole feature is optional: when the search toolchain (the tinysearch
 binary plus cargo with the wasm32-unknown-unknown target) is not installed,
-the toolchain is missing, the build skips the search page instead of
-failing, so the rest of the site can be worked on without it.
+the build still writes /search/ as a page that says search is unavailable,
+so every link to it keeps working while the rest of the site builds.
 
 Fetched pages are cleaned up with readability (Mozilla's article extraction
 algorithm) so that navigation, sidebars and comment sections do not end up
@@ -1351,14 +1351,14 @@ def generate_search_page(
     entries: list[FeedEntry],
     output_dir: Path,
     excluded_feed_urls: Collection[str] = (),
-) -> str | None:
+) -> str:
     """Build the search index and write the /search/ page.
 
     This is the entry point the site generator uses: it resolves the post
     bodies, compiles the tinysearch engine and renders the page. The search
-    feature is optional — without the toolchain the page is skipped and the
-    rest of the site is built as usual. Nothing that goes wrong here may
-    fail the build, so every error ends the search page and no more.
+    feature is optional — without the toolchain, or when the engine cannot
+    be built, a fallback page is written instead. Nothing that goes wrong
+    here may fail the build, so every error ends the search page and no more.
 
     Args:
         entries: The corpus entries to index.
@@ -1367,14 +1367,35 @@ def generate_search_page(
             search index. They are still rendered everywhere else.
 
     Returns:
-        The URL of the page relative to the site root ("search/"), or None
-        when the page was skipped.
+        The URL of the page relative to the site root ("search/").
     """
     try:
-        return _build_search_page(entries, output_dir, excluded_feed_urls)
+        page_url = _build_search_page(entries, output_dir, excluded_feed_urls)
     except Exception as e:  # noqa: BLE001 - the search page is optional
-        logger.warning(f"Skipping the search page: {e}")
-        return None
+        logger.warning(f"Could not build the search page: {e}")
+        page_url = None
+
+    if page_url is None:
+        _render_unavailable_search_page(output_dir)
+        return "search/"
+    return page_url
+
+
+def _render_unavailable_search_page(output_dir: Path) -> None:
+    """Write /search/ when no search engine could be built.
+
+    Args:
+        output_dir: Site output directory.
+    """
+    content = make_renderer().render(
+        read_template("search.html"),
+        {"available": False},
+    )
+    render_and_save_html(
+        html_content=content,
+        page_url="search/",
+        output_dir=output_dir / "search",
+    )
 
 
 def _build_search_page(
@@ -1392,12 +1413,12 @@ def _build_search_page(
 
     Returns:
         The URL of the page relative to the site root ("search/"), or None
-        when the page was skipped.
+        when no engine could be built.
     """
     reason = _missing_toolchain()
     if reason:
         logger.warning(
-            f"Skipping the search page: {reason}. "
+            f"Search is unavailable: {reason}. Rendering an empty search page. "
             "See the README for how to install the search toolchain."
         )
         return None
@@ -1461,13 +1482,14 @@ def _build_search_page(
     except RuntimeError as e:
         # The search page is optional: a failed engine build must not take
         # the rest of the site down with it.
-        logger.warning(f"Skipping the search page: {e}")
+        logger.warning(f"Search engine build failed: {e}")
         return None
 
     content = make_renderer().render(
         read_template("search.html"),
         {
             "site_url": config.SITE_URL,
+            "available": True,
             "wasm_file": artifact.wasm_filename,
             "ref": config.SITE_DOMAIN,
             "spelling_map_json": json.dumps(

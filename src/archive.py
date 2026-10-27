@@ -161,7 +161,6 @@ def generate_archive_index(
     entries: list[FeedEntry],
     years: list[int],
     output_dir: Path,
-    has_search: bool = False,
 ):
     """Generate the archive index page listing all years.
 
@@ -169,7 +168,6 @@ def generate_archive_index(
         entries: All feed entries to include in the archive.
         years: Sorted list of years to show links for.
         output_dir: Directory where the archive/ page should be written.
-        has_search: Whether the /search/ page is part of this build.
     """
     if not entries:
         logger.info("No entries for archive, skipping")
@@ -204,7 +202,6 @@ def generate_archive_index(
                 "years": years_ctx,
                 "chart_svg": chart_svg,
                 "has_chart": bool(chart_svg),
-                "has_search": has_search,
             },
         ),
         page_url="archive/",

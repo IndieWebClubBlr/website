@@ -1,4 +1,6 @@
 <h1 id="search">Search</h1>
+{{^available}}<p>Search is unavailable in this build.</p>{{/available}}
+{{#available}}
 <p>Full-text search over all member posts. You can also <a href="/archive/">browse the archive</a>.</p>
 
 <div id="search-page" data-wasm="/{{{wasm_file}}}" data-ref="{{ref}}">
@@ -10,3 +12,4 @@
 <script>window.SPELLING_MAP = {{{spelling_map_json}}};</script>
 <script src="/stemmer.js"></script>
 <script src="/search.js" async></script>
+{{/available}}

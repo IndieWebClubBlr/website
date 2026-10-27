@@ -27,9 +27,10 @@ same tools yourself.
   - optionally [binaryen](https://github.com/WebAssembly/binaryen) for `wasm-opt`
     (it only makes the compiled search engine smaller; the build works without it)
 
-The search toolchain is **optional**: without it the build still succeeds, it
-just skips the `/search/` page (and the link to it on the homepage). That way
-you can work on the rest of the site without installing a Rust toolchain.
+The search toolchain is **optional**: without it the build still succeeds, and
+`/search/` is kept as a page with a fallback message. Links to it are always
+present. That way you can work on the rest of the site without installing a
+Rust toolchain.
 
 ### Option A: with nix (recommended)
 

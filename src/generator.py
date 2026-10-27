@@ -106,7 +106,6 @@ def generate_homepage(
     events: list[Event],
     failed_feeds: list[FailedFeedInfo],
     output_dir: Path,
-    has_search: bool = False,
 ):
     """
     Generate homepage from feed entries using Mustache templating.
@@ -119,7 +118,6 @@ def generate_homepage(
         events: List of Event objects to include.
         failed_feeds: List of FailedFeedInfo objects for failed feeds.
         output_dir: Path where homepage file should be written.
-        has_search: Whether the /search/ page is part of this build.
     """
     logger.info(
         f"Generating the homepage with {len(weeknote_entries) + len(other_entries)} entries, {len(on_this_day_entries)} on this day entries, {len(events)} events, and {len(failed_feeds)} failed feeds"
@@ -191,7 +189,6 @@ def generate_homepage(
         "has_on_this_day": len(shown_on_this_day) > 0,
         "failed_feeds": failed_feeds,
         "has_failed_feeds": len(failed_feeds) != 0,
-        "has_search": has_search,
     }
 
     index_template = read_template("index.html")
@@ -264,7 +261,6 @@ class BuildCache:
     )
     webring_legacy: dict[str, FeedInfo] = field(default_factory=dict)
     data_pages: dict[str, TopicsPage | PromptsPage] = field(default_factory=dict)
-    search_page_built: bool = False
 
 
 def register_pages(
@@ -391,13 +387,10 @@ def generate_website(
         """Generate the /search/ full-text search page."""
         build.need("feeds")
         noindex_feed_urls = {feed.xml_url for feed in cache.feeds if feed.noindex}
-        cache.search_page_built = (
-            generate_search_page(
-                cache.entries,
-                output_dir,
-                excluded_feed_urls=noindex_feed_urls,
-            )
-            is not None
+        generate_search_page(
+            cache.entries,
+            output_dir,
+            excluded_feed_urls=noindex_feed_urls,
         )
 
     @build.rule("parsed_opml")
@@ -653,7 +646,7 @@ def generate_website(
     @build.rule("archive_index")
     def _(_target: str):
         """Generate the archive index page with the monthly bar chart."""
-        build.need("feeds", "search_page")
+        build.need("feeds")
         generate_archive_index(
             [
                 entry
@@ -662,7 +655,6 @@ def generate_website(
             ],
             get_archive_years(cache.entries_by_year),
             output_dir,
-            has_search=cache.search_page_built,
         )
 
     @build.rule("archive_year:*")
@@ -680,7 +672,7 @@ def generate_website(
     @build.rule("homepage")
     def _(_target: str):
         """Generate the homepage."""
-        build.need("feeds", "events", "search_page")
+        build.need("feeds", "events")
         generate_homepage(
             cache.entries,
             cache.weeknote_entries,
@@ -689,7 +681,6 @@ def generate_website(
             cache.events,
             cache.failed_feeds,
             output_dir,
-            has_search=cache.search_page_built,
         )
 
     @build.rule("sitemap")
