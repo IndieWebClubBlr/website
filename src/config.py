@@ -45,6 +45,12 @@ MAX_SHOWN_WEEK_NOTES = 10
 # Maximum number of random posts to show.
 MAX_SHOWN_RANDOM_POSTS = 5
 
+# Maximum number of upcoming events to preview on the homepage.
+MAX_SHOWN_HOMEPAGE_EVENTS = 2
+
+# Maximum number of posts to preview on the homepage.
+MAX_SHOWN_HOMEPAGE_POSTS = 5
+
 # Year from which the archive starts
 ARCHIVE_MIN_YEAR = 2025
 

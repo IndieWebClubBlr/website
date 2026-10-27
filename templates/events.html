@@ -1,0 +1,24 @@
+<section id="upcoming-events">
+  <h2>{{^has_upcoming_events}}No {{/has_upcoming_events}}Upcoming Events</h2>
+  {{^has_upcoming_events}}<p>We meet on the 1st and 3rd Saturdays of each month. Please check back later or subscribe for updates.</p>{{/has_upcoming_events}}
+  {{#upcoming_events}}
+  {{> event-card.html }}
+  {{/upcoming_events}}
+  <ul class="no-marker pointed-hand">
+    <li><a href="/topics/">See events topics.</a></li>
+    <li><a href="/prompts/">See writing prompts.</a></li>
+    <li><a href="/events.atom">Subscribe as a feed.</a></li>
+    <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
+    <li><a href="/events.ics">Download as a calendar.</a></li>
+  </ul>
+</section>
+
+<section id="previous-events">
+  <h2>Previous Events</h2>
+  {{#previous_events}}
+  <div class="event" id="event-{{{id}}}">
+    <h3><a href="{{underline_url}}" target="_blank">{{title}}</a></h3>
+    <div class="start-time"><time datetime="{{start_at_machine}}">{{start_at_human}}</time></div>
+  </div>
+  {{/previous_events}}
+</section>

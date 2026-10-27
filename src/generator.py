@@ -20,7 +20,7 @@ import random
 import shutil
 import sys
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -50,6 +50,8 @@ from src.events import (
     fetch_events,
     generate_events_calendar,
     generate_events_feed,
+    generate_events_page,
+    split_events,
 )
 from src.feeds import (
     BLOGROLL_FEED_FILE,
@@ -98,69 +100,46 @@ ASSETS = [
 ]
 
 
-def generate_homepage(
-    all_entries: list[FeedEntry],
-    weeknote_entries: list[FeedEntry],
-    other_entries: list[FeedEntry],
-    on_this_day_entries: list[FeedEntry],
-    events: list[Event],
-    failed_feeds: list[FailedFeedInfo],
-    output_dir: Path,
-):
-    """
-    Generate homepage from feed entries using Mustache templating.
+def _writing_ctx(
+    entry: FeedEntry,
+    current_year: int | None = None,
+    anchor_prefix: str = "post",
+) -> dict[str, str | bool]:
+    """Build a post-card context for a feed entry.
 
     Args:
-        all_entries: List of all FeedEntry objects fetched from feeds.
-        weeknote_entries: List of FeedEntry objects to include, which are week notes.
-        other_entries: List of FeedEntry objects to include, which are not week notes.
-        on_this_day_entries: List of FeedEntry objects from same day in previous years.
-        events: List of Event objects to include.
-        failed_feeds: List of FailedFeedInfo objects for failed feeds.
-        output_dir: Path where homepage file should be written.
+        entry: Entry to build context for.
+        current_year: Current year, to add the "N years ago" badge.
+        anchor_prefix: HTML anchor prefix, "post" or "wn".
+
+    Returns:
+        Entry context with anchor_id and years_text keys added.
     """
-    logger.info(
-        f"Generating the homepage with {len(weeknote_entries) + len(other_entries)} entries, {len(on_this_day_entries)} on this day entries, {len(events)} events, and {len(failed_feeds)} failed feeds"
-    )
-
-    now = datetime.now(timezone.utc)
-    previous_events = [event for event in events if event.start_at <= now]
-    upcoming_events = [event for event in events if event.start_at > now]
-    upcoming_events.reverse()
-
-    current_year = datetime.now(config.EVENTS_TZ).year
-
-    def past_entry_ctx(entry: FeedEntry) -> dict[str, str | bool]:
-        """Build entry context with extra "N years ago" fields for on-this-day.
-
-        Args:
-            entry: Entry from a previous year.
-
-        Returns:
-            Entry context with years_ago and years_text keys added.
-        """
-        ctx = entry_ctx(entry)
+    ctx = entry_ctx(entry)
+    ctx["anchor_id"] = f"{anchor_prefix}-{ctx['entry_id']}"
+    if current_year is None:
+        ctx["years_text"] = ""
+    else:
         years_ago = current_year - entry.published.year
-        ctx.update(
-            {
-                "years_ago": f"{years_ago}",
-                "years_text": (
-                    f"{years_ago} year" if years_ago == 1 else f"{years_ago} years"
-                ),
-            }
+        ctx["years_text"] = (
+            f"{years_ago} year" if years_ago == 1 else f"{years_ago} years"
         )
-        return ctx
+    return ctx
 
-    # Prepare template data
-    shown_entries = group_feed_entries(other_entries)[: config.MAX_SHOWN_POSTS]
-    shown_weeknotes = group_feed_entries(weeknote_entries)[
-        : config.MAX_SHOWN_WEEK_NOTES
-    ]
-    shown_on_this_day = on_this_day_entries
 
-    all_shown = shown_entries + shown_weeknotes + shown_on_this_day
-    shown_links = {e.link for e in all_shown}
+def _random_posts(
+    all_entries: list[FeedEntry], shown_entries: list[FeedEntry]
+) -> list[FeedEntry]:
+    """Pick at most MAX_SHOWN_RANDOM_POSTS posts from feeds not shown yet.
 
+    Args:
+        all_entries: All fetched entries.
+        shown_entries: Entries already displayed on the page.
+
+    Returns:
+        One random entry per feed, up to the configured limit.
+    """
+    shown_links = {e.link for e in shown_entries}
     available_for_random = [e for e in all_entries if e.link not in shown_links]
 
     feeds_seen: set[str] = set()
@@ -173,22 +152,34 @@ def generate_homepage(
             if len(unique_feed_posts) >= config.MAX_SHOWN_RANDOM_POSTS:
                 break
 
-    random_posts = unique_feed_posts
+    return unique_feed_posts
+
+
+def generate_homepage(
+    all_entries: list[FeedEntry],
+    events: list[Event],
+    output_dir: Path,
+):
+    """Generate the homepage with previews of events and writings.
+
+    Args:
+        all_entries: List of all FeedEntry objects fetched from feeds.
+        events: List of Event objects to preview.
+        output_dir: Path where homepage file should be written.
+    """
+    logger.info(
+        f"Generating the homepage with {len(events)} events and {len(all_entries)} entries"
+    )
+
+    upcoming_events, _ = split_events(events)
+    shown_events = upcoming_events[: config.MAX_SHOWN_HOMEPAGE_EVENTS]
+    shown_entries = group_feed_entries(all_entries)[: config.MAX_SHOWN_HOMEPAGE_POSTS]
 
     template_data = {
         "site_url": config.SITE_URL,
-        "webcal_url": config.WEBCAL_URL,
-        "upcoming_events": upcoming_events,
-        "has_upcoming_events": len(upcoming_events) > 0,
-        "previous_events": previous_events[: config.MAX_SHOWN_EVENTS],
-        "entries": [entry_ctx(e) for e in shown_entries],
-        "week_notes": [entry_ctx(e) for e in shown_weeknotes],
-        "random_posts": [entry_ctx(e) for e in random_posts],
-        "has_random_posts": len(random_posts) > 0,
-        "on_this_day": [past_entry_ctx(e) for e in shown_on_this_day],
-        "has_on_this_day": len(shown_on_this_day) > 0,
-        "failed_feeds": failed_feeds,
-        "has_failed_feeds": len(failed_feeds) != 0,
+        "upcoming_events": shown_events,
+        "has_upcoming_events": len(shown_events) > 0,
+        "entries": [_writing_ctx(e) for e in shown_entries],
     }
 
     index_template = read_template("index.html")
@@ -203,6 +194,55 @@ def generate_homepage(
     except Exception as e:
         logger.error(f"Failed to generate the homepage: {e}")
         raise
+
+
+def generate_writings_page(
+    all_entries: list[FeedEntry],
+    weeknote_entries: list[FeedEntry],
+    other_entries: list[FeedEntry],
+    on_this_day_entries: list[FeedEntry],
+    output_dir: Path,
+):
+    """Generate the /writings/ page from member feed entries.
+
+    Args:
+        all_entries: List of all FeedEntry objects fetched from feeds.
+        weeknote_entries: Entries that are week notes.
+        other_entries: Entries that are not week notes.
+        on_this_day_entries: Entries from the same day in previous years.
+        output_dir: Directory where the writings/ page should be written.
+    """
+    logger.info(
+        f"Generating the writings page with {len(weeknote_entries) + len(other_entries)} entries and {len(on_this_day_entries)} on this day entries"
+    )
+
+    current_year = datetime.now(config.EVENTS_TZ).year
+    shown_entries = group_feed_entries(other_entries)[: config.MAX_SHOWN_POSTS]
+    shown_weeknotes = group_feed_entries(weeknote_entries)[
+        : config.MAX_SHOWN_WEEK_NOTES
+    ]
+    random_posts = _random_posts(
+        all_entries, shown_entries + shown_weeknotes + on_this_day_entries
+    )
+
+    template_data = {
+        "site_url": config.SITE_URL,
+        "entries": [_writing_ctx(e) for e in shown_entries],
+        "week_notes": [_writing_ctx(e, anchor_prefix="wn") for e in shown_weeknotes],
+        "random_posts": [_writing_ctx(e) for e in random_posts],
+        "has_random_posts": len(random_posts) > 0,
+        "on_this_day": [
+            _writing_ctx(e, current_year=current_year) for e in on_this_day_entries
+        ],
+        "has_on_this_day": len(on_this_day_entries) > 0,
+    }
+
+    renderer = make_renderer()
+    render_and_save_html(
+        html_content=renderer.render(read_template("writings.html"), template_data),
+        page_url="writings/",
+        output_dir=output_dir / "writings",
+    )
 
 
 def get_feeds_with_entries(
@@ -387,7 +427,7 @@ def generate_website(
         """Generate the /search/ full-text search page."""
         build.need("feeds")
         noindex_feed_urls = {feed.xml_url for feed in cache.feeds if feed.noindex}
-        generate_search_page(
+        _ = generate_search_page(
             cache.entries,
             output_dir,
             excluded_feed_urls=noindex_feed_urls,
@@ -444,6 +484,12 @@ def generate_website(
         """Generate the events iCalendar file."""
         build.need("events")
         generate_events_calendar(cache.events, output_dir)
+
+    @build.rule("events_page")
+    def _(_target: str):
+        """Generate the /events/ page."""
+        build.need("events")
+        generate_events_page(cache.events, output_dir)
 
     @build.rule("topics_feed")
     def _(_target: str):
@@ -673,13 +719,17 @@ def generate_website(
     def _(_target: str):
         """Generate the homepage."""
         build.need("feeds", "events")
-        generate_homepage(
+        generate_homepage(cache.entries, cache.events, output_dir)
+
+    @build.rule("writings_page")
+    def _(_target: str):
+        """Generate the /writings/ page."""
+        build.need("feeds")
+        generate_writings_page(
             cache.entries,
             cache.weeknote_entries,
             cache.other_entries,
             cache.on_this_day_entries,
-            cache.events,
-            cache.failed_feeds,
             output_dir,
         )
 
@@ -694,6 +744,8 @@ def generate_website(
             "newsletter",
             "archive",
             "homepage",
+            "events_page",
+            "writings_page",
             *page_targets,
         )
 
@@ -729,6 +781,8 @@ def generate_website(
             "newsletter",
             "archive",
             "homepage",
+            "events_page",
+            "writings_page",
             "sitemap",
             *[f"asset:{asset}" for asset in ASSETS],
             *page_targets,

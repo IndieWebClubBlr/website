@@ -5,7 +5,9 @@ This repository contains the source code for the [IndieWebClub Bangalore website
 ## Features
 
 - Event feed and calendar
-- Homepage blogroll and member feeds
+- Homepage with event and writing previews
+- Dedicated events and writings pages with top navigation
+- Blogroll and member posts on the writings page
 - Member directory
 - Webring
 - Full-text search over every post (runs in the browser, no server)
@@ -28,9 +30,9 @@ same tools yourself.
     (it only makes the compiled search engine smaller; the build works without it)
 
 The search toolchain is **optional**: without it the build still succeeds, and
-`/search/` is kept as a page with a fallback message. Links to it are always
-present. That way you can work on the rest of the site without installing a
-Rust toolchain.
+`/search/` is kept as a page that says search is unavailable, so the top
+navigation, writings page, and archive links always work. That way you can work
+on the rest of the site without installing a Rust toolchain.
 
 ### Option A: with nix (recommended)
 
@@ -77,7 +79,8 @@ make check-tools
 The `/search/` page is a [tinysearch](https://github.com/tinysearch/tinysearch)
 engine compiled to WebAssembly. Compiling it needs a Rust toolchain with the
 `wasm32-unknown-unknown` target and the `tinysearch` CLI. It is optional: when
-the tools are missing, the build logs a warning and skips the search page.
+the tools are missing, the build logs a warning and renders `/search/` without
+the search UI, so the link still resolves.
 
 Without nix:
 
@@ -104,7 +107,8 @@ sudo apt-get install binaryen # Debian/Ubuntu
 
 `make check-tools` verifies that `tinysearch`, `cargo` and the wasm32 standard
 library are present and prints what to do if they are not. The check is
-optional too — it only tells you whether the `/search/` page will be built.
+optional too — it only tells you whether the `/search/` page will have a
+working engine.
 
 The engine is compiled only when the indexed corpus, the index schema, or the
 availability of `wasm-opt` changes. It is cached in `.cache/search_engines/`,
@@ -140,7 +144,7 @@ The build:
 4.  **Fetches newsletter archive** from an RSS feed.
 5.  **Resolves search bodies**: the post text of every entry, taken from the feed's own content when it is long enough and otherwise fetched from the post's permalink (cached in `.cache/search/`).
 6.  **Compiles the search engine** with tinysearch into a WebAssembly module, and writes the documents corpus it was built from (`.cache/search_docs/`).
-7.  **Generates pages**: homepage with events, weeknotes, recent posts, on-this-day entries, and random posts; Markdown pages, member directory, archive index and per-year archive with JS search, webring tool page, newsletter page, full-text search page.
+7.  **Generates pages**: homepage with event and writing previews; events page (upcoming and previous); writings page (recent posts, weeknotes, on-this-day, random posts); Markdown pages, member directory, archive index and per-year archive with JS search, webring tool page, newsletter page, full-text search page.
 8.  **Generates feeds and calendar**: Atom feeds for blogroll, weeknotes, events, topics and prompts; iCalendar file for events.
 9.  **Generates webring**: A circular ring of member websites with per-slug redirect pages.
 10. **Generates sitemap.xml** from all `index.html` files in `_site/`.
@@ -227,7 +231,9 @@ answers differently for the two lookups (DNS rebinding) is not covered.
 
 The project's behavior can be customized through the `src/config.py` file. This file includes settings for request timeouts, content length limits, feed and calendar file names, search body limits, and more. Some of the key options you might want to modify are:
 
--   `MAX_SHOWN_POSTS_PER_FEED`: The number of posts to display per blog on the homepage.
+-   `MAX_SHOWN_POSTS_PER_FEED`: The number of posts to display per blog in the writings lists and homepage preview.
+-   `MAX_SHOWN_HOMEPAGE_EVENTS`: The number of upcoming events to preview on the homepage (default 2).
+-   `MAX_SHOWN_HOMEPAGE_POSTS`: The number of posts to preview on the homepage (default 5).
 -   `MIN_FEED_ENTRY_AGE_HOURS`: Entries younger than this many hours are skipped (default 2).
 -   `MAX_FEED_ENTRIES`: Maximum number of entries parsed from each feed (default 1,000).
 -   `SEARCH_BODY_MAX_CHARS`: How much of each post is indexed (default 25,000 characters).
@@ -274,8 +280,12 @@ A brief overview of the project's file structure:
 │   ├── ssrf.py                # SSRF guard for outbound requests
 │   └── utils.py               # Templating, HTTP sessions, ref params
 ├── templates/                 # Pystache templates
-│   ├── default.html           # Site layout wrapper
+│   ├── default.html           # Site layout wrapper with top navigation
 │   ├── index.html             # Homepage
+│   ├── events.html            # Events page
+│   ├── writings.html          # Writings page
+│   ├── event-card.html        # Shared event card partial
+│   ├── post-card.html         # Shared post card partial
 │   ├── members.html           # Member directory
 │   ├── search.html            # Full-text search page
 │   ├── topics.html            # Topics data page

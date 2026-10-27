@@ -1,0 +1,45 @@
+<section id="recent-posts">
+  <h2>Recent Posts</h2>
+  <ul class="no-marker pointed-hand">
+    <li><a href="/blogroll.atom">Subscribe as a feed with only links.</a></li>
+    <li><a href="/blogroll-latest.atom">Subscribe as a feed with content.</a></li>
+    <li><a href="https://indiewebclubblr.github.io/blogroll-replay/feed.atom">Subscribe as a replay feed.</a></li>
+    <li><a href="/newsletter/">Subscribe as a newsletter.</a></li>
+    <li><a href="/blogroll.opml">Download as an OPML file.</a></li>
+    <li><a href="/archive/">Browse the archive.</a></li>
+    <li><a href="/search/">Search all posts.</a></li>
+    <li><a href="/members/">See the member directory</a>.</li>
+  </ul>
+  {{#entries}}
+  {{> post-card.html }}
+  {{/entries}}
+  {{> nl-form.html }}
+</section>
+
+<section id="week-notes">
+  <h2>Day/Week/Month Notes</h2>
+  <ul class="no-marker pointed-hand">
+    <li><a href="/blogroll-weeknotes.atom">Subscribe as a feed.</a></li>
+  </ul>
+  {{#week_notes}}
+  {{> post-card.html }}
+  {{/week_notes}}
+</section>
+
+{{#has_on_this_day}}
+<section id="on-this-day">
+  <h2>On This Day in Previous Years</h2>
+  {{#on_this_day}}
+  {{> post-card.html }}
+  {{/on_this_day}}
+</section>
+{{/has_on_this_day}}
+
+{{#has_random_posts}}
+<section id="random-posts">
+  <h2>Some Random Posts</h2>
+  {{#random_posts}}
+  {{> post-card.html }}
+  {{/random_posts}}
+</section>
+{{/has_random_posts}}

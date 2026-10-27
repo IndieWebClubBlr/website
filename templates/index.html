@@ -14,130 +14,20 @@
 </section>
 
 <section id="upcoming-events">
-  <h2>{{^has_upcoming_events}}No {{/has_upcoming_events}}Upcoming Events</h2>
+  <h2>Upcoming Events</h2>
   {{^has_upcoming_events}}<p>We meet on the 1st and 3rd Saturdays of each month. Please check back later or subscribe for updates.</p>{{/has_upcoming_events}}
   {{#upcoming_events}}
-  <div class="h-event h-entry">
-    <div class="event" id="event-{{{id}}}">
-      <h3><a href="{{underline_url}}" target="_blank" class="u-uid u-url p-name">{{title}}</a></h3>
-      <ul class="no-marker pointed-hand">
-        <li class="start-time">On: <time class="dt-start" datetime="{{start_at_machine}}">{{start_at_human}}</time></li>
-        <li class="end-time">Till: <time class="dt-end" datetime="{{end_at_machine}}">{{end_at_human}}</time></li>
-        <li class="location">At: <a class="p-location" href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA">Underline Center</a></li>
-        {{#district_url}}
-        <li class="buy-link"><a href="{{district_url}}">BUY TICKETS!</a></li>
-        {{/district_url}}
-        {{^district_url}}
-        <li>Tickets available soon</li>
-        {{/district_url}}
-      </ul>
-    </div>
-    {{#summary}}<section class="description e-content">{{{summary}}}</section>{{/summary}}
-    <time class="dt-published" datetime="{{created_at_machine}}" hidden>{{created_at_human}}</time>
-    <a class="u-bridgy-fed" href="https://fed.brid.gy/" hidden="from-humans"></a>
-    <hr>
-  </div>
+  {{> event-card.html }}
   {{/upcoming_events}}
-  <ul class="no-marker pointed-hand">
-    <li><a href="#previous-events">See previous events.</a></li>
-    <li><a href="/topics/">See events topics.</a></li>
-    <li><a href="/prompts/">See writing prompts.</a></li>
-    <li><a href="/events.atom">Subscribe as a feed.</a></li>
-    <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
-    <li><a href="/events.ics">Download as a calendar.</a></li>
-  </ul>
+  <p><a href="/events/">See all events.</a></p>
 </section>
 
 <section id="recent-posts">
-  <h2>Recent Posts by Members</h2>
-  <ul class="no-marker pointed-hand">
-    <li><a href="/blogroll.atom">Subscribe as a feed with only links.</a></li>
-    <li><a href="/blogroll-latest.atom">Subscribe as a feed with content.</a></li>
-    <li><a href="https://indiewebclubblr.github.io/blogroll-replay/feed.atom">Subscribe as a replay feed.</a></li>
-    <li><a href="/newsletter/">Subscribe as a newsletter.</a></li>
-    <li><a href="/blogroll.opml">Download as an OPML file.</a></li>
-    <li><a href="/archive/">Browse the archive.</a></li>
-    <li><a href="/search/">Search all posts.</a></li>
-    <li><a href="/members/">See the member directory</a>.</li>
-  </ul>
+  <h2>Recent Writings</h2>
   {{#entries}}
-  <article class="entry h-entry" id="post-{{entry_id}}">
-    <h3 class="p-name"><a class="u-url u-uid" href="{{link_utm}}" target="_blank">{{title}}</a></h3>
-    <ul class="meta no-marker">
-      <li class="title">by <a class="p-author h-card" href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
-      <li class="pub-time"><time class="dt-published" datetime="{{published_machine}}">{{published_human}}</time></li>
-    </ul>
-    {{#summary}}<p class="p-summary">{{summary}}</p>{{/summary}}
-  </article>
+  {{> post-card.html }}
   {{/entries}}
-  {{> nl-form.html }}
-</section>
-
-<section id="week-notes">
-  <h2>Day/Week/Month Notes by Members</h2>
-  <ul class="no-marker pointed-hand">
-    <li><a href="/blogroll-weeknotes.atom">Subscribe as a feed.</a></li>
-  </ul>
-  {{#week_notes}}
-  <article class="entry h-entry" id="wn-{{entry_id}}">
-    <h3 class="p-name"><a class="u-url u-uid" href="{{link_utm}}" target="_blank">{{title}}</a></h3>
-    <ul class="meta no-marker">
-      <li class="title">by <a class="p-author h-card" href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
-      <li class="pub-time"><time class="dt-published" datetime="{{published_machine}}">{{published_human}}</time></li>
-    </ul>
-    {{#summary}}<p class="p-summary">{{summary}}</p>{{/summary}}
-  </article>
-  {{/week_notes}}
-</section>
-
-{{#has_on_this_day}}
-<section id="on-this-day">
-  <h2>On This Day in Previous Years</h2>
-  {{#on_this_day}}
-  <article class="entry h-entry" id="post-{{entry_id}}">
-    <span class="year-badge">{{years_text}} ago</span>
-    <h3 class="p-name"><a class="u-url u-uid" href="{{link_utm}}" target="_blank">{{title}}</a></h3>
-    <ul class="meta no-marker">
-      <li class="title">by <a class="p-author h-card" href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
-      <li class="pub-time"><time class="dt-published" datetime="{{published_machine}}">{{published_human}}</time></li>
-    </ul>
-    {{#summary}}<p class="p-summary">{{summary}}</p>{{/summary}}
-  </article>
-  {{/on_this_day}}
-</section>
-{{/has_on_this_day}}
-
-{{#has_random_posts}}
-<section id="random-posts">
-  <h2>Some Random Posts</h2>
-  {{#random_posts}}
-  <article class="entry h-entry" id="post-{{entry_id}}">
-    <h3 class="p-name"><a class="u-url u-uid" href="{{link_utm}}" target="_blank">{{title}}</a></h3>
-    <ul class="meta no-marker">
-      <li class="title">by <a class="p-author h-card" href="{{feed_home_url_utm}}">{{feed_title}}</a></li>
-      <li class="pub-time"><time class="dt-published" datetime="{{published_machine}}">{{published_human}}</time></li>
-    </ul>
-    {{#summary}}<p class="p-summary">{{summary}}</p>{{/summary}}
-  </article>
-  {{/random_posts}}
-</section>
-{{/has_random_posts}}
-
-<section id="previous-events">
-  <h2>Previous Events</h2>
-  <ul class="no-marker pointed-hand">
-    <li><a href="#upcoming-events">See upcoming events.</a></li>
-    <li><a href="/topics/">See events topics.</a></li>
-    <li><a href="/events.atom">Subscribe as a feed.</a></li>
-    <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
-    <li><a href="/events.ics">Download as a calendar.</a></li>
-  </ul>
-  {{#previous_events}}
-  <div class="event" id="event-{{{id}}}">
-    <h3><a href="{{underline_url}}" target="_blank">{{title}}</a></h3>
-    <div class="start-time"><time datetime="{{start_at_machine}}">{{start_at_human}}</time></div>
-  </div>
-  {{/previous_events}}
+  <p><a href="/writings/">See all writings.</a></p>
 </section>
 
 <section>

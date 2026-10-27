@@ -172,6 +172,26 @@ header {
   color: white;
 }
 
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+}
+
 .entry,
 .event {
   background-color: var(--color-card-bg);

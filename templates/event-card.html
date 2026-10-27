@@ -1,0 +1,20 @@
+<div class="h-event h-entry">
+  <div class="event" id="event-{{{id}}}">
+    <h3><a href="{{underline_url}}" target="_blank" class="u-uid u-url p-name">{{title}}</a></h3>
+    <ul class="no-marker pointed-hand">
+      <li class="start-time">On: <time class="dt-start" datetime="{{start_at_machine}}">{{start_at_human}}</time></li>
+      <li class="end-time">Till: <time class="dt-end" datetime="{{end_at_machine}}">{{end_at_human}}</time></li>
+      <li class="location">At: <a class="p-location" href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA">Underline Center</a></li>
+      {{#district_url}}
+      <li class="buy-link"><a href="{{district_url}}">BUY TICKETS!</a></li>
+      {{/district_url}}
+      {{^district_url}}
+      <li>Tickets available soon</li>
+      {{/district_url}}
+    </ul>
+  </div>
+  {{#summary}}<section class="description e-content">{{{summary}}}</section>{{/summary}}
+  <time class="dt-published" datetime="{{created_at_machine}}" hidden>{{created_at_human}}</time>
+  <a class="u-bridgy-fed" href="https://fed.brid.gy/" hidden="from-humans"></a>
+  <hr>
+</div>

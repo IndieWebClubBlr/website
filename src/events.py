@@ -17,7 +17,13 @@ from pydantic import BaseModel, ValidationError, field_validator
 
 from src import config
 from src import ssrf
-from src.utils import cache_path, write_file
+from src.utils import (
+    cache_path,
+    make_renderer,
+    read_template,
+    render_and_save_html,
+    write_file,
+)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
@@ -457,3 +463,45 @@ def generate_events_calendar(events: list[Event], output_dir: Path):
     write_file(output_path, cal.to_ical())
 
     logger.info(f"Events calendar written to: {output_path}")
+
+
+def split_events(events: list[Event]) -> tuple[list[Event], list[Event]]:
+    """Split events into upcoming and previous lists.
+
+    Args:
+        events: Events sorted newest first.
+
+    Returns:
+        A tuple of (upcoming, previous): upcoming events in chronological
+        order, previous events in reverse-chronological order.
+    """
+    now = datetime.now(timezone.utc)
+    previous_events = [event for event in events if event.start_at <= now]
+    upcoming_events = [event for event in events if event.start_at > now]
+    upcoming_events.reverse()
+    return upcoming_events, previous_events
+
+
+def generate_events_page(events: list[Event], output_dir: Path):
+    """Generate the /events/ page with upcoming and previous events.
+
+    Args:
+        events: A list of Event objects to include on the page.
+        output_dir: Directory where the events/ page should be written.
+    """
+    logger.info(f"Generating the events page with {len(events)} events")
+
+    upcoming_events, previous_events = split_events(events)
+    template_data = {
+        "webcal_url": config.WEBCAL_URL,
+        "upcoming_events": upcoming_events,
+        "has_upcoming_events": len(upcoming_events) > 0,
+        "previous_events": previous_events,
+    }
+
+    renderer = make_renderer()
+    render_and_save_html(
+        html_content=renderer.render(read_template("events.html"), template_data),
+        page_url="events/",
+        output_dir=output_dir / "events",
+    )
