@@ -105,7 +105,7 @@ main {
 
 a {
   text-decoration-style: solid;
-  text-decoration-thickness: 0.8px;
+  text-decoration-thickness: 0.06lh;
   text-underline-offset: 0.2em;
 }
 
@@ -185,11 +185,12 @@ header {
 .site-nav a {
   color: white;
   font-weight: bold;
-  text-decoration: none;
+  text-decoration-line: none;
 }
 
 .site-nav a:hover {
-  text-decoration: underline;
+  text-decoration-line: underline;
+  text-decoration-style: double;
 }
 
 .entry,
@@ -718,7 +719,7 @@ form.newsletter-form input[type="submit"],
 
 .feed-link {
   float: right;
-  top: 1.5rem;
+  top: 0.8rem;
   position: relative;
 }
 
