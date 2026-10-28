@@ -1,10 +1,10 @@
-# Code of Conduct
+## Code of Conduct
 
 **IndieWebClub Bangalore** (IWCB) is committed to providing a friendly, safe and welcoming environment for all, regardless of level of expertise, gender, gender identity and expression, sexual orientation, disability, personal appearance, body size, race, ethnicity, age, religion, nationality, or other similar characteristic.
 
 This code of conduct outlines our expectations for all those who participate in our community, as well as the consequences for unacceptable behavior.
 
-## Expected Behavior
+### Expected Behavior
 
 The following behaviors are expected and requested of all community members:
 
@@ -16,7 +16,7 @@ The following behaviors are expected and requested of all community members:
 * Respect that people have differences of opinion and that every individual has a different skill level, personal preferences, and interests.
 * Community members are also expected to respect the property of other members.
 
-## Unacceptable Behavior
+### Unacceptable Behavior
 
 The following behaviors are considered harassment and are unacceptable within our community:
 
@@ -36,7 +36,7 @@ The following behaviors are considered harassment and are unacceptable within ou
 * Likewise, any spamming, trolling, flaming, baiting, or other attention-stealing behaviour is not welcome.
 * Advocating for or encouraging any of the above behavior.
 
-## Consequences of Unacceptable Behavior
+### Consequences of Unacceptable Behavior
 
 Unacceptable behavior from any community member, including moderators and those with decision-making authority, will not be tolerated.
 
@@ -50,7 +50,7 @@ If a community member engages in unacceptable behavior, the moderators may take 
 * A temporary or permanent ban from the location/venue.
 * Reporting to law enforcement or other appropriate authority.
 
-## Reporting Guidelines
+### Reporting Guidelines
 
 These are the policies for upholding our community's standards of conduct.
 

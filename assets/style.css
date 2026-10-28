@@ -3,6 +3,7 @@
   --color-text: #2856a8;
   --color-link: blueviolet;
   --color-card-bg: azure;
+  --color-border: #557d18;
   --color-border-accent: #3aa88f;
   --color-hr: #c4a67a;
   --color-error: red;
@@ -14,6 +15,7 @@
     --color-text: white;
     --color-link: yellow;
     --color-card-bg: #f0f0f010;
+    --color-border: #82be29;
     --color-border-accent: aquamarine;
     --color-hr: bisque;
     --color-error: #faa;
@@ -36,8 +38,7 @@ html {
   }
 }
 
-body,
-h3 {
+body {
   margin: 0;
 }
 
@@ -51,6 +52,7 @@ h2 {
 }
 
 h3 {
+  margin-block: 0.3em;
   font-size: 1.2rem;
 }
 
@@ -71,28 +73,30 @@ a {
   color: var(--color-link);
 }
 
-header,
-main,
-footer {
+body > header,
+body > main,
+body > footer {
   min-width: 20rem;
   margin-inline: auto;
   padding-inline: 1rem;
 }
 
-header,
-footer {
+body > header,
+body > footer {
   text-align: center;
 }
 
-header {
+body > header {
   background-color: #486fb5;
 }
 
-footer {
+body > footer {
   font-size: smaller;
+  border-top: 1px solid var(--color-border);
+  padding-block: 0.75rem;
 }
 
-header h1 {
+body > header h1 {
   margin: 0;
 }
 
@@ -193,6 +197,12 @@ header {
   text-decoration-style: double;
 }
 
+@media screen and (max-width: 430px) {
+  .site-nav {
+    margin-top: 2rem;
+  }
+}
+
 .entry,
 .event {
   background-color: var(--color-card-bg);
@@ -200,6 +210,11 @@ header {
   margin-bottom: 1em;
   border: 0.1px solid var(--color-border-accent);
   border-radius: 0.8em;
+}
+
+.entry > h3,
+.event > h3 {
+  margin-top: 0;
 }
 
 @media screen and (max-width: 430px) {
@@ -582,7 +597,7 @@ pre { line-height: 125%; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
-  margin-top: 2rem;
+  margin-block: 2rem;
   clear: both;
 }
 
