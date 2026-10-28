@@ -252,7 +252,8 @@ A brief overview of the project's file structure:
 │   ├── search.js              # Full-text search page (loads the wasm engine)
 │   ├── spelling.json          # British→American spelling map for search
 │   ├── stemmer.js             # Porter stemmer for search queries (mirrors search.py)
-│   ├── style.css              # Styles
+│   ├── style.css              # Hand-written styles
+│   ├── codehilite.css         # Generated code-highlighting themes
 │   ├── favicon.svg
 │   ├── indiewebcamp-button.svg
 │   ├── preview.png

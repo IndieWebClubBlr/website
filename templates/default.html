@@ -32,6 +32,7 @@
   <link rel="alternate" type="application/atom+xml" title="Topics" href="{{{site_url}}}topics.atom">
   <link rel="alternate" type="application/atom+xml" title="Writing Prompts" href="{{{site_url}}}prompts.atom">
   <link rel="stylesheet" href="/style.css">
+  {{#has_codehilite}}<link rel="stylesheet" href="/codehilite.css">{{/has_codehilite}}
   <script defer data-domain="blr.indiewebclub.org" src="https://stati.stic.earth/js/script.file-downloads.outbound-links.js"></script>
 </head>
 
@@ -53,7 +54,7 @@
   </main>
 
   <footer>
-    <div><a href="https://indieweb.org/"><img src="{{{site_url}}}indiewebcamp-button.svg" style="image-rendering:pixelated;"></a></div>
+    <div><a href="https://indieweb.org/"><img src="{{{site_url}}}indiewebcamp-button.svg" class="pixelated"></a></div>
     <div>Last generated at: <time datetime="{{generated_date}}">{{generated_date}}</time></div>
     <div><a href="https://github.com/IndieWebClubBlr/website/">Source</a></div>
   </footer>

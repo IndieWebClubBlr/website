@@ -176,7 +176,23 @@ def make_renderer():
     )
 
 
-def render_and_save_html(html_content: str, page_url: str, output_dir: Path):
+def has_codehilite_class(html_content: str) -> bool:
+    """Return whether the HTML contains a ``codehilite`` class."""
+    return bool(
+        re.search(
+            r'class\s*=\s*["\'][^"\']*(?<![\w-])codehilite(?![\w-])[^"\']*["\']',
+            html_content,
+        )
+    )
+
+
+def render_and_save_html(
+    html_content: str,
+    page_url: str,
+    output_dir: Path,
+    *,
+    has_codehilite: bool | None = None,
+):
     """
     Render HTML content with default template and save to file.
 
@@ -184,9 +200,13 @@ def render_and_save_html(html_content: str, page_url: str, output_dir: Path):
         html_content: The HTML content to render.
         page_url: The relative URL of the page without the initial slash.
         output_dir: Path where HTML file should be written.
+        has_codehilite: Whether the page needs codehilite.css. Detected from
+            html_content when omitted.
     """
     try:
         now = datetime.now(timezone.utc)
+        if has_codehilite is None:
+            has_codehilite = has_codehilite_class(html_content)
         template_data = {
             "site_url": config.SITE_URL,
             "page_url": f"{config.SITE_URL}{page_url}",
@@ -194,6 +214,7 @@ def render_and_save_html(html_content: str, page_url: str, output_dir: Path):
                 "%d %b %Y, %I:%M %p IST"
             ),
             "content": html_content,
+            "has_codehilite": has_codehilite,
         }
         default_template = read_template("default.html")
         renderer = make_renderer()

@@ -89,6 +89,7 @@ logger = logging.getLogger("generator")
 # List of static assets to be copied to the output directory.
 ASSETS = [
     "assets/style.css",
+    "assets/codehilite.css",
     "assets/indiewebcamp-button.svg",
     "assets/preview.png",
     "assets/favicon.svg",
@@ -420,6 +421,7 @@ def generate_website(
             html_content=webring_content,
             page_url="webring/",
             output_dir=output_dir / "webring",
+            has_codehilite=True,
         )
 
     @build.rule("search_page")
@@ -638,8 +640,11 @@ def generate_website(
             f'  <a href="{next_url}">Next →</a>\n'
             "</div>"
         )
-        highlighted = highlight(embed_html, HtmlLexer(), HtmlFormatter())
-        highlighted = highlighted.replace('class="highlight"', 'class="codehilite"')
+        highlighted = highlight(
+            embed_html,
+            HtmlLexer(),
+            HtmlFormatter(cssclass="codehilite"),
+        )
         save_html(highlighted, f"webring/{slug}/links_embed.html", output_dir)
 
     @build.rule("webring_legacy:*")
