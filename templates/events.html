@@ -1,16 +1,19 @@
+<nav class="page-nav" aria-label="Events page links">
+  <ul>
+    <li><a href="/topics/">Topics</a></li>
+    <li><a href="/prompts/">Prompts</a></li>
+    <li><a href="/events.atom">Feed</a></li>
+    <li><a href="{{webcal_url}}events.ics">Calendar</a></li>
+    <li><a href="/events.ics">Download</a></li>
+  </ul>
+</nav>
+
 <section id="upcoming-events">
   <h2>{{^has_upcoming_events}}No {{/has_upcoming_events}}Upcoming Events</h2>
   {{^has_upcoming_events}}<p>We meet on the 1st and 3rd Saturdays of each month. Please check back later or subscribe for updates.</p>{{/has_upcoming_events}}
   {{#upcoming_events}}
   {{> event-card.html }}
   {{/upcoming_events}}
-  <ul class="no-marker pointed-hand">
-    <li><a href="/topics/">See events topics.</a></li>
-    <li><a href="/prompts/">See writing prompts.</a></li>
-    <li><a href="/events.atom">Subscribe as a feed.</a></li>
-    <li><a href="{{webcal_url}}events.ics">Subscribe as a calendar.</a></li>
-    <li><a href="/events.ics">Download as a calendar.</a></li>
-  </ul>
 </section>
 
 <section id="previous-events">

@@ -1,15 +1,25 @@
+<nav class="page-nav" aria-label="Writings page links">
+  <div class="page-nav-group" role="group" aria-labelledby="writings-feeds">
+    <span class="page-nav-label" id="writings-feeds">Feeds</span>
+    <ul>
+      <li><a href="/blogroll.atom">All</a></li>
+      <li><a href="/blogroll-latest.atom">Latest</a></li>
+      <li><a href="/blogroll-weeknotes.atom">Week notes</a></li>
+      <li><a href="https://indiewebclubblr.github.io/blogroll-replay/feed.atom">Replay</a></li>
+    </ul>
+  </div>
+  <div class="page-nav-group" role="group" aria-labelledby="writings-more">
+    <span class="page-nav-label" id="writings-more">More</span>
+    <ul>
+      <li><a href="/newsletter/">Newsletter</a></li>
+      <li><a href="/blogroll.opml">OPML</a></li>
+      <li><a href="/archive/">Archive</a></li>
+    </ul>
+  </div>
+</nav>
+
 <section id="recent-posts">
   <h2>Recent Posts</h2>
-  <ul class="no-marker pointed-hand">
-    <li><a href="/blogroll.atom">Subscribe as a feed with only links.</a></li>
-    <li><a href="/blogroll-latest.atom">Subscribe as a feed with content.</a></li>
-    <li><a href="https://indiewebclubblr.github.io/blogroll-replay/feed.atom">Subscribe as a replay feed.</a></li>
-    <li><a href="/newsletter/">Subscribe as a newsletter.</a></li>
-    <li><a href="/blogroll.opml">Download as an OPML file.</a></li>
-    <li><a href="/archive/">Browse the archive.</a></li>
-    <li><a href="/search/">Search all posts.</a></li>
-    <li><a href="/members/">See the member directory</a>.</li>
-  </ul>
   {{#entries}}
   {{> post-card.html }}
   {{/entries}}
@@ -18,9 +28,6 @@
 
 <section id="week-notes">
   <h2>Day/Week/Month Notes</h2>
-  <ul class="no-marker pointed-hand">
-    <li><a href="/blogroll-weeknotes.atom">Subscribe as a feed.</a></li>
-  </ul>
   {{#week_notes}}
   {{> post-card.html }}
   {{/week_notes}}

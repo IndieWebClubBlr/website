@@ -1,3 +1,11 @@
+<nav class="page-nav" aria-label="Archive page links">
+  <ul>
+    <li><a href="/blogroll.atom">Feed</a></li>
+    <li><a href="/newsletter/">Newsletter</a></li>
+    <li><a href="/blogroll.opml">OPML</a></li>
+  </ul>
+</nav>
+
 <section id="archive">
   <h2>Archive</h2>
   <p>{{total_posts}} posts · {{member_count}} members · {{date_range}}</p>
@@ -7,13 +15,6 @@
     <figcaption>Posts per month</figcaption>
   </figure>
   {{/has_chart}}
-  <ul class="no-marker pointed-hand">
-    <li><a href="/blogroll.atom">Subscribe as a feed.</a></li>
-    <li><a href="/newsletter/">Subscribe as a newsletter.</a></li>
-    <li><a href="/blogroll.opml">Download as an OPML file.</a></li>
-    <li><a href="/search/">Search all posts.</a></li>
-    <li><a href="/members/">See the Member Directory</a>.</li>
-  </ul>
   {{#years}}
   <div class="entry">
     <h3>
