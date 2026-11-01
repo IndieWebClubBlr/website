@@ -58,11 +58,14 @@ def group_entries_by_year(
     return dict(by_year)
 
 
-def _build_monthly_chart_svg(entries: list[FeedEntry]) -> str:
-    """Build an inline SVG bar chart of posts per month over all time.
+def _build_quarterly_chart_svg(entries: list[FeedEntry]) -> str:
+    """Build an inline SVG stacked bar chart of posts per quarter over all time.
+
+    Each bar covers one quarter and is split into three month segments, so the
+    month-level counts stay visible (and clickable) inside the quarter.
 
     Args:
-        entries: Feed entries to count per month.
+        entries: Feed entries to count per quarter.
 
     Returns:
         SVG markup for the bar chart, empty string if there are no entries.
@@ -77,70 +80,110 @@ def _build_monthly_chart_svg(entries: list[FeedEntry]) -> str:
     first_year, first_month = min(counts.keys())
     last_year, last_month = max(counts.keys())
 
-    months: list[tuple[int, int]] = []
-    y, m = first_year, first_month
-    while (y, m) <= (last_year, last_month):
-        months.append((y, m))
-        m += 1
-        if m > 12:
-            m = 1
+    quarters: list[tuple[int, int]] = []
+    y, q = first_year, (first_month - 1) // 3
+    while (y, q) <= (last_year, (last_month - 1) // 3):
+        quarters.append((y, q))
+        q += 1
+        if q > 3:
+            q = 0
             y += 1
 
-    max_count = max(counts.values())
+    def _quarter_total(year: int, quarter: int) -> int:
+        return sum(counts.get((year, quarter * 3 + m), 0) for m in (1, 2, 3))
+
+    max_count = max(_quarter_total(year, quarter) for year, quarter in quarters)
 
     bar_w = 8
     gap = 2
-    chart_h = 50
-    year_label_font_size = 1
-    count_label_font_size = 2.5
-    month_label_padding = 3
-    year_label_padding = 7
-    month_label_y = chart_h + month_label_padding
-    year_label_y = chart_h + year_label_padding
-    chart_w = max(len(months) * (bar_w + gap) - gap, 1)
-    total_h = year_label_y + year_label_font_size
+    # Keep the chart close to its original width when there are only a few
+    # quarters; otherwise the viewBox gets tall and the bars balloon.
+    min_chart_w = 170
+    if len(quarters) * (bar_w + gap) - gap < min_chart_w:
+        bar_w = min(40, (min_chart_w + gap) // len(quarters) - gap)
+        gap = max(gap, bar_w // 4)
+    chart_w = max(len(quarters) * (bar_w + gap) - gap, min_chart_w)
+    chart_h = 60
+    chart_top = 6
+    chart_bottom = chart_top + chart_h
+    segment_gap = 0.2
+    month_count_font_size = 2.9
+    total_font_size = 3.3
+    quarter_label_font_size = 3.6
+    year_label_font_size = 4.2
+    quarter_label_padding = 5
+    year_label_padding = 13
+    quarter_label_y = chart_bottom + quarter_label_padding
+    year_label_y = chart_bottom + year_label_padding
+    total_h = year_label_y + 2
 
-    bars: list[dict[str, str | bool]] = []
-    month_labels: list[dict[str, str]] = []
+    quarters_ctx: list[dict[str, object]] = []
+    quarter_labels: list[dict[str, str]] = []
     year_labels: list[dict[str, str]] = []
     seen_years: set[int] = set()
-    for i, (year, month) in enumerate(months):
-        count = counts.get((year, month), 0)
-        h = (count / max_count) * chart_h if max_count else 0
+    for i, (year, quarter) in enumerate(quarters):
         x = i * (bar_w + gap)
-        plural = "s" if count != 1 else ""
-        # Only render count label when bar is tall enough to fit the text
-        show_count = count > 0 and h >= count_label_font_size + 1
-        bars.append(
+        total = _quarter_total(year, quarter)
+        quarter_h = (total / max_count) * chart_h
+        stacked_h = 0.0
+        months_ctx: list[dict[str, str | int]] = []
+        for month_index, month in enumerate(
+            range(quarter * 3 + 1, quarter * 3 + 4), start=1
+        ):
+            count = counts.get((year, month), 0)
+            h = (count / max_count) * chart_h
+            segment_y = chart_bottom - stacked_h - h
+            stacked_h += h
+            if count == 0:
+                continue
+            # Leave a hairline gap between the month segments of a quarter.
+            has_gap = h > segment_gap * 2
+            render_y = segment_y + (segment_gap if has_gap else 0)
+            render_h = h - (segment_gap if has_gap else 0)
+            plural = "s" if count != 1 else ""
+            months_ctx.append(
+                {
+                    "month_index": month_index,
+                    "y": f"{render_y:.2f}",
+                    "h": f"{render_h:.2f}",
+                    "href": f"/archive/{year}/#m-{year}-{month}",
+                    "title": f"{MONTH_NAMES[month]} {year}: {count} post{plural}",
+                    "show_count": render_h >= month_count_font_size + 0.1,
+                    "count": str(count),
+                    "count_x": f"{x + bar_w / 2}",
+                    "count_y": (
+                        f"{render_y + render_h / 2 + month_count_font_size * 0.35:.2f}"
+                    ),
+                }
+            )
+        # The quarter total sits above the bar, outside the stack.
+        quarters_ctx.append(
             {
                 "x": f"{x}",
-                "y": f"{chart_h - h:.2f}",
                 "w": f"{bar_w}",
-                "h": f"{h:.2f}",
-                "chart_h": f"{chart_h}",
-                "href": f"/archive/{year}/#m-{year}-{month}",
-                "title": f"{MONTH_NAMES[month]} {year}: {count} post{plural}",
-                "show_count": show_count,
-                "count": str(count),
+                "months": months_ctx,
+                "show_count": total > 0,
+                "count": str(total),
                 "count_x": f"{x + bar_w / 2}",
-                "count_y": f"{chart_h - 1}",
+                "count_y": f"{chart_bottom - quarter_h - 1.5:.2f}",
             }
         )
-        month_labels.append(
+        quarter_labels.append(
             {
                 "x": f"{x + bar_w / 2}",
-                "y": f"{month_label_y}",
-                "label": MONTH_NAMES[month][0:3],
+                "y": f"{quarter_label_y}",
+                "label": f"Q{quarter + 1}",
             }
         )
         if year not in seen_years:
             year_labels.append({"x": f"{x}", "y": f"{year_label_y}", "year": str(year)})
             seen_years.add(year)
 
+    first_quarter, last_quarter = quarters[0][1], quarters[-1][1]
     aria_label = (
-        f"Posts per month from {MONTH_NAMES[first_month]} {first_year} "
-        f"to {MONTH_NAMES[last_month]} {last_year}, "
-        f"peak of {max_count} posts in a month"
+        f"Posts per quarter from Q{first_quarter + 1} {first_year} "
+        f"to Q{last_quarter + 1} {last_year}, stacked by month, "
+        f"peak of {max_count} posts in a quarter"
     )
     renderer = make_renderer()
     template = read_template("archive-chart.svg")
@@ -150,9 +193,13 @@ def _build_monthly_chart_svg(entries: list[FeedEntry]) -> str:
             "chart_w": str(chart_w),
             "total_h": str(total_h),
             "aria_label": aria_label,
-            "bars": bars,
-            "month_labels": month_labels,
+            "quarters": quarters_ctx,
+            "quarter_labels": quarter_labels,
             "year_labels": year_labels,
+            "month_count_font_size": f"{month_count_font_size}",
+            "total_font_size": f"{total_font_size}",
+            "quarter_label_font_size": f"{quarter_label_font_size}",
+            "year_label_font_size": f"{year_label_font_size}",
         },
     )
 
@@ -180,7 +227,7 @@ def generate_archive_index(
     last_entry = entries_sorted[-1].published
     date_range = f"{MONTH_NAMES[last_entry.month]} {last_entry.year}–{MONTH_NAMES[first_entry.month]} {first_entry.year}"
 
-    chart_svg = _build_monthly_chart_svg(entries_sorted)
+    chart_svg = _build_quarterly_chart_svg(entries_sorted)
 
     renderer = make_renderer()
     index_template = read_template("archive-index.html")

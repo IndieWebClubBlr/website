@@ -295,7 +295,7 @@ A brief overview of the project's file structure:
 │   ├── webring-redirect.html  # Webring redirect pages
 │   ├── archive-index.html     # Archive index
 │   ├── archive-year.html      # Per-year archive
-│   ├── archive-chart.svg      # Monthly bar chart
+│   ├── archive-chart.svg      # Quarterly bar chart
 │   ├── nl-subsribe.html       # Newsletter page
 │   └── nl-form.html           # Newsletter form partial
 ├── blogroll.opml              # Feed list

@@ -696,7 +696,7 @@ def generate_website(
 
     @build.rule("archive_index")
     def _(_target: str):
-        """Generate the archive index page with the monthly bar chart."""
+        """Generate the archive index page with the quarterly bar chart."""
         build.need("feeds")
         generate_archive_index(
             [

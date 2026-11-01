@@ -3,22 +3,24 @@
      xmlns="http://www.w3.org/2000/svg"
      role="img" aria-label="{{aria_label}}">
   <g class="archive-chart-bars">
-    {{#bars}}
-    <a href="{{href}}">
-      <rect x="{{x}}" y="0" width="{{w}}" height="{{chart_h}}" class="archive-chart-bar-hit" />
-      <rect x="{{x}}" y="{{y}}" width="{{w}}" height="{{h}}" rx="1"><title>{{title}}</title></rect>
-      {{#show_count}}<text class="archive-chart-count" x="{{count_x}}" y="{{count_y}}" font-size="2.5" text-anchor="middle">{{count}}</text>{{/show_count}}
+    {{#quarters}}
+    {{#months}}
+    <a href="{{href}}" aria-label="{{title}}">
+      <rect x="{{x}}" y="{{y}}" width="{{w}}" height="{{h}}" rx="0.4" class="archive-chart-segment archive-chart-month-{{month_index}}"><title>{{title}}</title></rect>
+      {{#show_count}}<text class="archive-chart-month-count" x="{{count_x}}" y="{{count_y}}" font-size="{{month_count_font_size}}" text-anchor="middle">{{count}}</text>{{/show_count}}
     </a>
-    {{/bars}}
+    {{/months}}
+    {{#show_count}}<text class="archive-chart-total" x="{{count_x}}" y="{{count_y}}" font-size="{{total_font_size}}" text-anchor="middle">{{count}}</text>{{/show_count}}
+    {{/quarters}}
   </g>
-  <g class="archive-chart-labels archive-chart-months">
-    {{#month_labels}}
-    <text x="{{x}}" y="{{y}}" font-size="2.5" text-anchor="middle">{{label}}</text>
-    {{/month_labels}}
+  <g class="archive-chart-labels archive-chart-quarters">
+    {{#quarter_labels}}
+    <text x="{{x}}" y="{{y}}" font-size="{{quarter_label_font_size}}" text-anchor="middle">{{label}}</text>
+    {{/quarter_labels}}
   </g>
   <g class="archive-chart-labels archive-chart-years">
     {{#year_labels}}
-    <text x="{{x}}" y="{{y}}" font-size="3">{{year}}</text>
+    <text x="{{x}}" y="{{y}}" font-size="{{year_label_font_size}}">{{year}}</text>
     {{/year_labels}}
   </g>
 </svg>

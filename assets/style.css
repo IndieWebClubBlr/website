@@ -477,7 +477,7 @@ blockquote {
 }
 
 .archive-chart-bars {
-  & rect {
+  & .archive-chart-segment {
     fill: var(--color-border-accent);
   }
 
@@ -486,17 +486,32 @@ blockquote {
     text-decoration: none;
   }
 
-  & a:hover rect:not(.archive-chart-bar-hit) {
+  & a:hover .archive-chart-segment {
     fill: var(--color-link);
+    fill-opacity: 1;
   }
 
-  & .archive-chart-bar-hit {
-    fill: transparent;
+  & .archive-chart-month-1 {
+    fill-opacity: 1;
+  }
+
+  & .archive-chart-month-2 {
+    fill-opacity: 0.88;
+  }
+
+  & .archive-chart-month-3 {
+    fill-opacity: 0.76;
   }
 }
 
-.archive-chart-count {
+.archive-chart-month-count {
   fill: var(--color-bg);
+  font-family: inherit;
+  pointer-events: none;
+}
+
+.archive-chart-total {
+  fill: var(--color-text);
   font-family: inherit;
   pointer-events: none;
 }
