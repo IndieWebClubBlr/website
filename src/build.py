@@ -165,7 +165,7 @@ class Build:
                     self._done.add(target)
                 else:
                     self._failed[target] = exc
-                    logger.debug(f"Failed: {target}")
+                    logger.exception(f"Failed: {target}", exc_info=exc)
                 if target in self._building:
                     del self._building[target]
             if exc is None:

@@ -34,6 +34,20 @@ from src.utils import (
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger("feeds")
 
+# XML 1.0 forbids most C0 control characters (and U+FFFE/U+FFFF). Feed
+# content is arbitrary third-party HTML, so a stray control character in a
+# post (e.g. inside a code sample) would otherwise make lxml refuse to
+# serialize the whole feed.
+_XML_INVALID_CHARS_RE = re.compile(
+    "[^\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD\U00010000-\U0010FFFF]"
+)
+
+
+def _xml_safe(text: str) -> str:
+    """Remove characters that are not allowed in XML 1.0 documents."""
+    return _XML_INVALID_CHARS_RE.sub("", text)
+
+
 # Version of the parsed-feed cache. Bump it when the entries are stored
 # differently, so the cache is rebuilt instead of misread, and also when the
 # parsing changes, so that a parsing fix is not held back by a cached feed.
@@ -254,14 +268,14 @@ def generate_feed(
     """
     fg = FeedGenerator()
 
-    fg.id(feed_info.xml_url)
-    fg.title(feed_info.title)
+    fg.id(_xml_safe(feed_info.xml_url))
+    fg.title(_xml_safe(feed_info.title))
     if author_name is not None:
-        fg.author(name=author_name)
-    fg.link(href=feed_info.xml_url, rel="self")
-    fg.link(href=feed_info.html_url, rel="alternate")
+        fg.author(name=_xml_safe(author_name))
+    fg.link(href=_xml_safe(feed_info.xml_url), rel="self")
+    fg.link(href=_xml_safe(feed_info.html_url), rel="alternate")
     if feed_subtitle is not None:
-        fg.subtitle(feed_subtitle)
+        fg.subtitle(_xml_safe(feed_subtitle))
 
     feed_updated = None
     for entry in sorted(
@@ -270,19 +284,19 @@ def generate_feed(
         if entry.link.startswith("http"):
             fe = fg.add_entry(order="append")
 
-            fe.id(entry.link)
-            fe.title(entry.title)
-            fe.link(href=add_ref_param(entry.link), rel="alternate")
+            fe.id(_xml_safe(entry.link))
+            fe.title(_xml_safe(entry.title))
+            fe.link(href=_xml_safe(add_ref_param(entry.link)), rel="alternate")
             fe.published(entry.published)
             fe.updated(entry.published)
-            fe.author(name=entry.feed_title, uri=entry.feed_url)
+            fe.author(name=_xml_safe(entry.feed_title), uri=_xml_safe(entry.feed_url))
             if add_content and entry.content:
-                fe.content(content=entry.content, type="html")
+                fe.content(content=_xml_safe(entry.content), type="html")
             elif entry.summary:
-                fe.summary(summary=entry.summary, type="text")
+                fe.summary(summary=_xml_safe(entry.summary), type="text")
 
             for tag in entry.tags:
-                fe.category(term=tag)
+                fe.category(term=_xml_safe(tag))
 
             if feed_updated is None or feed_updated < entry.published:
                 feed_updated = entry.published
