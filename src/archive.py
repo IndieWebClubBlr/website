@@ -24,20 +24,12 @@ def _archive_entry_ctx(entry: FeedEntry) -> dict[str, str | bool]:
         entry: Feed entry to build the context for.
 
     Returns:
-        Entry context with tags, has_tags, and search_text keys added.
+        Entry context with tags, has_tags keys added.
     """
     ctx: dict[str, str | bool] = entry_ctx(entry)
     tags_str = " ".join(entry.tags)
     ctx["tags"] = tags_str
     ctx["has_tags"] = len(entry.tags) > 0
-    ctx["search_text"] = " ".join(
-        [
-            entry.title.lower(),
-            entry.feed_title.lower(),
-            tags_str.lower(),
-            entry.summary.lower(),
-        ]
-    )
     return ctx
 
 
