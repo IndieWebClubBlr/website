@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://blr.indiewebclub.org/prompts.atom</id>
+  <title>IndieWebClub Bangalore Writing Prompts</title>
+  <updated>2026-10-19T00:00:00+05:30</updated>
+  <author>
+    <name>IndieWebClub Bangalore</name>
+  </author>
+  <link href="https://blr.indiewebclub.org/prompts.atom" rel="self"/>
+  <link href="https://blr.indiewebclub.org/prompts/" rel="alternate"/>
+  <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
+  <subtitle>Writing prompts from IndieWebClub Bangalore.</subtitle>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#october-19-2026</id>
+    <title>October 19, 2026</title>
+    <updated>2026-10-19T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;What’s the story behind your domain name? (Or your government name, or your online handle.)&lt;/li&gt;&lt;li&gt;What Story do you tell yourself about the world?&lt;/li&gt;&lt;li&gt;Describe your personal style.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#october-19-2026"/>
+    <published>2026-10-19T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#october-3-2026</id>
+    <title>October 3, 2026</title>
+    <updated>2026-10-03T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;Take a blog post you published very long ago and see if your views have changed.&lt;/li&gt;&lt;li&gt;&lt;a href="https://winther.sysctl.dk/indieweb-carnival-september-2026-parenting/"&gt;Parenting.&lt;/a&gt;&lt;/li&gt;&lt;li&gt;My impossible bucket list.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#october-3-2026"/>
+    <published>2026-10-03T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#september-19-2026</id>
+    <title>September 19, 2026</title>
+    <updated>2026-09-19T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;&lt;a href="https://reactormag.com/finding-your-recipe-for-literary-comfort-food/"&gt;What is the recipe for your comfort media?&lt;/a&gt;&lt;/li&gt;&lt;li&gt;What is currently exciting in your primary field of interest or your favorite hobby?&lt;/li&gt;&lt;li&gt;Write about your non-negotiables in your personal space.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#september-19-2026"/>
+    <published>2026-09-19T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#september-5-2026</id>
+    <title>September 5, 2026</title>
+    <updated>2026-09-05T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;What are some digital rituals you participate in?&lt;/li&gt;&lt;li&gt;Write about a powerful experience you’ve had lately.&lt;/li&gt;&lt;li&gt;Write a meta post: how does an idea qualify to be a post on your website?&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#september-5-2026"/>
+    <published>2026-09-05T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#august-15-2026</id>
+    <title>August 15, 2026</title>
+    <updated>2026-08-15T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;Write about a system you built for your life you are very happy with.&lt;/li&gt;&lt;li&gt;Explain X to people who don’t appreciate or enjoy X.&lt;/li&gt;&lt;li&gt;Today is the day India achieved independence from British rule. What stories have you grown up with around this day?&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#august-15-2026"/>
+    <published>2026-08-15T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#august-2-2026</id>
+    <title>August 2, 2026</title>
+    <updated>2026-08-02T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;Post a picture you’ve taken this week, with or without added context.&lt;/li&gt;&lt;li&gt;Go to &lt;a href="https://commons.wikimedia.org/wiki/Special:Random/File"&gt;a random image on Wikimedia Commons&lt;/a&gt; and use it as a prompt.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#august-2-2026"/>
+    <published>2026-08-02T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#july-18-2026</id>
+    <title>July 18, 2026</title>
+    <updated>2026-07-18T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;&lt;a href="https://ev-fae.quest/bear-blog-carnival-an-album-that-got-you-through-a-hard-time/"&gt;Write about an album that got you through a hard time.&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Capture a moment of awe you felt as a young(er) person.&lt;/li&gt;&lt;li&gt;Write about a low-stakes annual tradition you have.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#july-18-2026"/>
+    <published>2026-07-18T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#july-4-2026</id>
+    <title>July 4, 2026</title>
+    <updated>2026-07-04T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;&lt;a href="https://artlung.com/identity-cosplay-ic/"&gt;Masks, Identities, and cosplay.&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Write about your experience running your anonymous blog without revealing the identifiable details.&lt;/li&gt;&lt;li&gt;What would you do if you were invisible for a day?&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#july-4-2026"/>
+    <published>2026-07-04T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#may-16-2026</id>
+    <title>May 16, 2026</title>
+    <updated>2026-05-16T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;Imbroglio.&lt;/li&gt;&lt;li&gt;Write about your relationship with the phenomena of weather.&lt;/li&gt;&lt;li&gt;&lt;a href="https://kami.bearblog.dev/bear-blog-carnival-your-favorite-____-in-your-niche-hobby/"&gt;Write about a hyperspecific thing in your niche hobby that you really like.&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Habits are like casting a vote.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#may-16-2026"/>
+    <published>2026-05-16T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#may-2-2026</id>
+    <title>May 2, 2026</title>
+    <updated>2026-05-02T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;Things I did in the last year that had nothing to do with the internet.&lt;/li&gt;&lt;li&gt;Never will I ever: things I’ll never do (e.g. eat a runny egg, work for Facebook).&lt;/li&gt;&lt;li&gt;How has who you write for changed over your time writing your blog.&lt;/li&gt;&lt;li&gt;&lt;a href="https://hamatti.org/posts/indieweb-carnival-write-a-love-letter/"&gt;Write a love letter.&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#may-2-2026"/>
+    <published>2026-05-02T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#april-18-2026</id>
+    <title>April 18, 2026</title>
+    <updated>2026-04-18T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;&lt;a href="https://lifeofpablo.com/blog/indieweb-carnival-2026-adventure"&gt;Adventure&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Write a care guide for an item, pet, or something esoteric in your house.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#april-18-2026"/>
+    <published>2026-04-18T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#april-4-2026</id>
+    <title>April 4, 2026</title>
+    <updated>2026-04-04T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;&lt;a href="https://azan-n.com/notes/20260404-hot-takes-from-indiewebclub-in-the-absence-of-tanvi/"&gt;Respond to any of the hot takes from today.&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Write about building your own tools.&lt;/li&gt;&lt;li&gt;Write about a project or a piece of writing you’ve been working on for a long time.&lt;/li&gt;&lt;li&gt;Write about the Moon.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#april-4-2026"/>
+    <published>2026-04-04T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#march-21-2026</id>
+    <title>March 21, 2026</title>
+    <updated>2026-03-21T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;Write about a default that you’ve been dealing with all your life that you have had to unlearn.&lt;/li&gt;&lt;li&gt;What does waiting in a queue feel like to you?&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#march-21-2026"/>
+    <published>2026-03-21T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#march-7-2026</id>
+    <title>March 7, 2026</title>
+    <updated>2026-03-07T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;Respond or react to a blog post you read recently.&lt;/li&gt;&lt;li&gt;&lt;a href="https://journal.jatan.space/would-you-blog/"&gt;If I was born and brought up in the time of modern social media, would I even blog?&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://jamesg.blog/2026/03/01/indieweb-carnival-museum-memories"&gt;Museum Memories.&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://blog.sulimans.space/march-carnival/"&gt;My Favorite Meme&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#march-7-2026"/>
+    <published>2026-03-07T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#february-21-2026</id>
+    <title>February 21, 2026</title>
+    <updated>2026-02-21T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;Write a letter to the online friends you used to know when you were a baby on the internet.&lt;/li&gt;&lt;li&gt;Explain something complex from your domain of expertise to a complete novice.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#february-21-2026"/>
+    <published>2026-02-21T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#february-8-2026</id>
+    <title>February 8, 2026</title>
+    <updated>2026-02-08T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;Write about how a piece of media that you engaged with more than a decade ago stayed with you.&lt;/li&gt;&lt;li&gt;Review a review.&lt;/li&gt;&lt;li&gt;Write about your favorite local food joint.&lt;/li&gt;&lt;li&gt;Write about an object in your house that gives you joy.&lt;/li&gt;&lt;li&gt;Write about your framework for reviewing media.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#february-8-2026"/>
+    <published>2026-02-08T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#january-3-2026</id>
+    <title>January 3, 2026</title>
+    <updated>2026-01-03T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;&lt;a href="https://www.jeremiahlee.com/posts/2026-01-indieweb-carnival/"&gt;What is the meaning of life?&lt;/a&gt;&lt;/li&gt;&lt;li&gt;What themes and/or intentions do you have around your blog/personal website in 2026?&lt;/li&gt;&lt;li&gt;Take an object close to you and note down three sentences. What do you know, notice and like about it? What’s maybe wrong with it? How does it make you feel?&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#january-3-2026"/>
+    <published>2026-01-03T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#december-20-2025</id>
+    <title>December 20, 2025</title>
+    <updated>2025-12-20T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;Your predictions for 2026.&lt;/li&gt;&lt;li&gt;Write a technical manual for a tube of toothpaste for somebody who has never seen one before.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#december-20-2025"/>
+    <published>2025-12-20T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#december-6-2025</id>
+    <title>December 6, 2025</title>
+    <updated>2025-12-06T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;Early web memories.&lt;/li&gt;&lt;li&gt;What are the things you’ve written and deleted? Or write about why you deleted them.&lt;/li&gt;&lt;li&gt;Where do you see the IndieWeb in five years?&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#december-6-2025"/>
+    <published>2025-12-06T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#june-22-2025</id>
+    <title>June 22, 2025</title>
+    <updated>2025-06-22T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;Make a list of things you have been curious about in the last year. These could be things you have actively pursued answers to and questions you have just repeatedly come back to. This could also be a list of surface level questions.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#june-22-2025"/>
+    <published>2025-06-22T00:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/prompts/#may-15-2025</id>
+    <title>May 15, 2025</title>
+    <updated>2025-05-15T00:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;&lt;li&gt;Hello world.&lt;/li&gt;&lt;li&gt;Set blog intentions.&lt;/li&gt;&lt;li&gt;Joy diary.&lt;/li&gt;&lt;/ul&gt;</content>
+    <link href="https://blr.indiewebclub.org/prompts/#may-15-2025"/>
+    <published>2025-05-15T00:00:00+05:30</published>
+  </entry>
+</feed>
