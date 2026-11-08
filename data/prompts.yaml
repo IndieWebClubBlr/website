@@ -1,4 +1,8 @@
 sections:
+- date: 2026-11-07
+  prompts:
+  - Is a horse a fish? Ponder.
+  - Write about your favourite food group.
 - date: 2026-10-19
   prompts:
   - What’s the story behind your domain name? (Or your government name, or your online handle.)

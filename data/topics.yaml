@@ -1,4 +1,12 @@
 sections:
+- date: 2026-11-07
+  title: 'Slash Pages (/pages)'
+  topic: |-
+    - Slash pages are standard pages on your website, usually with well known slugs like /now, /about, or /uses. They tend to describe the individual behind the site and are a distinguishing characteristic of the IndieWeb.
+    - We'll begin with some examples of /pages we like from across the IndieWeb. What is the appeal of /pages? Is it the insight into somebody's life? Or is it a discovery mechanism for new things, hobbies, and interests? What do you look for when you're browsing somebody's website? Bring your favorites!
+    - What /pages would you like to have on your own website? Have people created their own /pages? How different is the process of creating/maintaining a /page from some other things on your website? How often do you update them?
+    - Are there any pages you would like to add to your website, but something is stopping you? What is your biggest roadblock?
+    - What slashpages would you like to see more of on the IndieWeb? What do you feel is missing from the list at [slashpages.net](https://slashpages.net)?
 - date: 2026-10-03
   title: 'The life of a blog post after you publish it'
   topic: |-
