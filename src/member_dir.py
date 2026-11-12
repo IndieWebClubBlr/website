@@ -270,7 +270,7 @@ def check_hotlink_allowed(url: str) -> bool:
         return False
 
 
-def get_favicon_from_html(url: str, html: str) -> str | None:
+def get_favicon_from_html(url: str) -> str | None:
     """Get favicon URL from already-fetched HTML, checking hotlink is allowed.
 
     Icon candidates are ranked by how close their size is to 32px; the best
@@ -278,7 +278,6 @@ def get_favicon_from_html(url: str, html: str) -> str | None:
 
     Args:
         url: URL the HTML was fetched from (used to resolve icon URLs).
-        html: Raw HTML of the page.
 
     Returns:
         URL of the first hotlinkable icon, or None if there is none.
@@ -287,7 +286,7 @@ def get_favicon_from_html(url: str, html: str) -> str | None:
         import favicon
 
         icons = list(
-            favicon.tags(url, html)  # pyright: ignore[reportAttributeAccessIssue]
+            favicon.get(url)  # pyright: ignore[reportAttributeAccessIssue]
         )
         if not icons:
             return None
@@ -446,7 +445,7 @@ def generate_members_page(
             icon_url = get_ddg_favicon_url(feed.html_url)
             if not icon_url and site_result:
                 response_url, html, _ = site_result
-                icon_url = get_favicon_from_html(response_url, html)
+                icon_url = get_favicon_from_html(response_url)
             if not icon_url and site_result:
                 response_url, _, _ = site_result
                 icon_url = get_favicon_default(response_url)
