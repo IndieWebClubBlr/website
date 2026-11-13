@@ -254,7 +254,7 @@ def get_ddg_favicon_url(site_url: str) -> str | None:
     return None
 
 
-def check_hotlink_allowed(url: str) -> bool:
+def get_hotlink_url(url: str) -> str | None:
     """Check if a URL allows hotlinking by making a HEAD request.
 
     Args:
@@ -265,9 +265,11 @@ def check_hotlink_allowed(url: str) -> bool:
     """
     try:
         response = ssrf.safe_head(session_manager.get(), url, timeout=5)
-        return (response.status_code == 200 and response.encoding is None)
+        if response.status_code == 200 and response.encoding is None:
+            return response.url
+        return None
     except Exception:
-        return False
+        return None
 
 
 def get_favicon_from_html(url: str) -> str | None:
@@ -304,8 +306,9 @@ def get_favicon_from_html(url: str) -> str | None:
         icons.sort(key=icon_score, reverse=True)
 
         for icon in icons:
-            if check_hotlink_allowed(icon.url):
-                return icon.url
+            url = get_hotlink_url(icon.url)
+            if url is not None:
+                return url
 
         return None
     except Exception as e:
@@ -325,11 +328,7 @@ def get_favicon_default(url: str) -> str | None:
     """
     try:
         icon_url = urljoin(url, "/favicon.ico")
-        response = ssrf.safe_head(session_manager.get(), icon_url, timeout=5)
-        # The head follows redirects, so the final response already says
-        # whether the icon allows hotlinking.
-        if response.status_code == 200 and response.encoding is None:
-            return response.url
+        return get_hotlink_url(icon_url)
     except Exception as e:
         logger.debug(f"Failed to get default favicon for {url}: {e}")
     return None
