@@ -265,7 +265,7 @@ def check_hotlink_allowed(url: str) -> bool:
     """
     try:
         response = ssrf.safe_head(session_manager.get(), url, timeout=5)
-        return response.status_code == 200
+        return (response.status_code == 200 and response.encoding is None)
     except Exception:
         return False
 
@@ -328,7 +328,7 @@ def get_favicon_default(url: str) -> str | None:
         response = ssrf.safe_head(session_manager.get(), icon_url, timeout=5)
         # The head follows redirects, so the final response already says
         # whether the icon allows hotlinking.
-        if response.status_code == 200:
+        if response.status_code == 200 and response.encoding is None:
             return response.url
     except Exception as e:
         logger.debug(f"Failed to get default favicon for {url}: {e}")
