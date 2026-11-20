@@ -1,16 +1,25 @@
 <div class="h-event h-entry">
   <div class="event" id="event-{{{id}}}">
-    <h3><a href="{{underline_url}}" target="_blank" class="u-uid u-url p-name">{{title}}</a></h3>
+    <h3>{{#event_url}}<a href="{{event_url}}" target="_blank" class="u-uid u-url p-name">{{title}}</a>{{/event_url}}{{^event_url}}<span class="p-name">{{title}}</span><a class="u-uid u-url" href="{{permalink}}" hidden></a>{{/event_url}}</h3>
     <ul class="no-marker pointed-hand">
       <li class="start-time">On: <time class="dt-start" datetime="{{start_at_machine}}">{{start_at_human}}</time></li>
       <li class="end-time">Till: <time class="dt-end" datetime="{{end_at_machine}}">{{end_at_human}}</time></li>
-      <li class="location">At: <a class="p-location" href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA">Underline Center</a></li>
-      {{#district_url}}
-      <li class="buy-link"><a href="{{district_url}}">BUY TICKETS!</a></li>
-      {{/district_url}}
-      {{^district_url}}
+      <li class="location">At: {{#location_url}}<a class="p-location" href="{{location_url}}">{{location_name}}</a>{{/location_url}}{{^location_url}}<span class="p-location">{{location_name}}</span>{{/location_url}}</li>
+      {{#tickets_available}}
+      {{#ticket_url}}<li class="buy-link"><a href="{{ticket_url}}">BUY TICKETS!</a></li>{{/ticket_url}}
+      {{^ticket_url}}<li>Tickets available at the venue</li>{{/ticket_url}}
+      {{/tickets_available}}
+      {{#tickets_coming_soon}}
       <li>Tickets available soon</li>
-      {{/district_url}}
+      {{/tickets_coming_soon}}
+      {{#tickets_not_required}}
+      {{#rsvp_url}}
+      <li class="buy-link"><a href="{{rsvp_url}}">Please RSVP</a></li>
+      {{/rsvp_url}}
+      {{^rsvp_url}}
+      <li>No tickets required</li>
+      {{/rsvp_url}}
+      {{/tickets_not_required}}
     </ul>
   </div>
   {{#summary}}<section class="description e-content">{{{summary}}}</section>{{/summary}}

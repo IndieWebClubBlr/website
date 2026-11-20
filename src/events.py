@@ -4,19 +4,28 @@ import json
 import logging
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, TypeVar, final
+from typing import Any, Literal, TypeVar, final
 from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 
+import markdown
 import requests
+import yaml
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
 from icalendar import Calendar, Timezone, TimezoneStandard
 from icalendar import Event as CalEvent
-from pydantic import BaseModel, ValidationError, field_validator
+from markdown.extensions.toc import slugify
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    ValidationError,
+    field_validator,
+    model_validator,
+)
 
-from src import config
-from src import ssrf
+from src import config, ssrf
 from src.utils import (
     cache_path,
     make_renderer,
@@ -29,6 +38,11 @@ from src.utils import (
 logging.basicConfig(level=logging.INFO, format=config.LOG_FORMAT)
 logger = logging.getLogger("events")
 
+TicketStatus = Literal["available", "coming_soon", "not_required"]
+
+UNDERLINE_LOCATION_NAME = "Underline Center"
+UNDERLINE_MAP_URL = "https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA"
+
 
 @final
 class Event:
@@ -36,15 +50,19 @@ class Event:
 
     def __init__(
         self,
-        id: int,
+        id: int | str,
         title: str,
         slug: str,
         created_at: datetime,
         start_at: datetime,
         end_at: datetime,
         details: str | None,
-        underline_url: str,
-        district_url: str | None,
+        event_url: str | None,
+        ticket_url: str | None,
+        ticket_status: TicketStatus,
+        rsvp_url: str | None,
+        location_name: str,
+        location_url: str | None,
     ):
         """Parse a Discourse event topic into an Event.
 
@@ -53,7 +71,7 @@ class Event:
         stripped; summary is None if no "Agenda" heading is found.
 
         Args:
-            id: Discourse topic id.
+            id: Discourse topic id, or a derived string id for YAML events.
             title: Topic title as given by the caller (make_event strips
                 event-series suffixes before calling this).
             slug: Topic slug used in the Underline URL.
@@ -61,8 +79,13 @@ class Event:
             start_at: Event start, converted to the site timezone.
             end_at: Event end, converted to the site timezone.
             details: Raw HTML of the first post.
-            underline_url: URL of the topic on Underline Center.
-            district_url: Venue URL if the event location is a URL, else None.
+            event_url: The event's own page, or None if it has none.
+            ticket_url: Buy-ticket URL when tickets are available.
+            ticket_status: One of "available", "coming_soon", or
+                "not_required".
+            rsvp_url: RSVP URL for events that do not require tickets.
+            location_name: Venue name.
+            location_url: Map URL for the venue, or None.
         """
         self.id = id
         self.title = title
@@ -71,8 +94,12 @@ class Event:
         self.start_at = start_at.astimezone(config.EVENTS_TZ)
         self.end_at = end_at.astimezone(config.EVENTS_TZ)
         self.details = details
-        self.underline_url = underline_url
-        self.district_url = district_url
+        self.event_url = event_url
+        self.ticket_url = ticket_url
+        self.ticket_status = ticket_status
+        self.rsvp_url = rsvp_url
+        self.location_name = location_name
+        self.location_url = location_url
         soup = BeautifulSoup(details, "html.parser")
         agenda = soup.find(string="Agenda")
         if agenda is not None:
@@ -89,6 +116,23 @@ class Event:
             self.summary = str(agenda_header.parent)
         else:
             self.summary = None
+
+    @property
+    def permalink(self) -> str:
+        """Canonical URL: the event page, or its anchor on the events page."""
+        return self.event_url or f"{config.SITE_URL}events/#event-{self.id}"
+
+    @property
+    def tickets_available(self) -> bool:
+        return self.ticket_status == "available"
+
+    @property
+    def tickets_coming_soon(self) -> bool:
+        return self.ticket_status == "coming_soon"
+
+    @property
+    def tickets_not_required(self) -> bool:
+        return self.ticket_status == "not_required"
 
     def start_at_human(self) -> str:
         """Format the start time as e.g. "05 Oct 2026, 06:30 PM IST"."""
@@ -113,6 +157,129 @@ class Event:
     def created_at_machine(self) -> str:
         """Return the creation time as an ISO 8601 string."""
         return self.created_at.isoformat()
+
+
+_MARKDOWN_EXTENSIONS = ["fenced_code", "admonition", "codehilite", "smarty"]
+
+
+def _markdown_block(text: str) -> str:
+    """Render Markdown to block-level HTML (same extensions as data pages)."""
+    return markdown.markdown(text, extensions=_MARKDOWN_EXTENSIONS)
+
+
+class YamlEvent(BaseModel):
+    """One hand-added event from data/events.yaml."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    title: str = Field(min_length=1)
+    start: datetime
+    end: datetime
+    location: str = Field(min_length=1)
+    location_url: str | None = None
+    url: str | None = None
+    ticket_status: TicketStatus = "coming_soon"
+    ticket_url: str | None = None
+    rsvp_url: str | None = None
+    description: str = ""
+
+    @field_validator("start", "end", mode="after")
+    @classmethod
+    def _to_events_tz(cls, value: datetime) -> datetime:
+        if value.tzinfo is None:
+            return value.replace(tzinfo=config.EVENTS_TZ)
+        return value.astimezone(config.EVENTS_TZ)
+
+    @model_validator(mode="after")
+    def _end_not_before_start(self) -> YamlEvent:
+        if self.end < self.start:
+            raise ValueError("end must not be before start")
+        return self
+
+    @model_validator(mode="after")
+    def _ticket_fields_consistent(self) -> YamlEvent:
+        if self.ticket_status != "available" and self.ticket_url:
+            raise ValueError(
+                "ticket_url is only allowed when ticket_status is available"
+            )
+        if self.ticket_status != "not_required" and self.rsvp_url:
+            raise ValueError(
+                "rsvp_url is only allowed when ticket_status is not_required"
+            )
+        return self
+
+
+class EventsFile(BaseModel):
+    """The top-level shape of data/events.yaml."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    events: list[YamlEvent] = Field(default_factory=list)
+
+
+def _yaml_event_to_event(item: YamlEvent) -> Event:
+    """Convert a validated YAML event into the Event used by renderers."""
+    slug = slugify(item.title, "-") or "event"
+    event_id = f"{slug}-{item.start:%Y%m%d}"
+    description_html = (
+        _markdown_block(item.description) if item.description.strip() else ""
+    )
+    event = Event(
+        id=event_id,
+        title=item.title,
+        slug=slug,
+        created_at=item.start,
+        start_at=item.start,
+        end_at=item.end,
+        details=description_html,
+        event_url=item.url,
+        ticket_url=item.ticket_url,
+        ticket_status=item.ticket_status,
+        rsvp_url=item.rsvp_url,
+        location_name=item.location,
+        location_url=item.location_url,
+    )
+    event.summary = description_html or None
+    return event
+
+
+def load_events_yaml(path: Path) -> list[Event]:
+    """Load hand-added events from a YAML file.
+
+    An absent or empty file yields an empty list. A malformed file raises
+    pydantic's ValidationError so the build fails loudly.
+    """
+    if not path.exists():
+        return []
+    data: Any = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    events_file = EventsFile.model_validate(data)
+    return [_yaml_event_to_event(item) for item in events_file.events]
+
+
+def merge_events(api_events: list[Event], yaml_events: list[Event]) -> list[Event]:
+    """Merge API and YAML events, deduping by event URL and capping past events.
+
+    Events without an event URL are always kept. Ordering is newest first,
+    matching fetch_events(). Upcoming events are uncapped; previous events are
+    limited to config.MAX_SHOWN_EVENTS.
+    """
+    merged = list(api_events)
+    seen_urls = {event.event_url for event in merged if event.event_url}
+    for event in yaml_events:
+        if event.event_url is not None:
+            if event.event_url in seen_urls:
+                continue
+            seen_urls.add(event.event_url)
+        merged.append(event)
+
+    now = datetime.now(timezone.utc)
+    previous = sorted(
+        (event for event in merged if event.start_at <= now),
+        key=lambda event: event.start_at,
+        reverse=True,
+    )[: config.MAX_SHOWN_EVENTS]
+    upcoming = [event for event in merged if event.start_at > now]
+    return sorted(previous + upcoming, key=lambda event: event.start_at, reverse=True)
 
 
 class DiscourseTopic(BaseModel):
@@ -204,11 +371,11 @@ def make_event(
     if event is None:
         return None
 
-    district_url = None
+    ticket_url = None
     url = event.location
     parsed_url = urlparse(url)
     if parsed_url.scheme and parsed_url.netloc:
-        district_url = url
+        ticket_url = url
 
     return Event(
         id=topic.id,
@@ -218,8 +385,12 @@ def make_event(
         start_at=event.starts_at,
         end_at=event.ends_at,
         details=post.cooked,
-        underline_url=f"{base_url}/t/{topic.slug}",
-        district_url=district_url,
+        event_url=f"{base_url}/t/{topic.slug}",
+        ticket_url=ticket_url,
+        ticket_status="available" if ticket_url else "coming_soon",
+        rsvp_url=None,
+        location_name=UNDERLINE_LOCATION_NAME,
+        location_url=UNDERLINE_MAP_URL,
     )
 
 
@@ -298,23 +469,28 @@ def fetch_events(
     base_url: str = "https://underline.center",
     use_cache: bool = False,
     cache_fallback: bool = False,
+    yaml_path: Path = Path("./data/events.yaml"),
 ) -> list[Event]:
     """
-    Fetch IWCB events from Underline Center Discourse API.
+    Fetch IWCB events from Underline Center and merge hand-added YAML events.
 
     Args:
       base_url: URL of Underline Center Discourse. Default: https://underline.center/.
       use_cache: Whether to use cached content instead of fetching.
       cache_fallback: Whether to fall back to cached content on fetch failure
           and update the cache on success.
+      yaml_path: YAML file with hand-added events. Missing or empty files are
+          ignored.
 
     Returns:
-      IWCB Event as a list, empty if fetch failed.
+      IWCB events as a list, sorted newest first. YAML events are included even
+      when the Discourse fetch fails.
     """
     url = f"{base_url}/search/query?term=indieweb%20%23calendar%20order%3Alatest_topic&page=1"
     cache_file = cache_path(url)
 
     now = datetime.now(timezone.utc)
+    yaml_events = load_events_yaml(yaml_path)
 
     with requests.Session() as session:
         session.headers.update({"User-Agent": config.UA, "Accept": "application/json"})
@@ -361,7 +537,8 @@ def fetch_events(
             if response_json is not None:
                 logger.debug(f"Using cached content as fallback for: {url}")
         if response_json is None:
-            return []
+            logger.info(f"Extracted {len(yaml_events)} YAML events")
+            return merge_events([], yaml_events)
 
     events: list[Event] = []
     previous_count = 0
@@ -375,7 +552,7 @@ def fetch_events(
                 continue
         events.append(event)
 
-    events.sort(key=lambda x: x.start_at, reverse=True)
+    events = merge_events(events, yaml_events)
     logger.info(f"Extracted {len(events)} events")
     return events
 
@@ -405,9 +582,9 @@ def generate_events_feed(events: list[Event], output_dir: Path):
     for event in events:
         fe = fg.add_entry(order="append")
 
-        fe.id(event.underline_url)
+        fe.id(event.permalink)
         fe.title(event.title)
-        fe.link(href=event.underline_url, rel="alternate")
+        fe.link(href=event.permalink, rel="alternate")
         fe.published(event.created_at)
         fe.updated(event.created_at)
         fe.content(event.details, type="html")
@@ -451,7 +628,8 @@ def generate_events_calendar(events: list[Event], output_dir: Path):
     for event_data in events:
         event = CalEvent()
         event.add("summary", event_data.title)
-        event.add("url", event_data.underline_url)
+        event.add("url", event_data.permalink)
+        event.add("location", event_data.location_name)
         event.add("dtstamp", now)
         event.start = event_data.start_at
         event.end = event_data.end_at

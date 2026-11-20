@@ -442,7 +442,7 @@ def generate_website(
 
     @build.rule("events")
     def _(_target: str):
-        """Fetch events from Discourse into the build cache."""
+        """Fetch events (Discourse + data/events.yaml) into the build cache."""
         cache.events = fetch_events(use_cache=use_cache, cache_fallback=cache_fallback)
 
     @build.rule("feeds")

@@ -140,7 +140,7 @@ The build:
 
 1.  **Parses `blogroll.opml`** into a list of `FeedInfo` objects.
 2.  **Fetches feeds** concurrently, separates weeknotes via regex, filters by recency.
-3.  **Fetches events** from the Underline Center Discourse API.
+3.  **Fetches events** from the Underline Center Discourse API and merges them with hand-added events in `data/events.yaml`.
 4.  **Fetches newsletter archive** from an RSS feed.
 5.  **Resolves search bodies**: the post text of every entry, taken from the feed's own content when it is long enough and otherwise fetched from the post's permalink (cached in `.cache/search/`).
 6.  **Compiles the search engine** with tinysearch into a WebAssembly module, and writes the documents corpus it was built from (`.cache/search_docs/`).
@@ -150,6 +150,29 @@ The build:
 10. **Generates sitemap.xml** from all `index.html` files in `_site/`.
 
 The site is deployed to GitHub Pages via GitHub Actions (`.github/workflows/update.yml`), rebuilding hourly and on push.
+
+### Hand-added events
+
+Besides the Discourse API, events can be listed by hand in `data/events.yaml`:
+
+```yaml
+events:
+  - title: IndieWebClub Meetup #13
+    start: 2026-12-05T18:30:00+05:30
+    end: 2026-12-05T20:30:00+05:30
+    url: https://underline.center/t/some-topic   # optional
+    ticket_url: https://district.in/some-event   # optional
+    description: |                               # optional, Markdown
+      Our agenda for the evening...
+```
+
+`title`, `start`, and `end` are required; times without an offset are read as
+Asia/Kolkata. Entries merge with the API events and appear on `/events/`, in
+`events.atom`, and in `events.ics`. A YAML event is skipped only when its `url`
+matches an API event's URL, so give it the Discourse topic URL if it also
+exists there; events without a URL are always kept and link to their anchor on
+`/events/`. The number of previous events is capped by `MAX_SHOWN_EVENTS` after
+merging.
 
 ### Caching
 
@@ -258,7 +281,7 @@ A brief overview of the project's file structure:
 │   ├── indiewebcamp-button.svg
 │   ├── preview.png
 │   └── .nojekyll
-├── data/                      # YAML data pages (topics, prompts)
+├── data/                      # YAML data pages (topics, prompts) and hand-added events
 ├── pages/                     # Markdown & static HTML pages
 │   ├── coc.md
 │   ├── 2026-se/index.html
@@ -273,7 +296,7 @@ A brief overview of the project's file structure:
 │   ├── data_pages.py          # YAML data pages
 │   ├── generator.py           # Main generator & build rules
 │   ├── feeds.py               # Feed parsing & OPML
-│   ├── events.py              # Discourse API events
+│   ├── events.py              # Discourse API events + hand-added YAML events
 │   ├── member_dir.py          # Member directory with IndieWeb badges
 │   ├── newsletter.py          # Newsletter archive
 │   ├── archive.py             # Archive pages
