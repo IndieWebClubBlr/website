@@ -39,7 +39,7 @@ logger = logging.getLogger("feeds")
 # post (e.g. inside a code sample) would otherwise make lxml refuse to
 # serialize the whole feed.
 _XML_INVALID_CHARS_RE = re.compile(
-    "[^\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD\U00010000-\U0010FFFF]"
+    "[^\x09\x0a\x0d\x20-\ud7ff\ue000-\ufffd\U00010000-\U0010ffff]"
 )
 
 

@@ -287,9 +287,7 @@ def get_favicon_from_html(url: str) -> str | None:
     try:
         import favicon
 
-        icons = list(
-            favicon.get(url)  # pyright: ignore[reportAttributeAccessIssue]
-        )
+        icons = list(favicon.get(url))  # pyright: ignore[reportAttributeAccessIssue]
         if not icons:
             return None
 
