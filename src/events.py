@@ -50,7 +50,7 @@ class Event:
 
     def __init__(
         self,
-        id: int | str,
+        id: str,
         title: str,
         slug: str,
         created_at: datetime,
@@ -120,7 +120,11 @@ class Event:
     @property
     def permalink(self) -> str:
         """Canonical URL: the event page, or its anchor on the events page."""
-        return self.event_url or f"{config.SITE_URL}events/#event-{self.id}"
+        return self.event_url or f"{config.SITE_URL}{self.page_url[1:]}"
+
+    @property
+    def page_url(self) -> str:
+        return f"/events/{slugify(self.title, "-")}/"
 
     @property
     def tickets_available(self) -> bool:
@@ -219,8 +223,8 @@ class EventsFile(BaseModel):
 
 def _yaml_event_to_event(item: YamlEvent) -> Event:
     """Convert a validated YAML event into the Event used by renderers."""
-    slug = slugify(item.title, "-") or "event"
-    event_id = f"{slug}-{item.start:%Y%m%d}"
+    slug = slugify(item.title, "-")
+    event_id = slug
     description_html = (
         _markdown_block(item.description) if item.description.strip() else ""
     )
@@ -272,14 +276,7 @@ def merge_events(api_events: list[Event], yaml_events: list[Event]) -> list[Even
             seen_urls.add(event.event_url)
         merged.append(event)
 
-    now = datetime.now(timezone.utc)
-    previous = sorted(
-        (event for event in merged if event.start_at <= now),
-        key=lambda event: event.start_at,
-        reverse=True,
-    )[: config.MAX_SHOWN_EVENTS]
-    upcoming = [event for event in merged if event.start_at > now]
-    return sorted(previous + upcoming, key=lambda event: event.start_at, reverse=True)
+    return sorted(merged, key=lambda event: event.start_at, reverse=True)
 
 
 class DiscourseTopic(BaseModel):
@@ -378,7 +375,7 @@ def make_event(
         ticket_url = url
 
     return Event(
-        id=topic.id,
+        id=str(topic.id),
         title=topic.title.replace(" with Ankur and Tanvi", ""),
         slug=topic.slug,
         created_at=topic.created_at,
@@ -674,7 +671,7 @@ def generate_events_page(events: list[Event], output_dir: Path):
         "webcal_url": config.WEBCAL_URL,
         "upcoming_events": upcoming_events,
         "has_upcoming_events": len(upcoming_events) > 0,
-        "previous_events": previous_events,
+        "previous_events": previous_events[: config.MAX_SHOWN_EVENTS],
     }
 
     renderer = make_renderer()

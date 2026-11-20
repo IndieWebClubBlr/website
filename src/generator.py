@@ -414,7 +414,7 @@ def generate_website(
     def _(_target: str):
         """Generate the /webring/ tool page."""
         webring_template = read_template("webring.html")
-        webring_content = webring_renderer.render(
+        webring_content = renderer.render(
             webring_template, {"site_url": config.SITE_URL}
         )
         render_and_save_html(
@@ -444,6 +444,31 @@ def generate_website(
     def _(_target: str):
         """Fetch events (Discourse + data/events.yaml) into the build cache."""
         cache.events = fetch_events(use_cache=use_cache, cache_fallback=cache_fallback)
+        build.need(
+            *[
+                f"event:{event.id}"
+                for event in cache.events
+                if event.permalink.startswith(config.SITE_URL)
+            ]
+        )
+
+    @build.rule("event:*")
+    def _(event_id: str):
+        template = read_template("event-card.html")
+        events = [event for event in cache.events if event.id == event_id]
+        if len(events) != 1:
+            raise ValueError(f"Unique event not found for event ID: {event_id}")
+
+        event = events[0]
+        page_url = event.page_url[1:]
+        logger.warning(f"Event page url: {page_url}")
+        content = renderer.render(template, event)
+        render_and_save_html(
+            html_content=f"<section id='upcoming-events'>{content}</section>",
+            page_url=page_url,
+            output_dir=output_dir / page_url[:-1],
+            has_codehilite=False,
+        )
 
     @build.rule("feeds")
     def _(_target: str):
@@ -568,7 +593,7 @@ def generate_website(
         )
 
     webring_template = read_template("webring-redirect.html")
-    webring_renderer = make_renderer()
+    renderer = make_renderer()
 
     @build.rule("webring")
     def _(_target: str):
@@ -614,7 +639,7 @@ def generate_website(
         prev_feed, next_feed, feed_url = cache.webring_prev_next[slug]
         for feed, name in [(prev_feed, "previous"), (next_feed, "next")]:
             save_html(
-                webring_renderer.render(
+                renderer.render(
                     webring_template,
                     {
                         "title": feed.title,
@@ -652,7 +677,7 @@ def generate_website(
         """Generate a legacy random prev/next webring redirect page."""
         feed = cache.webring_legacy[kind]
         save_html(
-            webring_renderer.render(
+            renderer.render(
                 webring_template,
                 {
                     "title": feed.title,

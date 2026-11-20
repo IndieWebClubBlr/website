@@ -20,7 +20,7 @@
   <h2>Previous Events</h2>
   {{#previous_events}}
   <div class="event" id="event-{{{id}}}">
-    <h3>{{#event_url}}<a href="{{event_url}}" target="_blank">{{title}}</a>{{/event_url}}{{^event_url}}{{title}}{{/event_url}}</h3>
+    <h3><a href="{{permalink}}" target="_blank">{{title}}</a></h3>
     <div class="start-time"><time datetime="{{start_at_machine}}">{{start_at_human}}</time></div>
   </div>
   {{/previous_events}}

@@ -37,7 +37,7 @@ MAX_SHOWN_TAGS = 5
 MAX_SUMMARY_LENGTH = 200
 
 # Maximum number of previous events to show.
-MAX_SHOWN_EVENTS = 10
+MAX_SHOWN_EVENTS = 5
 
 # Maximum number of week notes to show.
 MAX_SHOWN_WEEK_NOTES = 10

@@ -289,6 +289,14 @@ header {
   border-radius: var(--radius-card);
 }
 
+.h-event + hr {
+  color: var(--color-border-subtle);
+  margin-block: 2rem;
+  &:last-of-type {
+    display: none;
+  }
+}
+
 .entry,
 .event {
   padding: 0.8em;
