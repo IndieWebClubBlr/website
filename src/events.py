@@ -575,6 +575,9 @@ def generate_events_feed(events: list[Event], output_dir: Path):
     fg.link(href=config.SITE_URL, rel="alternate")
     fg.subtitle("Events by IndieWebClub Bangalore.")
 
+    renderer = make_renderer()
+    template = read_template(file_name="event-entry.html")
+
     feed_updated = None
     for event in events:
         fe = fg.add_entry(order="append")
@@ -584,7 +587,7 @@ def generate_events_feed(events: list[Event], output_dir: Path):
         fe.link(href=event.permalink, rel="alternate")
         fe.published(event.created_at)
         fe.updated(event.created_at)
-        fe.content(event.details, type="html")
+        fe.content(renderer.render(template, event), type="html")
 
         if feed_updated is None or feed_updated < event.created_at:
             feed_updated = event.created_at

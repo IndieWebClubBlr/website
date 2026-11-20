@@ -11,6 +11,8 @@ events:
     location_url: "https://maps.app.goo.gl/rC7P8AxXUgtcA1pe8"
     ticket_status: available
     description: |
+      ### Agenda
+
       This will be a co-working and writing session. We'll work on our personal websites, try new designs, build new features, squash bugs, polish old drafts, or do some long-neglected digital housekeeping.
 
       If you don't have any programming or design experience, don't worry! We'll help you with any questions you might have participating on the IndieWeb, no matter your level of technical experience. If possible, we'll pair you up with a buddy who can help you out with the technical and design side of web development.
@@ -23,7 +25,7 @@ events:
 
       As usual, we will end the meetup with a writing prompt and a focused writing session.
 
-      **IMPORTANT**
+      ### Important
 
       1. Please note the change in venue as well as time. This week, we will be meeting on the terrace at TreeHouse Indiranagar instead of our usual space. The timing will be 3:30pm to 6:30pm instead of the usual time.
       2. **The cost of the event will be ₹300**, to be paid to the venue when you arrive.
@@ -39,6 +41,8 @@ events:
     ticket_status: not_required
     rsvp_url: "https://forms.gle/tp27uL5BLyBb1dxx9"
     description: |
+      ### Agenda
+
       Let’s talk about slash pages (/pages) on our websites!
 
       - Slash pages are standard pages on your website, usually with well known slugs like /now, /about, or /uses. They tend to describe the individual behind the site and are a distinguishing characteristic of the IndieWeb.
@@ -51,7 +55,7 @@ events:
 
       Remember to bring a device you can use to write and post to your blog!
 
-      **IMPORTANT**
+      ### Important
 
       1. Please note the change in venue. This week, we will be meeting at Samagata Foundation on Church Street instead of our usual.
       2. For this week only, you don't need to buy a ticket to attend! Consider this an early Diwali gift 🙂
