@@ -66,6 +66,8 @@
     <outline type="rss" text="Jatan" xmlUrl="https://jatan.space/rss" htmlUrl="https://jatan.space/" />
     <outline type="rss" text="Jatan" xmlUrl="https://web.jatan.space/feed.xml?tag=notes" htmlUrl="https://web.jatan.space/" />
     <outline type="rss" text="jawangana" xmlUrl="https://jawangana.mataroa.blog/rss/" htmlUrl="https://jawangana.mataroa.blog/" />
+    <outline type="rss" text="Jaydip Sanghani" webring="true" xmlUrl="https://jaydip.me/rss.xml" htmlUrl="https://jaydip.me" />
+    <outline type="rss" text="Jaydip Sanghani" xmlUrl="https://jaydip.me/notes/rss.xml" htmlUrl="https://jaydip.me/notes" />
     <outline type="rss" text="Karthik Balakrishnan" xmlUrl="https://karthikbalakrishnan.com/feed.xml" htmlUrl="https://karthikbalakrishnan.com/" />
     <outline type="rss" text="Karthik Devan" xmlUrl="https://kdqed.com/feed.xml" htmlUrl="https://kdqed.com/" />
     <outline type="rss" text="Kartik Kwatra" xmlUrl="https://kartikkwatra.com/rss.xml" htmlUrl="https://kartikkwatra.com/" />
