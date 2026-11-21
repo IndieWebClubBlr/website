@@ -1,0 +1,80 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//IndieWebClub Bangalore//Events//EN
+DESCRIPTION:Events by IndieWebClub Bangalore
+X-WR-CALDESC:Events by IndieWebClub Bangalore
+NAME:IndieWebClub Bangalore Events
+X-WR-CALNAME:IndieWebClub Bangalore Events
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZNAME:IST
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #38
+DTSTART;TZID=Asia/Kolkata:20261121T153000
+DTEND;TZID=Asia/Kolkata:20261121T183000
+DTSTAMP:20261121T115600Z
+UID:indiewebclubblr-event-indiewebclub-38
+LOCATION:TreeHouse Indiranagar\, on the terrace
+URL:https://blr.indiewebclub.org/events/indiewebclub-38/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #37
+DTSTART;TZID=Asia/Kolkata:20261107T140000
+DTEND;TZID=Asia/Kolkata:20261107T170000
+DTSTAMP:20261121T115600Z
+UID:indiewebclubblr-event-indiewebclub-37
+LOCATION:4th floor\, Samagata Foundation\, Church Street
+URL:https://blr.indiewebclub.org/events/indiewebclub-37/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #36
+DTSTART;TZID=Asia/Kolkata:20261017T140000
+DTEND;TZID=Asia/Kolkata:20261017T170000
+DTSTAMP:20261121T115600Z
+UID:indiewebclubblr-event-895
+LOCATION:Underline Center
+URL:https://underline.center/t/indiewebclub-36
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #35
+DTSTART;TZID=Asia/Kolkata:20261003T140000
+DTEND;TZID=Asia/Kolkata:20261003T170000
+DTSTAMP:20261121T115600Z
+UID:indiewebclubblr-event-889
+LOCATION:Underline Center
+URL:https://underline.center/t/indiewebclub-35
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #34
+DTSTART;TZID=Asia/Kolkata:20260919T140000
+DTEND;TZID=Asia/Kolkata:20260919T170000
+DTSTAMP:20261121T115600Z
+UID:indiewebclubblr-event-872
+LOCATION:Underline Center
+URL:https://underline.center/t/indiewebclub-34
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #33
+DTSTART;TZID=Asia/Kolkata:20260905T140000
+DTEND;TZID=Asia/Kolkata:20260905T170000
+DTSTAMP:20261121T115600Z
+UID:indiewebclubblr-event-867
+LOCATION:Underline Center
+URL:https://underline.center/t/indiewebclub-33
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:IndieWebClub #32
+DTSTART;TZID=Asia/Kolkata:20260815T140000
+DTEND;TZID=Asia/Kolkata:20260815T170000
+DTSTAMP:20261121T115600Z
+UID:indiewebclubblr-event-850
+LOCATION:Underline Center
+URL:https://underline.center/t/indiewebclub-32
+END:VEVENT
+END:VCALENDAR
