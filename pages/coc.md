@@ -73,3 +73,5 @@ The enforcement policies listed above apply to all IWCB channels, both online an
 *This Code of Conduct is distributed under a [Creative Commons Attribution-ShareAlike license](http://creativecommons.org/licenses/by-sa/3.0/).*
 
 You can suggest edits to [this document on GitHub](https://github.com/IndieWebClubBlr/website/blob/main/pages/coc.md).
+
+See also: the [guidelines of participation](/guidelines/).
