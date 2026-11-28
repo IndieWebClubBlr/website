@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://blr.indiewebclub.org/events.atom</id>
+  <title>IndieWebClub Bangalore Events</title>
+  <updated>2026-11-21T15:30:00+05:30</updated>
+  <author>
+    <name>IndieWebClub Bangalore</name>
+  </author>
+  <link href="https://blr.indiewebclub.org/events.atom" rel="self"/>
+  <link href="https://blr.indiewebclub.org/" rel="alternate"/>
+  <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
+  <subtitle>Events by IndieWebClub Bangalore.</subtitle>
+  <entry>
+    <id>https://blr.indiewebclub.org/events/indiewebclub-38/</id>
+    <title>IndieWebClub #38</title>
+    <updated>2026-11-21T15:30:00+05:30</updated>
+    <content type="html">&lt;ul&gt;
+  &lt;li&gt;On: &lt;time datetime="2026-11-21T15:30:00+05:30"&gt;21 Nov 2026, 03:30 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;Till: &lt;time datetime="2026-11-21T18:30:00+05:30"&gt;21 Nov 2026, 06:30 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;At: &lt;a href="https://maps.app.goo.gl/rC7P8AxXUgtcA1pe8"&gt;TreeHouse Indiranagar, on the terrace&lt;/a&gt;&lt;/li&gt;
+  
+  &lt;li&gt;Tickets available at the venue&lt;/li&gt;
+&lt;/ul&gt;
+&lt;section&gt;&lt;h3&gt;Agenda&lt;/h3&gt;
+&lt;p&gt;This will be a co-working and writing session. We&amp;rsquo;ll work on our personal websites, try new designs, build new features, squash bugs, polish old drafts, or do some long-neglected digital housekeeping.&lt;/p&gt;
+&lt;p&gt;If you don&amp;rsquo;t have any programming or design experience, don&amp;rsquo;t worry! We&amp;rsquo;ll help you with any questions you might have participating on the IndieWeb, no matter your level of technical experience. If possible, we&amp;rsquo;ll pair you up with a buddy who can help you out with the technical and design side of web development.&lt;/p&gt;
+&lt;p&gt;Bring:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Your laptop (+ charger)&lt;/li&gt;
+&lt;li&gt;Ideas for new features/designs you want to add to your website (or just a list of enhancements you want to make)&lt;/li&gt;
+&lt;li&gt;If you&amp;rsquo;re new to programming or design, come with questions so we can find you answers!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;As usual, we will end the meetup with a writing prompt and a focused writing session.&lt;/p&gt;
+&lt;h3&gt;Important&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Please note the change in venue as well as time. This week, we will be meeting on the terrace at TreeHouse Indiranagar instead of our usual space. The timing will be 3:30pm to 6:30pm instead of the usual time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The cost of the event will be ₹300&lt;/strong&gt;, to be paid to the venue when you arrive.&lt;/li&gt;
+&lt;li&gt;Outside food and drink are not allowed at the venue.&lt;/li&gt;
+&lt;li&gt;We might have limited desk space at this venue, so we&amp;rsquo;ll have to get creative!&lt;/li&gt;
+&lt;li&gt;We only have 5 or 6 plug points at this venue, so please make sure your devices are charged.&lt;/li&gt;
+&lt;/ol&gt;&lt;/section&gt;
+
+</content>
+    <link href="https://blr.indiewebclub.org/events/indiewebclub-38/"/>
+    <published>2026-11-21T15:30:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://blr.indiewebclub.org/events/indiewebclub-37/</id>
+    <title>IndieWebClub #37</title>
+    <updated>2026-11-07T14:00:00+05:30</updated>
+    <content type="html">&lt;ul&gt;
+  &lt;li&gt;On: &lt;time datetime="2026-11-07T14:00:00+05:30"&gt;07 Nov 2026, 02:00 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;Till: &lt;time datetime="2026-11-07T17:00:00+05:30"&gt;07 Nov 2026, 05:00 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;At: &lt;a href="https://maps.app.goo.gl/oBLCsHrwKdHFB6wRA"&gt;4th floor, Samagata Foundation, Church Street&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://forms.gle/tp27uL5BLyBb1dxx9"&gt;Please RSVP&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;section&gt;&lt;h3&gt;Agenda&lt;/h3&gt;
+&lt;p&gt;Let’s talk about slash pages (/pages) on our websites!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Slash pages are standard pages on your website, usually with well known slugs like /now, /about, or /uses. They tend to describe the individual behind the site and are a distinguishing characteristic of the IndieWeb.&lt;/li&gt;
+&lt;li&gt;We&amp;rsquo;ll begin with some examples of /pages we like from across the IndieWeb. What is the appeal of /pages? Is it the insight into somebody&amp;rsquo;s life? Or is it a discovery mechanism for new things, hobbies, and interests? What do you look for when you&amp;rsquo;re browsing somebody&amp;rsquo;s website? Bring your favorites!&lt;/li&gt;
+&lt;li&gt;What /pages would you like to have on your own website? Have people created their own /pages? How different is the process of creating/maintaining a /page from some other things on your website? How often do you update them?&lt;/li&gt;
+&lt;li&gt;Are there any pages you would like to add to your website, but something is stopping you? What is your biggest roadblock?&lt;/li&gt;
+&lt;li&gt;What slashpages would you like to see more of on the IndieWeb? What do you feel is missing from the list at slashpages.net?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We&amp;rsquo;ll spend the last hour of the meetup writing and publishing a piece on our personal websites. We&amp;rsquo;ll provide writing prompts to get you started.&lt;/p&gt;
+&lt;p&gt;Remember to bring a device you can use to write and post to your blog!&lt;/p&gt;
+&lt;h3&gt;Important&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Please note the change in venue. This week, we will be meeting at Samagata Foundation on Church Street instead of our usual.&lt;/li&gt;
+&lt;li&gt;For this week only, you don&amp;rsquo;t need to buy a ticket to attend! Consider this an early Diwali gift 🙂&lt;/li&gt;
+&lt;/ol&gt;&lt;/section&gt;
+
+</content>
+    <link href="https://blr.indiewebclub.org/events/indiewebclub-37/"/>
+    <published>2026-11-07T14:00:00+05:30</published>
+  </entry>
+  <entry>
+    <id>https://underline.center/t/indiewebclub-36</id>
+    <title>IndieWebClub #36</title>
+    <updated>2026-10-12T16:24:59.520000+00:00</updated>
+    <content type="html">&lt;ul&gt;
+  &lt;li&gt;On: &lt;time datetime="2026-10-17T14:00:00+05:30"&gt;17 Oct 2026, 02:00 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;Till: &lt;time datetime="2026-10-17T17:00:00+05:30"&gt;17 Oct 2026, 05:00 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;At: &lt;a href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA"&gt;Underline Center&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.district.in/indiewebclub-meetup/event"&gt;Buy tickets&lt;/a&gt;&lt;/li&gt;
+  
+&lt;/ul&gt;
+&lt;section&gt;&lt;h3&gt;&lt;a aria-label="Heading link" class="anchor" href="#p-1046-agenda-1" name="p-1046-agenda-1"&gt;&lt;/a&gt;Agenda&lt;/h3&gt;
+&lt;p&gt;This will be a co-working and writing session. We’ll work on our personal websites, try new designs, build new features, squash bugs, polish old drafts, or do some long-neglected digital housekeeping.&lt;/p&gt;
+&lt;p&gt;If you don’t have any programming or design experience, don’t worry! We’ll help you with any questions you might have participating on the IndieWeb, no matter your level of technical experience. If possible, we’ll pair you up with a buddy who can help you out with the technical and design side of web development.&lt;/p&gt;
+&lt;p&gt;Bring:&lt;/p&gt;
+&lt;p&gt;1.⁠ ⁠Your laptop (+ charger)&lt;br/&gt;
+2.⁠ ⁠Ideas for new features/designs you want to add to your website (or just a list of enhancements you want to make)&lt;br/&gt;
+3.⁠ ⁠If you’re new to programming or design, come with questions so we can find you answers!&lt;/p&gt;
+&lt;p&gt;As usual, we will end the meetup with a writing prompt and a focused writing session.&lt;/p&gt;
+&lt;/section&gt;
+
+</content>
+    <link href="https://underline.center/t/indiewebclub-36"/>
+    <published>2026-10-12T16:24:59.520000+00:00</published>
+  </entry>
+  <entry>
+    <id>https://underline.center/t/indiewebclub-35</id>
+    <title>IndieWebClub #35</title>
+    <updated>2026-09-28T08:20:51.328000+00:00</updated>
+    <content type="html">&lt;ul&gt;
+  &lt;li&gt;On: &lt;time datetime="2026-10-03T14:00:00+05:30"&gt;03 Oct 2026, 02:00 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;Till: &lt;time datetime="2026-10-03T17:00:00+05:30"&gt;03 Oct 2026, 05:00 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;At: &lt;a href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA"&gt;Underline Center&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.district.in/indiewebclub-meetup/event"&gt;Buy tickets&lt;/a&gt;&lt;/li&gt;
+  
+&lt;/ul&gt;
+&lt;section&gt;&lt;h3&gt;&lt;a aria-label="Heading link" class="anchor" href="#p-1040-agenda-1" name="p-1040-agenda-1"&gt;&lt;/a&gt;Agenda&lt;/h3&gt;
+&lt;p&gt;This will be a discussion focused session.&lt;/p&gt;
+&lt;p&gt;In a previous IWCB session, we talked about the journey of a blog post from idea to publication. In this session, we want to talk about the life of a blog post &lt;em&gt;after&lt;/em&gt; you publish it.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Do you edit your blog posts after you’ve published them? What kinds of edits do you allow yourself to make? Would you ever consider deleting a piece of writing you’ve already published?&lt;/li&gt;
+&lt;li&gt;Do you share your blog posts with your friends? What about the communities you’re part of? What drives you to share your writing in this way?&lt;/li&gt;
+&lt;li&gt;What are your feelings about likes, shares, analytics, or other engagement metrics on your writing? Do you like to track such metrics?&lt;/li&gt;
+&lt;li&gt;Do you ever go back to read your old blog posts? Why or why not?&lt;/li&gt;
+&lt;li&gt;Have you ever thought about what you’d like your writing to add up to in the long term? In ten or fifteen years, are you hoping to tell a story, or meander through different ones?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We’ll spend the last hour of the meetup writing and publishing a piece on our personal websites. We’ll provide writing prompts to get you started.&lt;/p&gt;
+&lt;p&gt;Remember to bring a device you can use to write and post to your blog!&lt;/p&gt;
+&lt;/section&gt;
+
+</content>
+    <link href="https://underline.center/t/indiewebclub-35"/>
+    <published>2026-09-28T08:20:51.328000+00:00</published>
+  </entry>
+  <entry>
+    <id>https://underline.center/t/indiewebclub-34</id>
+    <title>IndieWebClub #34</title>
+    <updated>2026-09-09T16:25:01.309000+00:00</updated>
+    <content type="html">&lt;ul&gt;
+  &lt;li&gt;On: &lt;time datetime="2026-09-19T14:00:00+05:30"&gt;19 Sep 2026, 02:00 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;Till: &lt;time datetime="2026-09-19T17:00:00+05:30"&gt;19 Sep 2026, 05:00 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;At: &lt;a href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA"&gt;Underline Center&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.district.in/indiewebclub-meetup/event"&gt;Buy tickets&lt;/a&gt;&lt;/li&gt;
+  
+&lt;/ul&gt;
+&lt;section&gt;&lt;h3&gt;&lt;a aria-label="Heading link" class="anchor" href="#p-1022-agenda-1" name="p-1022-agenda-1"&gt;&lt;/a&gt;Agenda&lt;/h3&gt;
+&lt;p&gt;This will be a co-working and writing session. We’ll work on our personal websites, try new designs, build new features, squash bugs, polish old drafts, or do some long-neglected digital housekeeping.&lt;/p&gt;
+&lt;p&gt;If you don’t have any programming or design experience, don’t worry! We’ll help you with any questions you might have participating on the IndieWeb, no matter your level of technical experience. If possible, we’ll pair you up with a buddy who can help you out with the technical and design side of web development.&lt;/p&gt;
+&lt;p&gt;Bring:&lt;/p&gt;
+&lt;p&gt;1.⁠ ⁠Your laptop (+ charger)&lt;br/&gt;
+2.⁠ ⁠Ideas for new features/designs you want to add to your website (or just a list of enhancements you want to make)&lt;br/&gt;
+3.⁠ ⁠If you’re new to programming or design, come with questions so we can find you answers!&lt;/p&gt;
+&lt;p&gt;As usual, we will end the meetup with a writing prompt and a focused writing session.&lt;/p&gt;
+&lt;/section&gt;
+
+</content>
+    <link href="https://underline.center/t/indiewebclub-34"/>
+    <published>2026-09-09T16:25:01.309000+00:00</published>
+  </entry>
+  <entry>
+    <id>https://underline.center/t/indiewebclub-33</id>
+    <title>IndieWebClub #33</title>
+    <updated>2026-08-29T14:50:03.064000+00:00</updated>
+    <content type="html">&lt;ul&gt;
+  &lt;li&gt;On: &lt;time datetime="2026-09-05T14:00:00+05:30"&gt;05 Sep 2026, 02:00 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;Till: &lt;time datetime="2026-09-05T17:00:00+05:30"&gt;05 Sep 2026, 05:00 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;At: &lt;a href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA"&gt;Underline Center&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.district.in/indiewebclub-meetup/event"&gt;Buy tickets&lt;/a&gt;&lt;/li&gt;
+  
+&lt;/ul&gt;
+&lt;section&gt;&lt;h3&gt;&lt;a aria-label="Heading link" class="anchor" href="#p-1017-agenda-1" name="p-1017-agenda-1"&gt;&lt;/a&gt;Agenda&lt;/h3&gt;
+&lt;p&gt;This will be a discussion focused session. In light of recent discussions in the community, this weekend we’ll talk about the journey of a draft from idea to published post.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Where do you find ideas for blog posts? Do they come from life experiences or from reading posts by other bloggers? Or do you simply sit down and write on a schedule, regardless of whether you have an idea or not?&lt;/li&gt;
+&lt;li&gt;How do your ideas evolve into full posts? Do you collect material over time, or do you prefer to publish quickly? How does your initial idea evolve as you work on something?&lt;/li&gt;
+&lt;li&gt;How do you organize your drafts? If you have multiple drafts, how do you prioritize one over another?&lt;/li&gt;
+&lt;li&gt;On average, how long do ideas sit in your drafts before you publish them? Do all your drafts make it to your blog? What happens to the ones  that don’t make it, and how do you feel about them?&lt;/li&gt;
+&lt;li&gt;What is your policy around editing your posts after you’ve published them? What kind of edits do you allow yourself to make post-publish?&lt;/li&gt;
+&lt;li&gt;What do you do after you publish a post?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We’ll spend the last hour of the meetup writing and publishing a piece on our personal websites. We’ll provide writing prompts to get you started.&lt;/p&gt;
+&lt;p&gt;Remember to bring a device you can use to write and post to your blog!&lt;/p&gt;
+&lt;/section&gt;
+
+</content>
+    <link href="https://underline.center/t/indiewebclub-33"/>
+    <published>2026-08-29T14:50:03.064000+00:00</published>
+  </entry>
+  <entry>
+    <id>https://underline.center/t/indiewebclub-32</id>
+    <title>IndieWebClub #32</title>
+    <updated>2026-08-03T18:09:11.089000+00:00</updated>
+    <content type="html">&lt;ul&gt;
+  &lt;li&gt;On: &lt;time datetime="2026-08-15T14:00:00+05:30"&gt;15 Aug 2026, 02:00 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;Till: &lt;time datetime="2026-08-15T17:00:00+05:30"&gt;15 Aug 2026, 05:00 PM IST&lt;/time&gt;&lt;/li&gt;
+  &lt;li&gt;At: &lt;a href="https://maps.app.goo.gl/qa4yF16LJ7cGSE6EA"&gt;Underline Center&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.district.in/indiewebclub-meetup/event"&gt;Buy tickets&lt;/a&gt;&lt;/li&gt;
+  
+&lt;/ul&gt;
+&lt;section&gt;&lt;h3&gt;&lt;a aria-label="Heading link" class="anchor" href="#p-1000-agenda-1" name="p-1000-agenda-1"&gt;&lt;/a&gt;Agenda&lt;/h3&gt;
+&lt;p&gt;This will be a co-working and writing session. We’ll work on our personal websites, try new designs, build new features, squash bugs, polish old drafts, or do some long-neglected digital housekeeping.&lt;/p&gt;
+&lt;p&gt;If you don’t have any programming or design experience, don’t worry! We’ll help you with any questions you might have participating on the IndieWeb, no matter your level of technical experience. If possible, we’ll pair you up with a buddy who can help you out with the technical and design side of web development.&lt;/p&gt;
+&lt;/section&gt;
+
+</content>
+    <link href="https://underline.center/t/indiewebclub-32"/>
+    <published>2026-08-03T18:09:11.089000+00:00</published>
+  </entry>
+</feed>
